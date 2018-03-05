@@ -1,5 +1,11 @@
 .DS_Store
 *.log
-config/
-storage/
+/config
+/storage
 .htaccess
+.user.ini
+.htaccess.installer
+C:\xampp\php\logs\php_error_log
+error_log
+php.ini
+.env
