@@ -9,3 +9,4 @@ C:\xampp\php\logs\php_error_log
 error_log
 php.ini
 .env
+.vscode
