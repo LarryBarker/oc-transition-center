@@ -1,0 +1,6 @@
+plugin:
+    name: Mail
+    description: 'Transition Center email client for users.'
+    author: Wwrf
+    icon: icon-envelope
+    homepage: ''

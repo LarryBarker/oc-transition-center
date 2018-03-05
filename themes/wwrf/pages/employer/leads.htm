@@ -1,0 +1,61 @@
+title = "My Job Leads"
+url = "/employer/jobs/leads"
+layout = "default"
+is_hidden = 0
+
+[PostList]
+use_authors = 0
+restrict_owner = 1
+category[] = 8
+category[] = 9
+category[] = 10
+category[] = 11
+category[] = 12
+category[] = 13
+category[] = 14
+category[] = 15
+category[] = 17
+category[] = 18
+category[] = 19
+category[] = 22
+category[] = 23
+backUser = 1
+formPage = "employer/new-job"
+==
+{% if user.groups.first.name == 'Employers' %}
+<div class="jumbotron">
+    <div class="container">
+        <h1>My Jobs</h1>
+        <p class="lead">You may add jobs to our site using the form below.</p>
+    </div>
+</div>
+	<div class="container">
+		<!-- Start postlist-default.htm -->
+		{% if PostList.backUser %}
+			<div class="col-md-4">
+				<div  class="text-right">
+		            <a href="{{ PostList.formPage }}"
+		                class="btn btn-success btn-block"
+		                title="{{ PostList.trans('general.btn_add') }}">
+		                Add New Job <i class="icon icon-edit"></i>
+		            </a>
+		        </div>
+			</div>
+			<div class="col-md-8">
+				<div id="bloginfo">
+					{% partial PostList~'::list' %}
+				</div>
+			</div>
+		{% else %}
+			<p>{{ PostList.trans('general.unauthorized') }}</p>
+		{% endif %}
+		<!-- End postlist-default.htm -->
+	</div>
+{% else %}
+	<div class="jumbotron">
+	    <div class="container">
+	        <h1>Error</h1>
+	        <p>We're sorry, but something went wrong and the page cannot be displayed.</p>
+	    </div>
+	</div>
+{% endif %}

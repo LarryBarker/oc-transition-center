@@ -1,0 +1,565 @@
+==
+<!DOCTYPE html>
+<html lang="en" class="full-height">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+	<title>Material Design Bootstrap</title>
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- Bootstrap core CSS -->
+	<link href="{{ [
+		'assets/larry/bootstrap.min.css',
+		'assets/larry/mdb.min.css',
+		'assets/larry/style.css']|theme}}" rel="stylesheet">
+
+    <style>
+        @media (max-width: 740px) {
+            .full-height,
+            .full-height body,
+            .full-height header,
+            .full-height header .view {
+                height: 700px; 
+            } 
+        }
+    </style>
+
+</head>
+<body class="developer">
+
+    <!--Navigation & Intro-->
+    <header>
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mr-auto smooth-scroll">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about" data-offset="100">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#skills" data-offset="100">Skills</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#works" data-offset="100">Works</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact" data-offset="100">Contact</a>
+                        </li>
+                    </ul>
+                    <!-- Social Icon  -->
+                    <ul class="navbar-nav nav-flex-icons">
+                        <li class="nav-item">
+                            <a class="nav-link"><i class="fa fa-github light-green-text-2"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Intro Section -->
+        <div id="home" class="view hm-white-strong jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('https://mdbootstrap.com/img/Photos/Others/forest1.jpg');">
+            <div class="full-bg-img">
+                <div class="container flex-center">
+                    <div class="row smooth-scroll">
+                        <div class="col-md-12 pt-3">
+                            <div class="white-text text-center pt-5">
+                                <h1 class="display-2 mb-4 dark-grey-text wow fadeIn">Hi! I'm <strong>Larry</strong></h1>
+                                <h5 class="font-up font-bold wow fadeIn" data-wow-delay="0.4s"><mark>Full-stack Web Developer</mark></h5>
+                                <a href="#about" class="btn btn-floating btn-large wow fadeIn" data-wow-delay="0.4s" data-offset="100"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <!--/Navigation & Intro-->
+
+    <!--Main layout-->
+    <main>
+
+        <!-- First container -->
+        <div class="container">
+            
+            <!-- Section About -->
+            <section id="about" class="section feature-box mb-5">
+
+                <!-- Section title -->
+                <h2 class="text-center font-up my-5 pt-5 wow fadeIn" data-wow-delay="0.2s">About <strong>me</strong></h2>
+                    
+                <p class="section-description wow fadeIn" data-wow-delay="0.2s">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum quas, eos officia maiores ipsam ipsum dolores reiciendis ad voluptas, animi obcaecati adipisci sapiente mollitia.</p>   
+                
+                <!-- First row -->
+                <div class="row features-big wow fadeIn" data-wow-delay="0.4s">
+                    
+                    <!-- First column -->
+                    <div class="col-md-4 mb-r">
+                        
+                        <!--Panel-->
+                        <div class="card card-body hoverable">
+                            <i class="fa fa-laptop dark-grey-text" aria-hidden="true"></i>
+                            <h5 class="feature-title font-up">Freelancer</h5>
+                            <p class="dark-grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        </div>
+                        <!--/.Panel-->
+                        
+                    </div>
+                    <!-- /First column -->   
+        
+                    <!-- Second column -->
+                    <div class="col-md-4 mb-r">
+                        
+                        <!--Panel-->
+                        <div class="card card-body yellow hoverable">
+                            <i class="fa fa-code dark-grey-text" aria-hidden="true"></i>
+                            <h5 class="feature-title font-up">Developer</h5>
+                            <p class="dark-grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        </div>
+                        <!--/.Panel-->
+                        
+                    </div>
+                    <!-- /.Second column -->
+
+                    <!-- Third column -->
+                    <div class="col-md-4 mb-r">
+                        
+                        <!--Panel-->
+                        <div class="card card-body hoverable">
+                            <i class="fa fa-pencil dark-grey-text" aria-hidden="true"></i>
+                            <h5 class="feature-title font-up">Designer</h5>
+                            <p class="dark-grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        </div>
+                        <!--/.Panel-->
+                        
+                    </div>
+                    <!-- /.Third column -->
+
+                </div>
+                <!-- /.First row -->
+
+            </section>
+            <!-- /.Second section -->
+           
+        </div>
+        <!-- /.First container -->
+
+        <!--Second container-->
+        <div class="container-fluid" style="background-color: #f3f3f5;">
+            <div class="container py-4 pt-4">
+                    
+                <!-- Second section -->
+                <section id="skills">
+                    
+                    <!-- First row -->
+                    <div class="row py-5">
+                    
+                        <!--First column-->
+                        <div class="col-lg-6 col-md-12 mb-3 wow fadeIn" data-wow-delay="0.4s">
+                        
+                        <!--Section heading-->
+                        <div class="d-flex justify-content-start">
+                            <h4 class="text-center font-up mb-5 pb-3 mt-4 wow fadeIn" data-wow-delay="0.2s">My <strong>experience</strong></h4>
+                        </div>
+                           
+                                <!--Description-->
+                                <blockquote class="blockquote bq-warning mb-4">
+                                    <div class="row"> <i class="fa fa-briefcase fa-x mb-1 mr-3 ml-3 dark-grey-text" aria-hidden="true"></i>
+                                        <h5 class="font-bold mb-3">Workforce Development Clerk</h5> 
+                                    </div>
+                                    <p class="font-bold ml-1 dark-grey-text mb-2">March, 2017 - Present (4 years)</p>
+                                    <p class="mb-0 ml-1 light-grey-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                </blockquote>
+                            
+                                <blockquote class="blockquote bq-warning mt-1 mb-4">
+                                    <div class="row"> <i class="fa fa-briefcase fa-x mb-1 mr-3 ml-3 dark-grey-text" aria-hidden="true"></i>
+                                        <h5 class="font-bold mb-3">JavaScript developer</h5> </div>
+                                    <p class="font-bold ml-1 dark-grey-text mb-2">March 2011 - June 2012 (1 year, 3 Month)</p>
+                                    <p class="mb-0 ml-1 light-grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum quas, eos officia maiores ipsam ipsum dolores. </p>
+                                </blockquote>
+                            
+                                <blockquote class="blockquote bq-warning">
+                                    <div class="row"> <i class="fa fa-briefcase fa-x mb-1 mr-3 ml-3 dark-grey-text" aria-hidden="true"></i>
+                                        <h5 class="font-bold mb-3">Web developer</h5> </div>
+                                    <p class="font-bold ml-1 dark-grey-text mb-2"><strong>March 2005 - May 2011 (6 years, 2 Month)</strong></p>
+                                    <p class="mb-0 ml-1 light-grey-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit integer posuere.</p>
+                                </blockquote>
+                                    
+                        </div>
+                        <!--/First column-->
+
+                        <!--Second column-->
+                        <div class="col-lg-5 offset-lg-1 col-md-12 mb-4 wow fadeIn" data-wow-delay="0.4s">
+
+                        <!--Second heading-->
+                        <div class="d-flex justify-content-start">
+                            <h4 class="text-center font-up mb-5 pb-3 mt-4 wow fadeIn" data-wow-delay="0.2s">Development <strong>Skills</strong></h4>
+                        </div>
+                            
+                            <!--Description-->
+                            <p class="black-text font-up font-bold" align="justify">Java Script</p>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+
+                            <p class="black-text font-up font-bold pt-3" align="justify">CSS3</p>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                             
+                            <p class="black-text font-up font-bold pt-3" align="justify">HTML5</p>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            
+                            <p class="black-text font-up font-bold pt-3" align="justify">Bootstrap</p>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 45%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            
+                            <p class="black-text font-up font-bold pt-3" align="justify">PHP</p>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 53%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            
+                        </div>
+                        <!--/Second column-->
+
+                    </div>
+                    <!--/First row-->
+
+                </section>
+                <!-- /.Second section -->
+              
+          </div>
+        </div>
+        <!--/Second container-->
+   
+        <!-- Third container -->
+        <div class="container">
+
+            <!-- Section About -->
+            <section class="section feature-box my-5 pb-5">
+
+                <!-- Section title -->
+                <h2 class="text-center font-up my-5 pt-5 wow fadeIn" data-wow-delay="0.2s">Process of <strong>creating</strong></h2>
+                <p class="section-description wow fadeIn" data-wow-delay="0.2s"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum quas, eos officia maiores ipsam ipsum dolores reiciendis ad voluptas, animi obcaecati adipisci sapiente mollitia.</p>   
+                
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs nav-justified blue" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab">01. Research</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#panel2" role="tab">02. Design</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#panel3" role="tab">03. Development</a>
+                        </li>
+                    </ul>
+                    <!-- Tab panels -->
+                    <div class="tab-content card">
+                        <!--Panel 1-->
+                        <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
+                            <br>
+                            <div class="row mt-2">
+                                <div class="col-2"> <i class="fa fa-search fa-3x mb-1 grey-text" aria-hidden="true"></i> </div>
+                                <div class="col-9 mb-2">
+                                    <p class="dark-grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/.Panel 1-->
+                        
+                        <!--Panel 2-->
+                        <div class="tab-pane fade" id="panel2" role="tabpanel">
+                            <br>
+                            <div class="row mt-2">
+                                <div class="col-2"> <i class="fa fa-pencil fa-3x mb-1 grey-text" aria-hidden="true"></i> </div>
+                                <div class="col-9 mb-2">
+                                    <p class="dark-grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/.Panel 2-->
+                        
+                        <!--Panel 3-->
+                        <div class="tab-pane fade" id="panel3" role="tabpanel">
+                            <br>
+                            <div class="row mt-2">
+                                <div class="col-2"> <i class="fa fa-code fa-3x mb-1 grey-text" aria-hidden="true"></i> </div>
+                                <div class="col-9 mb-2">
+                                    <p class="dark-grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/.Panel 3-->
+                    </div>
+                <!-- /.Tab panels -->
+            </section>  
+            <!-- /.Section -->
+
+        </div>    
+        <!-- /.Third container -->      
+        
+        <!-- Streak -->
+        <div class="streak streak-photo streak-md hm-indigo-strong" style="background-image:url('https://mdbootstrap.com/img/Photos/Horizontal/Work/12-col/img%20%2811%29.jpg')">
+            <div class="mask pattern-1 flex-center">
+                <div class="white-text smooth-scroll">
+                    <h2 class="h2-responsive wow fadeIn mb-5"><i class="fa fa-quote-left" aria-hidden="true"></i> Design is not just what it looks like and feels like. Design is how it works. <i class="fa fa-quote-right" aria-hidden="true"></i></h2>
+                    <h5 class="text-center font-italic wow fadeIn" data-wow-delay="0.2s">~ Steve Jobs</h5>
+                </div>
+            </div>
+        </div>
+        <!-- /.Streak -->
+        
+        <!-- Fourth container -->
+        <div class="container">
+            
+            <!-- Fourth section -->
+            <section id="works" class="section mb-5">
+                
+                <!-- Section title -->
+                <h2 class="text-center font-up my-5 pt-5 wow fadeIn" data-wow-delay="0.2s">My <strong>projects</strong></h2>
+
+                <!-- Section description -->
+                <p class="section-description wow fadeIn">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia iste provident, voluptatum voluptatibus aut modi aspernatur autem impedit, eius, debitis earum voluptatem. Quaerat hic aspernatur laborum magni earum. At, officiis!</p>
+
+                <!-- First row -->
+                <div class="row wow fadeIn" data-wow-delay="0.4s">
+                    
+                    <!-- First column -->
+                    <div class="col-md-12 mb-5">
+                        
+                        <!-- Lightbox -->
+                        <div id="mdb-lightbox-ui"></div>
+
+                        <div class="mdb-lightbox">
+
+                            <figure class="col-md-4">
+                                <a href="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(63).jpg" data-size="1600x1067">
+                                    <img src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(63).jpg" class="img-fluid z-depth-1">
+                                </a>
+                            </figure>
+
+                            <figure class="col-md-4">
+                                <a href="https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20(66).jpg" data-size="1600x1067">
+                                    <img src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(66).jpg" class="img-fluid z-depth-1">
+                                </a>
+                            </figure>
+
+                            <figure class="col-md-4">
+                                <a href="https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20(65).jpg" data-size="1600x1067">
+                                    <img src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(65).jpg" class="img-fluid z-depth-1">
+                                </a>
+                            </figure>
+
+                            <figure class="col-md-4">
+                                <a href="https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20(67).jpg" data-size="1600x1067">
+                                    <img src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" class="img-fluid z-depth-1">
+                                </a>
+                            </figure>
+
+                            <figure class="col-md-4">
+                                <a href="https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20(68).jpg" data-size="1600x1067">
+                                    <img src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(68).jpg" class="img-fluid z-depth-1">
+                                </a>
+                            </figure>
+
+                            <figure class="col-md-4">
+                                <a href="https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20(64).jpg" data-size="1600x1067">
+                                    <img src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(64).jpg" class="img-fluid z-depth-1">
+                                </a>
+                            </figure>
+
+                            <figure class="col-md-4">
+                                <a href="https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20(69).jpg" data-size="1600x1067">
+                                    <img src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(69).jpg" class="img-fluid z-depth-1">
+                                </a>
+                            </figure>
+
+                            <figure class="col-md-4">
+                                <a href="https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20(59).jpg" data-size="1600x1067">
+                                    <img src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(59).jpg" class="img-fluid z-depth-1">
+                                </a>
+                            </figure>
+
+                            <figure class="col-md-4">
+                                <a href="https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20(70).jpg" data-size="1600x1067">
+                                    <img src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(70).jpg" class="img-fluid z-depth-1">
+                                </a>
+                            </figure>
+
+                        </div>
+                        <!-- /.Lightbox -->
+
+                    </div>
+                    <!-- /.First column -->
+
+                </div>
+                <!-- /.First row -->
+
+            </section>
+            <!-- /.Fourth section -->
+
+            <hr>
+            
+        </div>
+        <!-- /.Fourth container --> 
+
+        <!-- Contact form -->
+        <div id="contact" class="container">
+    
+            <!--Section: Contact v.2-->
+            <section class="section contact-section mt-4 mb-5">
+                <!--Section heading-->
+                <h2 class="text-center font-up my-5 pt-5 wow fadeIn" data-wow-delay="0.2s">Contact <strong>me</strong></h2>
+                <!--Section sescription-->
+                <p class="section-description mb-5 pb-4 wow fadeIn" data-wow-delay="0.2s">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur accusamus veniam. </p>
+                <div class="row wow fadeIn" data-wow-delay="0.4s">
+                   
+                    <!--First column-->
+                    <div class="col-md-8 mb-r">
+                        <form>
+                            <!--First row-->
+                            <div class="row">
+                              
+                                <!--First column-->
+                                <div class="col-md-6">
+                                    <div class="md-form">
+                                        <div class="md-form">
+                                            <input type="text" id="form41" class="form-control">
+                                            <label for="form41" class="">Your name</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Second column-->
+                                <div class="col-md-6">
+                                    <div class="md-form">
+                                        <div class="md-form">
+                                            <input type="text" id="form52" class="form-control">
+                                            <label for="form52" class="">Your email</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/.First row-->
+                           
+                            <!--Second row-->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="md-form">
+                                        <input type="text" id="form51" class="form-control">
+                                        <label for="form51" class="">Subject</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/Second row-->
+                           
+                            <!--Third row-->
+                            <div class="row">
+                                <!--First column-->
+                                <div class="col-md-12">
+                                    <div class="md-form">
+                                        <textarea type="text" id="form76" class="md-textarea"></textarea>
+                                        <label for="form76">Your message</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/.Third row-->
+                        </form>
+                        <div class="center-on-small-only"> <a class="btn btn-primary">Send</a> </div>
+                    </div>
+                    <!--.First column-->
+                   
+                    <!--Second column-->
+                    <div class="col-md-4">
+                        <ul class="contact-icons">
+                            <li><i class="fa fa-map-marker fa-2x"></i>
+                                <p>New York, NY 10012, USA</p>
+                            </li>
+                            <li><i class="fa fa-phone fa-2x"></i>
+                                <p>+ 01 234 567 89</p>
+                            </li>
+                            <li><i class="fa fa-envelope fa-2x"></i>
+                                <p>contact@mdbootstrap.com</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--.Second column-->
+                </div>
+                
+            </section>
+            <!--/Section: Contact v.2-->
+
+        </div>
+        <!-- Contact form -->
+
+        <div class="streak1">
+            <div class="flex-center">
+                <ul>
+                    <li><h2 class="h2-responsive mt-5 wow fadeIn">Want an outstanding project?</h2></li>
+                    <li><h5 class="h5-responsive wow fadeIn" data-wow-delay="0.2s">Just send me a message!</h5></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- /.Customers carousel -->
+
+    </main>
+    <!--/Main layout-->
+
+    <!-- Scrollspy -->
+    <div class="dotted-scrollspy clearfix d-none d-sm-block">
+        <ul class="nav smooth-scroll flex-column">
+            <li class="nav-item"><a class="nav-link" href="#home"><span></span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#about"><span></span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#skills"><span></span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#works"><span></span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact"><span></span></a></li>
+        </ul>
+    </div>
+
+    <!-- SCRIPTS -->
+
+    <!-- JQuery -->
+    <script src="{{ [
+    	'assets/larry/jquery-3.2.1.min.js',
+    	'assets/larry/popper.min.js',
+    	'assets/larry/mdb.min.js']|theme}}"></script>
+
+    <script>
+        // initialize scrollspy
+        $('body').scrollspy({
+            target: '.dotted-scrollspy'
+        });
+
+        // initialize lightbox
+        $(function () {
+            $("#mdb-lightbox-ui").load("{{'partials/larry/mdb-lightbox-ui.htm'|app}}");
+        });
+
+        $('.navbar-collapse a').click(function(){
+            $(".navbar-collapse").collapse('hide');
+        });
+
+        /* WOW.js init */
+        new WOW().init();
+
+    </script>
+
+</body>
+</html>

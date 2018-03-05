@@ -1,0 +1,84 @@
+fields:
+    title:
+        label: 'wwrf.transitioncenter::lang.item.title'
+        oc.commentPosition: ''
+        span: auto
+        required: 1
+        type: text
+    slug:
+        label: 'wwrf.transitioncenter::lang.item.slug'
+        oc.commentPosition: ''
+        span: auto
+        preset:
+            field: title
+            type: slug
+        type: text
+    target:
+        label: 'wwrf.transitioncenter::lang.item.target'
+        span: auto
+        type: checkbox
+        default: true
+    enabled:
+        label: 'wwrf.transitioncenter::lang.item.enabled'
+        span: auto
+        type: switch
+        default: true
+tabs:
+    fields:
+        category:
+            label: 'wwrf.transitioncenter::lang.item.category'
+            span: auto
+            oc.commentPosition: ''
+            nameFrom: name
+            descriptionFrom: description
+            type: relation
+            tab: 'wwrf.transitioncenter::lang.item.details'
+        link:
+            label: 'wwrf.transitioncenter::lang.item.link'
+            oc.commentPosition: ''
+            span: auto
+            type: text
+            tab: 'wwrf.transitioncenter::lang.item.details'
+        phone:
+            label: 'wwrf.transitioncenter::lang.item.phone'
+            oc.commentPosition: ''
+            span: auto
+            type: text
+            tab: 'wwrf.transitioncenter::lang.item.details'
+        address:
+            label: Address
+            oc.commentPosition: ''
+            span: auto
+            type: text
+            tab: 'wwrf.transitioncenter::lang.item.details'
+        description:
+            label: 'wwrf.transitioncenter::lang.item.description'
+            size: large
+            oc.commentPosition: ''
+            span: full
+            type: richeditor
+            tab: 'wwrf.transitioncenter::lang.item.details'
+secondaryTabs:
+    fields:
+        images:
+            label: 'wwrf.transitioncenter::lang.item.images'
+            oc.commentPosition: ''
+            mode: file
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: Images
+        files:
+            label: 'wwrf.transitioncenter::lang.item.files'
+            span: auto
+            oc.commentPosition: ''
+            mode: file
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            type: fileupload
+            tab: Files

@@ -1,0 +1,46 @@
+<div class="report-widget">
+    <h3><?= e(trans($this->property('title'))) ?></h3>
+<?php if (!isset($error)): ?>
+<div class="scoreboard">
+    <div data-control="toolbar">
+
+        <div class="scoreboard-item control-chart" data-control="chart-pie">
+            <ul>
+                <li data-color="#95b753">Beginner <span><?= $computer_skill_beg ?></span></li>
+                <li data-color="#e5a91a">Intermediate <span><?= $computer_skill_int ?></span></li>
+                <li data-color="#cc3300">Advanced <span><?= $computer_skill_adv ?></span></li>
+            </ul>
+        </div>
+
+        <div class="scoreboard-item control-chart" data-control="chart-bar">
+            <ul>
+                <li data-color="#95b753">Person <span><?= $felony_person ?></span></li>
+                <li data-color="#e5a91a">Nonperson <span><?= $felony_nonperson ?></span></li>
+                <li data-color="#cc3300">Both <span><?= $felony_both ?></span></li>
+            </ul>
+        </div>
+
+        <div class="scoreboard-item title-value" data-control="goal-meter" data-value="<?= round((float)$has_resume/$total_questionnaires * 100 ) ?>">
+            <h4>Resumes</h4>
+            <p><?= round((float)$has_resume/$total_questionnaires * 100 ) ?>%</p>
+            <p class="description">Completed Resumes</p>
+        </div>
+
+        <div class="scoreboard-item title-value" data-control="goal-meter" data-value="<?= round($workready * 100 ) ?>">
+            <h4>WorkREADY! Certificates</h4>
+            <p><?= round($workready * 100 ) ?>%</p>
+            <p class="description"><span class="oc-icon-certificate"></span>WorkREADY!</p>
+        </div>
+
+        <div class="scoreboard-item title-value">
+            <h4>Interest Profilers</h4>
+            <p class="oc-icon-edit"><?= $onet ?></p>
+            <p class="description">Interest profilers</p>
+        </div>
+
+    </div>
+</div>
+<?php else: ?>
+    <p class="flash-message static warning"><?= e($error) ?></p>
+<?php endif ?>
+</div>

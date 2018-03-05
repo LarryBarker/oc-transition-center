@@ -1,0 +1,25 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    abbr:
+        label: Abbreviation
+        type: Text
+        required: true
+        span: left
+    name:
+        label: Name
+        type: Text
+        required: true
+        span: right
+    utc:
+        label: UTC offset
+        type: Text
+        required: true
+        span: left
+    offset:
+        label: Numeric Offset
+        type: Text
+        required: true
+        span: right

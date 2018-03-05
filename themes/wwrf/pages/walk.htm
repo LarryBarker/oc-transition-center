@@ -1,0 +1,43 @@
+title = "Walk Route & Maps"
+url = "/walk"
+layout = "default"
+is_hidden = 0
+==
+<div class="container" id="walkroute">
+	<div class="col-md-4">
+
+		<select name="mapchange" onchange="updateMap(this.options[this.selectedIndex].value)" style="block" class="form-control form-control-lg">
+			<option value="" disabled selected hidden>Choose type of business...</option>
+            <option value="restaurants">Restaurants</option>
+            <option value="warehouses">Warehouses</option>
+            <option value="temp services">Temp Services</option>
+            <option value="fast food">Fast Food</option>
+            <option value="construction">Construction</option>
+            <option value="manufacturing">Manufacturing</option>
+            <option value="aircraft">Aircraft</option>
+        </select>
+
+		<!-- results listed here -->
+        <div id="listing">
+		  <table id="resultsTable">
+		    <tbody id="results"></tbody>
+		  </table>
+		  <!-- directions displayed here -->
+		  <div id="map-directions"></div>
+		</div>
+		
+			<div id="info">
+				<table id="infoTable">
+				    <tbody id="infoTableBody"></tbody>
+				</table>
+			</div>
+        	<div id="map-directions"></div>
+		
+	</div>
+    <div class="col-md-8">
+		<!--  where the map will live  -->
+		<div id="map"></div>
+		
+	</div>
+	
+</div>

@@ -1,0 +1,58 @@
+fields:
+    name:
+        label: 'wwrf.transitioncenter::lang.wwrf.transitioncenter.tempservices.name'
+        oc.commentPosition: ''
+        span: auto
+        required: 1
+        type: text
+    type_of_work:
+        label: 'wwrf.transitioncenter::lang.tempservices.worktype'
+        oc.commentPosition: ''
+        options:
+            DL: 'DL - Day Labor'
+            TA: 'TA - Temp. Assignments'
+            TH: 'TH - Temp. to Hire'
+            DH: 'DH - Direct Hire'
+        span: auto
+        type: checkboxlist
+    address:
+        label: 'wwrf.transitioncenter::lang.tempservices.address'
+        oc.commentPosition: ''
+        span: left
+        type: text
+    phone:
+        label: 'wwrf.transitioncenter::lang.tempservices.phone'
+        span: left
+        type: number
+        commentAbove: 'Please enter numbers only...'
+    website:
+        label: 'wwrf.transitioncenter::lang.tempservices.website'
+        oc.commentPosition: ''
+        span: left
+        placeholder: ''
+        default: 'http://'
+        type: text
+    accept_felonies:
+        label: 'wwrf.transitioncenter::lang.tempservices.accept_felonies'
+        size: small
+        oc.commentPosition: ''
+        span: left
+        type: textarea
+    rejected_felonies:
+        label: 'wwrf.transitioncenter::lang.tempservices.rejected_felonies'
+        size: small
+        oc.commentPosition: ''
+        span: auto
+        type: textarea
+    employment_type:
+        label: 'wwrf.transitioncenter::lang.tempservices.employment_types'
+        size: small
+        oc.commentPosition: ''
+        span: auto
+        type: textarea
+    comments:
+        label: 'wwrf.transitioncenter::lang.tempservices.comments'
+        size: small
+        oc.commentPosition: ''
+        span: auto
+        type: textarea

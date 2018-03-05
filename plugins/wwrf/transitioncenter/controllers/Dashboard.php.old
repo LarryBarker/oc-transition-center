@@ -1,0 +1,27 @@
+<?php namespace Wwrf\TransitionCenter\Controllers;
+
+use BackendMenu;
+use Backend\Classes\Controller;
+
+/**
+ * Dashbaord Back-end Controller
+ */
+class Dashboard extends Controller
+{
+    public $implement = [];
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        BackendMenu::setContext('Wwrf.TransitionCenter', 'transitioncenter', 'sideboard');
+    }
+
+    public function index()
+    {
+    }
+
+    public function listExtendQuery($query)
+    {
+    }
+}

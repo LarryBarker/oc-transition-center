@@ -1,0 +1,38 @@
+1.0.0:
+    - First Version with basic functionality
+1.0.1:
+    - Fixed email subject to send actual subject set in backend
+1.0.2:
+    - Added validation to contact form fields
+1.0.3:
+    - Changed body input field type from text to textarea
+1.0.4:
+    - Updated default component markup to use more appropriate looking twitter bootstrap classes
+1.0.5:
+    - Corrected spelling for Marketing on the backend settings
+1.0.6:
+    - Added ability to include bootstrap or not on component config
+    - Add proper validation message outputting
+    - Added option to include or exclude main script file
+1.0.7:
+    - Updated contact component default markup file
+    - Updated readme file
+1.1.0:
+    - Mail template is now registered properly
+1.2.0:
+    - Add Proper validation that can be localized
+1.2.1:
+    - Added permissions to the settings page. PR by @matissjanis
+1.2.2:
+    - Added polish language features
+1.2.3:
+    - Modified mail templatedefault text
+1.3.0: !!! Added captcha feature, which requires valid google captcha credentials to work
+1.3.1:
+    - Set replyTo instead of from-header when sending
+1.3.2:
+    - Added german translation language file
+1.3.3:
+    - Added option to allow user to enable or disable captcha in contact form
+1.3.4:
+    - Made sure captcha enabling or disabling doesnt produce bug

@@ -1,0 +1,31 @@
+{% set email = __SELF__.message %}
+{% set attachments = __SELF__.attachments %}
+<div class="container" role="main">
+    <h1 class="title">Message</h1>
+
+    <div id="inbox" class="panel panel-default">
+
+        <div class="list-group">
+            
+
+            <div class="list-group-item">
+                <span class="pull-right"><a href="{{ '/mail/reply'|app }}/{{email.id}}" class="btn btn-primary">Send Reply</a></span>
+                <div class="d-flex w-100 justify-content-between">
+                <h5 class="list-group-item-heading mb-1">{{ email.subject }}</a> {% if email.hasAttachments %}<i class="fa fa-paperclip"></i> {{ email.getattachments }} {% endif %}</h5>
+                <small>{{ email.receiveddatetime|date('F j, Y') }}</small>
+                </div>
+                <p class="small">{{ email.from.emailaddress.name }} (<a href="mailto:{{email.from.emailaddress.address}}">{{email.from.emailaddress.address}}</a>)</p>
+                <div class="small d-flex w-100">
+                    {% if email.hasAttachments %}
+                        {% for attachment in attachments %}
+                            <i class="icon icon-paperclip"></i> <a href="">{{ attachment.name }}</a>{{ attachment.contentLocation }}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <p class="mb-1">{{ email.body.content|raw }}</p>
+                
+            </div>
+
+        </div>
+    </div>
+</div>

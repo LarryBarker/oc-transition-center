@@ -1,0 +1,41 @@
+# ===================================
+#  List Behavior Config
+# ===================================
+
+# List Title
+title: rainlab.user::lang.users.list_title
+
+# Model List Column configuration
+list: $/clake/userextended/models/userextended/columns.yaml
+
+# Model Class name
+#modelClass: RainLab\User\Models\User
+modelClass: Clake\UserExtended\Models\UserExtended
+
+# Link URL for each record
+recordUrl: ../profile/:id
+
+# Message to display if the list is empty
+noRecordsMessage: backend::lang.list.no_records
+
+# Records to display per page
+recordsPerPage: 10
+
+# Display checkboxes next to each record
+showCheckboxes: true
+
+# Displays the list column set up button
+showSetup: true
+
+# Filter widget configuration
+filter: config_filter.yaml
+
+# Toolbar widget configuration
+toolbar:
+
+    # Partial for toolbar buttons
+    #buttons: list_toolbar
+
+    # Search widget configuration
+    #search:
+    #    prompt: backend::lang.list.search_prompt

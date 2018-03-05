@@ -1,0 +1,12 @@
+list: $/wwrf/transitioncenter/models/program/columns.yaml
+modelClass: Wwrf\TransitionCenter\Models\Program
+title: Programs
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'wwrf/transitioncenter/programs/update/:id'

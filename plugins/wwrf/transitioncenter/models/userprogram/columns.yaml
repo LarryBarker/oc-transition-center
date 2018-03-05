@@ -1,0 +1,21 @@
+columns:
+    user_id:
+        label: User
+        relation: user
+        select: concat(name, ' ', surname)
+    program_id:
+        label: Program
+        relation: program
+        select: name
+    status:
+        label: Status
+        type: text
+    created_at:
+        label: Created On
+        type: datetime
+    updated_at:
+        label: Updated On
+        type: datetime
+    deleted_at:
+        label: Deleted On
+        type: datetime

@@ -1,0 +1,21 @@
+<div class="report-widget">
+    <h3><?= e($this->property('group')) ?> <?= e($this->property('title')) ?></h3>
+    <div class="control-chart" data-control="chart-pie" data-size="200" data-center-text="<?=$all?>">
+        <ul>
+            <?php arsort($counts); ?>
+            <?php foreach($counts as $k => $c) { ?>
+            <li><?= $c['name'] ?> 
+                (<?php if ($c['group']=='Users') {
+                    print $c['number'];
+                }
+                    elseif ($c['group']=='Employers'||'Staff') {
+                        print $c['company'];
+                    }
+                        
+                ?>)
+                <span><hide class="hidden"><?= $c['size'] ?></hide>&nbsp;<?= $c['size'] ?></span></li>
+            <?php } ?>
+        </ul>
+    </div>
+</div>
+<h3></h3>

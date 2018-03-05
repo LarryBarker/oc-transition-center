@@ -1,0 +1,45 @@
+# ===================================
+
+#  Relation Behavior Config
+
+# ===================================
+
+
+
+jobs:
+
+    label: Job
+
+    view:
+
+        list: $/wwrf/transitioncenter/models/job/columns.yaml
+
+        toolbarButtons: create|delete
+
+        showSearch: true
+
+    manage:
+
+        form: $/wwrf/transitioncenter/models/job/fields.yaml
+
+        list: $/wwrf/transitioncenter/models/job/columns.yaml
+
+        
+
+company:
+
+    label: Company
+
+    view:
+
+        list: $/wwrf/transitioncenter/models/company/columns.yaml
+
+        toolbarButtons: create|add|remove
+
+        showSearch: true
+
+    manage:
+
+        form: $/wwrf/transitioncenter/models/company/fields.yaml
+
+        recordsPerPage: 10

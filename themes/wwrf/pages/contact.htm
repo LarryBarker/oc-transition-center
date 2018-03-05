@@ -1,0 +1,44 @@
+title = "Contact"
+url = "/contact"
+layout = "main"
+is_hidden = 0
+
+[LaminSanneh\FlexiContact\Components\ContactForm contactForm]
+injectBootstrapAssets = 1
+injectMainScript = 1
+==
+{% if user.groups[0].name == 'Users' %}
+<div class="jumbotron">
+    <div class="container">
+        <h1>Error</h1>
+        <p>We're sorry, but something went wrong and the page cannot be displayed.</p>
+    </div>
+</div>
+{% else %}
+<!-- Contact Jumbotron -->
+<div class="jumbotron">
+  <div class="container">
+    <h1>Contact Us</h1>
+    <p>For scheduling, supervisory changes or inmate extensions, please contact our facility's CONTROL CENTER at:<br /> 316-265-5211. Ext. 208</p>
+
+	<p>For questions, concerns, or for more information on the many benefits of hiring inmate employees through the Wichita Work Release Program, please contact a Security Supervisor on duty 24 hours a day.</p>
+  </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            {% component 'contactForm' %}
+        </div>
+        <div class="col-md-6">
+			<ul class="icons-ul">
+				<li class="lead"><i class="icon-li icon-user"></i>Corey Brock, OWDS/OERS</li>
+				<li class="lead"><i class="icon-li icon-building"></i>Wichita Work Release Facility</li>
+				<li class="lead"><i class="icon-li icon-map-marker icon-large"></i>401 S. Emporia<br>Wichita, Kansas 67202</li>
+				<li class="lead"><i class="icon-li icon-phone"></i>(316) 265-5211x234</li>
+				<li class="lead"><i class="icon-li icon-envelope"></i><a href="mailto:corey.brock@ks.gov">corey.brock@ks.gov</a></li>
+				<li class="lead"><i class="icon-li icon-facebook-sign"></i><a href="https://www.facebook.com/Wichita-Work-Release-Facility-309022902822289/">Facebook</a></li>
+			</ul>
+        </div>
+    </div>
+</div>
+{% endif %}

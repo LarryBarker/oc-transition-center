@@ -1,0 +1,14 @@
+1.0.1: Initialize plugin.
+1.0.2:
+    - Create database tables.
+    - create_states_table.php
+    - create_countries_table.php
+1.0.3:
+    - Add seed data for countries and states.
+    - seed_all_tables.php
+1.0.4: Satisfy the new Google API key requirement.
+1.0.5:
+    - Countries can now be pinned to make them appear at the top of the list.
+    - add_country_pinned_flag.php
+1.0.6: Added support for defining a default country and state.
+1.0.7: Added basic geocoding method to the Country model.

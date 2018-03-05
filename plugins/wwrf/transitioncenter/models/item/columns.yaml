@@ -1,0 +1,30 @@
+columns:
+    title:
+        label: Title
+        type: text
+        searchable: true
+        sortable: true
+    phone:
+        label: Phone
+        type: text
+    category_id:
+        label: Category
+        relation: category
+        select: name
+        searchable: true
+        sortable: true
+    enabled:
+        label: enabled
+        type: switch
+    created_at:
+        label: Created
+        type: datetime
+        sortable: true
+    updated_at:
+        label: Updated
+        type: datetime
+        sortable: true
+    deleted_at:
+        label: Deleted
+        type: datetime
+        sortable: true

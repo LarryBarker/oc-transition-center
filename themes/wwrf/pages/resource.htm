@@ -1,0 +1,95 @@
+title = "Resource Details"
+url = "/resources/item/:slug?"
+layout = "default"
+is_hidden = 0
+
+[builderDetails]
+modelClass = "Wwrf\TransitionCenter\Models\Item"
+identifierValue = "{{ :slug }}"
+modelKeyColumn = "slug"
+displayColumn = "title"
+notFoundMessage = "Record not found"
+==
+{% if user.groups.first.name == 'Users' or user.groups.first.name == 'Staff' %}
+
+{% set record = builderDetails.record %}
+
+{% set displayColumn = builderDetails.displayColumn %}
+
+{% set notFoundMessage = builderDetails.notFoundMessage %}
+
+<div class="container">
+
+	{% if record %}
+
+	    <div class="row">
+
+	        <div class="col-md-12">
+
+	            <h2>{{ record.title }}</h2>{% if record.link %}
+
+
+
+		            	<span class="pull-right">
+
+						<a href="{{ record.link }}" class="btn btn-info" {% if record.target %}target="_blank"{% endif %}>Visit website <i class="icon icon-external-link"></i>
+
+	                	</a>
+
+						</span>
+
+	                
+
+	            {% endif %}
+
+	            <p class="info">Updated on <i class="icon icon-clock"></i> {{ record.updated_at|date('F Y') }} in {% if category.name == 'Apartments' %}<i class="icon icon-building"></i> {% else %} <i class="icon icon-home"></i> {%endif%}<a href="{{ record.category.pageUrl }}">{{ record.category.name }}</a></p>
+
+	            <i class="icon icon-map-marker"></i> {{record.address}}
+
+	            {% if record.phone %}
+
+	                <i class="icon icon-phone"></i>{{record.phone}}
+
+	            {% endif %}
+
+	            {% if record.address %}
+
+					<iframe src="//www.google.com/maps/embed/v1/place?q={{record.address}}
+
+				      &zoom=13
+
+				      &attribution_source=Google+Maps+Embed+API
+
+				      &attribution_web_url=https://developers.google.com/maps/documentation/embed/
+
+				      &key=AIzaSyBb5AkQHSFXfIqxr2BoxQt5zQmcMqd3HmE"
+
+				      width="100%"
+
+				      height="250"
+
+				      frameborder="0" style="border:0"
+
+				      allowfullscreen>
+
+				  	</iframe>
+
+				 {% endif %}
+
+				 {{ record.description|raw }}
+
+	            <img class="img-responsive" src="{{ record.images.first.path }}" alt="{{ record.title }}" {% if record.title %}title="{{ record.title }}"{% endif %}>
+
+	        </div>
+
+	    </div>
+
+	{% else %}
+
+	    {{ notFoundMessage }}
+
+	{% endif %}
+
+</div>
+
+{% endif %}

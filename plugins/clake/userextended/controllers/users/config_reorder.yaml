@@ -1,0 +1,18 @@
+# ===================================
+#  Reorder Behavior Config
+# ===================================
+
+# Reorder Title
+title: Reorder Users
+
+# Attribute name
+nameFrom: name
+
+# Model Class name
+modelClass: RainLab\User\Models\User
+
+
+# Toolbar widget configuration
+toolbar:
+# Partial for toolbar buttons
+    buttons: reorder_toolbar

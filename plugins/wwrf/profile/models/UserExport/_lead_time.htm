@@ -1,0 +1,14 @@
+<?php
+if($record->jobs->count() > 0)
+{
+    $start_date = new DateTime($record->jobs->first()['start_date']);
+
+    $eligible_date = new DateTime($record->eligible_date);
+
+    $lead_time = $eligible_date->diff($start_date);
+
+    //$lead_time = date_diff(date_create($record->jobs->first()['start_date']), date_create($record->eligible_date))->format('%a');
+
+    echo $lead_time->format('%r%a');
+}
+?>

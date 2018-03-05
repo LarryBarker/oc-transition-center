@@ -1,0 +1,38 @@
+{% for post in __SELF__.posts() %}
+<!--First columnn-->
+<div class="col-lg-4">
+    <!--Card-->
+    <div class="card wow fadeIn" data-wow-delay="0.4s">
+
+        <!--Card image-->
+        <div class="view overlay hm-white-slight">
+            <img src="http://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20(37).jpg" class="img-fluid" alt="">
+            <a href="#">
+                <div class="mask"></div>
+            </a>
+        </div>
+        <!--/.Card image-->
+
+        <!--Card content-->
+        <div class="card-block" style="height: 200px;">
+            <!--Title-->
+            <h4 class="card-title">{{ post.title }}</h4>
+            <!--Text-->
+            <p class="card-text">
+                {% if post.excerpt %} 
+                    {{ str_limit(post.excerpt|raw, '140', '...') }}
+                {% else %} 
+                    {{ str_limit(html_strip(post.content|raw), '140', '...') }} 
+                {% endif %}
+            </p>
+            <a href="{{ post.url }}" class="btn btn-info" role="button">Read more</a>
+        </div>
+        <!--/.Card content-->
+
+    </div>
+    <!--/.Card-->
+</div>
+<!--First columnn-->
+{% else %}
+    <p>There are no posts to display.</p>
+{% endfor %}

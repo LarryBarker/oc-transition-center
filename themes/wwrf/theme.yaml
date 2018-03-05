@@ -1,0 +1,9 @@
+name: wwrf
+description: 'Template for WWRF Transition Center that implements a blog and account management.'
+author: WWRF
+homepage: 'http://www.wwrfresource.com'
+code: wwrf
+require:
+    - RainLab.User
+    - RainLab.Blog
+form: config/fields.yaml

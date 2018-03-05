@@ -1,0 +1,27 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    user:
+        label: Receiver
+        type: recordfinder
+        list: $/rainlab/user/models/user/columns.yaml
+        prompt: Click the %s button to find a user
+        nameFrom: name
+        descriptionFrom: email
+        span: left
+    author:
+        label: Author
+        type: recordfinder
+        list: $/rainlab/user/models/user/columns.yaml
+        prompt: Click the %s button to find a user
+        nameFrom: name
+        descriptionFrom: email
+        span: right
+    content:
+        label: Comment
+        description: The comment that the user left.
+        type: Textarea
+        size: small
+        encrypted: true

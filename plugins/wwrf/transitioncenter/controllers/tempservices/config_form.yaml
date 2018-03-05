@@ -1,0 +1,11 @@
+name: TempServices
+modelClass: Wwrf\TransitionCenter\Models\TempService
+form: $/wwrf/transitioncenter/models/tempservice/fields.yaml
+defaultRedirect: wwrf/transitioncenter/tempservices
+create:
+    redirect: 'wwrf/transitioncenter/tempservices/update/:id'
+    redirectClose: wwrf/transitioncenter/tempservices
+update:
+    redirect: wwrf/transitioncenter/tempservices
+    redirectClose: wwrf/transitioncenter/tempservices
+preview: {  }

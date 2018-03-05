@@ -1,0 +1,17 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    name:
+        label: kurtjensen.passage::lang.key.name
+        searchable: true
+    description:
+        label: kurtjensen.passage::lang.key.description
+        searchable: true
+    updated_at:
+        label: kurtjensen.passage::lang.key.updated
+        searchable: false
+    created_at:
+        label: kurtjensen.passage::lang.key.created
+        searchable: false

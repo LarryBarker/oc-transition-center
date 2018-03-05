@@ -1,0 +1,10 @@
+name: Categories
+form: $/wwrf/transitioncenter/models/category/fields.yaml
+modelClass: Wwrf\TransitionCenter\Models\Category
+defaultRedirect: wwrf/transitioncenter/categories
+create:
+    redirect: 'wwrf/transitioncenter/categories/update/:id'
+    redirectClose: wwrf/transitioncenter/categories
+update:
+    redirect: wwrf/transitioncenter/categories
+    redirectClose: wwrf/transitioncenter/categories

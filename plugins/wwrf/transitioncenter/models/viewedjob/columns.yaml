@@ -1,0 +1,12 @@
+columns:
+    user_id:
+        label: User
+        relation: user
+        select: concat(name, ' ', surname)
+    job_id:
+        label: Job
+        relation: job
+        select: title
+    created_at:
+        label: Date viewed
+        type: datetime

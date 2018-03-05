@@ -1,0 +1,27 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    user_id:
+        label: Receiver
+        description: The user who received the comment.
+        type: Text
+        relation: user
+        select: name
+    author_id:
+        label: Sender
+        description: The user who wrote the comment.
+        type: Text
+        relation: author
+        select: name
+    content:
+        type: Text
+        label: Content
+        searchable: true
+    created_at:
+        type: datetime
+        label: Created At
+    updated_at:
+        type: datetime
+        label: Updated At

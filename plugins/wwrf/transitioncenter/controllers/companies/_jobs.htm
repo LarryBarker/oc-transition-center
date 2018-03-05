@@ -1,0 +1,14 @@
+<div id="jobList">
+    <?= $this->makePartial('job_list', ['jobs' => $model->jobs]) ?>
+</div>
+
+<p>
+    <a
+        href="javascript:;"
+        class="btn btn-secondary oc-icon-plus"
+        data-control="popup"
+        data-handler="onLoadCreateItemForm"
+        data-size="large">
+        Add job
+    </a>
+</p>

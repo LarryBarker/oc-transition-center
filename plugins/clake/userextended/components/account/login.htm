@@ -1,0 +1,45 @@
+{% if user %}
+
+<div class="message-box">You are already logged in.</div>
+
+{% else %}
+
+	<form
+			data-request-validate
+			data-request-flash
+			data-request="onLogin"
+			id="signupForm">
+		<div class="form-group">
+			<label for="register{{account.signUp}}">{{account.signUp|capitalize}}</label>
+			<input
+					name="{{account.signUp}}"
+					type='{% if account.signUp == "email" %}email{% else %}text{% endif %}'
+					class="form-control"
+					id="register{{account.signUp}}"
+					value = ""
+					placeholder="Enter your {{account.signUp}}" />
+		<!--<p class="error-box" id="{{account.signUp}}_error"> You need to enter a {{account.signUp}}.</p>-->
+		</div>
+		<span data-validate-for="{{account.signUp}}"></span><br>
+
+		<div class="form-group">
+			<label for="userSigninPassword">{{ "clake.userextended::lang.components.account.password"|trans }}</label>
+			<input
+					name="password"
+					type="password"
+					class="form-control"
+					id="userSigninPassword"
+					value = "";
+					placeholder="Enter your password" />
+			<!--<p class="error-box" id="password_error"> You need to enter a password.</p>-->
+		</div>
+			<span data-validate-for="password"></span><br><br>
+
+		<button data-attach-loading type="submit" class="btn btn-success" id="submitButton">{{ "clake.userextended::lang.components.account.signin"|trans }}</button><br><br>
+		<div class="alert alert-danger" data-validate-error>
+			<p data-message></p>
+		</div>
+	</form>
+
+
+{% endif %}

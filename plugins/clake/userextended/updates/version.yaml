@@ -1,0 +1,131 @@
+1.0.1:
+    - Seed in basic groups.
+    - users_groups_refactor.php
+    - seed_basic_user_groups.php
+1.0.2:
+    - Create the table.
+    - create_friends_table.php
+1.0.3:
+    - Add Accepted to Friends table.
+    - friends_add_accepted.php
+1.0.4:
+    - Added user searching
+1.0.5:
+    - Add Comments table
+    - create_comments_table.php
+1.0.6:
+    - Added author to comments table
+    - comments_add_author.php
+1.0.7:
+    - Added user profile pages
+1.0.8:
+    - Added delete capabilities for comments and friends
+1.0.9:
+    - Fixed 'Code Already In use' bug
+1.0.10:
+    - Added Heirarchal Level to User Groups
+    - user_groups_add_level.php
+1.0.11:
+    - Updated User Group Seeder. You may wish to consider to rerun it.
+1.0.12:
+    - Added Timezone table
+    - create_timezones_table.php
+1.0.13:
+    - Modified Users table to add a timezone_id column
+    - user_add_timezone.php
+1.0.14:
+    - Seed timezones
+    - seed_time_zones.php
+1.0.15:
+    - Create Roles table
+    - create_roles_table.php
+1.0.16:
+    - Added Roles as a linear heirarchy under a group.
+    - Use Case 1; You own a blogging company with a group called 'writers'. The writers group can have roles 'Senior Writer', 'Junior Writer', and 'Writer Editor'
+1.0.17:
+    - Adds role to the Users Groups table
+    - user_groups_add_role.php
+1.0.18:
+    - Removes existing primary keys from Users Groups model. Removed script as it was breaking.
+1.0.19:
+    - Adds a primary id key to the users_groups model. Removed script as it was breaking.
+1.0.20:
+    - Added a controller for Roles. Check the 'User' tab in the backend.
+1.0.21:
+    - Added the Timezonable trait. Useful for automatically converting model fields to the logged in users timezone.
+1.0.22:
+    - Initial release of the Role Manager in the backend.
+1.0.23:
+    - Bug Fixes
+    - user_groups_change_level_to_sort_order.php
+1.0.24:
+    - Fixed data structures bug
+1.0.25:
+    - Add user settings
+    - user_add_settings.php
+1.1.00:
+    - User Extended Beta release. Check your project as many things are now Deprecated and rewritten.
+1.1.01:
+    - Creating role bug fix
+1.1.02:
+    - Fixed non-property error
+1.1.03:
+    - Fixed undefined offset error
+2.0.00:
+    - User Extended Core Stable Release. Check your project as many things are now Deprecated and rewritten and will be removed in version 3.0.00
+2.0.01:
+    - Began work on 2.1.00 and creating fields table
+    - create_fields_table.php
+2.0.02:
+    - Adding relation column to the Friends model. This is being shipped now in preparation of 2.2.00
+    - friends_add_relation.php
+2.0.03:
+    - Implemented Fields Manager
+2.0.04:
+    - Created Routes table. This is being shipped now in preparation of 2.2.00
+    - create_routes_table.php
+2.0.05:
+    - Created Route Restriction Table. This is being shipped now in preparation of 2.2.00
+    - create_route_restriction_table.php
+2.0.06:
+    - Completed RoleManager refactor and added drag&drop and pagination
+2.0.07:
+    - Added nicknames. This is being shipped now in preparation of 2.2.00
+    - seed_fields.php
+2.0.08:
+    - Added integrated users. This is being shipped in preparation for 2.4.00 and 2.5.00
+    - create_integrated_users.php
+2.1.00:
+    - User Extended Core v2.1.00 Release. Deprecated components and functions have been removed.
+2.1.01:
+    - Fixed a bug which was preventing autofilling of custom fields. Oops.
+2.1.02:
+    - Fixed a bug which was causing issues with the Field Manager
+2.1.03:
+    - Fixed a JS bug with UE not defined and interact not defined
+2.1.04:
+    - Tweaked route restriction table
+    - route_restriction_add_deletes_attempts.php
+2.1.05:
+    - Removed type from routes and replaced it with an enabled flag
+    - routes_switch_type.php
+2.1.06:
+    - Added additional fields for route resitrctions
+    - route_restriction_add_flags.php
+2.1.07:
+    - Added a pivot table for route restrictions
+    - create_routes_pivot_table.php
+2.1.08:
+    - Added descriptions and cascading to children for route restricitons
+    - routes_add_description_and_child.php
+2.1.09:
+    - Added created_at, deleted_at, updated_at to UsersGroups
+    - users_groups_add_timestamps.php
+2.1.10:
+    - Added some core settings fields for handing bans and suspensions
+    - seed_account_settings.php
+2.1.11:
+    - Started work on the Module Manager. This is being shipped in preparation of 2.3.00
+    - create_modules_table.php
+2.2.00:
+    - User Extended Core v2.2.00 Release. 'The Backend Update' adds Route Restrictions, Friend management, comment management, timezone management, and improved field management.

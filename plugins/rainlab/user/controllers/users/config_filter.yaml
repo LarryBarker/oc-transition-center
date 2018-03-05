@@ -1,0 +1,52 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+
+    release_date:
+        label: Year
+        type: group
+        scope: filterByYear
+        options:
+            2017: '2017'
+            2016: '2016'
+
+    status:
+        label: Status
+        type: group
+        conditions: status in (:filtered)
+        options:
+            available: Available
+            employed: Employed
+            unavailable: Unavailable
+
+    created_date:
+        label: rainlab.user::lang.user.created_at
+        type: daterange
+        conditions: created_at >= ':after' AND created_at <= ':before'
+
+    employment_date:
+        label: Employment
+        modelClass: Wwrf\TransitionCenter\Models\Job
+        type: daterange
+        scope: filterByStartDate
+        #conditions: where start_date >= ':after' AND start_date <= ':before'
+
+    activated:
+        # Filter name
+        label: rainlab.user::lang.user.status_activated
+        # Filter type
+        type: switch
+        # SQL conditions
+        conditions:
+            - is_activated = '0'
+            - is_activated = '1'
+
+    employed:
+        # Filter name
+        label: Employed
+        # Filter type
+        type: switch
+        default: 2
+        scope: isEmployed

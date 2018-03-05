@@ -1,0 +1,99 @@
+columns:
+    kdoc:
+        label: '#'
+        relation: user
+        select: kdoc_number
+        searchable: true
+        sortable: true
+        invisible: false
+    name:
+        label: Name
+        relation: user
+        select: concat(name, ' ', surname)
+        searchable: true
+        sortable: true
+    interest_profiler:
+        label: Taken interest profiler?
+        type: switch
+        invisible: true
+        sortable: true
+    can_type:
+        label: Can type?
+        type: switch
+        invisible: true
+        sortable: true
+    computer_skill:
+        label: Computer skill
+        type: text
+        invisible: true
+        sortable: true
+    applied_online:
+        label: Has applied online?
+        type: switch
+        invisible: true
+        sortable: true
+    kansasworks:
+        label: Kansas Works account
+        type: switch
+        invisible: true
+        sortable: true
+    workforce:
+        label: Visited Workforce center?
+        type: switch
+        invisible: true
+        sortable: true
+    has_resume:
+        label: Has resume?
+        type: switch
+        invisible: true
+        sortable: true
+    is_veteran:
+        label: Is veteran?
+        type: switch
+        invisible: true
+        sortable: true
+    owd_class:
+        label: Completed OWD?
+        type: switch
+        invisible: true
+        sortable: true
+    workready_cert:
+        label: WorkREADY! Certificate
+        type: text
+        invisible: true
+        sortable: true
+    owes_childsupport:
+        label: Owes childsupport?
+        type: switch
+        invisible: true
+        sortable: true
+    felony_type:
+        label: Felony type(s)
+        type: text
+        invisible: true
+        sortable: true
+    three_speech:
+        label: 3R Speech
+        type: switch
+        invisible: true
+        sortable: true
+    continue_education:
+        label: Continue education?
+        type: switch
+        invisible: true
+        sortable: true
+    has_pov:
+        label: Has POV?
+        type: switch
+        invisible: true
+        sortable: true
+    created_at:
+        label: Profile created
+        relation: user
+        select: created_at
+        type: date
+        sortable: true
+    updated_at:
+        label: Questionnaire updated
+        type: date
+        sortable: true

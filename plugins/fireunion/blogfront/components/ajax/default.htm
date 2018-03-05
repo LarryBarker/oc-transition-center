@@ -1,0 +1,13 @@
+<!-- Start ajax-default.htm -->
+{% if __SELF__.backUser %}
+<div id="blogModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" id="PostDetail">
+  </div>
+</div>
+        <div id="bloginfo">
+        {% partial __SELF__~'::postlist' %}
+        </div>
+{% else %}
+<p>{{ __SELF__.trans('general.unauthorized') }}</p>
+{% endif %}
+<!-- End ajax-default.htm -->

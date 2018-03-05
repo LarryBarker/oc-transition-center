@@ -1,0 +1,15 @@
+questionnaire:
+
+    label: Questionnaire
+
+    view:
+
+      form: $/wwrf/transitioncenter/models/questionnaire/fields.yaml
+
+      toolbarButtons: update|delete
+
+    manage:
+
+      form: $/wwrf/transitioncenter/models/questionnaire/fields.yaml
+
+      list: $/acme/user/models/phone/columns.yaml

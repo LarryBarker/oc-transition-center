@@ -1,0 +1,35 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+
+    id:
+        label: rainlab.user::lang.user.id
+        invisible: true
+
+    name:
+        label: rainlab.user::lang.user.name
+        searchable: true
+
+    surname:
+        label: rainlab.user::lang.user.surname
+        searchable: true
+        #invisible: true
+
+    email:
+        label: rainlab.user::lang.user.email
+        searchable: true
+        invisible: true
+
+    industry:
+        label: 'Industry'
+        searchable: true
+    
+    status:
+        label: 'Status'
+        searchable: true
+
+    last_seen:
+        label: rainlab.user::lang.user.last_seen
+        type: timesince

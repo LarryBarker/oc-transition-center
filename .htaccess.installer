@@ -1,0 +1,288 @@
+
+RewriteEngine on
+
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php56” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddType application/x-httpd-ea-php56 .php .php5 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
+
+# BEGIN cPanel-generated php ini directives, do not edit
+# Manual editing of this file may result in unexpected behavior.
+# To make changes to this file, use the cPanel MultiPHP INI Editor (Home >> Software >> MultiPHP INI Editor)
+# For more information, read our documentation (https://go.cpanel.net/EA4ModifyINI)
+<IfModule php5_module>
+   php_value ; Directives following the section heading [PATH /www/mysite] only
+   php_value ; following the section heading [HOST www.example.com] only apply to
+   php_value ; at runtime. Currently, [PATH ] and [HOST=] sections only work under
+   php_value ; directive value
+   php_value ; Directive names are *case sensitive* - foo bar is different from FOO=bar.
+   php_value ;  foo ; sets foo to an empty string
+   php_value ;  foo None    ; sets foo to an empty string
+   php_value ;  foo "None"  ; sets foo to the string 'None'
+   php_value ;   Default Value: "a href,area=href,frame=src,form=,fieldset="
+   php_value ;   Development Value: "a href,area=href,frame=src,input=src,form=fakeentry"
+   php_value ;   Production Value: "a href,area=href,frame=src,input=src,form=fakeentry"
+   php_value ;user_ini.filename ".user.ini"
+   php_value ;user_ini.cache_ttl 300
+   php_flag engine On
+   php_value ; Note that this directive does not control the <? shorthand tag, which can be
+   php_flag short_open_tag Off
+   php_value precision 14
+   php_value ;   On Enabled and buffer is unlimited. (Use with caution)
+   php_value ;   Off Disabled
+   php_value ;   Integer Enables the buffer and sets its maximum size in bytes.
+   php_value output_buffering 4096
+   php_value zlib.output_compression Off
+   php_value ;zlib.output_compression_level -1
+   php_flag implicit_flush Off
+   php_value serialize_precision 17
+   php_value ; <span style "color: ???????"> would work.
+   php_value ;highlight.string #DD0000
+   php_value ;highlight.comment #FF9900
+   php_value ;highlight.keyword #007700
+   php_value ;highlight.default #0000BB
+   php_value ;highlight.html #000000
+   php_value ;ignore_user_abort On
+   php_value ;realpath_cache_size 4096k
+   php_value ;realpath_cache_ttl 120
+   php_flag zend.enable_gc On
+   php_value ;zend.multibyte Off
+   php_value ; unless "declare(encoding ...)" directive appears at the top of the script.
+   php_value max_execution_time 30
+   php_value max_input_time 60
+   php_value ;max_input_nesting_level 64
+   php_value ; max_input_vars 1000
+   php_value memory_limit 128M
+   php_value error_reporting E_ALL & ~E_DEPRECATED & ~E_STRICT
+   php_value ;   Off Do not display any errors
+   php_value ;   stderr Display errors to STDERR (affects only CGI/CLI binaries!)
+   php_value ;   On or stdout Display errors to STDOUT
+   php_flag display_errors On
+   php_flag display_startup_errors On
+   php_flag log_errors On
+   php_value log_errors_max_len 1024
+   php_flag ignore_repeated_errors Off
+   php_flag ignore_repeated_source Off
+   php_flag report_memleaks On
+   php_value ;report_zend_debug 0
+   php_flag track_errors On
+   php_value ;xmlrpc_errors 0
+   php_value ;xmlrpc_error_number 0
+   php_flag html_errors On
+   php_value ;docref_root "/phpmanual/"
+   php_value ;docref_ext .html
+   php_value ;error_prepend_string "<span style='color: #ff0000'>"
+   php_value ;error_append_string "</span>"
+   php_value ;error_log php_errors.log
+   php_value ;error_log syslog
+   php_value ;arg_separator.output "&amp;"
+   php_value ;arg_separator.input ";&"
+   php_value variables_order "GPCS"
+   php_value request_order "GP"
+   php_flag register_argc_argv Off
+   php_flag auto_globals_jit On
+   php_value ;enable_post_data_reading Off
+   php_value post_max_size 8M
+   php_value default_mimetype "text/html"
+   php_value default_charset "UTF-8"
+   php_value include_path "C:\xampp\php\PEAR"
+   php_value ;include_path ".;c:\php\includes"
+   php_value ; extension_dir "./"
+   php_value ; sys_temp_dir "/tmp"
+   php_value ;cgi.force_redirect 1
+   php_value ;cgi.nph 1
+   php_value ;cgi.fix_pathinfo 1
+   php_value ;cgi.discard_path 1
+   php_value ;fastcgi.impersonate 1
+   php_value ;fastcgi.logging 0
+   php_value ;cgi.rfc2616_headers 0
+   php_value ;cgi.check_shebang_line 1
+   php_value upload_max_filesize 2M
+   php_value ;from "john@doe.com"
+   php_value ;user_agent "PHP"
+   php_value default_socket_timeout 60
+   php_value ;auto_detect_line_endings Off
+   php_value ;   extension modulename.extension
+   php_value ;   extension msql.dll
+   php_value ;   extension msql.so
+   php_value ;   extension /path/to/extension/msql.so
+   php_value ;extension php_ftp.dll
+   php_value ;extension php_gmp.dll
+   php_value ;extension php_intl.dll
+   php_value ;extension php_imap.dll
+   php_value ;extension php_interbase.dll
+   php_value ;extension php_ldap.dll
+   php_value ;extension php_oci8_12c.dll  ; Use with Oracle Database 12c Instant Client
+   php_value ;extension php_openssl.dll
+   php_value ;extension php_pdo_firebird.dll
+   php_value ;extension php_pdo_oci.dll
+   php_value ;extension php_pdo_odbc.dll
+   php_value ;extension php_pdo_pgsql.dll
+   php_value ;extension php_pgsql.dll
+   php_value ;extension php_shmop.dll
+   php_value ;extension php_snmp.dll
+   php_value ;extension php_sockets.dll
+   php_value ;extension php_sqlite3.dll
+   php_value ;extension php_tidy.dll
+   php_value ;extension php_xmlrpc.dll
+   php_value ;extension php_xsl.dll
+   php_flag asp_tags Off
+   php_flag display_startup_errors On
+   php_flag track_errors Off
+   php_value error_log "C:\xampp\php\logs\php_error_log"
+   php_flag register_long_arrays Off
+   php_flag magic_quotes_sybase Off
+   php_flag cli_server.color On
+   php_value ;date.default_latitude 31.7667
+   php_value ;date.default_longitude 35.2333
+   php_value ;date.sunrise_zenith 90.583333
+   php_value ;date.sunset_zenith 90.583333
+   php_value ;filter.default unsafe_raw
+   php_value ;intl.error_level E_WARNING
+   php_value ;intl.use_exceptions 0
+   php_value ;pcre.backtrack_limit 100000
+   php_value ;pcre.recursion_limit 100000
+   php_value ;pcre.jit 1
+   php_value ;pdo_odbc.connection_pooling strict
+   php_value ;phar.readonly On
+   php_value ;phar.require_hash On
+   php_value SMTP "smtp.office365.com"
+   php_value smtp_port 587
+   php_value sendmail_from "user@wwrfresource.com"
+   php_flag mail.add_x_header On
+   php_value ;mail.log syslog
+   php_value ;odbc.default_db Not yet implemented
+   php_value ;odbc.default_user Not yet implemented
+   php_value ;odbc.default_pw Not yet implemented
+   php_value odbc.defaultlrl 4096
+   php_value odbc.defaultbinmode 1
+   php_value ;birdstep.max_links -1
+   php_value ibase.timestampformat "%Y-%m-%d %H:%M:%S"
+   php_value ibase.dateformat "%Y-%m-%d"
+   php_value ibase.timeformat "%H:%M:%S"
+   php_value ;mysqli.allow_local_infile On
+   php_value mysqli.default_port 3306
+   php_value ;mysqlnd.log_mask 0
+   php_value ;mysqlnd.mempool_default_size 16000
+   php_value ;mysqlnd.net_cmd_buffer_size 2048
+   php_value ;mysqlnd.net_read_buffer_size 32768
+   php_value ;mysqlnd.net_read_timeout 31536000
+   php_value ;oci8.privileged_connect Off
+   php_value ;oci8.max_persistent -1
+   php_value ;oci8.persistent_timeout -1
+   php_value ;oci8.ping_interval 60
+   php_value ;oci8.events Off
+   php_value ;oci8.statement_cache_size 20
+   php_value ;oci8.default_prefetch 100
+   php_value ;oci8.old_oci_close_semantics Off
+   php_value pgsql.ignore_notice 0
+   php_value ; Unless pgsql.ignore_notice 0, module cannot log notice message.
+   php_value pgsql.log_notice 0
+   php_value bcmath.scale 0
+   php_value session.save_handler "files"
+   php_value ;     session.save_path "N;/path"
+   php_value ;     session.save_path "N;MODE;/path"
+   php_value session.save_path "C:\xampp\tmp"
+   php_flag session.use_strict_mode Off
+   php_flag session.use_cookies On
+   php_flag session.use_only_cookies On
+   php_value session.name "PHPSESSID"
+   php_flag session.auto_start Off
+   php_value session.cookie_lifetime 0
+   php_value session.cookie_path "/"
+   php_value session.serialize_handler "php"
+   php_value session.gc_probability 1
+   php_value session.gc_divisor 1000
+   php_value session.gc_maxlifetime 1440
+   php_value ;       setting session.gc_maxlifetime to 1440 (1440 seconds 24 minutes):
+   php_value session.entropy_length 0
+   php_value ;session.entropy_file /dev/urandom
+   php_value session.cache_limiter "nocache"
+   php_value session.cache_expire 180
+   php_flag session.use_trans_sid Off
+   php_value session.hash_function "0"
+   php_value session.hash_bits_per_character 5
+   php_value ; Note that all valid entries require a " ", even if no value follows.
+   php_value ; Default Value: "a href,area=href,frame=src,form=,fieldset="
+   php_value ; Development Value: "a href,area=href,frame=src,input=src,form=fakeentry"
+   php_value ; Production Value: "a href,area=href,frame=src,input=src,form=fakeentry"
+   php_value ;session.upload_progress.enabled On
+   php_value ;session.upload_progress.cleanup On
+   php_value ;session.upload_progress.prefix "upload_progress_"
+   php_value ;session.upload_progress.name "PHP_SESSION_UPLOAD_PROGRESS"
+   php_value ;session.upload_progress.freq "1%"
+   php_value ;session.upload_progress.min_freq "1"
+   php_value ;session.lazy_write On
+   php_value ; Changing from or to a negative value is only possible in php.ini! (For turning assertions on and off at run-time, see assert.active, when zend.assertions 1)
+   php_value ;assert.active On
+   php_value ;assert.exception On
+   php_value ;assert.warning On
+   php_value ;assert.bail Off
+   php_value ;assert.callback 0
+   php_value ;assert.quiet_eval 0
+   php_value ;com.allow_dcom true
+   php_value ;com.autoregister_typelib true
+   php_value ;com.autoregister_casesensitive false
+   php_value ;com.autoregister_verbose true
+   php_value ;mbstring.language Japanese
+   php_value ; mbstring.encoding_traslation On is needed to use this setting.
+   php_value ;mbstring.encoding_translation Off
+   php_value ;mbstring.detect_order auto
+   php_value ;mbstring.substitute_character none
+   php_value ;mbstring.func_overload 0
+   php_value ;mbstring.strict_detection On
+   php_value ; Default: mbstring.http_output_conv_mimetype ^(text/|application/xhtml\+xml)
+   php_value ;gd.jpeg_ignore_warning 0
+   php_value ;exif.encode_unicode ISO-8859-15
+   php_value ;exif.decode_unicode_motorola UCS-2BE
+   php_value ;exif.decode_unicode_intel UCS-2LE
+   php_value ;exif.decode_jis_motorola JIS
+   php_value ;exif.decode_jis_intel JIS
+   php_value ;tidy.default_config /usr/local/lib/php/default.tcfg
+   php_flag tidy.clean_output Off
+   php_flag soap.wsdl_cache_enabled On
+   php_value soap.wsdl_cache_dir "/tmp"
+   php_value soap.wsdl_cache_ttl 86400
+   php_value soap.wsdl_cache_limit 5
+   php_value ;sysvshm.init_mem 10000
+   php_value ;opcache.enable 0
+   php_value ;opcache.enable_cli 0
+   php_value ;opcache.memory_consumption 64
+   php_value ;opcache.interned_strings_buffer 4
+   php_value ;opcache.max_accelerated_files 2000
+   php_value ;opcache.max_wasted_percentage 5
+   php_value ;opcache.use_cwd 1
+   php_value ;opcache.validate_timestamps 1
+   php_value ;opcache.revalidate_freq 2
+   php_value ;opcache.revalidate_path 0
+   php_value ;opcache.save_comments 1
+   php_value ;opcache.fast_shutdown 0
+   php_value ;opcache.enable_file_override 0
+   php_value ;opcache.optimization_level 0xffffffff
+   php_value ;opcache.inherited_hack 1
+   php_value ;opcache.dups_fix 0
+   php_value ;opcache.max_file_size 0
+   php_value ;opcache.consistency_checks 0
+   php_value ;opcache.force_restart_timeout 180
+   php_value ;opcache.log_verbosity_level 1
+   php_value ;opcache.protect_memory 0
+   php_value ;opcache.file_cache_only 0
+   php_value ;opcache.file_cache_consistency_checks 1
+   php_value ; Implies opcache.file_cache_only 1 for a certain process that failed to
+   php_value ;opcache.file_cache_fallback 1
+   php_value ;opcache.huge_code_pages 0
+   php_value ; opcache.validate_permission 0
+   php_value ; opcache.validate_root 0
+   php_value date.timezone "Europe/Berlin"
+   php_value mysql.default_port "3306"
+   php_value mysql.default_socket "MySQL"
+   php_value mysql.connect_timeout 3
+   php_flag mysql.trace_mode Off
+   php_value mssql.min_error_severity 10
+   php_value mssql.min_message_severity 10
+   php_flag mssql.compatability_mode Off
+</IfModule>
+# END cPanel-generated php ini directives, do not edit

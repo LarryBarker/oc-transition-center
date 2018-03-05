@@ -1,0 +1,22 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+
+    name:
+        label: renatio.dynamicpdf::lang.templates.name
+        searchable: true
+
+    code:
+        label: renatio.dynamicpdf::lang.templates.code
+        searchable: true
+
+    created_at:
+        label: renatio.dynamicpdf::lang.templates.created_at
+        type: datetime
+
+    updated_at:
+        label: renatio.dynamicpdf::lang.templates.updated_at
+        invisible: true
+        type: datetime

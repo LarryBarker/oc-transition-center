@@ -1,0 +1,10 @@
+name: Questionnaires
+modelClass: Wwrf\TransitionCenter\Models\Questionnaire
+form: $/wwrf/transitioncenter/models/questionnaire/fields.yaml
+defaultRedirect: wwrf/transitioncenter/questionnaires
+create:
+    redirect: 'wwrf/transitioncenter/questionnaires/update/:id'
+    redirectClose: wwrf/transitioncenter/questionnaires
+update:
+    redirect: wwrf/transitioncenter/questionnaires
+    redirectClose: wwrf/transitioncenter/questionnaires

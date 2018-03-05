@@ -1,0 +1,308 @@
+//
+// Pages
+//
+// Styles specific to individual pages.
+//
+
+div#brand {
+	
+    .brand {
+	    float: left;
+	    //padding: 15px 15px;
+	    font-size: 36px;
+	    //line-height: 20px;
+	    height: 80px;
+	    padding-left: 80px;
+	    background-image: url('../images/october.png');
+	    background-size: auto 80%;
+	    background-repeat: no-repeat;
+	    color: white;
+	    font-variant: small-caps;
+    }
+    
+	.brand small {
+		display: -webkit-box;
+		font-size: 14px;
+		//line-height: 1em;
+	}
+	
+	a.brand {
+		text-decoration: none;
+	}
+}
+.form-box {
+	margin-top: 35px;
+}
+
+.form-top {
+	overflow: hidden;
+	padding: 0 25px 15px 25px;
+	background: #fff;
+	-moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
+	text-align: left;
+}
+
+.form-top-left {
+	float: left;
+	width: 75%;
+	padding-top: 25px;
+}
+
+.form-top-left h3 { margin-top: 0; }
+
+.form-top-right {
+	float: left;
+	width: 25%;
+	padding-top: 5px;
+	font-size: 66px;
+	color: #ddd;
+	line-height: 100px;
+	text-align: right;
+}
+
+.form-bottom {
+	padding: 25px 25px 30px 25px;
+	background: #eee;
+	-moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px; border-radius: 0 0 4px 4px;
+	text-align: left;
+}
+
+.form-bottom form textarea {
+	height: 100px;
+}
+
+.form-bottom form button.btn {
+	width: 100%;
+}
+
+.form-bottom form .input-error {
+	border-color: #de995e;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.modal {
+ 	overflow-y:scroll;
+}
+.navbar>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .dropdown-menu>li>a, .dropdown-menu>li{
+  border-bottom: 3px solid transparent;
+}
+.navbar>li>a:focus, .navbar>li>a:hover,.navbar .open>a, .navbar .open>a:focus, .nav .open>a:hover, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
+  border-bottom: 3px solid transparent;
+  background: none;
+}
+.navbar li:hover, .navbar li.active{
+  border-bottom: #F0776C 3px solid;
+}
+
+/***** Registration *****/
+
+.register-container { 
+	padding: 40px 0 170px 0;
+	background-image: url('../images/header.jpg');
+	background-position: center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.register-container .text { color: #fff; }
+.register-container .text h1 { color: #fff; }
+.register-container .description { margin: 20px 0 10px 0; }
+.register-container .description p { opacity: 0.8; }
+.register-container .description a { color: #fff; }
+.register-container .description a:hover, 
+.register-container .description a:focus { border-bottom: 1px dotted #fff; }
+
+.f1 {
+	padding: 25px; background: #fff;
+	-moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+}
+.f1 h3 { margin-top: 0; margin-bottom: 5px; text-transform: uppercase; }
+
+.f1-steps { overflow: hidden; position: relative; margin-top: 20px; }
+
+.f1-progress { position: absolute; top: 24px; left: 0; width: 100%; height: 1px; background: #ddd; }
+.f1-progress-line { position: absolute; top: 0; left: 0; height: 1px; background: #f35b3f; }
+
+.f1-step { position: relative; float: left; width: 33.333333%; padding: 0 5px; }
+
+.f1-step-icon {
+	display: inline-block; width: 40px; height: 40px; margin-top: 4px; background: #ddd;
+	font-size: 16px; color: #fff; line-height: 40px;
+	-moz-border-radius: 50%; -webkit-border-radius: 50%; border-radius: 50%;
+}
+.f1-step.activated .f1-step-icon {
+	background: #fff; border: 1px solid #f35b3f; color: #f35b3f; line-height: 38px;
+}
+.f1-step.active .f1-step-icon {
+	width: 48px; height: 48px; margin-top: 0; background: #f35b3f; font-size: 22px; line-height: 48px;
+}
+
+.f1-step p { color: #ccc; }
+.f1-step.activated p { color: #f35b3f; }
+.f1-step.active p { color: #f35b3f; }
+
+.f1 fieldset { display: none; text-align: left; }
+
+.f1-buttons { text-align: right; }
+
+.f1 .input-error { border-color: #f35b3f; }
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #jobContainer, #jobContainer * {
+    visibility: visible;
+  }
+  #walkroute * {
+  	visibility: visible;
+  }
+  #jobContainer {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+#map {
+	height: 500px;
+	width: 100%;
+}
+
+#listing {
+	margin-top: 20px;
+}
+#description {
+	font-family: Roboto;
+	font-size: 15px;
+	font-weight: 300;
+}
+
+#infowindow-content .title {
+	font-weight: bold;
+}
+
+#infowindow-content {
+	display: none;
+}
+
+#map #infowindow-content {
+	display: inline;
+}
+
+.pac-card {
+	margin: 10px 10px 0 0;
+	border-radius: 2px 0 0 2px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	outline: none;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+	background-color: #fff;
+	font-family: Roboto;
+}
+
+#pac-container {
+	padding-bottom: 12px;
+	margin-right: 12px;
+}
+
+.pac-controls {
+	display: inline-block;
+	padding: 5px 11px;
+}
+
+.pac-controls label {
+	font-family: Roboto;
+	font-size: 13px;
+	font-weight: 300;
+}
+
+#pac-input {
+	background-color: #fff;
+	font-family: Roboto;
+	font-size: 15px;
+	font-weight: 300;
+	margin-left: 12px;
+	padding: 0 11px 0 13px;
+	text-overflow: ellipsis;
+	width: 400px;
+}
+
+#pac-input:focus {
+	border-color: #4d90fe;
+}
+
+#title {
+	color: #fff;
+	background-color: #4d90fe;
+	font-size: 25px;
+	font-weight: 500;
+	padding: 6px 12px;
+}
+#target {
+	width: 345px;
+}
+#type-panel {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: 'Roboto','sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
+  }
+@page :blank {
+  visibility: hidden;
+}
+
+.footer {
+    color: #99979c;
+    background-color: #303030;
+}
+
+.footer-links {
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+.footer-links li {
+    display: inline-block;
+}

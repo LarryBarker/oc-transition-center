@@ -1,0 +1,131 @@
+plugin:
+    name: TransitionCenter
+    description: 'Transition Center'
+    author: WWRF
+    icon: oc-icon-leaf
+    homepage: 'http://wwrfresource.com'
+permissions:
+    'wwrf.transitioncenter.*':
+        tab: 'wwrf.transitioncenter::lang.plugin.name'
+        label: 'Manage Transition Center features.'
+    wwrf.transitioncenter.manage_activity:
+        tab: 'wwrf.transitioncenter::lang.plugin.name'
+        label: 'Manage activity'
+    wwrf.transitioncenter.manage_staff:
+        tab: 'wwrf.transitioncenter::lang.plugin.name'
+        label: 'Manage staff member accounts.'
+    wwrf.transitioncenter.manage_employers:
+        tab: 'wwrf.transitioncenter::lang.plugin.name'
+        label: 'Manage employer accounts.'
+    wwrf.transitioncenter.manage_jobtracker:
+        tab: 'wwrf.transitioncenter::lang.plugin.name'
+        label: 'Manage view and applied jobs for users.'
+    wwrf.transitioncenter.manage_companies:
+        tab: 'wwrf.transitioncenter::lang.plugin.name'
+        label: 'Manage current companies users have jobs with.'
+    wwrf.transitioncenter.manage_programs:
+        tab: 'wwrf.transitioncenter::lang.plugin.name'
+        label: 'Manage WWRF programs available at the facility.'
+    wwrf.transitioncenter.manage_groups:
+        tab: 'wwrf.transitioncenter::lang.plugin.name'
+        label: 'Manage programs users are currently attending at the facility.'
+    wwrf.transitioncenter.manage_surveys:
+        tab: 'wwrf.transitioncenter::lang.plugin.name'
+        label: 'Manage questionnaires and surveys.'
+    wwrf.transitioncenter.manage_resources:
+        tab: 'wwrf.transitioncenter::lang.plugin.name'
+        label: 'Manage housing resources for the website.'
+    wwrf.transitioncenter.manage_resources_items:
+        tab: 'wwrf.transitioncenter::lang.plugin.name'
+        label: 'Manage individual housing resources.'
+    wwrf.transitioncenter.manage_resources_categories:
+        tab: 'wwrf.transitioncenter::lang.plugin.name'
+        label: 'Manage categories for resources to add/remove types of housing.'
+    wwrf.transitioncenter.manage_temp_services:
+        tab: 'wwrf.transitioncenter::lang.plugin.name'
+        label: 'Create, update, remove temp services information for the front-end website.'
+navigation:
+    transitioncenter:
+        label: 'Transition Center'
+        url: wwrf/transitioncenter/dashboard
+        icon: icon-leaf
+        permissions:
+            - 'wwrf.transitioncenter.*'
+        sideMenu:
+            users:
+                label: Users
+                url: rainlab/user/users
+                icon: icon-users
+                group: Users
+                permissions:
+                    - 'wwrf.transitioncenter.*'
+            staff:
+                label: Staff
+                url: wwrf/transitioncenter/staffmembers
+                icon: icon-user-secret
+                group: Users
+                permissions:
+                    - 'wwrf.transitioncenter.*'
+            employers:
+                label: Employers
+                url: wwrf/transitioncenter/employers
+                icon: icon-user
+                group: Users
+                permissions:
+                    - 'wwrf.transitioncenter.*'
+            jobtracker:
+                label: 'Job Tracker'
+                url: wwrf/transitioncenter/viewedjobs
+                icon: icon-eye
+                group: Employment
+                permissions:
+                    - 'wwrf.transitioncenter.*'
+            companies:
+                label: Companies
+                url: wwrf/transitioncenter/companies
+                icon: icon-building
+                group: Employment
+                permissions:
+                    - 'wwrf.transitioncenter.*'
+            tempservices:
+                label: 'Temp Services'
+                url: wwrf/transitioncenter/tempservices
+                icon: icon-share-alt
+                group: Employment
+                permissions:
+                    - 'wwrf.transitioncenter.*'
+            programs:
+                label: Programs
+                url: wwrf/transitioncenter/programs
+                icon: icon-comments-o
+                group: Programs
+                permissions:
+                    - 'wwrf.transitioncenter.*'
+            groups:
+                label: Groups
+                url: wwrf/transitioncenter/usersprograms
+                icon: icon-commenting-o
+                group: Programs
+                permissions:
+                    - 'wwrf.transitioncenter.*'
+            questionnaires:
+                label: Questionnaires
+                url: wwrf/transitioncenter/questionnaires
+                icon: icon-question-circle-o
+                group: Surveys
+                permissions:
+                    - 'wwrf.transitioncenter.*'
+            housing:
+                label: Housing
+                url: wwrf/transitioncenter/items
+                icon: icon-home
+                group: Resources
+                permissions:
+                    - 'wwrf.transitioncenter.*'
+            categories:
+                label: Categories
+                url: wwrf/transitioncenter/categories
+                icon: icon-list
+                group: Resources
+                permissions:
+                    - 'wwrf.transitioncenter.*'

@@ -1,0 +1,11 @@
+list: $/wwrf/transitioncenter/models/item/columns.yaml
+modelClass: Wwrf\TransitionCenter\Models\Item
+title: Items
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'wwrf/transitioncenter/items/update/:id'

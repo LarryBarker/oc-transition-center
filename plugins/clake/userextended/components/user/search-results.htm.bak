@@ -1,0 +1,19 @@
+{% if results is not empty %}
+    <h4>Search Results</h4>
+
+
+    {% for profile in results %}
+        {% if ueuser.loggedIn.id != profile.id %}
+            <div>
+               {{profile.name}} {{profile.surname}}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+
+{% else %}
+    <div>
+        No users found
+    </div>
+
+{% endif %}

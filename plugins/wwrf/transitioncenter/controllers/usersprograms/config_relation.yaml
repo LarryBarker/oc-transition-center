@@ -1,0 +1,23 @@
+# ===================================
+
+#  Relation Behavior Config
+
+# ===================================
+
+
+
+usersprograms:
+
+    label: Users Programs
+
+    manage:
+
+        form: $/wwrf/transitioncenter/models/userprogram/user_fields.yaml
+
+        list: $/wwrf/transitioncenter/models/userprogram/user_columns.yaml
+
+    view:
+
+        list: $/wwrf/transitioncenter/models/userprogram/user_columns.yaml
+
+        toolbarButtons: create|delete

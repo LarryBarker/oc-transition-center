@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Author
+
+# Model Form Field configuration
+form: $/fireunion/blogfront/models/author/fields.yaml
+
+# Model Class name
+modelClass: FireUnion\BlogFront\Models\Author
+
+# Default redirect location
+defaultRedirect: fireunion/blogfront/authors
+
+# Create page
+create:
+    title: Create Author
+    redirect: fireunion/blogfront/authors/update/:id
+    redirectClose: fireunion/blogfront/authors
+
+# Update page
+update:
+    title: Edit Author
+    redirect: fireunion/blogfront/authors
+    redirectClose: fireunion/blogfront/authors
+
+# Preview page
+preview:
+    title: Preview Author

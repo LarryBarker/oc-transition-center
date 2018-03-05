@@ -1,0 +1,11 @@
+{% if friends.type == "list" %}
+
+{% partial __SELF__~"::friends_list" %}
+
+{% endif %}
+
+{% if friends.type == "requests" %}
+
+{% partial __SELF__~"::friend_requests" %}
+
+{% endif %}

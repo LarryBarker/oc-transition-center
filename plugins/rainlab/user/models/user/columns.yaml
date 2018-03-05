@@ -1,0 +1,29 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+
+    kdoc_number:
+        label: rainlab.user::lang.user.kdoc
+        searchable: true
+
+    name:
+        label: rainlab.user::lang.user.name
+        searchable: true
+        select: concat(surname, ', ', name)
+
+    email:
+        label: rainlab.user::lang.user.email
+        searchable: true
+
+    created_at:
+        label: rainlab.user::lang.user.created_at
+        type: timetense
+
+    last_seen:
+        label: rainlab.user::lang.user.last_seen
+        type: timetense
+
+    updated_at:
+        label: Updated

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Staff Member
+
+# Model Form Field configuration
+form: $/wwrf/transitioncenter/models/staffmember/fields.yaml
+
+# Model Class name
+modelClass: RainLab\User\Models\User
+
+# Default redirect location
+defaultRedirect: wwrf/transitioncenter/staffmembers
+
+# Create page
+create:
+    title: Create Staff Member
+    redirect: wwrf/transitioncenter/staffmembers/update/:id
+    redirectClose: wwrf/transitioncenter/staffmembers
+
+# Update page
+update:
+    title: Edit Staff Member
+    redirect: wwrf/transitioncenter/staffmembers
+    redirectClose: wwrf/transitioncenter/staffmembers
+
+# Preview page
+preview:
+    title: Preview Staff Member

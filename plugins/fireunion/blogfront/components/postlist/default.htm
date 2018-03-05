@@ -1,0 +1,17 @@
+<!-- Start postlist-default.htm -->
+{% if __SELF__.backUser %}
+        <div  class="text-right">
+            <a href="{{ __SELF__.formPage }}"
+                class="btn btn-success"
+                title="{{ __SELF__.trans('general.btn_add') }}">
+                {{ __SELF__.trans('general.btn_add') }} <i class="icon-plus btn-icon"></i>
+            </a>
+        </div>
+
+<div id="bloginfo">
+{% partial __SELF__~'::list' %}
+</div>
+{% else %}
+<p>{{ __SELF__.trans('general.unauthorized') }}</p>
+{% endif %}
+<!-- End postlist-default.htm -->

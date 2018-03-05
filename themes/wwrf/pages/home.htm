@@ -1,0 +1,21 @@
+title = "Welcome"
+url = "/"
+layout = "main"
+description = "Welcome to the WWRF Transition Center!"
+is_hidden = 0
+
+[RainLab\User\Components\Account account]
+redirect = "home"
+paramCode = "code"
+forceSecure = 0
+
+[JobTracker]
+jobPage = "blog/post"
+==
+{% if user and user.groups[0].name == 'Employers' or user.groups[0].name == 'Staff' %}
+    {% partial 'employer_home' %}
+{% elseif user %}
+    {% partial 'user_home' %}
+{% elseif not user %}
+	{% partial 'landing' %}
+{% endif %}

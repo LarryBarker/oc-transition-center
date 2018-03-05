@@ -1,0 +1,23 @@
+columns:
+    name:
+        label: 'wwrf.transitioncenter::lang.wwrf.transitioncenter.tempservices.name'
+        type: text
+        searchable: true
+        sortable: true
+    address:
+        label: 'wwrf.transitioncenter::lang.tempservices.address'
+        type: text
+        searchable: false
+    phone:
+        label: 'wwrf.transitioncenter::lang.tempservices.phone'
+        type: text
+        searchable: false
+    website:
+        label: 'wwrf.transitioncenter::lang.tempservices.website'
+        type: text
+    comments:
+        label: Comments
+        type: text
+    updated_at:
+        label: Updated
+        type: datetime

@@ -1,0 +1,117 @@
+{% if results is not empty %}
+    <h4>Search Results: {{ results|length }} users found.</h4>
+    <div class="carousel slide multi-item-carousel" id="profileCarousel">
+        <div class="carousel-inner" role="listbox">
+            {% set firstCard = results|first %}
+            {% set lastCard = results|last %}
+            {% set carouselLen = results|length %}
+            {% set cardsPerPage = 3 %}
+            {% set slidesPerPage = (carouselLen/cardsPerPage)|round %}
+            {% set sliceBeg = 1 %}
+
+            <div class="item active">
+                {% for profile in results|slice(0,cardsPerPage) %}
+                    {% if ueuser.loggedIn.id != profile.id %}
+                        
+                            <div class="col-xs-4">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading clearfix">
+                                        <h3 class="panel-title pull-left"><a href="#" data-request-data="id: {{profile.id}}" data-request="ueuser::onVisitProfile">
+                                        {{profile.name}} {{profile.surname}}
+                                        </a></h3>
+                                    <a class="btn btn-primary pull-right" href="{{ profile.avatar.path  }}">
+                                    <i class="icon icon-download"></i>
+                                    Resume
+                                    </a>
+                                    </div>
+                                    <div class="list-group">
+                                        <div class="list-group-item">
+                                            <p class="list-group-item-text">Industry(ies)</p>
+                                        {% for industry in profile.industries %}<h4 class="list-group-item-heading">
+                                            {{industry.name}}</h4>
+                                        {%endfor%}
+                                        </div>
+                                        <div class="list-group-item">
+                                            <p class="list-group-item-text">Status</p>
+                                            <h4 class="list-group-item-heading">{{ profile.status }}</h4>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <small>Last seen 
+                                        {% if profile.last_seen %}
+                                        {{profile.last_seen|relative}}
+                                        {% else %}
+                                        Never
+                                        {% endif %}
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                    {% endif %}
+                {% endfor %}
+                {% set sliceBeg = sliceBeg+3 %}
+            </div>
+
+            {% if slidesPerPage > 1 %}
+                {% for i in 1..slidesPerPage-1 %}
+                <div class="item">
+                    {% for item in results|slice(sliceBeg-1,cardsPerPage) %}
+
+                        <div class="col-xs-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading clearfix">
+                                    <h3 class="panel-title pull-left"><a href="#" data-request-data="id: {{item.id}}" data-request="ueuser::onVisitProfile">
+                                    {{item.name}} {{item.surname}} 
+                                    </a></h3>
+                                    <a class="btn btn-primary pull-right" href="{{ item.avatar.path  }}">
+                                    <i class="icon icon-download"></i>
+                                    Resume
+                                    </a>
+                                </div>
+                                <div class="list-group">
+                                    <div class="list-group-item">
+                                        <p class="list-group-item-text">Industry</p>
+                                        {% for industry in item.industries %}<h4 class="list-group-item-heading">
+                                            {{industry.name}}</h4>
+                                        {%endfor%}
+                                    </div>
+                                    <div class="list-group-item">
+                                        <p class="list-group-item-text">Status</p>
+                                        <h4 class="list-group-item-heading">{{ item.status }}</h4>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <small>Last seen 
+                                    {% if item.last_seen %}
+                                    {{item.last_seen|relative}}
+                                    {% else %}
+                                    Never
+                                    {% endif %}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                            
+                    {% endfor %}
+                </div>
+                {% set sliceBeg = sliceBeg+3 %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="text-center">
+        <a href="#profileCarousel" role="button" data-slide="prev" class="btn btn-primary btn-lg">
+        <span class="icon icon-chevron-left"></span> Prev 
+        </a>
+        <a href="#profileCarousel" role="button" data-slide="next" class="btn btn-primary btn-lg">
+        Next <span class="icon icon-chevron-right"></span> 
+        </a>
+    </div>
+
+{% else %}
+    <div>
+        No users found
+    </div>
+{% endif %}

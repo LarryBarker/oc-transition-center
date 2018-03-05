@@ -1,0 +1,22 @@
+{% for category in categories %}
+    {% set postCount = category.post_count %}
+    <li>
+
+    <a href="{{category.url}}" {% if category.slug == currentCategorySlug %}class="active"{% endif %}>
+        {{ category.name }}
+        {% if postCount %}
+            <span class="badge">{{ postCount }}</span>
+        {% endif %}
+
+        {% if category.children %}
+            
+                {% partial __SELF__ ~ "::list-items"
+                    categories=category.children
+                    currentCategorySlug=currentCategorySlug
+                %}
+
+        {% endif %}
+    </a>
+
+    </li>
+{% endfor %}

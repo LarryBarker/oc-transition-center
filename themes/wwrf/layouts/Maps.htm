@@ -1,0 +1,175 @@
+==
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <!--  Include leaflet javascript and css -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js" crossorigin=""></script>
+  <!--  Include r360.js -->
+  <script src="https://releases.route360.net/r360-js/latest.js"></script>
+  <!-- Include the icons for the markers -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css">
+ 
+  <style>
+    html, body { width: 100%; height: 100%; margin: 0; font-family: sans-serif; }
+    #map { width: 100%; height: 100%; }
+    .button-group {
+      position: absolute; right: 10px; top: 10px;
+      box-shadow: 0 1px 5px rgba(0,0,0,.4);
+      background-color: rgba(255,255,255,1);
+      z-index: 1000;
+    }
+    .button {
+      font-family: sans-serif; text-transform: uppercase;
+      color: #666; cursor: pointer;
+      padding: 15px 30px; display: inline-block;
+    }
+    .button:hover { background-color: #EEE; }
+    .button.active { color: rgb(63,81,181); }
+  </style>
+
+</head>
+<body>
+  <!--  where the map will live  -->
+  <div id="map"></div>
+  <div id="selectionBar" class="button-group">
+    <div id="btn-bar" onclick="changeMode(&apos;fast_food&apos;)" class="button">
+      <li class="ion-android-bar active" style="display: inline-block;"></li> Fast Food
+    </div>
+    <div id="btn-restaurant" onclick="changeMode(&apos;restaurant&apos;)" class="button active">
+      <li class="ion-android-restaurant" style="display: inline-block;"></li> Restaurant
+    </div>
+    <div id="btn-atm" onclick="changeMode(&apos;atm&apos;)" class="button">
+        <li class="ion-cash" style="display: inline-block;"></li> ATM
+    </div>
+  </div>
+  
+  <script>
+    var osmTypes = [{ "key" : "amenity", "value" : "restaurant" }];
+    var src = { lat: 37.682319, lng: -97.333311 }; 
+    var map = L.map('map', { zoomControl: false }).setView(src, 16);
+    map.attributionControl.addAttribution("ÖPNV Daten © <a href='https://www.vbb.de/de/index.html' target='_blank'>VBB</a>");
+    L.control.zoom({ position:'bottomleft' }).addTo(map);
+
+    L.AwesomeMarkers.Icon.prototype.options.prefix = 'ion';
+
+    // initialise the base map
+    r360.basemap({ style: 'basic', apikey: 'SOFF9DGH082QAJBWBTSXMR1' }).addTo(map);
+
+    // create a source and a two target markers and add them to the map
+    var sourceMarker1 = L.marker(src, { draggable: true }).addTo(map);
+    // create empty layer to put results into
+    var targetLayer = L.featureGroup().addTo(map);
+
+    function showPointsOfInterest() {
+
+      targetLayer.clearLayers();
+      if ( osmTypes.length == 0 ) return;
+
+      $.ajax({
+        type: "POST",
+        url: "https://service.route360.net/pointofinterest/reachability",
+        data: JSON.stringify({
+          "sources": [{
+            "id": "1",
+            "lat": sourceMarker1.getLatLng().lat,
+            "lng": sourceMarker1.getLatLng().lng,
+            "tm" : {
+              "walk" : {}
+            }
+          }],
+          "elevationEnabled": true,
+          "maxEdgeWeight": 30 * 60,
+          "edgeWeight": "time",
+          "serviceUrl": "https://service.route360.net/northamerica/",
+          "serviceKey": 'SOFF9DGH082QAJBWBTSXMR1',
+          "osmTypes": osmTypes
+        }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function(pointsofinterest){
+          for (var key in pointsofinterest) {
+            
+            var marker;
+            if ( pointsofinterest[key].osmType == 'amenity=restaurant' )
+              marker = L.AwesomeMarkers.icon({ icon: 'android-restaurant', markerColor: 'red' });
+            else if ( pointsofinterest[key].osmType == 'amenity=fast_food' )
+              marker = L.AwesomeMarkers.icon({ icon: 'android-bar', markerColor: 'darkblue' });
+            else if ( pointsofinterest[key].osmType == 'amenity=atm' )
+              marker = L.AwesomeMarkers.icon({ icon: 'cash', markerColor: 'green' });
+
+            var tags = pointsofinterest[key].tags;
+            if ( tags.website )
+              tags.website = tags.website.substring(0, 4) == "http" ? tags.website : "http://" + tags.website;
+
+            var time = `<span> <li class="ion-ios-clock-outline active" style="display: inline-block;"></li> ${r360.Util.secondsToHoursAndMinutes(pointsofinterest[key].edgeWeight)}</span>`
+                        
+            L.marker([pointsofinterest[key].lat, pointsofinterest[key].lng],  {icon: marker}).addTo(targetLayer)
+              .bindPopup(`${tags.website ? ("<a href=\""+ tags.website + "\"><b>" + tags.name + "</b></a>" + time + "<br/>") : ("<b>" + tags.name + "</b>" + time + "<br/>") } 
+                Cuisine: ${tags.cuisine || "-"}<br/>
+                WLAN: ${tags.internet_access || false ? "yes" : "no"}<br/>
+                Opening hours: ${tags.opening_hours || false ? tags.opening_hours : "-"}<br/>
+              `);
+          }
+        },
+        failure: function(errMsg) {
+          console.log(errMsg);
+        }
+      });
+    }
+
+    // call the helper function to display polygons with initial value
+    showPointsOfInterest();
+    // re-run the polygons when we move a marker
+    sourceMarker1.on('dragend', function(){ showPointsOfInterest(true); });
+
+    // change polygons on button click
+    var changeMode = function(value) {
+
+      // value already in list of types to query, so remove
+      if ( osmTypes.some(function(e) { return e.value == value}) ) {
+        osmTypes = osmTypes.filter(function(el) {
+            return el.value != value;
+        });
+      }
+      // not in list yet, so add it
+      else 
+        osmTypes.push({ "key" : "amenity", "value" : value });
+
+      // update the buttons
+      $("#selectionBar .active").removeClass('active');
+      osmTypes.forEach(function(e) {
+        $("#btn-"+e.value).addClass('active');
+      });
+
+      showPointsOfInterest();
+    }
+	// create the layer to add the polygons
+    var polygonLayer = r360.leafletPolygonLayer().addTo(map);
+
+    // you need to define some options for the polygon service
+    // for more travel options check out the other tutorials
+    var travelOptions = r360.travelOptions();
+    // please contact us and request your own key if you don't already have one
+    travelOptions.setServiceKey('SOFF9DGH082QAJBWBTSXMR1');
+    // set the service url for your area
+    travelOptions.setServiceUrl('https://service.route360.net/northamerica/');
+    // we only have one source which is the marker we just added
+    travelOptions.addSource(sourceMarker1);
+    // we want to have polygons for 10 to 30 minutes
+    travelOptions.setTravelTimes([600, 1200, 1800]);
+    // go by foot
+    travelOptions.setTravelType('walk');
+
+    // call the r360°- service
+    r360.PolygonService.getTravelTimePolygons(travelOptions, function(polygons){
+        // add the returned polygons to the polygon layer
+        // and zoom the map to fit the polygons perfectly
+        polygonLayer.clearAndAddLayers(polygons, true);
+    });
+  </script>
+</body>
+</html>

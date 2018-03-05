@@ -1,0 +1,28 @@
+fields:
+    user:
+        label: 'wwrf.transitioncenter::lang.userprograms.user'
+        span: auto
+        oc.commentPosition: ''
+        nameFrom: name
+        descriptionFrom: description
+        type: relation
+        select: 'concat(name, '' '', surname)'
+    program:
+        label: 'wwrf.transitioncenter::lang.userprograms.program'
+        oc.commentPosition: ''
+        nameFrom: name
+        descriptionFrom: description
+        span: auto
+        type: recordfinder
+        list: $/wwrf/transitioncenter/models/program/columns.yaml
+        prompt: 'Click the %s button to find a program'
+    status:
+        label: 'wwrf.transitioncenter::lang.userprograms.status'
+        span: auto
+        oc.commentPosition: ''
+        options:
+            attending: Attending
+            completed: Complete
+            declined: Declined
+            na: 'Not Attending'
+        type: dropdown

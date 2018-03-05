@@ -1,0 +1,35 @@
+description = "Blog jumbotron with search"
+
+[searchForm]
+resultPage = "search"
+categoryFilter = 1
+==
+<!-- Jumbotron for jobs blog search -->
+  <div class="container" style="margin-bottom:20px;">
+    <h2>Job Search</h2>
+    <div class="row">
+
+            <form action="{{ searchForm.resultPage|page }}" class="form-inline" role="form" method="GET">
+            	<div class="col-md-6">
+	                <div class="input-group input-group-lg" style="width:100%;">
+	                    <input type="text" class="form-control form-control-lg" name ="search" placeholder="Enter job title, skills, or company here..." />
+	                </div>
+                </div>
+                <div class="col-md-4">
+	                {% if searchForm.categoryFilter %}
+			           	<div class="input-group input-group-lg" style="width:100%;">
+			           		<select name="cat[]" class="form-control">
+			                    {% for key,cat in searchForm.categories %}
+			                        <option value="{{ key }}">{{ cat }}</option>
+			                    {% endfor %}
+			                </select>
+			           	</div>
+	                {% endif %}
+                </div>
+            	<div class="col-md-2">
+            		<button type="submit" class="btn btn-block btn-lg btn-primary">Find Jobs</button>
+            	</div>
+            </form>
+
+    </div>
+  </div>

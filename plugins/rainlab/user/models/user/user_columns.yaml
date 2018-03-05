@@ -1,0 +1,66 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+
+    kdoc_number:
+        label: rainlab.user::lang.user.kdoc
+        searchable: true
+
+    name:
+        label: rainlab.user::lang.user.name
+        searchable: true
+        select: concat(surname, ', ', name)
+
+    created_at:
+        label: rainlab.user::lang.user.created_at
+        type: timetense
+
+    eligible_date:
+        label: Eligible
+    
+    job_title:
+        label: Title
+        type: partial
+        path: ~/plugins/wwrf/profile/models/UserExport/_title.htm
+        sortable: false
+    
+    company:
+        label: Company
+        type: partial
+        path: ~/plugins/wwrf/profile/models/UserExport/_company.htm
+        sortable: false
+    
+    industries:
+        label: Industry
+        type: partial
+        path: ~/plugins/wwrf/profile/models/UserExport/_industry.htm
+        sortable: false
+    
+    start_date:
+        label: Start Date
+        type: partial
+        path: ~/plugins/wwrf/profile/models/UserExport/_start_date.htm
+        sortable: false
+    
+    start_wage:
+        label: Start Wage
+        type: partial
+        path: ~/plugins/wwrf/profile/models/UserExport/_wage.htm
+        sortable: false
+    
+    status:
+        label: Status
+        sortable: true
+    
+    lead_time:
+        label: Lead Time
+        type: partial
+        path: ~/plugins/wwrf/profile/models/UserExport/_lead_time.htm
+        sortable: false
+
+    counselor:
+        label: Counselor
+        relation: counselor
+        select: surname

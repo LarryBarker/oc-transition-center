@@ -1,0 +1,24 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    user_id:
+        label: User
+        relation: user
+        select: concat(name, ' ', surname)
+        searchable: true
+    title:
+        label: Title
+        searchable: true
+    start_date:
+        label: Start Date
+        type: date
+        mode: date
+    start_wage:
+        label: Start Wage
+    current_wage:
+        label: Current Wage
+        preset:
+            field: start_wage
+            type: exact

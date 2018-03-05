@@ -1,0 +1,9 @@
+profile:
+    label: profile
+    view:
+      #form: $/rainlab/blog/models/category/fields.yaml
+      #list: $/rainlab/blog/models/category/columns.yaml
+      #toolbarButtons: create|delete
+    manage:
+      #form: $/rainlab/blog/models/category/fields.yaml
+      #recordsPerPage: 10

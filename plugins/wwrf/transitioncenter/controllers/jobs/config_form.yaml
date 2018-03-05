@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Job
+
+# Model Form Field configuration
+form: $/wwrf/employment/models/job/fields.yaml
+
+# Model Class name
+modelClass: Wwrf\Employment\Models\Job
+
+# Default redirect location
+defaultRedirect: wwrf/employment/jobs
+
+# Create page
+create:
+    title: Create Job
+    redirect: wwrf/employment/jobs/update/:id
+    redirectClose: wwrf/employment/jobs
+
+# Update page
+update:
+    title: Edit Job
+    redirect: wwrf/employment/jobs
+    redirectClose: wwrf/employment/jobs
+
+# Preview page
+preview:
+    title: Preview Job

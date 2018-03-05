@@ -1,0 +1,10 @@
+name: Programs
+form: $/wwrf/transitioncenter/models/program/fields.yaml
+modelClass: Wwrf\TransitionCenter\Models\Program
+defaultRedirect: wwrf/transitioncenter/programs
+create:
+    redirect: 'wwrf/transitioncenter/programs/update/:id'
+    redirectClose: wwrf/transitioncenter/programs
+update:
+    redirect: wwrf/transitioncenter/programs
+    redirectClose: wwrf/transitioncenter/programs

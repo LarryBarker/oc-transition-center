@@ -1,0 +1,256 @@
+{% if results is not empty %}
+    <h4>Search Results: {{ results|length }} users found.</h4>
+    <div class="carousel slide multi-item-carousel" id="profileCarousel">
+        <div class="carousel-inner" role>
+            {% set firstCard = results|first %}
+            {% set lastCard = results|last %}
+            {% set carouselLen = results|length %}
+            {% set cardsPerPage = 3 %}
+            {% set slidesPerPage = (carouselLen/cardsPerPage)|round %}
+            {% set sliceBeg = 1 %}
+
+            <div class="item active">
+                {% for profile in results|slice(0,cardsPerPage) %}
+                    {% if ueuser.loggedIn.id != profile.id %}
+                        
+                            <div class="col-xs-4">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading clearfix">
+                                        <h3 class="panel-title pull-left"><a href="#" data-request-data="id: {{profile.id}}" data-request="ueuser::onVisitProfile">
+                                        {{profile.name}} {{profile.surname}}
+                                        </a></h3>
+                                    <a class="btn btn-primary pull-right" href="{{ profile.avatar.path  }}">
+                                    <i class="icon icon-download"></i>
+                                    Resume
+                                    </a>
+                                    </div>
+                                    <div class="list-group">
+                                        <div class="list-group-item">
+                                            <p class="list-group-item-text">Industry</p>
+                                            <h4 class="list-group-item-heading">{{ profile.industry }}</h4>
+                                        </div>
+                                        <div class="list-group-item">
+                                            <p class="list-group-item-text">Status</p>
+                                            <h4 class="list-group-item-heading">{{ profile.status }}</h4>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <small>Last seen 
+                                        {% if profile.last_seen %}
+                                        {{profile.last_seen|relative}}
+                                        {% else %}
+                                        Never
+                                        {% endif %}
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                    {% endif %}
+                {% endfor %}
+                {% set sliceBeg = sliceBeg+3 %}
+            </div>
+
+            {% if slidesPerPage > 1 %}
+                {% for i in 1..slidesPerPage-1 %}
+                <div class="item">
+                    {% for item in results|slice(sliceBeg-1,cardsPerPage) %}
+
+                        <div class="col-xs-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading clearfix">
+                                    <h3 class="panel-title pull-left"><a href="#" data-request-data="id: {{item.id}}" data-request="ueuser::onVisitProfile">
+                                    {{item.name}} {{item.surname}} 
+                                    </a></h3>
+                                    <a class="btn btn-primary pull-right" href="{{ item.avatar.path  }}">
+                                    <i class="icon icon-download"></i>
+                                    Resume
+                                    </a>
+                                </div>
+                                <div class="list-group">
+                                    <div class="list-group-item">
+                                        <p class="list-group-item-text">Industry</p>
+                                        <h4 class="list-group-item-heading">{{ item.industry }}</h4>
+                                    </div>
+                                    <div class="list-group-item">
+                                        <p class="list-group-item-text">Status</p>
+                                        <h4 class="list-group-item-heading">{{ item.status }}</h4>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <small>Last seen 
+                                    {% if profile.last_seen %}
+                                    {{profile.last_seen|relative}}
+                                    {% else %}
+                                    Never
+                                    {% endif %}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                            
+                    {% endfor %}
+                </div>
+                {% set sliceBeg = sliceBeg+3 %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="text-center">
+        <a href="#profileCarousel" role="button" data-slide="prev" class="btn btn-primary btn-lg">
+        <span class="icon icon-chevron-left"></span> Prev 
+        </a>
+        <a href="#profileCarousel" role="button" data-slide="next" class="btn btn-primary btn-lg">
+        Next <span class="icon icon-chevron-right"></span> 
+        </a>
+    </div>
+
+    <!--Carousel Wrapper-->
+<div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+
+    <!--Controls-->
+    <div class="controls-top">
+        <a class="btn-floating btn-small" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+        <a class="btn-floating btn-small" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+    </div>
+    <!--/.Controls-->
+
+    <!--Indicators-->
+    <ol class="carousel-indicators">
+        <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+        <li data-target="#multi-item-example" data-slide-to="1"></li>
+        <li data-target="#multi-item-example" data-slide-to="2"></li>
+    </ol>
+    <!--/.Indicators-->
+
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+
+        <!--First slide-->
+        <div class="carousel-item active">
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(51).jpg" alt="Card image cap">
+                    <div class="card-block">
+                        <h4 class="card-title">Card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Button</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 hidden-sm-down">
+                <div class="card">
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(23).jpg" alt="Card image cap">
+                    <div class="card-block">
+                        <h4 class="card-title">Card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Button</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 hidden-sm-down">
+                <div class="card">
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(66).jpg" alt="Card image cap">
+                    <div class="card-block">
+                        <h4 class="card-title">Card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Button</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--/.First slide-->
+
+        <!--Second slide-->
+        <div class="carousel-item">
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(108).jpg" alt="Card image cap">
+                    <div class="card-block">
+                        <h4 class="card-title">Card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Button</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 hidden-sm-down">
+                <div class="card">
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(5).jpg" alt="Card image cap">
+                    <div class="card-block">
+                        <h4 class="card-title">Card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Button</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 hidden-sm-down">
+                <div class="card">
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(79).jpg" alt="Card image cap">
+                    <div class="card-block">
+                        <h4 class="card-title">Card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Button</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--/.Second slide-->
+
+        <!--Third slide-->
+        <div class="carousel-item">
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(65).jpg" alt="Card image cap">
+                    <div class="card-block">
+                        <h4 class="card-title">Card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Button</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 hidden-sm-down">
+                <div class="card">
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(36).jpg" alt="Card image cap">
+                    <div class="card-block">
+                        <h4 class="card-title">Card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Button</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 hidden-sm-down">
+                <div class="card">
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(52).jpg" alt="Card image cap">
+                    <div class="card-block">
+                        <h4 class="card-title">Card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Button</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--/.Third slide-->
+
+    </div>
+    <!--/.Slides-->
+
+</div>
+<!--/.Carousel Wrapper-->
+{% else %}
+    <div>
+        No users found
+    </div>
+{% endif %}

@@ -1,0 +1,19 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1>User Survey</h1>
+    <p class="lead">Please fill out the following information accurately and completely. When you are finished, click the green 'Submit' button.</p>
+  </div>
+</div>
+<div class="container">
+  <div class="confirm-container bg-success hide">
+    <p>Successfully created a new entry!</p>
+  </div>
+  <form role="form"
+    data-request="{{ __SELF__ }}::onSave"
+    data-request-success="$el.hide();$('.confirm-container').removeClass('hide');" data-request-redirect="{{ 'home'|page }}">
+    {{ form.formRender()|raw }}
+    <div class="form-group">
+      <button class="btn btn-success btn-block btn-lg" type="submit" value="register">Submit</button>
+    </div>
+  </form>
+</div>

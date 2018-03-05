@@ -1,0 +1,27 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    sender:
+        label: Sender
+        type: recordfinder
+        list: $/rainlab/user/models/user/columns.yaml
+        prompt: Click the %s button to find a user
+        nameFrom: name
+        descriptionFrom: email
+        span: left
+    acceptor:
+        label: Receiver
+        type: recordfinder
+        list: $/rainlab/user/models/user/columns.yaml
+        prompt: Click the %s button to find a user
+        nameFrom: name
+        descriptionFrom: email
+        span: right
+    relation:
+        label: Relation
+        type: dropdown
+        required: true
+        options: getBondStates
+        span: left

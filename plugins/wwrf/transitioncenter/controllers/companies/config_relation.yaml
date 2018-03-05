@@ -1,0 +1,29 @@
+# ===================================
+
+#  Relation Behavior Config
+
+# ===================================
+
+
+
+jobs:
+
+    label: Employees
+
+    view:
+
+        list: $/wwrf/transitioncenter/models/job/user_columns.yaml
+
+        toolbarButtons: false
+
+        #showSearch: true
+
+        scope: isCurrentJob
+
+    manage:
+
+        form: $/wwrf/transitioncenter/models/job/fields.yaml
+
+        list: $/wwrf/transitioncenter/models/job/user_columns.yaml
+
+    

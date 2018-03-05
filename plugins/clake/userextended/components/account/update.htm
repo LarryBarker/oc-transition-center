@@ -1,0 +1,49 @@
+{% if user %}
+
+{{ form_ajax('onUpdate', { id: 'main_update_form', model: user, 'data-request-validate': '', 'data-request-flash': '' }) }}
+
+<div id="updateForm">
+	<div class="alert alert-danger" data-validate-error>
+		<p data-message></p>
+	</div>
+	<div class="form-group">
+		<label for="accountName">{{ "clake.userextended::lang.components.account.fullname"|trans }}</label>
+		<input 
+			name="name" 
+			type="text" 
+			class="form-control" 
+			id="accountName"
+			value="{{ form_value('name') }}">
+	</div>
+	<span data-validate-for="name"></span><br>
+
+	<div class="form-group">
+		<label for="accountEmail">{{ "clake.userextended::lang.components.account.email"|trans }}</label>
+		<input 
+			name="email" 
+			type="email" 
+			class="form-control" 
+			id="accountEmail"
+			value="{{ form_value('email') }}">
+	</div>
+	<span data-validate-for="email"></span><br>
+
+	{% for setting,attributes in account.updateSettings %}
+
+		{{attributes.html|raw}} <br>
+
+	{% endfor %}
+</div>
+
+<span class="pull-left"><button data-attach-loading="" type="submit" class="btn btn-success" id="submitButton">{{ "clake.userextended::lang.components.account.save"|trans }}</button></span>
+
+<span class="pull-right"><button data-request="account::onCloseAccount" class="btn btn-danger" id="closeAccount">Close Account</button></span><br><br>
+
+{{ form_close() }}
+<hr />
+
+{% else %}
+
+<div class="message-box">You are not logged in.</div>
+
+{% endif %}

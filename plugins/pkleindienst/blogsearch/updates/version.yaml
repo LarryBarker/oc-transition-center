@@ -1,0 +1,27 @@
+1.0.1: First version of Blog Search
+1.0.2: Fixed error with missing Translate Plugin
+1.0.3: Removed _ filter because it caused to much problems when Translate Plugin is missing
+1.0.4:
+  - Replaced POST Method with GET
+  - Map GET Request to :search url param
+  - fixed broken navigation
+1.0.5: fixed wrong routing
+1.0.6:
+  - included `excerpt` into search
+  - added option to add `mark` tags (hightlight) to search terms
+1.1.0:
+  - added category filter
+  - added option to exclude categories from results
+1.1.1:
+  - remove '?' from url if query is empty
+  - added MIT License
+1.2.0:
+  - added option to show only results from selected categories
+  - added option to disable url mapping (example.com/search?search=Foo instead of example.com/search/Foo)
+1.2.1: fixed bug with missing categories
+1.2.2: optimized query for included/excluded categories
+1.2.3:
+  - Fixed bug which caused included/excluded categories not being saved
+  - added support for Translate Plugin
+  - merged highlight bug fix for Cyrillic Symbols by thewizardplusplus
+1.3.0: !!! Removed support for old Inspector Features prior to October 306

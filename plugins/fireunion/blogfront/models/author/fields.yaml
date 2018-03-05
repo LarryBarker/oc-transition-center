@@ -1,0 +1,35 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    user:
+        label: fireunion.blogfront::lang.author.user_id
+        comment: fireunion.blogfront::lang.author.user_id_comment
+        type: relation
+        span: left
+        select: concat( surname, ", ", name)
+    admin:
+        label: fireunion.blogfront::lang.author.admin_id
+        comment: fireunion.blogfront::lang.author.admin_id_comment
+        type: relation
+        span: right
+        select: concat( last_name, ", ", first_name)
+    categories:
+        label: fireunion.blogfront::lang.author.categories
+        comment: fireunion.blogfront::lang.author.categories_comment
+        type: checkboxlist
+        span: left
+    can_publish:
+        label: fireunion.blogfront::lang.author.can_publish
+        comment: fireunion.blogfront::lang.author.can_publish_comment
+        type: switch
+        span: right
+    note:
+        label: fireunion.blogfront::lang.author.note
+        comment: fireunion.blogfront::lang.author.note_comment
+        type: text
+        span: full

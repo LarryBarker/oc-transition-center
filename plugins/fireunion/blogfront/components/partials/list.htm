@@ -1,0 +1,44 @@
+<!-- Start partial-list.htm -->
+            <table class="table">
+                <tr>
+                    <th class="">{{ __SELF__.blogtrans('post.title') }}</th>
+                    <th class="">{{ __SELF__.blogtrans('post.categories') }}</th>
+                    <th class="">{{ __SELF__.blogtrans('post.published') }}</th>
+                    <th class="">{{ __SELF__.trans('post.author') }}</th>
+                    <th class="">&nbsp;</th>
+                </tr>
+{% for post in __SELF__.posts  %}
+                <tr>
+                    <td class=""><a href="https://wwrfresource.com/blog/post/{{ post.slug }}">{{ post.title }}</a></td>
+                    <td class="">{{ __SELF__.categoryStr(post)|raw }}</td>
+                    <td class="">{{ post.published?post.published_at|date('m/d/Y'):'--/--/----' }}</td>
+                    <td class="">{{ post.author.name }} {{ post.author.surname }}</td>
+                    <td class="">
+                    {% if __SELF__.isAjax %}
+                        <a href="#"
+                            class="btn btn-default" 
+                            title="{{ __SELF__.trans('general.btn_edit') }}"
+                            data-request="{{ __SELF__ }}::onPostForm"  
+                            data-request-data="id: {{ post.id }}"
+                            data-request-update="'{{ __SELF__ }}::form': '#bloginfo'">
+                    {% else %}
+                        <a href="{{ post.url }}"
+                            class="btn btn-default" 
+                            title="{{ __SELF__.trans('general.btn_edit') }}">
+                    {% endif %}
+                            <i class="icon-pencil btn-icon danger"></i>
+                        </a>
+                        <button
+                            class="btn btn-default" 
+                            title="{{ __SELF__.trans('general.btn_delete') }}"
+                            data-request="{{ __SELF__ }}::onDelete" 
+                            data-request-data="id: {{ post.id }}"
+                            data-request-confirm="{{ __SELF__.trans('general.delete_conf') }}"
+                            data-request-update="'{{ __SELF__ }}::list': '#bloginfo'">
+                            <i class="icon-trash btn-icon danger"></i>
+                        </button>
+                    </td>
+                </tr>
+{% endfor %}
+            </table>
+<!-- End partial-list.htm -->

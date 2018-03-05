@@ -1,0 +1,124 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+tabs:
+    fields:
+        # Enable Friends Feature
+        enable_friends:
+            span: left
+            label: Enable Friends
+            comment: Enable/Disable friends
+            type: switch
+            tab: Features
+
+        enable_timezones:
+            span: right
+            label: Enable Timezones
+            comment: Enable/Disable Timezones
+            type: switch
+            tab: Features
+
+        # Enable Profile Feature
+        enable_profiles:
+            span: left
+            label: Enable Profiles
+            comment: Enable/Disable user profiles
+            type: switch
+            tab: Features
+
+        # Enable Groups Feature
+        enable_groups:
+            span: right
+            label: Enable Groups
+            comment: Enable/Disable user groups
+            type: switch
+            tab: Features
+
+        # Enable Email Notification
+        enable_email:
+            span: left
+            label: Enable Email Notifications
+            comment: Enable/Disable email notifications
+            type: switch
+            tab: Features
+
+        # Username Validation
+        validation_username:
+            span: left
+            label: Username Validation
+            comment: Validation rules for usernames
+            type: text
+            tab: Validation
+
+        # Password Validation
+        validation_password:
+            span: left
+            label: Password Validation
+            comment: Validation rules for passwords
+            type: text
+            tab: Validation
+
+        default_group:
+            span: left
+            label: Default Group
+            comment: (Optional) Choose a default group for users to be placed in when they register
+            type: dropdown
+            tab: Registration
+
+        default_timezone:
+            span: right
+            label: Default Timezone
+            comment: (Optional) Choose a default timezone for users when they register
+            type: dropdown
+            tab: Registration
+
+        # 3rd Party Integrations
+        enable_disqus:
+            span: left
+            label: Enable Disqus
+            comment: Enable/Disable Disqus
+            type: switch
+            tab: Integrations
+        disqus_shortname:
+            span: right
+            label: Disqus Shortname
+            comment: Enter your Disqus website's shortname. You can find this in your Disqus settings.
+            type: text
+            tab: Integrations
+        enable_facebook:
+            span: left
+            label: Enable Facebook
+            comment: Enable/Disable Facebook
+            type: switch
+            tab: Integrations
+        facebook_appid:
+            span: right
+            label: Facebook AppID
+            comment: Enter your Facebook AppID. If you haven't already created one, visit the Facebook dev area.
+            type: text
+            tab: Integrations
+
+        # Options
+        closing_deletes:
+            span: left
+            label: Delete Closed Accounts
+            comment: When an account is closed, should it be deleted?
+            type: switch
+            tab: Options
+
+        track_route_attempts:
+            span: right
+            label: Track Route Attempts
+            comment: Tracks attempt count and last attempt date for Routes. The application will be marginally faster if this is disabled
+            type: switch
+            tab: Options
+            default: true
+
+        dev_mode:
+            span: left
+            label: Development Mode
+            comment: Development mode enables some features for developing modules.
+            type: switch
+            tab: Options
+            default: false

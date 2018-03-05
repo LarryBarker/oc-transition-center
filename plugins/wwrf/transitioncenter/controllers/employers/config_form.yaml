@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Employer
+
+# Model Form Field configuration
+form: $/wwrf/transitioncenter/models/employer/fields.yaml
+
+# Model Class name
+modelClass: RainLab\User\Models\User
+
+# Default redirect location
+defaultRedirect: wwrf/transitioncenter/employers
+
+# Create page
+create:
+    title: Create Employer
+    redirect: wwrf/transitioncenter/employers/update/:id
+    redirectClose: wwrf/transitioncenter/employers
+
+# Update page
+update:
+    title: Edit Employer
+    redirect: wwrf/transitioncenter/employers
+    redirectClose: wwrf/transitioncenter/employers
+
+# Preview page
+preview:
+    title: Preview Employer

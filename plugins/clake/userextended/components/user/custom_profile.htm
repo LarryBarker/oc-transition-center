@@ -1,0 +1,51 @@
+{% if ueuser.user %}
+<div class="container">
+<div class="row">
+  	<div class="col-sm-10"><h1>{{ ueuser.user.name }} {{ ueuser.user.surname }}</h1></div>
+    </div>
+    <div class="row">
+  	<div class="col-sm-3"><!--left col-->
+               
+        <div class="panel panel-default">
+            <div class="panel-heading">Profile <i class="fa fa-link fa-1x"></i></div>
+            <div class="panel-body">
+                <p><span class="pull-left"><strong>Last seen</strong></span> <span class="pull-right">{{ ueuser.user.last_seen }}</span></p>
+            </div>
+        </div>
+            
+        <div class="panel panel-default">
+            <div class="panel-heading">Email <i class="fa fa-link fa-1x"></i></div>
+            <div class="panel-body"><a href="mailto:{{ ueuser.user.email }}">{{ ueuser.user.email }}</a></div>
+        </div>
+            
+        <div class="panel panel-default">
+            <div class="panel-heading">Activity <i class="fa fa-link fa-1x"></i></div>
+            <div class="panel-body">
+                <span class="pull-left"><strong>Views</strong></span> <span class="badge pull-right">125</span>    
+            </div>
+        </div>
+          
+        </div><!--/col-3-->
+    	<div class="col-sm-9">
+           <h3>{{ ueuser.user }}</h3>
+
+          
+
+        </div><!--/col-9-->
+    </div><!--/row-->
+</div>
+
+<!-- If the user doesn't exist, this will show. -->
+{% else %}
+
+<div class="row container" style="margin-top:10px;">
+    <div class="col-sm-12 ">
+        <div class="row" style="text-align: center;">
+            <div class="col-sm-12 col-md-12">
+                <h3>It appears this user doesn't exist.</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}

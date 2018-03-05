@@ -1,0 +1,18 @@
+columns:
+    job_id:
+        invisible: true
+    title:
+        label: Job Title
+        relation: job
+        select: title
+    company:
+        label: Company
+        relation: job
+        select: company
+    created_at:
+        label: Date Viewed
+        type: datetime
+    applied:
+        label: Date Applied
+        type: partial
+        path: $/wwrf/transitioncenter/models/viewedjob/_applied_column.htm

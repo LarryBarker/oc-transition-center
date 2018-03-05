@@ -1,0 +1,10 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+
+    kdoc_number: ID
+    name: First Name
+    surname: Last Name
+    eligible_date: Eligible Date

@@ -1,0 +1,10 @@
+name: UsersPrograms
+form: $/wwrf/transitioncenter/models/userprogram/fields.yaml
+modelClass: Wwrf\TransitionCenter\Models\UserProgram
+defaultRedirect: wwrf/transitioncenter/usersprograms
+create:
+    redirect: 'wwrf/transitioncenter/usersprograms/update/:id'
+    redirectClose: wwrf/transitioncenter/usersprograms
+update:
+    redirect: wwrf/transitioncenter/usersprograms
+    redirectClose: wwrf/transitioncenter/usersprograms

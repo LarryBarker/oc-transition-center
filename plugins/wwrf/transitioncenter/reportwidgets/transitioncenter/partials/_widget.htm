@@ -1,0 +1,173 @@
+<div class="report-widget">
+<h3>Current Users at WWRF</h3>
+<?php if (!isset($error)): ?>
+<div class="scoreboard">
+    <div class="toolbar">
+        <div class="scoreboard-item title-value">
+            <h4>Available</h4>
+            <p class="positive"><?= $available ?></p>
+            <p class="description"></p>
+        </div>
+        <div class="scoreboard-item title-value">
+            <h4>Unemployed</h4>
+            <p class="negative"><?= $unemployed ?></p>
+            <p class="description"></p>
+        </div>
+        <div class="scoreboard-item title-value">
+            <h4>Employed</h4>
+            <p class="oc-icon-star"><?= $employed + $unavailable ?></p>
+            <p class="description"></p>
+        </div>
+        <div class="scoreboard-item title-value">
+            <h4>Total</h4>
+            <p><?= $total_users ?></p>
+            <p class="description"></p>
+        </div>
+        <div class="scoreboard-item title-value goal-meter-inverse" data-control="goal-meter" data-value="<?= round($unemployed/$total_users * 100 ) ?>">
+            <h4>Unemployment Rate</h4>
+            <p><?= round($unemployed/$total_users * 100 ) ?>%</p>
+            <p class="description"></p>
+        </div>
+        
+    </div>
+</div>
+
+<!-- Toolbar with wage and employment data -->
+<div class="scoreboard">
+    <h3><?= e(trans($this->property('title'))) ?> for 
+        <?php if ($this->property('month')) echo date("F", mktime(0, 0, 0, $this->property('month'), 10)); ?>
+        <?= e(trans($this->property('year'))) ?></h3>
+    
+    <div class="toolbar">
+        <div class="scoreboard-item title-value">
+            <h4>Total Users for Year</h4>
+            <p class="oc-icon-user"><?= $totalUsersYear ?></p>
+            <p class="description"></p>
+        </div>
+        <div class="scoreboard-item title-value">
+            <h4>Average Start Wage</h4>
+            <p class="oc-icon-dollar inline"><?= $wage ?></p>
+            <p class="description"><?= $startingWageDiff ?></p>
+        </div>
+        <div class="scoreboard-item title-value">
+            <h4>Previous</h4>
+            <p class="<?php ( $startingWageDiff > 0 ) ? print 'positive' : ( ( $startingWageDiff < 0 ) ? print 'negative' : 0 )?>"><?= $startingWageDiff ?></p>
+            <p class="description"><?php if($this->property('month')) print $previousMonth . '/' ?><?= $previousYear ?></p>
+        </div>
+        <div class="scoreboard-item title-value">
+            <h4>Average Start Time</h4>
+            <p class="oc-icon-calendar-check-o"><?= $dateAvg ?></p>
+            <p class="description <?php ( $prevDateAvgDiff > 0 ) ? print 'negative' : ( ( $prevDateAvgDiff < 0 ) ? print 'positive' : 0 )?>"><?= $prevDateAvgDiff ?></p>
+        </div>
+        <div class="scoreboard-item title-value">
+            <h4>Previous</h4>
+            <p class="<?php ( $prevDateAvgDiff > 0 ) ? print 'negative' : ( ( $prevDateAvgDiff < 0 ) ? print 'positive' : 0 )?>" style="color: <?php ( $prevDateAvgDiff > 0 ) ? print 'green' : ( ( $prevDateAvgDiff < 0 ) ? print 'red' : 0 )?>"><?= abs($prevDateAvgDiff) ?></p>
+            <p class="description"><?php if($this->property('month')) print $previousMonth . '/' ?><?= $previousYear ?></p>
+        </div>
+        <div
+            class="scoreboard-item control-chart"
+            data-control="chart-bar">
+            <ul>
+                <li>1-5 days <span><?= $dateRange["1-5"] ?></span></li>
+                <li>6-10 <span><?= $dateRange["6-10"] ?></span></li>
+                <li>11-20 <span><?= $dateRange["11-20"] ?></span></li>
+                <li>21-30 <span><?= $dateRange["21-30"] ?></span></li>
+                <li>30+ <span><?= $dateRange["30+"] ?></span></li>
+            </ul>
+        </div>
+    </div>
+    
+</div>
+<!-- /End employment toolbar -->
+
+<!-- Display WWRF survey results for users -->
+<div class="scoreboard">
+    
+    <div data-control="toolbar">
+        <h3>User Survey</h3>
+        <div class="scoreboard-item control-chart" data-control="chart-pie">
+            <ul>
+                <li data-color="#95b753">Beginner <span><?= $computer_skill_beg ?></span></li>
+                <li data-color="#e5a91a">Intermediate <span><?= $computer_skill_int ?></span></li>
+                <li data-color="#cc3300">Advanced <span><?= $computer_skill_adv ?></span></li>
+            </ul>
+        </div>
+
+        <div class="scoreboard-item control-chart" data-control="chart-bar">
+            <ul>
+                <li data-color="#95b753">Person <span><?= $felony_person ?></span></li>
+                <li data-color="#e5a91a">Nonperson <span><?= $felony_nonperson ?></span></li>
+                <li data-color="#cc3300">Both <span><?= $felony_both ?></span></li>
+            </ul>
+        </div>
+
+        <div class="scoreboard-item title-value" data-control="goal-meter" data-value="<?= round((float)$has_resume/$total_questionnaires * 100 ) ?>">
+            <h4>Resumes</h4>
+            <p><?= round((float)$has_resume/$total_questionnaires * 100 ) ?>%</p>
+            <p class="description">Completed Resumes</p>
+        </div>
+
+        <div class="scoreboard-item title-value" data-control="goal-meter" data-value="<?= round($workready * 100 ) ?>">
+            <h4>WorkREADY! Certificates</h4>
+            <p><?= round($workready * 100 ) ?>%</p>
+            <p class="description"><span class="oc-icon-certificate"></span>WorkREADY!</p>
+        </div>
+
+        <div class="scoreboard-item title-value">
+            <h4>Interest Profilers</h4>
+            <p class="oc-icon-edit"><?= $onet ?></p>
+            <p class="description">Interest profilers</p>
+        </div>
+
+    </div>
+    
+</div>
+<!-- /End survey toolbar -->
+
+<!-- Table with top 10 most applied jobs on our website -->
+<div>
+    <h3>Top 10 Most Applied Jobs</h3>
+    <div class="control-list">
+        <table class="table data">
+            <thead>
+                <tr>
+                    <th><span>Title</span></th>
+                    <th><span>Company</span></th>
+                    <th><span>Posted</span></th>
+                    <th><span>Total</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($appliedJobs as $job) {
+                    
+                    
+                    if($job->job){
+
+                        $post = $job;
+                        
+                        echo "<tr>";
+                        echo "<td>" . $job->job->title . "</td>";
+                        echo "<td>" . $job->job->company . "</td>";
+                        echo "<td>" . $job->job->published_at . "</td>";
+                        echo "<td>" . $job->total . "</td>";
+                        echo "</tr>";
+
+                    }else{
+                        echo "<tr>";
+                        echo "<td>No job information available.</td>";
+                        echo "<td></td>";
+                        echo "<td></td>";
+                        echo "<td></td>";
+                        echo "</tr>";
+                    }
+                } ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- /End top jobs toolbar -->
+
+<?php else: ?>
+    <p class="flash-message static warning"><?= e($error) ?></p>
+<?php endif ?>
+</div>

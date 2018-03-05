@@ -1,0 +1,71 @@
+[blogCategories]
+slug = "{{ :slug }}"
+displayEmpty = 0
+categoryPage = "blog/category"
+
+[blogPosts]
+pageNumber = "{{ :page }}"
+postsPerPage = 10
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+categoryPage = "blog/category"
+postPage = "blog/post"
+
+[blogArchiveList]
+monthsToShow = 5
+slug = "{{ :slug }}"
+archivePage = "blog/archive"
+==
+{% set categories = blogCategories.categories %}
+{% set currentCategorySlug = blogCategories.currentCategorySlug %}
+<div class="sidebar-module">
+    <div class="list-group">
+        {% for category in categories %}
+            {% set postCount = category.post_count %}
+            <a href="{{ category.url }}" class="list-group-item {% if category.slug == currentCategorySlug %}active{% endif %}">
+            {{ category.name }}
+            {% if postCount %}
+                <span class="badge">{{ postCount }}</span>
+            {% endif %}
+            </a>
+            
+            {% if category.children %}
+                
+                    {% partial __SELF__ ~ "::items"
+                        categories=category.children
+                        currentCategorySlug=currentCategorySlug
+                    %}
+                
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+<div class="sidebar-module">
+    <h3>Archives</h3>
+	{% set archiveMonths = blogArchiveList.archiveMonths %}
+		
+		<div class="list-group">
+		{% for archiveMonth in archiveMonths %}
+		    <a href="{{archiveMonth.url}}" class="list-group-item">{{archiveMonth.month}} <span class="badge">{{ archiveMonth.count }}</span></a>
+		{% endfor %}
+		</div>
+</div>
+<div class="sidebar-module">
+    <h3>Elsewhere</h3>
+    <div class="list-group text-center">
+    <li class="list-group-item"><a href="http://www.careerbuilder.com" target="#">CareerBuilder</a></li>
+    <li class="list-group-item"><a href="http://www.indeed.com"  target="#">Indeed</a></li>
+    <li class="list-group-item"><a href="http://wichita.craigslist.com"  target="#">Craigslist</a></li>
+    <li class="list-group-item"><a href="http://www.glassdoor.com"  target="#">Glassdoor</a></li>
+    <li class="list-group-item"><a href="http://www.snagajob.com"  target="#">Snagajob</a></li>
+    <li class="list-group-item"><a href="http://www.kansasworks.com"  target="#">KansasWorks</a></li>
+    <li class="list-group-item"><a href="http://www.workforce-ks.com"  target="#">WorkForce Centers</a></li>
+    </div>
+</div>
+<div class="sidebar-module">
+    <h3>Temp Services</h3>
+    <div class="list-group text-center">
+    <li class="list-group-item"><a href="{{ 'tempservices'|page}}">View all</a></li>
+    </div>
+</div>
+<!-- /.blog-sidebar -->

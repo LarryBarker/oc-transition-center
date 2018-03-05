@@ -1,0 +1,196 @@
+title = "Users"
+url = "/users/:page?"
+layout = "default"
+description = "Default user list for employer to view."
+is_hidden = 0
+
+[ueuser]
+type = "all"
+maxItems = 5
+paramCode = "{{ :id }}"
+profilePage = "profile"
+template = "portfolio"
+==
+<?php
+use Clake\UserExtended\Components\User;
+use Backend\Widgets\Lists;
+use Backend\Controllers\ListController;
+
+function onStart() {
+    $this->addJs('/modules/backend/widgets/lists/assets/js/october.list.js');
+}
+?>
+==
+<style>
+@media print {
+
+	.modal-open {
+    	overflow: auto;
+  	}
+
+  	.modal-open .container {
+    	display: none;
+  	}
+
+	.modal-backdrop,
+	.modal {
+		position: static;
+		bottom: auto;
+	}
+
+	.modal-content {
+		top: 0;
+		left: 0;
+		margin: 0;
+		padding: 0;
+		border: none;
+	}
+
+	.modal-header button.close {
+		display: none;
+	}
+  
+	.modal-header button {
+		display: none;
+	}
+  
+	.modal-header a.btn {
+		display: none;
+	}
+  
+	a[href]:after {
+		content: none !important;
+	}
+
+	/* hacks below resolve issues with block display of .modal-content
+	 in browsers other than chrome (and maybe safari)
+	 (see https://browserstrangeness.github.io/css_hacks.html) */
+	
+	/* ie hack */
+	.modal-content {
+		display: inline\0; /* not a typo */
+	}
+
+	/* firefox hack */
+	@-moz-document url-prefix() {
+		.modal-content {
+			display: inline;
+	}
+	}
+
+/* edge hack */
+@supports (-ms-ime-align:auto) {
+	.modal-content {
+		display: inline;
+	}
+}
+
+	/* display: flex causes print problems in most browsers */
+	.row {
+		display: inline;
+	}
+
+}
+</style>
+{% if user.groups[0].name == 'Employers' or user.groups[0].name == 'Staff'%}
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Find Employees</h1>
+            <p>Search through currently available employees and employed job seekers. You may search by job title, skill, industry, or other job related information.</p>
+            <div class="row">
+                <div class="col-md-12">
+                    <form data-request="ueuser::onSearch" class="form form-inline" role="form" method="GET">
+                        <div class="input-group input-group-lg">
+                            <input type="text" class="form-control form-control-lg" name ="phrase" size="150" placeholder="Enter job title, skills, or industry here..." />
+                            <span class="input-group-btn input-group-lg"><button type="submit" class="btn btn-lg btn-success">Find Help</button></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col-md-12" id="userSearchResults">
+
+                {% component 'ueuser' %}
+
+            </div>
+        </div><!-- /row -->
+    </div> <!-- /container -->
+{% else %}
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Error</h1>
+            <p>We're sorry, but something went wrong and the page cannot be displayed.</p>
+        </div>
+    </div>
+{% endif %}
+<div class="control-popup modal fade" id="profile" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" 
+                		class="close" 
+                		data-dismiss="modal" 
+                		aria-hidden="true">&times;</button>
+                		
+               <a class="btn btn-default icon icon-print"
+               	  href="javascript:window.print()" 
+               	  title="Print">Print</a> 
+                		
+                <a class="btn btn-default icon icon-download-alt"
+                   title="Download resume"
+                		href="	                        
+                			{% if ueuser.userAvatar and 
+                				  user.groups[0].name == 'Employers' or 
+                				  user.groups.first.name == 'Staff' %}
+	
+	                            {{ ueuser.userAvatar.path  }}
+	
+	                        {% elseif user.avatar %}
+	
+	                            {{ user.avatar.path }}
+	
+	                        {% endif %}"> 
+                		Download resume</a>
+        		<a class="btn btn-default icon icon-eye" href="https://kdocrepository.doc.ks.gov/kasper/search/detail?kdocNumber={{ ueuser.user.kdoc_number }}" target="#"> View Kasper page</a>
+                		
+                <h1>{{ ueuser.user.name }} {{ ueuser.user.surname }}</h1>
+                
+	            <h3>{{ ueuser.user.profile_headline }}</h3>
+	            
+	            <i class="icon icon-envelope" aria-hidden="true"></i>
+	            <a href="mailto:{{ ueuser.user.email }}"> 
+	            {{ ueuser.user.email }}
+	            </a> 
+	            <i class="icon icon-mobile-phone" aria-hidden="true"></i> 
+	            {{ ueuser.user.profile_phone }}
+	            <span class="pull-right"><small>Last seen</small>
+	                    {{ ueuser.user.last_seen|relative }}</span>
+            </div>
+            <div class="modal-body">
+            	<p class="lead">Transportation Options</p>
+            	<i class="icon-car"></i> <i class="icon-male"></i> <i class="icon-bus"></i> <i class="icon-bicycle"></i>
+            	{% if ueuser.user.company_name %}
+            	
+                    <p>Company Name</p>
+                    <h4> {{ ueuser.user.company_name }} </h4>
+                    <p>Job Title</p>
+                    <h4> {{ ueuser.user.company_title }} </h4>
+                    {% if ueuser.user.company_phone %}
+                    <p>Phone</p>
+                    <h4> {{ ueuser.user.company_phone }} </h4>
+                    {% endif %}
+	            {% endif %}
+
+	           {{ ueuser.user.profile_summary|raw }}
+
+            </div>
+            <div class="modal-footer center">
+                <small>Profile last updated {{ user.updated_at|date('M d, Y') }}</small>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+
+<div class="container">
+<!-- Contact form -->
+{% set user = __SELF__.user %}
+{% set email = __SELF__.email  %}
+
+<form data-request="{{__SELF__}}::onSendEmail">
+    {{ __SELF__.token }}
+    <p class="h1 text-center mb-4">New Message</p>
+
+
+    <div class="md-form">
+        <i class="icon icon-envelope prefix grey-text"></i> <label for="form2"> To</label>
+        <input type="text" name="input_email" id="form2" class="form-control" {% if email %}value="{{ email }}" disabled{%endif%}>
+        
+    </div>
+
+    <div class="md-form">
+        <i class="icon icon-tag prefix grey-text"></i> <label for="form34"> Subject</label>
+        <input type="text" name="input_subject" id="form32" class="form-control">
+        
+    </div>
+
+    <div class="md-form">
+        <i class="icon icon-pencil prefix grey-text"></i> <label for="form8"> Your message</label>
+        
+        
+    </div>
+    <textarea type="text" name="input_body" id="form8" style="height: 100px; width: 100%"></textarea>
+
+    <div class="text-right">
+        <button class="btn btn-success btn-lg">Send <i class="icon icon-double-angle-right"></i></button>
+    </div>
+
+</form>
+<!-- Contact form -->
+</div>

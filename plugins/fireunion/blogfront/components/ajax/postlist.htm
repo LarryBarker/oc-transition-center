@@ -1,0 +1,12 @@
+<!-- Start post-list.htm -->
+        <div  class="text-right">
+            <button
+                class="btn btn-success"
+                title="{{ __SELF__.trans('general.btn_add') }}"
+                data-request="{{ __SELF__ }}::onPostForm" 
+                data-request-update="'{{ __SELF__ }}::form': '#bloginfo'">
+                {{ __SELF__.trans('general.btn_add') }} <i class="icon-plus btn-icon danger"></i>
+            </button>
+        </div>
+           {% partial __SELF__~'::list' %}
+<!-- End post-list.htm -->

@@ -1,0 +1,6 @@
+fields:
+    name:
+        label: 'wwrf.transitioncenter::lang.programs.name'
+        span: auto
+        oc.commentPosition: ''
+        type: text

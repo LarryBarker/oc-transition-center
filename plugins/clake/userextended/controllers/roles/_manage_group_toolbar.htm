@@ -1,0 +1,43 @@
+<?php if($group): ?>
+    <div class="row">
+        <div class="text-right col-sm-12 col-md-6 " style="width:100%;">
+            <!-- <a
+                     href="javascript:;"
+                     class="btn btn-primary oc-icon-plus"
+             >
+                 Save Role
+             </a>-->
+
+            <a
+                    href="javascript:;"
+                    class="btn btn-default oc-icon-pencil"
+                    data-control="popup"
+                    data-handler="onAddUserGroup"
+                    data-size="huge"
+                    data-extra-data="groupCode: '<?= $group->code ?>'"
+                    disabled
+            >
+                Add User to Group
+            </a>
+
+            <a
+                    href="javascript:;"
+                    class="btn btn-default oc-icon-pencil"
+                    data-control="popup"
+                    data-handler="onOpenGroupEditor"
+                    data-size="huge"
+                    data-extra-data="groupCode: '<?= $group->code ?>'"
+            >
+                Edit Group
+            </a>
+
+            <!--<a
+                    href="<?= Backend::url('clake/userextended/groupsextended/update/' . $group->id) ?>"
+                    class="btn btn-default oc-icon-pencil"
+            >
+                Edit Group
+            </a>-->
+        </div>
+    </div>
+    <h4 class="text-right" style="margin-top:11px;">Group Management</h4>
+<?php endif ?>

@@ -1,0 +1,40 @@
+<div class="container" role="main">
+
+        <h1>Inbox</h1>
+        
+        
+
+        <p>Here are the {{ __SELF__.messages|length}} most recent messages in your inbox.
+
+        <a href="{{ '/mail/new'|app }}" class="btn btn-primary">New Message</a></p>
+
+        <div class="list-group">
+
+        {% set emails = __SELF__.messages %}
+
+            {% for email in emails %}
+
+            <div class="list-group-item">
+
+                <div class="d-flex w-100 justify-content-between">
+
+                <h5 class="list-group-item-heading mb-1"><a href="{{ '/mail/message/'|app }}/{{email.id}}">{{ email.subject }}</a> {% if email.hasAttachments %}<i class="icon icon-paperclip"></i>{% endif %}</h5>
+                <small>{{ email.receiveddatetime|date('F j, Y') }} | <a href="{{ '/mail/reply/'|app }}/{{email.id}}"><i class="icon icon-reply"></i> Reply </a></small>
+
+                </div>
+
+                <p class="small">{{ email.from.emailaddress.name }}</p><br />
+
+                <p class="mb-1">{{ email.bodypreview }}</p>
+
+                
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+
+</div>

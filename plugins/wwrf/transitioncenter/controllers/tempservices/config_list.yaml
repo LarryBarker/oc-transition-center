@@ -1,0 +1,15 @@
+title: TempServices
+modelClass: Wwrf\TransitionCenter\Models\TempService
+list: $/wwrf/transitioncenter/models/tempservice/columns.yaml
+recordUrl: 'wwrf/transitioncenter/tempservices/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+showSorting: 1
+defaultSort:
+    column: name
+    direction: asc
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'

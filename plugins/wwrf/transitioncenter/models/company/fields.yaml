@@ -1,0 +1,30 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: Name
+        unique: true
+    address:
+        label: Address
+    phone:
+        label: Phone
+    industry:
+        label: Industry
+        #type: relation
+        #scope: isIndustry
+        type: recordfinder
+        list: $/rainlab/blog/models/category/columns.yaml
+        prompt: '--Select industry--'
+        title: Company Industry
+        nameFrom: name
+        scope: isIndustry
+    jobs@preview:
+        label: Employees
+        type: partial
+        path: $/wwrf/transitioncenter/controllers/companies/_field_jobs.htm
+    jobs@update:
+        label: Employees
+        type: partial
+        path: $/wwrf/transitioncenter/controllers/companies/_field_jobs.htm

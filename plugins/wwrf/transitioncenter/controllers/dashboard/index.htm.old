@@ -1,0 +1,96 @@
+
+<div class="report-widget">
+    <h3>This is Transition Center Dashboard.</h3>
+<div class="scoreboard">
+    <div class="toolbar">
+        <div class="scoreboard-item title-value">
+            <h4>Available</h4>
+            <p class="positive">25</p>
+            <p class="description"></p>
+        </div>
+
+        <div class="scoreboard-item title-value">
+            <h4>Unemployed</h4>
+            <p class="negative">5</p>
+            <p class="description"></p>
+        </div>
+        <div class="scoreboard-item title-value">
+            <h4>Employed</h4>
+            <p class="oc-icon-star">30</p>
+            <p class="description"></p>
+        </div>
+        <div class="scoreboard-item title-value">
+            <h4>Total</h4>
+            <p>35</p>
+            <p class="description"></p>
+        </div>
+        <div class="scoreboard-item title-value goal-meter-inverse" data-control="goal-meter" data-value="5">
+            <h4>Unemployment Rate</h4>
+            <p>5%</p>
+            <p class="description"></p>
+        </div>
+
+        <div class="scoreboard-item title-value">
+            <h4>Newest Employer</h4>
+            <p class="oc-icon-building-o">Company Name</p>
+            <p class="description">John Employer<span class="pull-right"> Joined 1/1/18</span></p>  
+        </div>
+    </div>
+
+    <div class="toolbar">
+        <h3>Showing Employment Information</h3>
+        <hr/>
+        <div class="scoreboard-item title-value">
+            <h4>Average Wage</h4>
+            <p class="oc-icon-dollar">$7.50</p>
+            <p class="description"></p>
+        </div>
+        <div class="scoreboard-item title-value">
+            <h4>Average Job Lead</h4>
+            <p class="oc-icon-calendar-check-o">12</p>
+            <p class="description"></p>
+        </div>
+    </div>
+    
+    <div data-control="toolbar">
+        <h3>User Survey</h3>
+        <hr/>
+        <div class="scoreboard-item control-chart" data-control="chart-pie">
+            <ul>
+                <li data-color="#95b753">Beginner <span>5</span></li>
+                <li data-color="#e5a91a">Intermediate <span>3</span></li>
+                <li data-color="#cc3300">Advanced <span>1</span></li>
+            </ul>
+        </div>
+
+        <div class="scoreboard-item control-chart" data-control="chart-bar">
+            <ul>
+                <li data-color="#95b753">Person <span>1</span></li>
+                <li data-color="#e5a91a">Nonperson <span>2</span></li>
+                <li data-color="#cc3300">Both <span>3</span></li>
+            </ul>
+        </div>
+
+        <div class="scoreboard-item title-value" data-control="goal-meter" data-value="50">
+            <h4>Resumes</h4>
+            <p>50%</p>
+            <p class="description">Completed Resumes</p>
+        </div>
+
+        <div class="scoreboard-item title-value" data-control="goal-meter" data-value="10">
+            <h4>WorkREADY! Certificates</h4>
+            <p>10%</p>
+            <p class="description"><span class="oc-icon-certificate"></span>WorkREADY!</p>
+        </div>
+
+        <div class="scoreboard-item title-value">
+            <h4>Interest Profilers</h4>
+            <p class="oc-icon-edit">10</p>
+            <p class="description">Interest profilers</p>
+        </div>
+
+    </div>
+    
+</div>
+
+</div>

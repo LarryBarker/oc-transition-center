@@ -1,0 +1,20 @@
+fields:
+    name:
+        label: 'wwrf.transitioncenter::lang.category.name'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    slug:
+        label: 'wwrf.transitioncenter::lang.category.slug'
+        oc.commentPosition: ''
+        span: auto
+        preset:
+            field: name
+            type: slug
+        type: text
+    description:
+        label: 'wwrf.transitioncenter::lang.category.description'
+        span: full
+        size: ''
+        oc.commentPosition: ''
+        type: textarea

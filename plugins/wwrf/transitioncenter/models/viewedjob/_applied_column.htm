@@ -1,0 +1,15 @@
+<?php
+
+    $user_id = $record->user->id;
+
+    $job_id = $record->job_id;
+
+    $user = $record->user;
+
+    $appliedJobs = $user->appliedJobs;
+
+    foreach($appliedJobs as $appliedJob)
+        if($appliedJob->job_id == $job_id)
+            echo $appliedJob->created_at->format('M d, Y');
+    
+?>

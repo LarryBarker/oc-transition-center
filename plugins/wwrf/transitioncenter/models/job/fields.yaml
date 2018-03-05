@@ -1,0 +1,25 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    company:
+        type: recordfinder
+        title: Company
+        list: $/wwrf/transitioncenter/models/company/columns.yaml
+        prompt: Click the %s button to find a company...
+        nameFrom: name
+        descriptionFrom: address
+    title:
+        label: Title
+    start_date:
+        label: Start Date
+        type: datepicker
+        mode: date
+    start_wage:
+        label: Start Wage
+    current_wage:
+        label: Current Wage
+        preset:
+            field: start_wage
+            type: exact

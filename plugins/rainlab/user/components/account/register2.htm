@@ -1,0 +1,139 @@
+<form
+    data-request="onRegister">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="md-form form-sm">
+            <i class="fa fa-user prefix"></i>
+            <input
+                name="name"
+                type="text"
+                class="form-control"
+                id="registerName"
+                required="{{attributes.options.validation}}"
+                placeholder="First name" />
+            </div>
+        </div>
+        <span data-validate-for="name"></span>
+
+        <div class="col-sm-6">
+            <div class="md-form form-sm">
+            <input
+                name="surname"
+                type="text"
+                class="form-control"
+                id="registerSurname"
+                required="{{attributes.options.validation}}"
+                placeholder="Last name" />
+            </div>
+        </div>
+        <span data-validate-for="surname"></span>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="md-form form-sm">
+                <i class="fa fa-badge prefix"></i>
+            <input
+                name="company_title"
+                type="text"
+                class="form-control"
+                id="registerCompany_Title"
+                required="{{attributes.options.validation}}"
+                placeholder="Job title" />
+            </div>
+        </div>
+        <span data-validate-for="company_title"></span>
+
+        <div class="col-sm-6">
+            <div class="md-form form-sm">
+                <i class="fa fa-phone prefix"></i>
+            <input
+                name="company_phone"
+                type="text"
+                class="form-control"
+                id="registerCompany_Phone"
+                required="{{attributes.options.validation}}"
+                placeholder="Phone number" />
+            </div>
+        </div>
+        <span data-validate-for="company_phone"></span>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="md-form form-sm">
+            <i class="fa fa-building prefix"></i>
+            <input
+                name="company_name"
+                type="text"
+                class="form-control"
+                id="registerCompany_Name"
+                required="{{attributes.options.validation}}"
+                placeholder="Company name" />
+            </div>
+        </div>
+        <span data-validate-for="company_name"></span>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="md-form form-sm">
+                <i class="fa fa-envelope prefix"></i>
+            <input
+                name="email"
+                type="email"
+                class="form-control"
+                data-request="onCheckEmail"
+                data-request-success="$('#loginTaken').toggle(!!data.isTaken)"
+                id="registerEmail"
+                required="{{attributes.options.validation}}"
+                placeholder="Email" data-track-input/>
+            </div>
+        </div>
+        <div id="loginTaken" class="alert alert-danger text-center" style="display: none">
+            Sorry, that email is already taken.
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="md-form form-sm">
+                <i class="fa fa-lock prefix"></i>
+            <input
+                name="password"
+                type="password"
+                class="form-control"
+                id="registerPassword"
+                required="{{attributes.options.validation}}"
+                placeholder="Choose a password" />
+            </div>
+        </div>
+        <span data-validate-for="password"></span>
+
+        <div class="col-sm-6">
+            <div class="md-form form-sm">
+            <input
+                    name="password_confirmation"
+                    type="password"
+                    class="form-control"
+                    id="registerConfirmPassword"
+                    required="{{attributes.options.validation}}"
+                    placeholder="Confirm password" />
+            </div>
+        </div>
+        <span data-validate-for="password_confirmation"></span><br>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="md-form form-sm">
+            <div class="g-recaptcha" data-sitekey="6LerFykUAAAAAKBDQDbHwiLVXxWcq5Q2ligtnPIi"></div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="md-form form-sm text-right">
+            <button type="submit" class="btn btn-ptc">Submit <i class="fa fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+</form>

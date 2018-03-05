@@ -1,0 +1,78 @@
+<!-- START postform-default.htm -->
+{% if __SELF__.backUser %}
+
+    {{ form_open({ 'data-request': 'onSave','data-request-validate':'','data-request-flash':''}) }}
+    <div class="alert alert-danger" data-validate-error>
+        <p data-message></p>
+    </div>
+<div class="row">
+    <div class="col-md-8">
+        <input type="hidden" id="Form-field-blog-id" name="id" value="{{ __SELF__.post.id }}"></input>
+
+        <div id="ajaxResponse">
+        </div>
+
+        <div class="form-group"><br>
+            <label for="Form-field-blog-title">{{ __SELF__.blogtrans('post.title') }}</label>
+            <input type="text" name="title" id="Form-field-blog-title" value="{{ __SELF__.post.title }}" placeholder="{{ __SELF__.blogtrans('post.title_placeholder') }}" class="form-control" maxlength="255">
+        </div>
+        <div class="form-group">
+            <label for="Form-field-blog-content">{{ __SELF__.blogtrans('post.content') }}</label>
+            <textarea name="content" id="Form-field-blog-content" class="form-control ckeditor">{{ __SELF__.post.content }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <span class="btn-text pull-left">
+                <a href="{{ __SELF__.listPage }}"
+                    class="btn btn-danger" >
+                    {{ __SELF__.trans('general.btn_cancel') }}
+                </a>
+            </span>
+        </div>
+        <div class="form-group">
+            <span class="pull-right">
+            <input type="hidden" id="Form-field-blog-published" name="published" value="1" {% if not __SELF__.allowpublish %} disabled {% endif %} checked="checked">
+            <!--<label for="Form-field-blog-published">{{ __SELF__.blogtrans('post.published') }}</label>-->
+            
+            <button type="submit" 
+            data-hotkey="ctrl+s, cmd+s" 
+            data-load-indicator="{{ __SELF__.trans('kurtjensen.mycalendar::lang.general.saving') }}" 
+            class="btn btn-success">{{ __SELF__.trans('general.btn_save') }}
+            </button>
+            </span>
+        </div>
+    </div>
+
+    <!--{% if __SELF__.user_groups %}
+        <div class="form-group row">
+            <h3>{{ __SELF__.trans('general.notify_groups') }}</h3>
+            <div class="row">
+            {% for id,name in __SELF__.user_groups %}
+                        <div class="col-md-3">
+                            {{ form_checkbox('notify_groups[]', id,false,{ id:'notify_groups'~id }) }}
+                            <label for="notify_groups{{ id }}">{{ name }}</label>
+                        </div>
+            {% endfor %}
+        </div>
+    {% endif %}-->
+    <div class="col-md-4">
+    <div class="form-group">
+        <h3>{{ __SELF__.trans('general.categories') }}</h3>
+        {% for cat in __SELF__.categories %}
+            <input type="checkbox" id="Form-field-blog-cat-{{ cat.name }}" name="category[]" value="{{ cat.id }}"
+                {% if cat.id in __SELF__.postCategoryIds %}checked="checked"{% endif %}>
+            <label for="Form-field-blog-cat-{{ cat.name }}">{{ cat.name }}</label><br />
+        {% endfor %}
+    </div>
+
+    {{ form_close() }}
+    </div>
+</div>
+    {% scripts %}
+    <script type="text/javascript">
+        CKEDITOR.replace( 'content' );
+    </script>
+{% else %}
+    <p>{{ __SELF__.trans('general.unauthorized') }}</p>
+{% endif %}
+<!-- End postform-default.htm -->

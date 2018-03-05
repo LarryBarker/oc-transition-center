@@ -1,0 +1,38 @@
+<?php if (count($employees)): ?>
+<div class="list-preview list-flush">
+    <div class="control-list">
+        <table class="table data" data-control="rowlink">
+            <thead>
+                <tr>
+                    <th><span>Title</span></th>
+                    <th><span>Start Date</span></th>
+                    <th style="width: 10%"><span></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($employees as $employee): ?>
+                    <tr>
+                        <td>
+                            <?= e($employee->title) ?> x
+                            <?= e($employee->start_date ? $employee->start_date : 'Unknown') ?>
+                        </td>
+                        <td>
+                            <?= e($employee->price) ?>
+                        </td>
+                        <td class="nolink text-right">
+                            <a
+                                href="javascript:;"
+                                data-request="onDeleteItem"
+                                data-request-data="record_id: '<?= $employee->id ?>'"
+                                data-request-confirm="Delete this employee?"
+                                class="oc-icon-remove"
+                                data-toggle="tooltip"
+                                title="Remove"></a>
+                        </td>
+                    </tr>
+                <?php endforeach ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+<?php endif ?>

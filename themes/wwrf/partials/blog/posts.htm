@@ -1,0 +1,213 @@
+==
+{% set posts = blogPosts.posts %}
+
+{% set categories = posts.categories %}
+
+<div class="post-list">
+
+    {% for post in posts %}
+    
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<h3>
+					<a href="{{ post.url }}" 
+						{% if user.groups.first.name == 'Users' %}
+							data-request="onViewJob"
+							data-request-data="job_id: {{post.id}}"
+						{%endif%}>
+						<u>{{ post.title }}</u>
+					</a>
+					<p>{{post.company}}</p>
+					<p class="small">Posted on <i class="icon icon-clock-o"></i> {{ post.published_at|date('M d, Y') }} by <i class="icon icon-user"></i> 
+
+                    {% if post.author.company_name %} 
+
+                        {{ post.author.company_name }} 
+
+                    {% elseif post.author.name %} 
+
+                        {{ post.author.name }} {{ post.author.surname }}
+
+                    {% else %} 
+
+                        {{ post.user.first_name }} {{ post.user.last_name }}
+
+                    {%endif%}
+                	</p>
+				</h3>
+				<p class="info">Categories: 
+	                {% for category in post.categories %}
+						{% if category.name == "Automotive" %}
+	                    	<i class="icon-car"></i>
+	                    {% elseif category.name == "Aircraft" %}
+	                    	<i class="icon-plane"></i>	
+	                    {% elseif category.name == "Warehouse" %}
+	                    	<i class="icon-dropbox"></i>
+	                   	{% elseif category.name == "Construction" %}
+	                    	<i class="icon-wrench"></i>
+	                    {% elseif category.name == "Food Service" %}
+	                    	<i class="icon-food"></i>
+	                    {% elseif category.name == "Landscaping" %}
+	                    	<i class="icon-leaf"></i>
+	                    {% elseif category.name == "Maintenance" %}
+	                    	<i class="icon-gears"></i>
+	                    {% elseif category.name == "Manufacturing/Production" %}
+	                    	<i class="icon-stackexchange"></i>
+	                    {% elseif category.name == "Customer Service" %}
+	                    	<i class="icon-tags"></i>
+	                    {% elseif category.name == "Welding/Fabrication" %}
+	                    	<i class="icon-anchor"></i>
+	                    {% elseif category.name == "Other" %}
+	                    	<i class="icon-lightbulb"></i>
+	                	{% elseif category.name == "Retail" %}
+	                    	<i class="icon-shopping-cart"></i>
+	                    {% elseif category.name == "Computer/IT" %}
+	                    	<i class="icon-laptop"></i>
+	                	{% elseif category.name == "Temp Services" %}
+	                    	<i class="icon-building-o"></i>
+	                	{% elseif category.name == "Announcements" %}
+	                    	<i class="icon-bullhorn"></i>
+	                    {% elseif category.name == "Resources" %}
+	                    	<i class="icon-folder-open"></i>
+	                    {% else %}
+	                    	<i class="icon-pushpin"></i>
+						{% endif %}
+	                    <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
+	                {% endfor %}
+                </p>
+				<p class="lead">
+					{% if post.excerpt %} 
+                        {{ str_limit(post.excerpt|raw, '140', '...') }}
+                    {% else %} 
+                        {{ str_limit(html_strip(post.content|raw), '140', '...') }} 
+                    {% endif %}
+                </p>
+			</div>
+
+		</div>
+
+        <!--<div class="media">
+
+            <div class="media-left">
+
+                <a href="{{ post.url }}">
+
+                    {% if post.featured_images.count > 0 %}
+
+                        <img class="media-object" src="{{ post.featured_images.first.getThumb(50, 'auto') }}" />
+
+                    {% else %}
+
+                        {% if post.categories[1].name == "Automotive" %}
+                        	<i class="icon-dashboard icon-4x"></i>
+                        {% elseif post.categories[1].name == "Warehouse" %}
+                        	<i class="icon-truck icon-4x"></i>
+                       	{% elseif post.categories[1].name == "Construction" %}
+                        	<i class="icon-wrench icon-4x"></i>
+                        {% elseif post.categories[1].name == "Food Service" %}
+                        	<i class="icon-food icon-4x"></i>
+                        {% elseif post.categories[1].name == "Landscaping" %}
+                        	<i class="icon-lead icon-4x"></i>
+                        {% elseif post.categories[1].name == "Maintenance" %}
+                        	<i class="icon-gears icon-4x"></i>
+                        {% elseif post.categories[1].name == "Manufacturing/Production" %}
+                        	<i class="icon-dropbox icon-4x"></i>
+                        {% elseif post.categories[1].name == "Service Industry" %}
+                        	<i class="icon-tags icon-4x"></i>
+                        {% elseif post.categories[1].name == "Welding/Fabrication" %}
+                        	<i class="icon-anchor icon-4x"></i>
+                        {% elseif post.categories[1].name == "Other" %}
+                        	<i class="icon-lightbulb icon-4x"></i>
+                        {% else %}
+                        <img class="media-object" src="{{ 'assets/images/plugin-blog.png'|theme }}" style="height:100px;width:100px;"/>
+						{% endif %}
+                    {% endif %}
+
+                </a>
+
+            </div>
+
+            <div class="media-body">
+
+                <h4 class="media-heading">
+
+                    <a href="{{ post.url }}">{{ post.title }}</a>
+
+                    {% if post.updated_at > user.last_seen %}
+                    	<span class="label label-success">NEW</span>
+                    {% endif%}
+
+                </h4>
+
+                <p class="info">
+
+                    Posted
+
+                    {% if post.categories.count %} in {% endif %}
+
+                    {% for category in post.categories %}
+
+                        <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
+
+                    {% endfor %}
+
+                    on {{ post.published_at|date('M d, Y') }} by 
+
+                    {% if post.author.company_name %} 
+
+                        {{ post.author.company_name }} 
+
+                    {% elseif post.author.name %} 
+
+                        {{ post.author.name }} {{ post.author.surname }}
+
+                    {% else %} 
+
+                        {{ post.user.first_name }} {{ post.user.last_name }}
+
+                    {%endif%}
+
+                </p>
+
+
+
+                {% if post.excerpt %}
+
+                    <p class="excerpt">{{ post.excerpt }}</p>
+
+                {% else %}
+
+                    <div class="content">{{ post.content_html|raw }}</div>
+
+                {% endif %}
+
+            </div>
+
+        </div>-->
+
+    {% else %}
+
+        <div class="no-data">
+
+            <p>{{ noPostsMessage }}</p>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+
+
+{% if posts.lastPage > 1 %}
+	<nav aria-label="...">
+	  <ul class="pager">
+	  	{% if posts.currentPage > 1 %}
+	    <li><a href="{{ this.page.baseFileName|page({ (pageParam): (posts.currentPage-1) }) }}">&larr; Prev</a></li>
+	    {% endif %}
+	    {% if posts.lastPage > posts.currentPage %}
+	    <li><a href="{{ this.page.baseFileName|page({ (pageParam): (posts.currentPage+1) }) }}">Next &rarr;</a></li>
+	    {% endif %}
+	  </ul>
+	</nav>
+{% endif %}

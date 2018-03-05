@@ -1,0 +1,30 @@
+columns:
+
+    name:
+        label: rainlab.user::lang.user.name
+        searchable: true
+        select: CONCAT(name, ' ', surname)
+
+    company_name:
+        label: Company
+
+    company_title:
+        label: Title
+
+    company_phone:
+        label: Phone
+
+    is_counselor:
+        label: Counselor
+
+    email:
+        label: rainlab.user::lang.user.email
+        searchable: true
+
+    created_at:
+        label: rainlab.user::lang.user.created_at
+        type: timetense
+
+    last_seen:
+        label: rainlab.user::lang.user.last_seen
+        type: timetense

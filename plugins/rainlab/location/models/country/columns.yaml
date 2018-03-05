@@ -1,0 +1,20 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    name:
+        label: rainlab.location::lang.country.name
+        searchable: true
+
+    code:
+        label: rainlab.location::lang.country.code
+        searchable: true
+
+    is_enabled:
+        label: rainlab.location::lang.country.enabled
+        type: switch
+
+    is_pinned:
+        label: rainlab.location::lang.country.pinned
+        type: switch

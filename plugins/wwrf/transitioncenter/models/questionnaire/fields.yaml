@@ -1,0 +1,164 @@
+fields:
+    user:
+        label: User
+        oc.commentPosition: ''
+        nameFrom: surname
+        descriptionFrom: user_id
+        span: full
+        context:
+            - create
+        type: relation
+    computer_section:
+        label: 'Computers & Technology'
+        span: full
+        type: section
+    can_type:
+        label: 'wwrf.transitioncenter::lang.questionnaire.can_type'
+        span: full
+        required: 0
+        type: switch
+    applied_online:
+        label: 'wwrf.transitioncenter::lang.questionnaire.applied_online'
+        span: full
+        required: 0
+        type: switch
+    computer_skill:
+        label: 'What is your basic computer skill level?'
+        options:
+            beginner: Beginner
+            intermediate: Intermediate
+            advanced: Advanced
+        span: full
+        required: 1
+        type: radio
+        commentAbove: 'Select ONE from the list below...'
+    education_section:
+        label: 'Programs & Education'
+        span: full
+        type: section
+    owd_class:
+        label: 'wwrf.transitioncenter::lang.questionnaire.owd_class'
+        span: full
+        required: 0
+        type: switch
+        comment: 'HINT: OWD, COG, BEST, etc.'
+    has_sap:
+        label: 'wwrf.transitioncenter::lang.questionnaire.has_sap'
+        span: full
+        type: switch
+    interest_profiler:
+        label: 'wwrf.transitioncenter::lang.questionnaire.interest_profiler'
+        span: full
+        default: 0
+        cssClass: ''
+        required: 0
+        type: switch
+        comment: 'HINT: MyNextMove, oNET, WIP, etc.'
+    continue_education:
+        label: 'wwrf.transitioncenter::lang.questionnaire.continue_education'
+        span: full
+        required: 0
+        type: switch
+    workready_section:
+        label: 'Work Ready'
+        span: full
+        type: section
+    has_resume:
+        label: 'wwrf.transitioncenter::lang.questionnaire.resume'
+        span: full
+        required: 0
+        type: switch
+    workready_cert:
+        label: 'Do you have a Kansas WorkREADY! Certificate?'
+        oc.commentPosition: ''
+        options:
+            none: None
+            bronze: Bronze
+            silver: Silver
+            gold: Gold
+            platinum: Platinum
+        span: full
+        type: radio
+    kansasworks:
+        label: 'wwrf.transitioncenter::lang.questionnaire.kansasworks'
+        span: full
+        required: 0
+        type: switch
+        comment: 'HINT: If you have WorkREADY! Certificate, this is probably ''yes.'''
+    workforce:
+        label: 'wwrf.transitioncenter::lang.questionnaire.workforce'
+        span: full
+        required: 0
+        type: switch
+    military_section:
+        label: Military
+        span: full
+        type: section
+    is_veteran:
+        label: 'wwrf.transitioncenter::lang.questionnaire.veteran'
+        span: full
+        required: 0
+        type: switch
+    discharge:
+        label: 'wwrf.transitioncenter::lang.questionnaire.discharge'
+        span: full
+        dependsOn: {  }
+        trigger:
+            action: show
+            field: is_veteran
+            condition: checked
+        type: switch
+    discharge_date:
+        label: 'wwrf.transitioncenter::lang.questionnaire.discharge_date'
+        oc.commentPosition: ''
+        span: full
+        trigger:
+            action: show
+            field: discharge
+            condition: checked
+        type: text
+    money_section:
+        label: 'Money Management'
+        span: full
+        type: section
+    owes_childsupport:
+        label: 'wwrf.transitioncenter::lang.questionnaire.owes_childsupport'
+        span: full
+        required: 0
+        type: switch
+    background_section:
+        label: 'Criminal History'
+        span: full
+        type: section
+    three_speech:
+        label: 'wwrf.transitioncenter::lang.questionnaire.three_speech'
+        span: full
+        required: 0
+        type: switch
+        comment: 'HINT: Do you remember your 3R speech?'
+    felony_type:
+        label: 'What type of felony(ies) do you have?'
+        oc.commentPosition: ''
+        options:
+            person: Person
+            nonperson: Nonperson
+            both: Both
+        span: full
+        required: 1
+        type: radio
+    transportation_section:
+        label: Transportation
+        span: full
+        type: section
+    has_pov:
+        label: 'wwrf.transitioncenter::lang.questionnaire.pov'
+        span: full
+        required: 0
+        type: switch
+        comment: 'wwrf.transitioncenter::lang.pov.comment'
+    valid_dl:
+        label: 'Do you have a VALID Driver''s License?'
+        span: full
+        required: 0
+        type: switch
+        comment: 'Note: No suspensions, expiration, revoction, etc.'

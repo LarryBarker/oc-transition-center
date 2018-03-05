@@ -1,0 +1,10 @@
+name: Items
+form: $/wwrf/transitioncenter/models/item/fields.yaml
+modelClass: Wwrf\TransitionCenter\Models\Item
+defaultRedirect: wwrf/transitioncenter/items
+create:
+    redirect: 'wwrf/transitioncenter/items/update/:id'
+    redirectClose: wwrf/transitioncenter/items
+update:
+    redirect: wwrf/transitioncenter/items
+    redirectClose: wwrf/transitioncenter/items

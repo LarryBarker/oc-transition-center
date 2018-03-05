@@ -1,0 +1,8 @@
+# Import/export controller for Employers
+export:
+    title: Export employers
+    modelClass: Wwrf\TransitionCenter\Models\EmployerExport
+    #list: $/acme/campaign/models/subscriber/columns.yaml
+    useList: true
+    fileName: employers.csv
+    raw: true

@@ -1,0 +1,86 @@
+title = "Search"
+url = "/search/:search/:page"
+layout = "default"
+is_hidden = 0
+
+[searchResult]
+searchTerm = "{{ :search }}"
+pageNumber = "{{ :page }}"
+disableUrlMapping = 0
+hightlight = 1
+postsPerPage = 5
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+includeCategories[] = 1
+includeCategories[] = 2
+includeCategories[] = 3
+categoryPage = "blog/category"
+postPage = "blog/post"
+
+[JobTracker]
+jobPage = "blog/post"
+==
+{% if user.groups.first.name == 'Users' or user.groups.first.name == 'Staff' %}
+{% partial 'blog_jumbo' %}
+<div class="container">
+	
+	
+	{% set posts = searchResult.posts %}
+	{% if posts.count > 0 %}
+	<h2>{{ 'Found'|_ }} {{ posts.count }} {{' jobs for:'|_ }} <mark>{{ searchResult.searchTerm }}</mark></h2>
+	{% endif %}
+	{% for post in posts %}
+	
+	<div class="panel panel-default">
+
+			<div class="panel-body">
+				<h3>
+					<a href="{{ post.url }}"
+					{% if user.groups.first.name == 'Users' %}
+					   data-request="onViewJob"
+					   data-request-data="job_id: {{post.id}}"
+					{%endif%}><u>{{ post.title|raw }}</u></a>
+					<br/>{{ post.company }}
+				</h3>
+				<p class="small">
+
+	                {{ 'Posted'|_ }}
+		            {% if post.categories.count %} {{ 'in'|_ }} {% endif %}
+		            {% for category in post.categories %}
+		            <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
+		            {% endfor %}
+		            {{ 'on'|_ }} {{ post.published_at|date('M d, Y') }}
+
+                </p>
+				<p class="lead">
+					{% if post.excerpt %} 
+                        {{ str_limit(post.excerpt|raw, '140', '...') }}
+                    {% else %} 
+                        {{ str_limit(html_strip(post.content|raw), '140', '...') }} 
+                    {% endif %}
+                </p>
+			</div>
+		</div>
+	{% else %}
+
+    	<h1>Oops!</h1>
+        <p class="lead">We're sorry, we couldn't find any jobs with <mark>{{ searchResult.searchTerm }}</mark> in the post. Please try searching again.</p>
+        <p class="lead">P.S. Have you tried searching Google?</p>
+        <form action="https://www.google.com/search" target="#" method="get">
+		    <div class="search">
+			    <input name="q" type="text" value="{{searchResult.searchTerm}}"/>
+			    <input type="submit" value="Search">
+		    </div>
+		</form>
+
+	{% endfor %}
+	{% partial 'searchResult::pagination' posts=posts %}
+</div>
+{% else %}
+<div class="jumbotron">
+    <div class="container">
+        <h1>Error</h1>
+        <p>We're sorry, but something went wrong and the page cannot be displayed.</p>
+    </div>
+</div>
+{% endif %}

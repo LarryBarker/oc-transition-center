@@ -1,0 +1,38 @@
+<?php if (count($jobs)): ?>
+<div class="list-preview list-flush">
+    <div class="control-list">
+        <table class="table data" data-control="rowlink">
+            <thead>
+                <tr>
+                    <th><span>Title</span></th>
+                    <th><span>Start Date</span></th>
+                    <th style="width: 10%"><span></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($jobs as $job): ?>
+                    <tr>
+                        <td>
+                            <?= e($job->title) ?> x
+                            <?= e($job->start_date ? $job->start_date : 'Unknown') ?>
+                        </td>
+                        <td>
+                            <?= e($job->price) ?>
+                        </td>
+                        <td class="nolink text-right">
+                            <a
+                                href="javascript:;"
+                                data-request="onDeleteItem"
+                                data-request-data="record_id: '<?= $job->id ?>'"
+                                data-request-confirm="Delete this job?"
+                                class="oc-icon-remove"
+                                data-toggle="tooltip"
+                                title="Remove"></a>
+                        </td>
+                    </tr>
+                <?php endforeach ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+<?php endif ?>

@@ -1,0 +1,18 @@
+# ===================================
+#  List Behavior Config
+# ===================================
+
+# List Title
+title: Viewed Job Activity
+
+# Model List Column configuration
+list: $/wwrf/transitioncenter/models/viewedjob/columns.yaml
+
+# Model Class name
+modelClass: Wwrf\TransitionCenter\Models\ViewedJob
+
+# Message to display if the list is empty
+noRecordsMessage: backend::lang.list.no_records
+
+# Records to display per page
+recordsPerPage: 20

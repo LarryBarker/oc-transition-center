@@ -1,0 +1,15 @@
+title: Questionnaires
+modelClass: Wwrf\TransitionCenter\Models\Questionnaire
+list: $/wwrf/transitioncenter/models/questionnaire/columns.yaml
+recordUrl: 'wwrf/transitioncenter/questionnaires/preview/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 10
+defaultSort:
+    column: updated_at
+    direction: desc
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'

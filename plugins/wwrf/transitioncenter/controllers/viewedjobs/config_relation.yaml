@@ -1,0 +1,13 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+viewedJobs:
+    label: Viewed Job Activity
+    view:
+        list: $/wwrf/transitioncenter/models/viewedjob/user_list_columns.yaml
+        recordsPerPage: 10
+        recordUrl: rainlab/blog/posts/update/:job_id
+        showCheckboxes: true
+        #toolbarButtons: false
+        toolbarButtons: remove

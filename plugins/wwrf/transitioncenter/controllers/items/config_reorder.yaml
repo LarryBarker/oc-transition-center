@@ -1,0 +1,4 @@
+title: Items
+modelClass: Wwrf\TransitionCenter\Models\Item
+toolbar:
+    buttons: reorder_toolbar

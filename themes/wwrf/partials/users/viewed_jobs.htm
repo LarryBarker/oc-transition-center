@@ -1,0 +1,117 @@
+==
+<div class="container">
+
+	<div class="row">
+		
+		<div class="col-md-4">
+
+			<h2><span class="icon-stack">
+
+				  <i class="icon-circle icon-stack-base"></i>
+
+				  <i class="icon-user icon-light"></i>
+
+				</span>{{ ueuser.user.name }} {{ ueuser.user.surname }}</h2>
+
+				<h3>{{ ueuser.user.profile_headline }}</h3>
+
+				<p class="lead">
+					<i class="icon icon-envelope" aria-hidden="true"></i><a href="mailto:{{ ueuser.user.email }}">  {{ ueuser.user.email }}</a><br />
+					<i class="icon icon-phone" aria-hidden="true"></i>
+						{% if ueuser.user.profile_phone %}
+							{{ ueuser.user.profile_phone }}
+						{%else%}
+							Message: (316) 265-5211 x 208
+						{% endif %}<br />
+						<small>Last online {{ ueuser.user.last_seen|relative }}</small>
+				</p>
+				{% if ueuser.userAvatar and user.groups[0].name == 'Staff'%}
+	
+                    <a href="{{ ueuser.userAvatar.path  }}" class="btn btn-primary btn-block">Download resume <i class="icon icon-download-alt"></i></a>
+                    
+                    <a href="https://kdocrepository.doc.ks.gov/kasper/search/detail?kdocNumber={{ ueuser.user.kdoc_number }}" target="#" class="btn btn-primary btn-block">View on Kasper <i class="icon icon-external-link"></i></a>
+
+                {% elseif user.avatar %}
+
+                    <a href="{{ user.avatar.path }}" class="btn btn-primary btn-block">Download resume <i class="icon icon-download-alt"></i></a>
+
+                {% endif %}
+		</div>
+
+		<div class="col-md-8">
+			
+			<div>
+
+			  <!-- Nav tabs -->
+			  <ul class="nav nav-tabs" role="tablist">
+			    <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+			    <li role="presentation"><a href="#viewed" aria-controls="viewed" role="tab" data-toggle="tab">Viewed Jobs</a></li>
+			    <li role="presentation"><a href="#applied" aria-controls="applied" role="tab" data-toggle="tab">Applied Jobs</a></li>
+			  </ul>
+			
+			  <!-- Tab panes -->
+			  <div class="tab-content">
+			    <div role="tabpanel" class="tab-pane active" id="profile">
+			    	{{ ueuser.user.profile_summary|raw }}
+			    </div>
+			    <div role="tabpanel" class="tab-pane" id="viewed">
+			    	<table class="table">
+					  <thead class="thead-dark">
+					    <tr>
+					      <th scope="col">Position</th>
+					      <th scope="col">Company Name</th>
+					      <th scope="col">Address</th>
+					      <th scope="col">Phone</th>
+					      <th scope="col">Date Viewed</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	{% for viewedJob in ueuser.user.viewedJobs %}
+				  		<tr>
+					      <td>{{ viewedJob.job.title }}</td>
+					      <td>{{ viewedJob.job.company }}</td>
+					      <td>{{ viewedJob.job.address }}</td>
+					      <td>{{ viewedJob.job.phone }}</td>
+					      <td>{{ viewedJob.created_at|date('M d, Y') }}</td>
+					    </tr>
+				  		{% endfor %}
+	
+					  </tbody>
+					</table>
+			    </div>
+			    
+			    <div role="tabpanel" class="tab-pane" id="applied">
+			    				    	<table class="table">
+					  <thead class="thead-dark">
+					    <tr>
+					      <th scope="col">Position</th>
+					      <th scope="col">Company Name</th>
+					      <th scope="col">Address</th>
+					      <th scope="col">Phone</th>
+					      <th scope="col">Date Applied</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	{% for appliedJob in ueuser.user.appliedJobs %}
+				  		<tr>
+					      <td>{{ appliedJob.job.title }}</td>
+					      <td>{{ appliedJob.job.company }}</td>
+					      <td>{{ appliedJob.job.address }}</td>
+					      <td>{{ appliedJob.job.phone }}</td>
+					      <td>{{ appliedJob.created_at|date('M d, Y') }}</td>
+					    </tr>
+				  		{% endfor %}
+	
+					  </tbody>
+					</table>
+			    </div>
+
+			  </div>
+			
+			</div>
+
+		</div>
+
+	</div>
+
+</div>

@@ -1,0 +1,128 @@
+title = "New Job Lead"
+url = "/employer/jobs/:slug?"
+layout = "default"
+is_hidden = 0
+
+[PostForm]
+use_authors = 0
+restrict_owner = 1
+category[] = 8
+category[] = 9
+category[] = 10
+category[] = 11
+category[] = 12
+category[] = 13
+category[] = 14
+category[] = 15
+category[] = 17
+category[] = 18
+category[] = 19
+category[] = 22
+category[] = 23
+backUser = 1
+allowpublish = 1
+slug = "{{ :slug }}"
+listPage = "employer/leads"
+postPage = "blog/post"
+==
+{% if user.groups.first.name == 'Employers' %}
+<div class="container">
+	<!-- START postform-default.htm -->
+{% if PostForm.backUser %}
+
+    {{ form_open({ 'data-request': 'onSave','data-request-validate':'','data-request-flash':''}) }}
+    <div class="alert alert-danger" data-validate-error>
+        <p data-message></p>
+    </div>
+<div class="row">
+    <div class="col-md-8">
+        <input type="hidden" id="Form-field-blog-id" name="id" value="{{ PostForm.post.id }}"></input>
+
+        <div id="ajaxResponse">
+        </div>
+
+        <div class="form-group"><br>
+            <label for="Form-field-blog-title">{{ PostForm.blogtrans('post.title') }}</label>
+            <input type="text" name="title" id="Form-field-blog-title" value="{{ PostForm.post.title }}" placeholder="{{ PostForm.blogtrans('post.title_placeholder') }}" class="form-control" maxlength="255">
+        </div>
+        <div class="form-group">
+            <label for="Form-field-blog-content">{{ PostForm.blogtrans('post.content') }}</label>
+            <textarea name="content" id="Form-field-blog-content" class="form-control ckeditor">{{ PostForm.post.content }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <span class="pull-left">
+                <a href="{{ PostForm.listPage }}"
+                    class="btn btn-danger" ><i class="icon icon-chevron-left"></i>
+                    {{ PostForm.trans('general.btn_cancel') }} 
+                </a>
+            </span>
+            <span class="pull-right">
+            <input type="hidden" id="Form-field-blog-published" name="published" value="1" {% if not PostForm.allowpublish %} disabled {% endif %} checked="checked">
+            <!--<label for="Form-field-blog-published">{{ PostForm.blogtrans('post.published') }}</label>-->
+            
+            <button type="submit"
+            		id="btnSubmit"
+            		data-hotkey="ctrl+s, cmd+s" 
+            		data-load-indicator="{{ PostForm.trans('kurtjensen.mycalendar::lang.general.saving') }}" 
+            		class="btn btn-success">{{ PostForm.trans('general.btn_save') }} <i class="icon icon-save"></i>
+            </button>
+            </span>
+        </div>
+    </div>
+
+    <!--{% if PostForm.user_groups %}
+        <div class="form-group row">
+            <h3>{{ PostForm.trans('general.notify_groups') }}</h3>
+            <div class="row">
+            {% for id,name in PostForm.user_groups %}
+                        <div class="col-md-3">
+                            {{ form_checkbox('notify_groups[]', id,false,{ id:'notify_groups'~id }) }}
+                            <label for="notify_groups{{ id }}">{{ name }}</label>
+                        </div>
+            {% endfor %}
+        </div>
+    {% endif %}-->
+    <div class="col-md-4">
+    <div class="form-group">
+        <h3>{{ PostForm.trans('general.categories') }}</h3>
+        {% for cat in PostForm.categories %}
+            <input type="checkbox" id="Form-field-blog-cat-{{ cat.name }}" name="category[]" value="{{ cat.id }}"
+                {% if cat.id in PostForm.postCategoryIds %}checked="checked"{% endif %}>
+            <label for="Form-field-blog-cat-{{ cat.name }}">{{ cat.name }}</label><br />
+        {% endfor %}
+    </div>
+
+    {{ form_close() }}
+    </div>
+</div>
+    {% scripts %}
+    <script type="text/javascript">
+        CKEDITOR.replace( 'content' );
+    </script>
+    <script>
+    $(document).ready(function () {
+
+	        $("#btnSubmit").click(function (e) {
+	
+	            //disable the submit button
+	            $("#btnSubmit").attr("disabled", true);
+	
+	            return true;
+	
+	        });
+	    });
+	</script>
+{% else %}
+    <p>{{ PostForm.trans('general.unauthorized') }}</p>
+{% endif %}
+<!-- End postform-default.htm -->
+</div>
+{% else %}
+<div class="jumbotron">
+    <div class="container">
+        <h1>Error</h1>
+        <p>We're sorry, but something went wrong and the page cannot be displayed.</p>
+    </div>
+</div>
+{% endif %}

@@ -1,0 +1,27 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+#    id:
+#        label: ID
+#        searchable: true
+    user:
+        label: fireunion.blogfront::lang.author.user_id
+        relation: user
+        select: concat(surname, ', ', name)
+        searchable: true
+    admin:
+        label: fireunion.blogfront::lang.author.admin_id
+        relation: admin
+        select: concat( last_name, ", ", first_name)
+        searchable: true
+    cat_names:
+        type: partial
+        path: ~/plugins/fireunion/blogfront/controllers/authors/_cat_column.htm
+        label: fireunion.blogfront::lang.author.categories
+    can_publish:
+        label: fireunion.blogfront::lang.author.can_publish
+        type: switch
+    note:
+        label: fireunion.blogfront::lang.author.note

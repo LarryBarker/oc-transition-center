@@ -1,0 +1,92 @@
+{% if ueuser.type == 'all' %}
+<h4>Active Users are either available for employment, or employed but currently job seeking.</h4>
+{% if ueuser.listUsers %}
+    <div class="table-responsive" id="users">
+        
+        <table class="table table-hover blue" id="usersTable">
+            <thead class="text-center">
+                <td class="table-cell-30"><h4>Name</h4></td>
+                <td class="table-cell-30 sort block" data-sort="industry"><h4>Industry <span class="caret"></span></h4></td>
+                <td class="table-cell-30 sort block" data-sort="status"><h4>Status <span class="caret"></span></h4></td>
+                <td class="table-cell-30"><h4>Last Online</h4h3></td>
+            </thead>
+            <tbody class="list">
+                {% for user in ueuser.listUsers %}
+                    <tr class="table-row">
+                        <td class="table-cell-30 name">
+                            <a href="#" data-request-data="id: {{user.id}}" data-request="ueuser::onVisitProfile">
+                            {{user.name}} {{user.surname}}</a>
+                        </td>
+                        <td class="table-cell-30 industry">
+                            <span class="industry">{% set industries = user.industries %}
+                                
+                                    {% for industry in user.industries %}
+                                        {{ industry.name }}{% if not loop.last %}, {% endif %}
+                                    {% endfor %}</span>
+                        </td>
+                        <td class="table-cell-30 status">
+                            <span class="status">
+                                {% if user.status == 'available' %}
+                                Available {{ user.eligible_date|date('M d, Y') }}
+                                {% elseif user.status == 'employed' %}
+                                Employed but looking
+                                {% endif %}
+                            </span>
+                        </td>
+                        <td class="table-cell-30 lastseen">
+                            {% if user.last_seen %}
+                            {{user.last_seen|relative}}
+                            {% else %}
+                            Never
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table> 
+    </div>
+    <div class="text-center">{{ ueuser.listUsers.render|raw }}</div>
+    <script>
+        var options = {
+            valueNames: [ 'name', 'industry', 'status' ],
+        };
+
+        var userList = new List('users', options);
+    </script>
+{% else %}
+    <p>No registered users.</p>
+{% endif %}
+{% elseif ueuser.type == 'sortList' %}
+
+{{ userList.listRender()|raw }}
+
+{% elseif ueuser.type == 'single' %}
+
+<a href="#" style="text-decoration: none;" data-request-data="id: {{ueuser.singleUser.id}}" data-request="userlist::onFriendUser">
+
+    <div class="userblock" style="width:100%;min-height:50px;padding:5px;">
+        <span>{{ueuser.singleUser.name}}</span><br>
+        <span style="margin-left:7px;">{{ "clake.userextended::lang.components.friend.lastonline"|trans }}: {{ueuser.singleUser.last_seen}}</span><br>
+    </div>
+
+</a>
+
+{% elseif ueuser.type == 'search' %}
+
+<div style="padding:15px;">
+    <form data-request="ueuser::onSearch">
+        Search Phrase: <input type="text"  name="phrase" />
+        <input type="submit" value="{{ 'clake.userextended::lang.components.user.search'|trans }}" />
+    </form>
+</div>
+
+<br>
+
+<div id="userSearchResults" class="responsive"></div>
+
+{% else %}
+
+{% set name %}ueuser::{{__SELF__.property('template')}}_profile{% endset %}
+{% partial name %}
+
+{% endif %}

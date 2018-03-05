@@ -1,0 +1,16 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    name:
+        label: Name
+        unqiue: companies
+        searchable: true
+    address:
+        label: Address
+    phone:
+        label: Phone
+    jobs_count:
+        label: Employed
+        sortable: false
