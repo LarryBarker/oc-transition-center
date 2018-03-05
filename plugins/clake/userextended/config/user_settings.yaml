@@ -1,0 +1,24 @@
+settings:
+    phone:
+        label: Phone Number
+        editable: true
+        type: text
+        createable: true
+        validation: required|alpha_dash
+        registerable: false
+        encrypt: true
+    address:
+        label: Address
+        type: text
+        createable: false
+        validation:
+        registerable: false
+        encrypt: false
+    cell:
+        label: Cellphone
+        type: text
+        createable: false
+        validation: required
+        registerable: false
+        encrypt: false
+        editable: false
