@@ -533,7 +533,7 @@ class TransitionCenter extends ReportWidgetBase
             $this->vars['startingWageDiff'] = $startingWageDiff;
 
         } else {
-            $this->vars['startingWageDiff'] = "NO DATA AVAILABLE";
+            $this->vars['startingWageDiff'] = "N/A";
         }
 
 
