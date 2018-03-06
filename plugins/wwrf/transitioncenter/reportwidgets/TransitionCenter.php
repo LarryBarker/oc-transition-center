@@ -530,7 +530,7 @@ class TransitionCenter extends ReportWidgetBase
 
             $startingWageDiff = $this->vars['wage'] - $this->vars['previousStartWage'];
     
-            $this->vars['startingWageDiff'] = $startingWageDiff;
+            $this->vars['startingWageDiff'] = round($startingWageDiff, 2);
 
         } else {
             $this->vars['startingWageDiff'] = "N/A";
