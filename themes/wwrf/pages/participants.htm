@@ -1,0 +1,82 @@
+title = "Program Participants"
+url = "/participants/:page?"
+layout = "employer"
+is_hidden = 0
+
+[ueuser]
+type = "all"
+maxItems = 5
+paramCode = "user"
+profilePage = "profile"
+template = "social"
+
+[RainLab\User\Components\Account account]
+paramCode = "code"
+forceSecure = 0
+==
+<?php
+use RainLab\User\Models\User;
+use RainLab\Blog\Models\Category;
+
+function onStart() { $this->prepareVars(); }
+function onFilterUsers() { $this->prepareVars(); }
+function prepareVars() {
+	$options = post('Filter', []);
+	$this['participants'] = User::listFrontEnd($options);
+	$this['industries'] = Category::where('parent_id', '=', 3)->get();
+	$this['pages'] = $this['participants']->lastPage();
+	$this['page'] = $this['participants']->currentPage();
+}
+?>
+==
+<div class="container"><!--Jumbotron-->
+<div class="jumbotron text-center blue-grey lighten-5">
+
+	<!--Title-->
+	<h1 class="card-title h2-responsive font-bold mt-3"><strong>Program Participants</strong></h1>
+	<!--Subtitle-->
+	<p class="pt-2 font-bold indigo-text"><strong>Browse and search profiles and resumes</strong></p>
+
+	<!--Text-->
+	<div class="d-flex justify-content-center">
+		<p class="card-text my-3" style="max-width: 43rem;">You may search by job title, skill, industry, or other job related information. Our participants are all approved for job seeking activities and are either currently employed or actively seeking employment.
+		</p>
+		
+		
+	</div>
+
+</div>
+<!--Jumbotron-->
+<div class="row">
+	<div class="col-md-4">
+		<div class="widget-wrapper">
+			<h4>Search</h4>
+			<!-- Search form -->
+		
+			<form class="form-inline d-flex" data-request="ueuser::onSearch" method="GET">
+				<input class="form-control" type="text" placeholder="Enter job title, skill, or other criteria here..." aria-label="Search" name="phrase">
+			</form>
+		
+		</div>
+		{{ form_ajax('onFilterUsers', { update: { 'participants/list': '#userFilterResults', 'participants/paginate':'#paginateResults' } }) }}
+		<div id="UsersFilter">
+			<h4>Industries</h4>
+			{% for industry in industries %}
+			<div class="form-group">
+				<input type="checkbox" name="Filter[industries][]" value="{{ industry.id }}" id="industry{{industry.id}}"/>
+				<label for="industry{{industry.id}}">{{ industry.name }}</label>
+			</div>
+			{% endfor %}
+			<div id="paginateResults">
+				{% partial 'participants/paginate' %}
+			</div>
+		</div>
+		{{ form_close() }}
+	</div>
+	<div class="col-md-8">
+		<div id="userFilterResults">
+			{% partial 'participants/list' %}
+		</div>
+	</div>
+</div>
+</div>
