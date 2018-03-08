@@ -19,7 +19,25 @@ columns:
 
     eligible_date:
         label: Eligible
-    
+
+    start_date:
+        label: Start Date
+        type: partial
+        path: ~/plugins/wwrf/profile/models/UserExport/_start_date.htm
+        sortable: false
+
+    lead_time:
+        label: Lead Time
+        type: partial
+        path: ~/plugins/wwrf/profile/models/UserExport/_lead_time.htm
+        sortable: false
+        
+    start_wage:
+        label: Start Wage
+        type: partial
+        path: ~/plugins/wwrf/profile/models/UserExport/_wage.htm
+        sortable: false
+
     job_title:
         label: Title
         type: partial
@@ -37,30 +55,19 @@ columns:
         type: partial
         path: ~/plugins/wwrf/profile/models/UserExport/_industry.htm
         sortable: false
-    
-    start_date:
-        label: Start Date
-        type: partial
-        path: ~/plugins/wwrf/profile/models/UserExport/_start_date.htm
-        sortable: false
-    
-    start_wage:
-        label: Start Wage
-        type: partial
-        path: ~/plugins/wwrf/profile/models/UserExport/_wage.htm
-        sortable: false
+        invisible: true
     
     status:
         label: Status
         sortable: true
-    
-    lead_time:
-        label: Lead Time
+        searchable: true
         type: partial
-        path: ~/plugins/wwrf/profile/models/UserExport/_lead_time.htm
-        sortable: false
+        path: ~/plugins/wwrf/transitioncenter/partials/_user_status.htm
+    
+    
 
     counselor:
         label: Counselor
         relation: counselor
         select: surname
+        invisible: true
