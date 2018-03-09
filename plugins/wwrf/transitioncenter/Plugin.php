@@ -139,6 +139,17 @@ class Plugin extends PluginBase
                 $controller->relationConfig,
                 $myConfigPath
             );
+
+        });
+
+        Event::listen('backend.list.extendQuery', function ($widget, $query) {
+            // Test your model
+            if ($widget->model instanceof \RainLab\User\Models\User) {
+                $query->whereHas('groups', function($q){
+                    $q->where('id', '=', '2');
+                        //->where('status', '!=', 'unavailable');
+                });
+            }
         });
 
         UsersController::extendFormFields(function($form, $model, $context){
