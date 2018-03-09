@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -127,7 +127,10 @@ class Google_Service_Directory extends Google_Service
   public $notifications;
   public $orgunits;
   public $privileges;
+  public $resolvedAppAccessSettings;
+  public $resources_buildings;
   public $resources_calendars;
+  public $resources_features;
   public $roleAssignments;
   public $roles;
   public $schemas;
@@ -271,6 +274,10 @@ class Google_Service_Directory extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                 ),
+                'orgUnitPath' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -286,6 +293,21 @@ class Google_Service_Directory extends Google_Service
                 'sortOrder' => array(
                   'location' => 'query',
                   'type' => 'string',
+                ),
+              ),
+            ),'moveDevicesToOu' => array(
+              'path' => 'customer/{customerId}/devices/chromeos/moveDevicesToOu',
+              'httpMethod' => 'POST',
+              'parameters' => array(
+                'customerId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'orgUnitPath' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                  'required' => true,
                 ),
               ),
             ),'patch' => array(
@@ -641,6 +663,21 @@ class Google_Service_Directory extends Google_Service
               ),
             ),'get' => array(
               'path' => 'groups/{groupKey}/members/{memberKey}',
+              'httpMethod' => 'GET',
+              'parameters' => array(
+                'groupKey' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'memberKey' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'hasMember' => array(
+              'path' => 'groups/{groupKey}/hasMember/{memberKey}',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'groupKey' => array(
@@ -1027,6 +1064,114 @@ class Google_Service_Directory extends Google_Service
           )
         )
     );
+    $this->resolvedAppAccessSettings = new Google_Service_Directory_Resource_ResolvedAppAccessSettings(
+        $this,
+        $this->serviceName,
+        'resolvedAppAccessSettings',
+        array(
+          'methods' => array(
+            'GetSettings' => array(
+              'path' => 'resolvedappaccesssettings',
+              'httpMethod' => 'GET',
+              'parameters' => array(),
+            ),'ListTrustedApps' => array(
+              'path' => 'trustedapps',
+              'httpMethod' => 'GET',
+              'parameters' => array(),
+            ),
+          )
+        )
+    );
+    $this->resources_buildings = new Google_Service_Directory_Resource_ResourcesBuildings(
+        $this,
+        $this->serviceName,
+        'buildings',
+        array(
+          'methods' => array(
+            'delete' => array(
+              'path' => 'customer/{customer}/resources/buildings/{buildingId}',
+              'httpMethod' => 'DELETE',
+              'parameters' => array(
+                'customer' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'buildingId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'get' => array(
+              'path' => 'customer/{customer}/resources/buildings/{buildingId}',
+              'httpMethod' => 'GET',
+              'parameters' => array(
+                'customer' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'buildingId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'insert' => array(
+              'path' => 'customer/{customer}/resources/buildings',
+              'httpMethod' => 'POST',
+              'parameters' => array(
+                'customer' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'list' => array(
+              'path' => 'customer/{customer}/resources/buildings',
+              'httpMethod' => 'GET',
+              'parameters' => array(
+                'customer' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'patch' => array(
+              'path' => 'customer/{customer}/resources/buildings/{buildingId}',
+              'httpMethod' => 'PATCH',
+              'parameters' => array(
+                'customer' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'buildingId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'update' => array(
+              'path' => 'customer/{customer}/resources/buildings/{buildingId}',
+              'httpMethod' => 'PUT',
+              'parameters' => array(
+                'customer' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'buildingId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),
+          )
+        )
+    );
     $this->resources_calendars = new Google_Service_Directory_Resource_ResourcesCalendars(
         $this,
         $this->serviceName,
@@ -1086,7 +1231,15 @@ class Google_Service_Directory extends Google_Service
                   'location' => 'query',
                   'type' => 'integer',
                 ),
+                'orderBy' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'pageToken' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'query' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -1116,6 +1269,115 @@ class Google_Service_Directory extends Google_Service
                   'required' => true,
                 ),
                 'calendarResourceId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),
+          )
+        )
+    );
+    $this->resources_features = new Google_Service_Directory_Resource_ResourcesFeatures(
+        $this,
+        $this->serviceName,
+        'features',
+        array(
+          'methods' => array(
+            'delete' => array(
+              'path' => 'customer/{customer}/resources/features/{featureKey}',
+              'httpMethod' => 'DELETE',
+              'parameters' => array(
+                'customer' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'featureKey' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'get' => array(
+              'path' => 'customer/{customer}/resources/features/{featureKey}',
+              'httpMethod' => 'GET',
+              'parameters' => array(
+                'customer' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'featureKey' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'insert' => array(
+              'path' => 'customer/{customer}/resources/features',
+              'httpMethod' => 'POST',
+              'parameters' => array(
+                'customer' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'list' => array(
+              'path' => 'customer/{customer}/resources/features',
+              'httpMethod' => 'GET',
+              'parameters' => array(
+                'customer' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'pageToken' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+              ),
+            ),'patch' => array(
+              'path' => 'customer/{customer}/resources/features/{featureKey}',
+              'httpMethod' => 'PATCH',
+              'parameters' => array(
+                'customer' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'featureKey' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'rename' => array(
+              'path' => 'customer/{customer}/resources/features/{oldName}/rename',
+              'httpMethod' => 'POST',
+              'parameters' => array(
+                'customer' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'oldName' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'update' => array(
+              'path' => 'customer/{customer}/resources/features/{featureKey}',
+              'httpMethod' => 'PUT',
+              'parameters' => array(
+                'customer' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'featureKey' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,

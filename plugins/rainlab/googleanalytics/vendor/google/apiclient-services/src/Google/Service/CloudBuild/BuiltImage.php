@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,6 +19,8 @@ class Google_Service_CloudBuild_BuiltImage extends Google_Model
 {
   public $digest;
   public $name;
+  protected $pushTimingType = 'Google_Service_CloudBuild_TimeSpan';
+  protected $pushTimingDataType = '';
 
   public function setDigest($digest)
   {
@@ -35,5 +37,19 @@ class Google_Service_CloudBuild_BuiltImage extends Google_Model
   public function getName()
   {
     return $this->name;
+  }
+  /**
+   * @param Google_Service_CloudBuild_TimeSpan
+   */
+  public function setPushTiming(Google_Service_CloudBuild_TimeSpan $pushTiming)
+  {
+    $this->pushTiming = $pushTiming;
+  }
+  /**
+   * @return Google_Service_CloudBuild_TimeSpan
+   */
+  public function getPushTiming()
+  {
+    return $this->pushTiming;
   }
 }

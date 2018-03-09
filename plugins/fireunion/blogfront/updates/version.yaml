@@ -1,1 +1,23 @@
 1.0.1: First version of BlogFront
+1.0.2: Fixes "Published cannot be null" error
+1.0.3: Adds "required" plugins property to Plugin.php
+1.0.4: 
+    - Create Author table and add ability to assign authors using backend controller.
+    - create_authors_table.php
+1.0.5: Protect form unlogged in users and Non authors when Delegated Authors in use
+1.0.6: Add email notifications to user groups
+1.0.7: Add validation to make sure a category is chosen
+1.0.8: Fixes missing author name from email template.
+1.0.9: 
+    - Add author_id to posts so true author can be tracked and editing can be restricted to author posts.
+    - add_author_id.php
+1.1.0: Updated to use L5.5 Mailable class for new post notifications.
+1.1.1: 
+    - Add feature images to posts.
+    - add_allow_images.php
+1.1.2:
+    - Fixes CKEditor not updating content field on AJAX request.
+1.1.3:
+    - Fixes notifications mail errors in pre 420 installs.
+1.1.4:
+    - Fixes Database error with PostgreSQL 9.6.5. Thank you "silverxanga"

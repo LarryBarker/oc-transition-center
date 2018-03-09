@@ -1,108 +1,38 @@
-<form
-    data-request="onRegister">
-    <div class="col-md-6 form-group">
-        <label for="registerName">First Name</label>
-        <input
-            name="name"
-            type="text"
-            class="form-control"
-            id="registerName"
-            required="{{attributes.options.validation}}"
-            placeholder="Enter your first name" />
-    </div>
-    <span data-validate-for="name"></span>
+{% if canRegister %}
+    <form
+        data-request="onRegister">
+        <div class="form-group">
+            <label for="registerName">Full Name</label>
+            <input
+                name="name"
+                type="text"
+                class="form-control"
+                id="registerName"
+                placeholder="Enter your full name" />
+        </div>
 
-    <div class="col-md-6 form-group">
-        <label for="registerSurname">Last Name</label>
-        <input
-            name="surname"
-            type="text"
-            class="form-control"
-            id="registerSurname"
-            required="{{attributes.options.validation}}"
-            placeholder="Enter your last name" />
-    </div>
-    <span data-validate-for="surname"></span>
+        <div class="form-group">
+            <label for="registerEmail">Email</label>
+            <input
+                name="email"
+                type="email"
+                class="form-control"
+                id="registerEmail"
+                placeholder="Enter your email" />
+        </div>
 
-    <div class="col-md-6 form-group">
-        <label for="registerCompany_Title">Job Title</label>
-        <input
-            name="company_title"
-            type="text"
-            class="form-control"
-            id="registerCompany_Title"
-            required="{{attributes.options.validation}}"
-            placeholder="Enter your job title" />
-    </div>
-    <span data-validate-for="company_title"></span>
-
-    <div class="col-md-6 form-group">
-        <label for="registerCompany_Phone">Phone</label>
-        <input
-            name="company_phone"
-            type="text"
-            class="form-control"
-            id="registerCompany_Phone"
-            required="{{attributes.options.validation}}"
-            placeholder="Enter your phone number" />
-    </div>
-    <span data-validate-for="company_phone"></span>
-
-    <div class="col-md-12 form-group">
-        <label for="registerCompany_Name">Company Name</label>
-        <input
-            name="company_name"
-            type="text"
-            class="form-control"
-            id="registerCompany_Name"
-            required="{{attributes.options.validation}}"
-            placeholder="Enter your company name" />
-    </div>
-    <span data-validate-for="company_name"></span>
-
-    <h3>Account Information</h3>
-    <div class="col-md-12 form-group">
-        <label for="registerEmail">Email</label>
-        <input
-            name="email"
-            type="email"
-            class="form-control"
-            data-request="onCheckEmail"
-            data-request-success="$('#loginTaken').toggle(!!data.isTaken)"
-            id="registerEmail"
-            required="{{attributes.options.validation}}"
-            placeholder="Enter your email" data-track-input/>
-    </div>
-    <div id="loginTaken" class="alert alert-danger" style="display: none">
-        Sorry, that login name is already taken.
-    </div>
-    <span data-validate-for="password_confirmation"></span>
-
-    <div class="col-md-12 form-group">
-        <label for="registerPassword">Password</label>
-        <input
-            name="password"
-            type="password"
-            class="form-control"
-            id="registerPassword"
-            required="{{attributes.options.validation}}"
-            placeholder="Choose a password" />
-    </div>
-    <span data-validate-for="password_confirmation"></span>
-
-    <div class="col-md-12 form-group">
-        <label for="registerConfirmPassword">Confirm Password</label>
-        <input
-                name="password_confirmation"
+        <div class="form-group">
+            <label for="registerPassword">Password</label>
+            <input
+                name="password"
                 type="password"
                 class="form-control"
-                id="registerConfirmPassword"
-				required="{{attributes.options.validation}}"
-                placeholder="Confirm password" />
-    </div>
-    <span data-validate-for="password_confirmation"></span><br>
-    <div class="col-md-12 form-group">
-        <div class="g-recaptcha" data-sitekey="6LerFykUAAAAAKBDQDbHwiLVXxWcq5Q2ligtnPIi"></div>
-        <button type="submit" class="btn btn-lg btn-success">Submit Registration</button>
-    </div>
-</form>
+                id="registerPassword"
+                placeholder="Choose a password" />
+        </div>
+
+        <button type="submit" class="btn btn-default">Register</button>
+    </form>
+{% else %}
+    <!-- Registration is disabled. -->
+{% endif %}

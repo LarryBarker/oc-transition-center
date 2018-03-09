@@ -6,10 +6,11 @@ use Mail;
 use Event;
 use October\Rain\Auth\Models\User as UserBase;
 use RainLab\User\Models\Settings as UserSettings;
+use October\Rain\Auth\AuthException;
 
 class User extends UserBase
 {
-    use \October\Rain\Database\Traits\SoftDeleting;
+    use \October\Rain\Database\Traits\SoftDelete;
 
     /**
      * @var string The database table used by the model.
@@ -21,6 +22,7 @@ class User extends UserBase
      */
     public $rules = [
         'email'    => 'required|between:6,255|email|unique:users',
+        'avatar'   => 'nullable|image|max:4000',
         'username' => 'required|between:2,255|unique:users',
         'password' => 'required:create|between:4,255|confirmed',
         'password_confirmation' => 'required_with:password|between:4,255',
@@ -30,16 +32,12 @@ class User extends UserBase
      * @var array Relations
      */
     public $belongsToMany = [
-        'groups' => ['RainLab\User\Models\UserGroup', 'table' => 'users_groups']
+        'groups' => [UserGroup::class, 'table' => 'users_groups']
     ];
 
     public $attachOne = [
-        'avatar' => ['System\Models\File']
+        'avatar' => \System\Models\File::class
     ];
-
-    /*public $hasOne = [
-        'portfolio' => ['Wwrf\Portfolio\Models\Portfolio'],
-    ];*/
 
     /**
      * @var array The attributes that are mass assignable.
@@ -51,10 +49,7 @@ class User extends UserBase
         'username',
         'email',
         'password',
-        'password_confirmation',
-        'company_title',
-        'company_phone',
-        'company_name',
+        'password_confirmation'
     ];
 
     /**
@@ -68,7 +63,7 @@ class User extends UserBase
         'created_at',
         'updated_at',
         'activated_at',
-        'last_login',
+        'last_login'
     ];
 
     public static $loginAttribute = null;
@@ -76,17 +71,13 @@ class User extends UserBase
     /**
      * Sends the confirmation email to a user, after activating.
      * @param  string $code
-     * @return void
+     * @return bool
      */
     public function attemptActivation($code)
     {
         $result = parent::attemptActivation($code);
         if ($result === false) {
             return false;
-        }
-
-        if ($mailTemplate = UserSettings::get('welcome_template')) {
-            Mail::sendTo($this, $mailTemplate, $this->getNotificationVars());
         }
 
         Event::fire('rainlab.user.activate', [$this]);
@@ -192,31 +183,13 @@ class User extends UserBase
         return static::$loginAttribute = UserSettings::get('login_attribute', UserSettings::LOGIN_EMAIL);
     }
 
-    public function getYearFilter()
-    {
-        return;
-    }
-
     //
     // Scopes
     //
-    /*public function scopeFilterByYear($query, $filter)
-    {
-        return $query->whereYear('release_date', '>=', $filter);
-    }*/
 
     public function scopeIsActivated($query)
     {
         return $query->where('is_activated', 1);
-    }
-
-    public function scopeIsEmployed($query, $filter)
-    {
-        if($filter == 2){
-            return $query->has('jobs', '>', 0);
-        }elseif($filter == 1) {
-            return $query->has('jobs', '<', 1);
-        }
     }
 
     public function scopeFilterByGroup($query, $filter)
@@ -225,25 +198,6 @@ class User extends UserBase
             $group->whereIn('id', $filter);
         });
     }
-
-    public function scopeFilterByStatus($query, $filter)
-    {
-        return $query->where('status', '=', $filter);
-    }
-
-    /**
-     * Scope a query to only filter according to date.
-     */
-     public function scopeFilterByStartDate($query, $after, $before)
-     {
-        $countJobs =  $query->whereHas('jobs', function($q) use ($after, $before) {
-            $q->whereBetween('start_date', array($after, $before));
-        });
-
-        return $query->whereHas('jobs', function($q) use ($after, $before) {
-                   $q->whereBetween('start_date', array($after, $before));
-        });
-     }
 
     //
     // Events
@@ -287,17 +241,33 @@ class User extends UserBase
     }
 
     /**
+     * Before login event
+     * @return void
+     */
+    public function beforeLogin()
+    {
+        if ($this->is_guest) {
+            $login = $this->getLogin();
+            throw new AuthException(sprintf(
+                'Cannot login user "%s" as they are not registered.', $login
+            ));
+        }
+
+        parent::beforeLogin();
+    }
+
+    /**
      * After login event
      * @return void
      */
     public function afterLogin()
     {
-        $this->last_login = $this->last_seen = $this->freshTimestamp();
+        $this->last_login = $this->freshTimestamp();
 
         if ($this->trashed()) {
             $this->restore();
 
-        Mail::sendTo($this, 'rainlab.user::mail.reactivate', [
+            Mail::sendTo($this, 'rainlab.user::mail.reactivate', [
                 'name' => $this->name
             ]);
 
@@ -412,14 +382,14 @@ class User extends UserBase
      * Returns the variables available when sending a user notification.
      * @return array
      */
-    protected function getNotificationVars()
+    public function getNotificationVars()
     {
         $vars = [
-            'name'  => $this->name,
-            'email' => $this->email,
+            'name'     => $this->name,
+            'email'    => $this->email,
             'username' => $this->username,
-            'login' => $this->getLogin(),
-            'password' => $this->getOriginalHashValue('password'),
+            'login'    => $this->getLogin(),
+            'password' => $this->getOriginalHashValue('password')
         ];
 
         /*

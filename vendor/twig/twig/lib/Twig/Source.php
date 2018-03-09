@@ -12,11 +12,9 @@
 /**
  * Holds information about a non-compiled Twig template.
  *
- * @final
- *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-class Twig_Source
+final class Twig_Source
 {
     private $code;
     private $name;
@@ -49,3 +47,5 @@ class Twig_Source
         return $this->path;
     }
 }
+
+class_alias('Twig_Source', 'Twig\Source', false);

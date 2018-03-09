@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -20,9 +20,9 @@ class Google_Service_ServiceUser_Endpoint extends Google_Collection
   protected $collection_key = 'features';
   public $aliases;
   public $allowCors;
-  public $apis;
   public $features;
   public $name;
+  public $target;
 
   public function setAliases($aliases)
   {
@@ -40,14 +40,6 @@ class Google_Service_ServiceUser_Endpoint extends Google_Collection
   {
     return $this->allowCors;
   }
-  public function setApis($apis)
-  {
-    $this->apis = $apis;
-  }
-  public function getApis()
-  {
-    return $this->apis;
-  }
   public function setFeatures($features)
   {
     $this->features = $features;
@@ -63,5 +55,13 @@ class Google_Service_ServiceUser_Endpoint extends Google_Collection
   public function getName()
   {
     return $this->name;
+  }
+  public function setTarget($target)
+  {
+    $this->target = $target;
+  }
+  public function getTarget()
+  {
+    return $this->target;
   }
 }

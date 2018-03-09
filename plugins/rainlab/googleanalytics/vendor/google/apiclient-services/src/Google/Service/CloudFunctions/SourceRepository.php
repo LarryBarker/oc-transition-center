@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,59 +17,23 @@
 
 class Google_Service_CloudFunctions_SourceRepository extends Google_Model
 {
-  public $branch;
-  public $deployedRevision;
-  public $repositoryUrl;
-  public $revision;
-  public $sourcePath;
-  public $tag;
+  public $deployedUrl;
+  public $url;
 
-  public function setBranch($branch)
+  public function setDeployedUrl($deployedUrl)
   {
-    $this->branch = $branch;
+    $this->deployedUrl = $deployedUrl;
   }
-  public function getBranch()
+  public function getDeployedUrl()
   {
-    return $this->branch;
+    return $this->deployedUrl;
   }
-  public function setDeployedRevision($deployedRevision)
+  public function setUrl($url)
   {
-    $this->deployedRevision = $deployedRevision;
+    $this->url = $url;
   }
-  public function getDeployedRevision()
+  public function getUrl()
   {
-    return $this->deployedRevision;
-  }
-  public function setRepositoryUrl($repositoryUrl)
-  {
-    $this->repositoryUrl = $repositoryUrl;
-  }
-  public function getRepositoryUrl()
-  {
-    return $this->repositoryUrl;
-  }
-  public function setRevision($revision)
-  {
-    $this->revision = $revision;
-  }
-  public function getRevision()
-  {
-    return $this->revision;
-  }
-  public function setSourcePath($sourcePath)
-  {
-    $this->sourcePath = $sourcePath;
-  }
-  public function getSourcePath()
-  {
-    return $this->sourcePath;
-  }
-  public function setTag($tag)
-  {
-    $this->tag = $tag;
-  }
-  public function getTag()
-  {
-    return $this->tag;
+    return $this->url;
   }
 }

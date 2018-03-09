@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -31,9 +31,9 @@ class Google_Service_Compute_Resource_Routers extends Google_Service_Resource
    * @param string $project Project ID for this request.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string filter Sets a filter expression for filtering listed
-   * resources, in the form filter={expression}. Your {expression} must be in the
-   * format: field_name comparison_string literal_string.
+   * @opt_param string filter Sets a filter {expression} for filtering listed
+   * resources. Your {expression} must be in the format: field_name
+   * comparison_string literal_string.
    *
    * The field_name is the name of the field you want to compare. Only atomic
    * field types are supported (string, number, boolean). The comparison_string
@@ -44,7 +44,7 @@ class Google_Service_Compute_Resource_Routers extends Google_Service_Resource
    * literal value must match the entire field.
    *
    * For example, to filter for instances that do not have a name of example-
-   * instance, you would use filter=name ne example-instance.
+   * instance, you would use name ne example-instance.
    *
    * You can filter on nested fields. For example, you could filter on instances
    * that have set the scheduling.automaticRestart field to true. Use filtering on
@@ -88,6 +88,19 @@ class Google_Service_Compute_Resource_Routers extends Google_Service_Resource
    * @param string $region Name of the region for this request.
    * @param string $router Name of the Router resource to delete.
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Google_Service_Compute_Operation
    */
   public function delete($project, $region, $router, $optParams = array())
@@ -136,6 +149,19 @@ class Google_Service_Compute_Resource_Routers extends Google_Service_Resource
    * @param string $region Name of the region for this request.
    * @param Google_Service_Compute_Router $postBody
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Google_Service_Compute_Operation
    */
   public function insert($project, $region, Google_Service_Compute_Router $postBody, $optParams = array())
@@ -152,9 +178,9 @@ class Google_Service_Compute_Resource_Routers extends Google_Service_Resource
    * @param string $region Name of the region for this request.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string filter Sets a filter expression for filtering listed
-   * resources, in the form filter={expression}. Your {expression} must be in the
-   * format: field_name comparison_string literal_string.
+   * @opt_param string filter Sets a filter {expression} for filtering listed
+   * resources. Your {expression} must be in the format: field_name
+   * comparison_string literal_string.
    *
    * The field_name is the name of the field you want to compare. Only atomic
    * field types are supported (string, number, boolean). The comparison_string
@@ -165,7 +191,7 @@ class Google_Service_Compute_Resource_Routers extends Google_Service_Resource
    * literal value must match the entire field.
    *
    * For example, to filter for instances that do not have a name of example-
-   * instance, you would use filter=name ne example-instance.
+   * instance, you would use name ne example-instance.
    *
    * You can filter on nested fields. For example, you could filter on instances
    * that have set the scheduling.automaticRestart field to true. Use filtering on
@@ -203,14 +229,28 @@ class Google_Service_Compute_Resource_Routers extends Google_Service_Resource
     return $this->call('list', array($params), "Google_Service_Compute_RouterList");
   }
   /**
-   * Updates the specified Router resource with the data included in the request.
-   * This method supports patch semantics. (routers.patch)
+   * Patches the specified Router resource with the data included in the request.
+   * This method supports PATCH semantics and uses JSON merge patch format and
+   * processing rules. (routers.patch)
    *
    * @param string $project Project ID for this request.
    * @param string $region Name of the region for this request.
-   * @param string $router Name of the Router resource to update.
+   * @param string $router Name of the Router resource to patch.
    * @param Google_Service_Compute_Router $postBody
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Google_Service_Compute_Operation
    */
   public function patch($project, $region, $router, Google_Service_Compute_Router $postBody, $optParams = array())
@@ -245,6 +285,19 @@ class Google_Service_Compute_Resource_Routers extends Google_Service_Resource
    * @param string $router Name of the Router resource to update.
    * @param Google_Service_Compute_Router $postBody
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Google_Service_Compute_Operation
    */
   public function update($project, $region, $router, Google_Service_Compute_Router $postBody, $optParams = array())

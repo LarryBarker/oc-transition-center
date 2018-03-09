@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -18,6 +18,7 @@
 class Google_Service_Compute_RouterInterface extends Google_Model
 {
   public $ipRange;
+  public $linkedInterconnectAttachment;
   public $linkedVpnTunnel;
   public $name;
 
@@ -28,6 +29,14 @@ class Google_Service_Compute_RouterInterface extends Google_Model
   public function getIpRange()
   {
     return $this->ipRange;
+  }
+  public function setLinkedInterconnectAttachment($linkedInterconnectAttachment)
+  {
+    $this->linkedInterconnectAttachment = $linkedInterconnectAttachment;
+  }
+  public function getLinkedInterconnectAttachment()
+  {
+    return $this->linkedInterconnectAttachment;
   }
   public function setLinkedVpnTunnel($linkedVpnTunnel)
   {

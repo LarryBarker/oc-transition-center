@@ -11,13 +11,13 @@ fields:
         comment: fireunion.blogfront::lang.author.user_id_comment
         type: relation
         span: left
-        select: concat( surname, ", ", name)
+        select: concat( surname, ', ', name)
     admin:
         label: fireunion.blogfront::lang.author.admin_id
         comment: fireunion.blogfront::lang.author.admin_id_comment
         type: relation
         span: right
-        select: concat( last_name, ", ", first_name)
+        select: concat( last_name, ', ', first_name)
     categories:
         label: fireunion.blogfront::lang.author.categories
         comment: fireunion.blogfront::lang.author.categories_comment
@@ -28,6 +28,10 @@ fields:
         comment: fireunion.blogfront::lang.author.can_publish_comment
         type: switch
         span: right
+    allow_images:
+        label: fireunion.blogfront::lang.author.allow_images
+        comment: fireunion.blogfront::lang.author.allow_images_comment
+        type: switch
     note:
         label: fireunion.blogfront::lang.author.note
         comment: fireunion.blogfront::lang.author.note_comment

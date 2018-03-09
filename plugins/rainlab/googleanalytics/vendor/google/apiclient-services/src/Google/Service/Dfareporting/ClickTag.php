@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,10 +17,25 @@
 
 class Google_Service_Dfareporting_ClickTag extends Google_Model
 {
+  protected $clickThroughUrlType = 'Google_Service_Dfareporting_CreativeClickThroughUrl';
+  protected $clickThroughUrlDataType = '';
   public $eventName;
   public $name;
-  public $value;
 
+  /**
+   * @param Google_Service_Dfareporting_CreativeClickThroughUrl
+   */
+  public function setClickThroughUrl(Google_Service_Dfareporting_CreativeClickThroughUrl $clickThroughUrl)
+  {
+    $this->clickThroughUrl = $clickThroughUrl;
+  }
+  /**
+   * @return Google_Service_Dfareporting_CreativeClickThroughUrl
+   */
+  public function getClickThroughUrl()
+  {
+    return $this->clickThroughUrl;
+  }
   public function setEventName($eventName)
   {
     $this->eventName = $eventName;
@@ -36,13 +51,5 @@ class Google_Service_Dfareporting_ClickTag extends Google_Model
   public function getName()
   {
     return $this->name;
-  }
-  public function setValue($value)
-  {
-    $this->value = $value;
-  }
-  public function getValue()
-  {
-    return $this->value;
   }
 }

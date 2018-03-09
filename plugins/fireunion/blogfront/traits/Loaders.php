@@ -48,6 +48,16 @@ trait Loaders {
 	 */
 	public $allowpublish;
 	/**
+	 * tinyInt indicating if user is allowed to upload images
+	 * @var Integer
+	 */
+	public $allow_images;
+	/**
+	 * Slug property
+	 * @var string
+	 */
+	public $slug = '';
+	/**
 	 * CategoryIds for current post record post
 	 * @var Array
 	 */
@@ -148,6 +158,16 @@ trait Loaders {
 		case 'form':
 			$properties = array_merge($properties,
 				[
+					'allow_images' => [
+						'title' => 'fireunion.blogfront::lang.author.allow_images',
+						'description' => 'fireunion.blogfront::lang.author.allow_images_comment',
+						'type' => 'dropdown',
+						'default' => '1',
+						'options' => [
+							0 => 'fireunion.blogfront::lang.general.opt_no',
+							1 => 'fireunion.blogfront::lang.general.opt_yes',
+						],
+					],
 					'slug' => [
 						'title' => 'rainlab.blog::lang.settings.post_slug',
 						'description' => 'rainlab.blog::lang.settings.post_slug_description',
@@ -214,6 +234,10 @@ trait Loaders {
 		if ($type == 'form' || $type == 'ajax') {
 			$this->postPage = $this->controller->pageUrl($this->property('postPage'), false);
 		}
+		if ($type == 'form') {
+			$this->slug = $this->property('slug', '');
+			$this->allow_images = $this->author ? $this->author->allow_images : $this->property('allow_images');
+		}
 
 		$this->backUser = $this->author ? $this->author->admin_id : $this->property('backUser');
 		$this->categoryIds = $this->author ? $this->author->categories : $this->property('category');
@@ -231,12 +255,12 @@ trait Loaders {
 		}
 		if ($type == 'form' || $type == 'ajax') {
 			$this->addJs('//cdn.ckeditor.com/4.5.4/standard/ckeditor.js');
+			$this->addJs('/plugins/fireunion/blogfront/assets/js/bpost.js');
 			$this->addCss('/plugins/fireunion/blogfront/assets/css/style.css');
 		}
 
 		switch ($type) {
 		case 'form':
-			$this->post = $this->loadPost();
 			$this->listPage = $this->controller->pageUrl($this->property('listPage'), []);
 			break;
 		case 'list':
@@ -247,26 +271,26 @@ trait Loaders {
 	}
 
 	protected function loadPost() {
-		if (post('id')) {
-			// Load after form submit
-			$post_query = BlogPost::where('id', post('id'))->
-				whereHas('categories', function ($query) {
-				$query->whereIn('id', $this->categoryIds);
+		$post = null;
+		if (post('id') or $this->slug) {
+			if (post('id')) {
+				// Load after form submit
+				$post_query = BlogPost::where('id', post('id'));
+			} else {
+				// Load from slug
+				$post_query = BlogPost::where('slug', $this->slug);
 			}
-			);
-		} else {
-			// Load from slug
-			$post_query = BlogPost::whereHas('categories', function ($query) {
-				$query->whereIn('id', $this->categoryIds);
-			}
-			)->
-				where('slug', $this->property('slug'));
-		}
-		if ($this->restrict_owner) {
-			$post_query->where('author_id', $this->user->id);
-		}
-		$post = $post_query->first();
 
+			$post_query->whereHas('categories', function ($query) {
+				$query->whereIn('id', $this->categoryIds);
+			});
+
+			if ($this->restrict_owner) {
+				$post_query->where('author_id', $this->user->id);
+			}
+			$post = $post_query->first();
+
+		}
 		// If not found then return a new post
 		if (!$post) {
 			return new BlogPost();
@@ -278,7 +302,7 @@ trait Loaders {
 	}
 
 	protected function loadPosts() {
-		//$catIds = $this->categoryIds;
+
 		$posts_query = BlogPost::with('categories')->
 			whereHas('categories', function ($query) {
 			$query->whereIn('id', $this->categoryIds);
@@ -335,6 +359,7 @@ trait Loaders {
 				$this->post->published_at ?: date('Y-m-d H:i:s'))
 			: $this->post->published_at;
 		}
+
 		$id = $this->post->save();
 
 		if ($this->post->categories()->exists()) {
@@ -349,17 +374,35 @@ trait Loaders {
 				attach(array_intersect(post('category'), $this->categoryIds));
 		}
 
-		/*if (post('notify_groups')) {
-			$groups = array_intersect(post('notify_groups'), array_flip($this->user_groups));
-			$this->notifyGroups($groups, $this->post, $this->postPage);
-		}*/
-
-		if ($this->property('user_groups')) {
-			$groups = array_intersect($this->property('user_groups'), array_flip($this->user_groups));
-			$this->notifyGroups($groups, $this->post, $this->postPage);
+		if (post('ititle') && $this->allow_images) {
+			$this->onImageText();
 		}
 
+		if (post('notify_groups')) {
+			$groups = array_intersect(post('notify_groups'), array_flip($this->user_groups));
+			$this->notifyGroups($groups, $this->post, $this->postPage);
+		}
 		return $id;
+	}
+
+	/**
+	 * Ajax handler to delete a featured_image
+	 * triggers onRun to show list after delete
+	 * @return null if post does not exist
+	 */
+	protected function onImageText() {
+		if (!$this->post = $this->loadPost()) {
+			return null;
+		}
+		$titles = post('ititle');
+		$descriptions = post('idescription');
+
+		foreach ($this->post->featured_images()->get() as $image) {
+
+			$image->title = $titles[$image->id];
+			$image->description = $descriptions[$image->id];
+			$image->save();
+		}
 	}
 
 	/**
@@ -384,10 +427,6 @@ trait Loaders {
 
 	public function getCategoryItems() {
 		return BlogCategory::orderBy('name')->lists('name', 'id');
-	}
-
-	public function getCategoryOptions() {
-		return array_merge(['' => ''], BlogCategory::orderBy('name')->lists('name', 'id'));
 	}
 
 	public function getBackUserOptions() {

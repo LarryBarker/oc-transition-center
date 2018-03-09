@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -23,9 +23,12 @@ class Google_Service_AndroidPublisher_SubscriptionPurchase extends Google_Model
   public $developerPayload;
   public $expiryTimeMillis;
   public $kind;
+  public $linkedPurchaseToken;
+  public $orderId;
   public $paymentState;
   public $priceAmountMicros;
   public $priceCurrencyCode;
+  public $purchaseType;
   public $startTimeMillis;
   public $userCancellationTimeMillis;
 
@@ -77,6 +80,22 @@ class Google_Service_AndroidPublisher_SubscriptionPurchase extends Google_Model
   {
     return $this->kind;
   }
+  public function setLinkedPurchaseToken($linkedPurchaseToken)
+  {
+    $this->linkedPurchaseToken = $linkedPurchaseToken;
+  }
+  public function getLinkedPurchaseToken()
+  {
+    return $this->linkedPurchaseToken;
+  }
+  public function setOrderId($orderId)
+  {
+    $this->orderId = $orderId;
+  }
+  public function getOrderId()
+  {
+    return $this->orderId;
+  }
   public function setPaymentState($paymentState)
   {
     $this->paymentState = $paymentState;
@@ -100,6 +119,14 @@ class Google_Service_AndroidPublisher_SubscriptionPurchase extends Google_Model
   public function getPriceCurrencyCode()
   {
     return $this->priceCurrencyCode;
+  }
+  public function setPurchaseType($purchaseType)
+  {
+    $this->purchaseType = $purchaseType;
+  }
+  public function getPurchaseType()
+  {
+    return $this->purchaseType;
   }
   public function setStartTimeMillis($startTimeMillis)
   {

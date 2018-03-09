@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -64,10 +64,12 @@ class Google_Service_YouTube_ContentRating extends Google_Collection
   public $mdaRating;
   public $medietilsynetRating;
   public $mekuRating;
+  public $menaMpaaRating;
   public $mibacRating;
   public $mocRating;
   public $moctwRating;
   public $mpaaRating;
+  public $mpaatRating;
   public $mtrcbRating;
   public $nbcRating;
   public $nbcplRating;
@@ -455,6 +457,14 @@ class Google_Service_YouTube_ContentRating extends Google_Collection
   {
     return $this->mekuRating;
   }
+  public function setMenaMpaaRating($menaMpaaRating)
+  {
+    $this->menaMpaaRating = $menaMpaaRating;
+  }
+  public function getMenaMpaaRating()
+  {
+    return $this->menaMpaaRating;
+  }
   public function setMibacRating($mibacRating)
   {
     $this->mibacRating = $mibacRating;
@@ -486,6 +496,14 @@ class Google_Service_YouTube_ContentRating extends Google_Collection
   public function getMpaaRating()
   {
     return $this->mpaaRating;
+  }
+  public function setMpaatRating($mpaatRating)
+  {
+    $this->mpaatRating = $mpaatRating;
+  }
+  public function getMpaatRating()
+  {
+    return $this->mpaatRating;
   }
   public function setMtrcbRating($mtrcbRating)
   {

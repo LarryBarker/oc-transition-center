@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -25,19 +25,6 @@
  */
 class Google_Service_AndroidPublisher_Resource_Inappproducts extends Google_Service_Resource
 {
-  /**
-   * (inappproducts.batch)
-   *
-   * @param Google_Service_AndroidPublisher_InappproductsBatchRequest $postBody
-   * @param array $optParams Optional parameters.
-   * @return Google_Service_AndroidPublisher_InappproductsBatchResponse
-   */
-  public function batch(Google_Service_AndroidPublisher_InappproductsBatchRequest $postBody, $optParams = array())
-  {
-    $params = array('postBody' => $postBody);
-    $params = array_merge($params, $optParams);
-    return $this->call('batch', array($params), "Google_Service_AndroidPublisher_InappproductsBatchResponse");
-  }
   /**
    * Delete an in-app product for an app. (inappproducts.delete)
    *

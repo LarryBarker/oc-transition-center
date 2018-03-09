@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -37,6 +37,7 @@ class Google_Service_ToolResults extends Google_Service
   public $projects;
   public $projects_histories;
   public $projects_histories_executions;
+  public $projects_histories_executions_clusters;
   public $projects_histories_executions_steps;
   public $projects_histories_executions_steps_perfMetricsSummary;
   public $projects_histories_executions_steps_perfSampleSeries;
@@ -237,6 +238,61 @@ class Google_Service_ToolResults extends Google_Service
                 'requestId' => array(
                   'location' => 'query',
                   'type' => 'string',
+                ),
+              ),
+            ),
+          )
+        )
+    );
+    $this->projects_histories_executions_clusters = new Google_Service_ToolResults_Resource_ProjectsHistoriesExecutionsClusters(
+        $this,
+        $this->serviceName,
+        'clusters',
+        array(
+          'methods' => array(
+            'get' => array(
+              'path' => '{projectId}/histories/{historyId}/executions/{executionId}/clusters/{clusterId}',
+              'httpMethod' => 'GET',
+              'parameters' => array(
+                'projectId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'historyId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'executionId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'clusterId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'list' => array(
+              'path' => '{projectId}/histories/{historyId}/executions/{executionId}/clusters',
+              'httpMethod' => 'GET',
+              'parameters' => array(
+                'projectId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'historyId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'executionId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
                 ),
               ),
             ),

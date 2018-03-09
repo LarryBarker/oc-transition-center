@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -31,9 +31,9 @@ class Google_Service_Compute_Resource_Disks extends Google_Service_Resource
    * @param string $project Project ID for this request.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string filter Sets a filter expression for filtering listed
-   * resources, in the form filter={expression}. Your {expression} must be in the
-   * format: field_name comparison_string literal_string.
+   * @opt_param string filter Sets a filter {expression} for filtering listed
+   * resources. Your {expression} must be in the format: field_name
+   * comparison_string literal_string.
    *
    * The field_name is the name of the field you want to compare. Only atomic
    * field types are supported (string, number, boolean). The comparison_string
@@ -44,7 +44,7 @@ class Google_Service_Compute_Resource_Disks extends Google_Service_Resource
    * literal value must match the entire field.
    *
    * For example, to filter for instances that do not have a name of example-
-   * instance, you would use filter=name ne example-instance.
+   * instance, you would use name ne example-instance.
    *
    * You can filter on nested fields. For example, you could filter on instances
    * that have set the scheduling.automaticRestart field to true. Use filtering on
@@ -91,6 +91,18 @@ class Google_Service_Compute_Resource_Disks extends Google_Service_Resource
    * @param array $optParams Optional parameters.
    *
    * @opt_param bool guestFlush
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Google_Service_Compute_Operation
    */
   public function createSnapshot($project, $zone, $disk, Google_Service_Compute_Snapshot $postBody, $optParams = array())
@@ -109,6 +121,19 @@ class Google_Service_Compute_Resource_Disks extends Google_Service_Resource
    * @param string $zone The name of the zone for this request.
    * @param string $disk Name of the persistent disk to delete.
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Google_Service_Compute_Operation
    */
   public function delete($project, $zone, $disk, $optParams = array())
@@ -145,6 +170,18 @@ class Google_Service_Compute_Resource_Disks extends Google_Service_Resource
    * @param Google_Service_Compute_Disk $postBody
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @opt_param string sourceImage Optional. Source image to restore onto a disk.
    * @return Google_Service_Compute_Operation
    */
@@ -162,9 +199,9 @@ class Google_Service_Compute_Resource_Disks extends Google_Service_Resource
    * @param string $zone The name of the zone for this request.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string filter Sets a filter expression for filtering listed
-   * resources, in the form filter={expression}. Your {expression} must be in the
-   * format: field_name comparison_string literal_string.
+   * @opt_param string filter Sets a filter {expression} for filtering listed
+   * resources. Your {expression} must be in the format: field_name
+   * comparison_string literal_string.
    *
    * The field_name is the name of the field you want to compare. Only atomic
    * field types are supported (string, number, boolean). The comparison_string
@@ -175,7 +212,7 @@ class Google_Service_Compute_Resource_Disks extends Google_Service_Resource
    * literal value must match the entire field.
    *
    * For example, to filter for instances that do not have a name of example-
-   * instance, you would use filter=name ne example-instance.
+   * instance, you would use name ne example-instance.
    *
    * You can filter on nested fields. For example, you could filter on instances
    * that have set the scheduling.automaticRestart field to true. Use filtering on
@@ -220,6 +257,19 @@ class Google_Service_Compute_Resource_Disks extends Google_Service_Resource
    * @param string $disk The name of the persistent disk.
    * @param Google_Service_Compute_DisksResizeRequest $postBody
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Google_Service_Compute_Operation
    */
   public function resize($project, $zone, $disk, Google_Service_Compute_DisksResizeRequest $postBody, $optParams = array())
@@ -227,5 +277,35 @@ class Google_Service_Compute_Resource_Disks extends Google_Service_Resource
     $params = array('project' => $project, 'zone' => $zone, 'disk' => $disk, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
     return $this->call('resize', array($params), "Google_Service_Compute_Operation");
+  }
+  /**
+   * Sets the labels on a disk. To learn more about labels, read the Labeling
+   * Resources documentation. (disks.setLabels)
+   *
+   * @param string $project Project ID for this request.
+   * @param string $zone The name of the zone for this request.
+   * @param string $resource Name of the resource for this request.
+   * @param Google_Service_Compute_ZoneSetLabelsRequest $postBody
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
+   * @return Google_Service_Compute_Operation
+   */
+  public function setLabels($project, $zone, $resource, Google_Service_Compute_ZoneSetLabelsRequest $postBody, $optParams = array())
+  {
+    $params = array('project' => $project, 'zone' => $zone, 'resource' => $resource, 'postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('setLabels', array($params), "Google_Service_Compute_Operation");
   }
 }

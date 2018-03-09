@@ -1,7 +1,10 @@
 <?php namespace October\Rain\Mail;
 
 use Event;
+use Config;
 use Illuminate\Mail\Mailer as MailerBase;
+use Illuminate\Contracts\Mail\Mailable as MailableContract;
+use Illuminate\Support\Collection;
 
 /**
  * Mailer class for sending mail.
@@ -11,8 +14,12 @@ use Illuminate\Mail\Mailer as MailerBase;
  */
 class Mailer extends MailerBase
 {
-
     use \October\Rain\Support\Traits\Emitter;
+
+    /**
+     * @var string Original driver before pretending.
+     */
+    protected $pretendingOriginal;
 
     /**
      * Send a new message using a view.
@@ -22,7 +29,7 @@ class Mailer extends MailerBase
      * @param  \Closure|string $callback
      * @return mixed
      */
-    public function send($view, array $data, $callback)
+    public function send($view, array $data = [], $callback = null)
     {
         /*
          * Extensibility
@@ -34,19 +41,28 @@ class Mailer extends MailerBase
             return;
         }
 
+        if ($view instanceof MailableContract) {
+            return $this->sendMailable($view);
+        }
+
         /*
          * Inherit logic from Illuminate\Mail\Mailer
          */
         list($view, $plain, $raw) = $this->parseView($view);
 
         $data['message'] = $message = $this->createMessage();
-        $this->callMessageBuilder($callback, $message);
 
         if (is_bool($raw) && $raw === true) {
             $this->addContentRaw($message, $view, $plain);
         }
         else {
             $this->addContent($message, $view, $plain, $raw, $data);
+        }
+
+        call_user_func($callback, $message);
+
+        if (isset($this->to['address'])) {
+            $this->setGlobalTo($message);
         }
 
         /*
@@ -65,46 +81,53 @@ class Mailer extends MailerBase
         /*
          * Send the message
          */
-        $_message = $message->getSwiftMessage();
-        $response = $this->sendSwiftMessage($_message);
+        $this->sendSwiftMessage($message->getSwiftMessage());
+        $this->dispatchSentEvent($message);
 
         /*
          * Extensibility
          */
-        $this->fireEvent('mailer.send', [$view, $message, $response]);
-        Event::fire('mailer.send', [$this, $view, $message, $response]);
-
-        return $response;
+        $this->fireEvent('mailer.send', [$view, $message]);
+        Event::fire('mailer.send', [$this, $view, $message]);
     }
 
     /**
      * Helper for send() method, the first argument can take a single email or an
      * array of recipients where the key is the address and the value is the name.
-     * The callback argument can be a boolean that when TRUE will use queue() to
-     * send the message instead. The callback argument can also be an array of options
-     * with the following (@todo):
-     *  - queue
-     *  - queueName
-     *  - callback
-     *  - delay
+     *
      * @param  array $recipients
      * @param  string|array $view
      * @param  array $data
-     * @param  \Closure|string $callback
-     * @param  boolean $queue
+     * @param  mixed $callback
+     * @param  array $options
      * @return void
      */
-    public function sendTo($recipients, $view, array $data = [], $callback = null, $queue = false)
+    public function sendTo($recipients, $view, array $data = [], $callback = null, $options = [])
     {
-        if (is_bool($callback))
-            $queue = $callback;
+        if ($callback && !$options && !is_callable($callback)) {
+            $options = $callback;
+        }
+
+        if (is_bool($options)) {
+            $queue = $options;
+            $bcc = false;
+        }
+        else {
+            extract(array_merge([
+                'queue' => false,
+                'bcc'   => false
+            ], $options));
+        }
 
         $method = $queue === true ? 'queue' : 'send';
         $recipients = $this->processRecipients($recipients);
 
-        return $this->{$method}($view, $data, function($message) use ($recipients, $callback) {
+        return $this->{$method}($view, $data, function($message) use ($recipients, $callback, $bcc) {
+
+            $method = $bcc === true ? 'bcc' : 'to';
+
             foreach ($recipients as $address => $name) {
-                $message->to($address, $name);
+                $message->{$method}($address, $name);
             }
 
             if (is_callable($callback)) {
@@ -114,21 +137,133 @@ class Mailer extends MailerBase
     }
 
     /**
+     * Queue a new e-mail message for sending.
+     *
+     * @param  string|array  $view
+     * @param  array  $data
+     * @param  \Closure|string  $callback
+     * @param  string|null  $queue
+     * @return mixed
+     */
+    public function queue($view, $data = null, $callback = null, $queue = null)
+    {
+        if (!$view instanceof MailableContract) {
+            $mailable = $this->buildQueueMailable($view, $data, $callback);
+        }
+        else {
+            $mailable = $view;
+            $queue = $queue !== null ? $queue : $data;
+        }
+
+        return parent::queue($mailable, $queue);
+    }
+
+    /**
+     * Queue a new e-mail message for sending on the given queue.
+     *
+     * @param  string  $queue
+     * @param  string|array  $view
+     * @param  array  $data
+     * @param  \Closure|string  $callback
+     * @return mixed
+     */
+    public function queueOn($queue, $view, $data = null, $callback = null)
+    {
+        return $this->queue($view, $data, $callback, $queue);
+    }
+
+    /**
+     * Queue a new e-mail message for sending after (n) seconds.
+     *
+     * @param  int  $delay
+     * @param  string|array  $view
+     * @param  array  $data
+     * @param  \Closure|string  $callback
+     * @param  string|null  $queue
+     * @return mixed
+     */
+    public function later($delay, $view, $data = null, $callback = null, $queue = null)
+    {
+        if (!$view instanceof MailableContract) {
+            $mailable = $this->buildQueueMailable($view, $data, $callback);
+        }
+        else {
+            $mailable = $view;
+            $queue = $queue !== null ? $queue : $data;
+        }
+
+        return parent::later($delay, $mailable, $queue);
+    }
+
+    /**
+     * Queue a new e-mail message for sending after (n) seconds on the given queue.
+     *
+     * @param  string  $queue
+     * @param  int  $delay
+     * @param  string|array  $view
+     * @param  array  $data
+     * @param  \Closure|string  $callback
+     * @return mixed
+     */
+    public function laterOn($queue, $delay, $view, array $data = null, $callback = null)
+    {
+        return $this->later($delay, $view, $data, $callback, $queue);
+    }
+
+    /**
+     * Build the mailable for a queued e-mail job.
+     *
+     * @param  mixed  $callback
+     * @return mixed
+     */
+    protected function buildQueueMailable($view, $data, $callback)
+    {
+        $mailable = new Mailable;
+
+        $mailable->view($view)->withSerializedData($data);
+
+        call_user_func($callback, $mailable);
+
+        return $mailable;
+    }
+
+    /**
+     * Send a new message when only a raw text part.
+     *
+     * @param  string  $text
+     * @param  mixed  $callback
+     * @return int
+     */
+    public function raw($view, $callback)
+    {
+        if (!is_array($view)) {
+            $view = ['raw' => $view];
+        }
+        elseif (!array_key_exists('raw', $view)) {
+            $view['raw'] = true;
+        }
+
+        return $this->send($view, [], $callback);
+    }
+
+    /**
      * Helper for raw() method, send a new message when only a raw text part.
      * @param  array $recipients
      * @param  string  $view
      * @param  mixed   $callback
-     * @param  boolean $queue
+     * @param  array   $options
      * @return int
      */
-    public function rawTo($recipients, $view, $callback = null, $queue = false)
+    public function rawTo($recipients, $view, $callback = null, $options = [])
     {
         if (!is_array($view)) {
-            $view = ['text' => $view];
+            $view = ['raw' => $view];
+        }
+        elseif (!array_key_exists('raw', $view)) {
+            $view['raw'] = true;
         }
 
-        $view['raw'] = true;
-        return $this->sendTo($recipients, $view, [], $callback, $queue);
+        return $this->sendTo($recipients, $view, [], $callback, $options);
     }
 
     /**
@@ -147,17 +282,8 @@ class Mailer extends MailerBase
         if (is_string($recipients)) {
             $result[$recipients] = null;
         }
-        elseif (is_object($recipients)) {
-            if (!empty($recipients->email) || !empty($recipients->address)) {
-                $address = !empty($recipients->email) ? $recipients->email : $recipients->address;
-                $name = !empty($recipients->name) ? $recipients->name : null;
-                $result[$address] = $name;
-            }
-        }
-        elseif (is_array($recipients) || $recipients instanceof \ArrayAccess) {
-
+        elseif (is_array($recipients) || $recipients instanceof Collection) {
             foreach ($recipients as $address => $person) {
-
                 if (is_string($person)) {
                     $result[$address] = $person;
                 }
@@ -177,7 +303,13 @@ class Mailer extends MailerBase
 
                     $result[$address] = array_get($person, 'name');
                 }
-
+            }
+        }
+        elseif (is_object($recipients)) {
+            if (!empty($recipients->email) || !empty($recipients->address)) {
+                $address = !empty($recipients->email) ? $recipients->email : $recipients->address;
+                $name = !empty($recipients->name) ? $recipients->name : null;
+                $result[$address] = $name;
             }
         }
 
@@ -199,8 +331,8 @@ class Mailer extends MailerBase
          * Extensibility
          */
         if (
-            ($this->fireEvent('mailer.beforeAddContent', [$message, $view, $data], true) === false) ||
-            (Event::fire('mailer.beforeAddContent', [$this, $message, $view, $data], true) === false)
+            ($this->fireEvent('mailer.beforeAddContent', [$message, $view, $data, $raw, $plain], true) === false) ||
+            (Event::fire('mailer.beforeAddContent', [$this, $message, $view, $data, $raw, $plain], true) === false)
         ) {
             return;
         }
@@ -209,7 +341,7 @@ class Mailer extends MailerBase
         $text = null;
 
         if (isset($view)) {
-            $viewContent = $this->getView($view, $data);
+            $viewContent = $this->renderView($view, $data);
             $result = MailParser::parse($viewContent);
             $html = $result['html'];
 
@@ -230,7 +362,7 @@ class Mailer extends MailerBase
         }
 
         if (isset($plain)) {
-            $text = $this->getView($plain, $data);
+            $text = $this->renderView($plain, $data);
         }
 
         if (isset($raw)) {
@@ -265,4 +397,21 @@ class Mailer extends MailerBase
         }
     }
 
+    /**
+     * Tell the mailer to not really send messages.
+     *
+     * @param  bool  $value
+     * @return void
+     */
+    public function pretend($value = true)
+    {
+        if ($value) {
+            $this->pretendingOriginal = Config::get('mail.driver');
+
+            Config::set('mail.driver', 'log');
+        }
+        else {
+            Config::set('mail.driver', $this->pretendingOriginal);
+        }
+    }
 }

@@ -14,7 +14,7 @@ columns:
     admin:
         label: fireunion.blogfront::lang.author.admin_id
         relation: admin
-        select: concat( last_name, ", ", first_name)
+        select: concat( last_name, ', ', first_name)
         searchable: true
     cat_names:
         type: partial
@@ -22,6 +22,9 @@ columns:
         label: fireunion.blogfront::lang.author.categories
     can_publish:
         label: fireunion.blogfront::lang.author.can_publish
+        type: switch
+    allow_images:
+        label: fireunion.blogfront::lang.author.allow_images
         type: switch
     note:
         label: fireunion.blogfront::lang.author.note

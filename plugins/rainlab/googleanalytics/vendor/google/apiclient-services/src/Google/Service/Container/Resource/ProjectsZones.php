@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -26,7 +26,7 @@
 class Google_Service_Container_Resource_ProjectsZones extends Google_Service_Resource
 {
   /**
-   * Returns configuration info about the Container Engine service.
+   * Returns configuration info about the Kubernetes Engine service.
    * (zones.getServerconfig)
    *
    * @param string $projectId The Google Developers Console [project ID or project

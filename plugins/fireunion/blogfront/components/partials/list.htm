@@ -9,7 +9,7 @@
                 </tr>
 {% for post in __SELF__.posts  %}
                 <tr>
-                    <td class=""><a href="https://wwrfresource.com/blog/post/{{ post.slug }}">{{ post.title }}</a></td>
+                    <td class="">{{ post.title }}</td>
                     <td class="">{{ __SELF__.categoryStr(post)|raw }}</td>
                     <td class="">{{ post.published?post.published_at|date('m/d/Y'):'--/--/----' }}</td>
                     <td class="">{{ post.author.name }} {{ post.author.surname }}</td>

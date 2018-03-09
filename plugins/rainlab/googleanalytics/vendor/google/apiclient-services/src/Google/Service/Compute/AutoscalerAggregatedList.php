@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -23,6 +23,8 @@ class Google_Service_Compute_AutoscalerAggregatedList extends Google_Model
   public $kind;
   public $nextPageToken;
   public $selfLink;
+  protected $warningType = 'Google_Service_Compute_AutoscalerAggregatedListWarning';
+  protected $warningDataType = '';
 
   public function setId($id)
   {
@@ -32,10 +34,16 @@ class Google_Service_Compute_AutoscalerAggregatedList extends Google_Model
   {
     return $this->id;
   }
+  /**
+   * @param Google_Service_Compute_AutoscalersScopedList
+   */
   public function setItems($items)
   {
     $this->items = $items;
   }
+  /**
+   * @return Google_Service_Compute_AutoscalersScopedList
+   */
   public function getItems()
   {
     return $this->items;
@@ -63,5 +71,19 @@ class Google_Service_Compute_AutoscalerAggregatedList extends Google_Model
   public function getSelfLink()
   {
     return $this->selfLink;
+  }
+  /**
+   * @param Google_Service_Compute_AutoscalerAggregatedListWarning
+   */
+  public function setWarning(Google_Service_Compute_AutoscalerAggregatedListWarning $warning)
+  {
+    $this->warning = $warning;
+  }
+  /**
+   * @return Google_Service_Compute_AutoscalerAggregatedListWarning
+   */
+  public function getWarning()
+  {
+    return $this->warning;
   }
 }

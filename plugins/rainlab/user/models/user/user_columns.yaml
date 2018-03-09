@@ -5,7 +5,7 @@
 columns:
 
     kdoc_number:
-        label: rainlab.user::lang.user.kdoc
+        label: Number
         searchable: true
 
     name:

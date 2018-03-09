@@ -37,13 +37,13 @@ class KeyGenerateCommand extends KeyGenerateCommandBase
      *
      * @return void
      */
-    public function fire()
+    public function handle()
     {
         list($path, $contents) = $this->getKeyFile();
 
         $oldKey = $this->laravel['config']['app.key'];
 
-        parent::fire();
+        parent::handle();
 
         $newKey = $this->laravel['config']['app.key'];
 

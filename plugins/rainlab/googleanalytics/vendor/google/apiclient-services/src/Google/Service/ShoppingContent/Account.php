@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,10 +17,12 @@
 
 class Google_Service_ShoppingContent_Account extends Google_Collection
 {
-  protected $collection_key = 'users';
+  protected $collection_key = 'youtubeChannelLinks';
   public $adultContent;
   protected $adwordsLinksType = 'Google_Service_ShoppingContent_AccountAdwordsLink';
   protected $adwordsLinksDataType = 'array';
+  protected $googleMyBusinessLinkType = 'Google_Service_ShoppingContent_AccountGoogleMyBusinessLink';
+  protected $googleMyBusinessLinkDataType = '';
   public $id;
   public $kind;
   public $name;
@@ -29,6 +31,8 @@ class Google_Service_ShoppingContent_Account extends Google_Collection
   protected $usersType = 'Google_Service_ShoppingContent_AccountUser';
   protected $usersDataType = 'array';
   public $websiteUrl;
+  protected $youtubeChannelLinksType = 'Google_Service_ShoppingContent_AccountYouTubeChannelLink';
+  protected $youtubeChannelLinksDataType = 'array';
 
   public function setAdultContent($adultContent)
   {
@@ -38,13 +42,33 @@ class Google_Service_ShoppingContent_Account extends Google_Collection
   {
     return $this->adultContent;
   }
+  /**
+   * @param Google_Service_ShoppingContent_AccountAdwordsLink
+   */
   public function setAdwordsLinks($adwordsLinks)
   {
     $this->adwordsLinks = $adwordsLinks;
   }
+  /**
+   * @return Google_Service_ShoppingContent_AccountAdwordsLink
+   */
   public function getAdwordsLinks()
   {
     return $this->adwordsLinks;
+  }
+  /**
+   * @param Google_Service_ShoppingContent_AccountGoogleMyBusinessLink
+   */
+  public function setGoogleMyBusinessLink(Google_Service_ShoppingContent_AccountGoogleMyBusinessLink $googleMyBusinessLink)
+  {
+    $this->googleMyBusinessLink = $googleMyBusinessLink;
+  }
+  /**
+   * @return Google_Service_ShoppingContent_AccountGoogleMyBusinessLink
+   */
+  public function getGoogleMyBusinessLink()
+  {
+    return $this->googleMyBusinessLink;
   }
   public function setId($id)
   {
@@ -86,10 +110,16 @@ class Google_Service_ShoppingContent_Account extends Google_Collection
   {
     return $this->sellerId;
   }
+  /**
+   * @param Google_Service_ShoppingContent_AccountUser
+   */
   public function setUsers($users)
   {
     $this->users = $users;
   }
+  /**
+   * @return Google_Service_ShoppingContent_AccountUser
+   */
   public function getUsers()
   {
     return $this->users;
@@ -101,5 +131,19 @@ class Google_Service_ShoppingContent_Account extends Google_Collection
   public function getWebsiteUrl()
   {
     return $this->websiteUrl;
+  }
+  /**
+   * @param Google_Service_ShoppingContent_AccountYouTubeChannelLink
+   */
+  public function setYoutubeChannelLinks($youtubeChannelLinks)
+  {
+    $this->youtubeChannelLinks = $youtubeChannelLinks;
+  }
+  /**
+   * @return Google_Service_ShoppingContent_AccountYouTubeChannelLink
+   */
+  public function getYoutubeChannelLinks()
+  {
+    return $this->youtubeChannelLinks;
   }
 }

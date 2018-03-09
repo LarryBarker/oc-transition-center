@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -22,7 +22,8 @@ class Google_Service_Dfareporting_CreativeCustomEvent extends Google_Model
   public $advertiserCustomEventType;
   public $artworkLabel;
   public $artworkType;
-  public $exitUrl;
+  protected $exitClickThroughUrlType = 'Google_Service_Dfareporting_CreativeClickThroughUrl';
+  protected $exitClickThroughUrlDataType = '';
   public $id;
   protected $popupWindowPropertiesType = 'Google_Service_Dfareporting_PopupWindowProperties';
   protected $popupWindowPropertiesDataType = '';
@@ -69,13 +70,19 @@ class Google_Service_Dfareporting_CreativeCustomEvent extends Google_Model
   {
     return $this->artworkType;
   }
-  public function setExitUrl($exitUrl)
+  /**
+   * @param Google_Service_Dfareporting_CreativeClickThroughUrl
+   */
+  public function setExitClickThroughUrl(Google_Service_Dfareporting_CreativeClickThroughUrl $exitClickThroughUrl)
   {
-    $this->exitUrl = $exitUrl;
+    $this->exitClickThroughUrl = $exitClickThroughUrl;
   }
-  public function getExitUrl()
+  /**
+   * @return Google_Service_Dfareporting_CreativeClickThroughUrl
+   */
+  public function getExitClickThroughUrl()
   {
-    return $this->exitUrl;
+    return $this->exitClickThroughUrl;
   }
   public function setId($id)
   {
@@ -85,10 +92,16 @@ class Google_Service_Dfareporting_CreativeCustomEvent extends Google_Model
   {
     return $this->id;
   }
+  /**
+   * @param Google_Service_Dfareporting_PopupWindowProperties
+   */
   public function setPopupWindowProperties(Google_Service_Dfareporting_PopupWindowProperties $popupWindowProperties)
   {
     $this->popupWindowProperties = $popupWindowProperties;
   }
+  /**
+   * @return Google_Service_Dfareporting_PopupWindowProperties
+   */
   public function getPopupWindowProperties()
   {
     return $this->popupWindowProperties;

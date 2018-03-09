@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -21,6 +21,7 @@ class Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartySetAccountInfoRe
   public $captchaChallenge;
   public $captchaResponse;
   public $createdAt;
+  public $customAttributes;
   public $delegatedProjectNumber;
   public $deleteAttribute;
   public $deleteProvider;
@@ -34,6 +35,7 @@ class Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartySetAccountInfoRe
   public $localId;
   public $oobCode;
   public $password;
+  public $phoneNumber;
   public $photoUrl;
   public $provider;
   public $returnSecureToken;
@@ -63,6 +65,14 @@ class Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartySetAccountInfoRe
   public function getCreatedAt()
   {
     return $this->createdAt;
+  }
+  public function setCustomAttributes($customAttributes)
+  {
+    $this->customAttributes = $customAttributes;
+  }
+  public function getCustomAttributes()
+  {
+    return $this->customAttributes;
   }
   public function setDelegatedProjectNumber($delegatedProjectNumber)
   {
@@ -167,6 +177,14 @@ class Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartySetAccountInfoRe
   public function getPassword()
   {
     return $this->password;
+  }
+  public function setPhoneNumber($phoneNumber)
+  {
+    $this->phoneNumber = $phoneNumber;
+  }
+  public function getPhoneNumber()
+  {
+    return $this->phoneNumber;
   }
   public function setPhotoUrl($photoUrl)
   {

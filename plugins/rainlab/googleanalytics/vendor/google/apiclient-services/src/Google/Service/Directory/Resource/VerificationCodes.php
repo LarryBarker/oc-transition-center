@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -29,7 +29,7 @@ class Google_Service_Directory_Resource_VerificationCodes extends Google_Service
    * Generate new backup verification codes for the user.
    * (verificationCodes.generate)
    *
-   * @param string $userKey Email or immutable Id of the user
+   * @param string $userKey Email or immutable ID of the user
    * @param array $optParams Optional parameters.
    */
   public function generate($userKey, $optParams = array())
@@ -42,7 +42,7 @@ class Google_Service_Directory_Resource_VerificationCodes extends Google_Service
    * Invalidate the current backup verification codes for the user.
    * (verificationCodes.invalidate)
    *
-   * @param string $userKey Email or immutable Id of the user
+   * @param string $userKey Email or immutable ID of the user
    * @param array $optParams Optional parameters.
    */
   public function invalidate($userKey, $optParams = array())

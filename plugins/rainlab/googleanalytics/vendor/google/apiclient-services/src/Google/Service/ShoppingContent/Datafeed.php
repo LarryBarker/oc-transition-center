@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,7 +17,7 @@
 
 class Google_Service_ShoppingContent_Datafeed extends Google_Collection
 {
-  protected $collection_key = 'intendedDestinations';
+  protected $collection_key = 'targets';
   public $attributeLanguage;
   public $contentLanguage;
   public $contentType;
@@ -31,6 +31,8 @@ class Google_Service_ShoppingContent_Datafeed extends Google_Collection
   public $kind;
   public $name;
   public $targetCountry;
+  protected $targetsType = 'Google_Service_ShoppingContent_DatafeedTarget';
+  protected $targetsDataType = 'array';
 
   public function setAttributeLanguage($attributeLanguage)
   {
@@ -56,10 +58,16 @@ class Google_Service_ShoppingContent_Datafeed extends Google_Collection
   {
     return $this->contentType;
   }
+  /**
+   * @param Google_Service_ShoppingContent_DatafeedFetchSchedule
+   */
   public function setFetchSchedule(Google_Service_ShoppingContent_DatafeedFetchSchedule $fetchSchedule)
   {
     $this->fetchSchedule = $fetchSchedule;
   }
+  /**
+   * @return Google_Service_ShoppingContent_DatafeedFetchSchedule
+   */
   public function getFetchSchedule()
   {
     return $this->fetchSchedule;
@@ -72,10 +80,16 @@ class Google_Service_ShoppingContent_Datafeed extends Google_Collection
   {
     return $this->fileName;
   }
+  /**
+   * @param Google_Service_ShoppingContent_DatafeedFormat
+   */
   public function setFormat(Google_Service_ShoppingContent_DatafeedFormat $format)
   {
     $this->format = $format;
   }
+  /**
+   * @return Google_Service_ShoppingContent_DatafeedFormat
+   */
   public function getFormat()
   {
     return $this->format;
@@ -119,5 +133,19 @@ class Google_Service_ShoppingContent_Datafeed extends Google_Collection
   public function getTargetCountry()
   {
     return $this->targetCountry;
+  }
+  /**
+   * @param Google_Service_ShoppingContent_DatafeedTarget
+   */
+  public function setTargets($targets)
+  {
+    $this->targets = $targets;
+  }
+  /**
+   * @return Google_Service_ShoppingContent_DatafeedTarget
+   */
+  public function getTargets()
+  {
+    return $this->targets;
   }
 }

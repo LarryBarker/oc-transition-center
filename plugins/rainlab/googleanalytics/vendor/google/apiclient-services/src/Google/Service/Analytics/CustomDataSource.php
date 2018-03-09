@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,7 +17,7 @@
 
 class Google_Service_Analytics_CustomDataSource extends Google_Collection
 {
-  protected $collection_key = 'profilesLinked';
+  protected $collection_key = 'schema';
   public $accountId;
   protected $childLinkType = 'Google_Service_Analytics_CustomDataSourceChildLink';
   protected $childLinkDataType = '';
@@ -30,6 +30,7 @@ class Google_Service_Analytics_CustomDataSource extends Google_Collection
   protected $parentLinkType = 'Google_Service_Analytics_CustomDataSourceParentLink';
   protected $parentLinkDataType = '';
   public $profilesLinked;
+  public $schema;
   public $selfLink;
   public $type;
   public $updated;
@@ -44,10 +45,16 @@ class Google_Service_Analytics_CustomDataSource extends Google_Collection
   {
     return $this->accountId;
   }
+  /**
+   * @param Google_Service_Analytics_CustomDataSourceChildLink
+   */
   public function setChildLink(Google_Service_Analytics_CustomDataSourceChildLink $childLink)
   {
     $this->childLink = $childLink;
   }
+  /**
+   * @return Google_Service_Analytics_CustomDataSourceChildLink
+   */
   public function getChildLink()
   {
     return $this->childLink;
@@ -100,10 +107,16 @@ class Google_Service_Analytics_CustomDataSource extends Google_Collection
   {
     return $this->name;
   }
+  /**
+   * @param Google_Service_Analytics_CustomDataSourceParentLink
+   */
   public function setParentLink(Google_Service_Analytics_CustomDataSourceParentLink $parentLink)
   {
     $this->parentLink = $parentLink;
   }
+  /**
+   * @return Google_Service_Analytics_CustomDataSourceParentLink
+   */
   public function getParentLink()
   {
     return $this->parentLink;
@@ -115,6 +128,14 @@ class Google_Service_Analytics_CustomDataSource extends Google_Collection
   public function getProfilesLinked()
   {
     return $this->profilesLinked;
+  }
+  public function setSchema($schema)
+  {
+    $this->schema = $schema;
+  }
+  public function getSchema()
+  {
+    return $this->schema;
   }
   public function setSelfLink($selfLink)
   {

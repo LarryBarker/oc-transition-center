@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,29 +17,39 @@
 
 class Google_Service_CloudKMS_Policy extends Google_Collection
 {
-  protected $collection_key = 'rules';
+  protected $collection_key = 'bindings';
   protected $auditConfigsType = 'Google_Service_CloudKMS_AuditConfig';
   protected $auditConfigsDataType = 'array';
   protected $bindingsType = 'Google_Service_CloudKMS_Binding';
   protected $bindingsDataType = 'array';
   public $etag;
   public $iamOwned;
-  protected $rulesType = 'Google_Service_CloudKMS_Rule';
-  protected $rulesDataType = 'array';
   public $version;
 
+  /**
+   * @param Google_Service_CloudKMS_AuditConfig
+   */
   public function setAuditConfigs($auditConfigs)
   {
     $this->auditConfigs = $auditConfigs;
   }
+  /**
+   * @return Google_Service_CloudKMS_AuditConfig
+   */
   public function getAuditConfigs()
   {
     return $this->auditConfigs;
   }
+  /**
+   * @param Google_Service_CloudKMS_Binding
+   */
   public function setBindings($bindings)
   {
     $this->bindings = $bindings;
   }
+  /**
+   * @return Google_Service_CloudKMS_Binding
+   */
   public function getBindings()
   {
     return $this->bindings;
@@ -59,14 +69,6 @@ class Google_Service_CloudKMS_Policy extends Google_Collection
   public function getIamOwned()
   {
     return $this->iamOwned;
-  }
-  public function setRules($rules)
-  {
-    $this->rules = $rules;
-  }
-  public function getRules()
-  {
-    return $this->rules;
   }
   public function setVersion($version)
   {

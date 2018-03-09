@@ -97,6 +97,38 @@ class Plugin extends PluginBase
                 'order' => 'surname asc',
                 'conditions' => 'is_counselor = 1'
             ];
+
+            $model->addDynamicMethod('scopeListFrontEnd', function($query, $options = []){
+                extract(array_merge([
+                    'page' => 1,
+                    'perPage' => 10,
+                    'sort' => 'last_seen desc',
+                    'industries' => null
+                ], $options));
+        
+                $query = $query->whereHas('groups', function($q){
+                    $q->where('id', '=', '2')->where('status','!=','unavailable');
+                })->whereIsActivated(true)->orderBy('last_seen','desc');
+        
+                if($industries !== null){
+                    if(!is_array($industries)){
+                        $industries = [$industries];
+                    };
+                    foreach($industries as $industry){
+                        $query->whereHas('industries', function($q) use ($industry){
+                            $q->where('id', '=', $industry);
+                        });
+                    }
+                }
+        
+                $lastPage = $query->paginate($perPage, $page)->lastPage();
+        
+                if($lastPage < $page){
+                    $page = 1;
+                }
+                
+                return $query->paginate($perPage, $page);
+            });
         });
 
         UsersController::extend(function($controller){         
