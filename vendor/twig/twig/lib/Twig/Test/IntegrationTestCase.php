@@ -9,18 +9,28 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Integration test helper.
  *
  * @author Fabien Potencier <fabien@symfony.com>
  * @author Karma Dordrak <drak@zikula.org>
  */
-abstract class Twig_Test_IntegrationTestCase extends PHPUnit_Framework_TestCase
+abstract class Twig_Test_IntegrationTestCase extends TestCase
 {
     /**
      * @return string
      */
     abstract protected function getFixturesDir();
+
+    /**
+     * @return Twig_RuntimeLoaderInterface[]
+     */
+    protected function getRuntimeLoaders()
+    {
+        return array();
+    }
 
     /**
      * @return Twig_ExtensionInterface[]
@@ -31,7 +41,7 @@ abstract class Twig_Test_IntegrationTestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return Twig_SimpleFilter[]
+     * @return Twig_Filter[]
      */
     protected function getTwigFilters()
     {
@@ -39,7 +49,7 @@ abstract class Twig_Test_IntegrationTestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return Twig_SimpleFunction[]
+     * @return Twig_Function[]
      */
     protected function getTwigFunctions()
     {
@@ -47,7 +57,7 @@ abstract class Twig_Test_IntegrationTestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return Twig_SimpleTest[]
+     * @return Twig_Test[]
      */
     protected function getTwigTests()
     {
@@ -141,6 +151,10 @@ abstract class Twig_Test_IntegrationTestCase extends PHPUnit_Framework_TestCase
             ), $match[2] ? eval($match[2].';') : array());
             $twig = new Twig_Environment($loader, $config);
             $twig->addGlobal('global', 'global');
+            foreach ($this->getRuntimeLoaders() as $runtimeLoader) {
+                $twig->addRuntimeLoader($runtimeLoader);
+            }
+
             foreach ($this->getExtensions() as $extension) {
                 $twig->addExtension($extension);
             }
@@ -158,12 +172,9 @@ abstract class Twig_Test_IntegrationTestCase extends PHPUnit_Framework_TestCase
             }
 
             // avoid using the same PHP class name for different cases
-            // only for PHP 5.2+
-            if (PHP_VERSION_ID >= 50300) {
-                $p = new ReflectionProperty($twig, 'templateClassPrefix');
-                $p->setAccessible(true);
-                $p->setValue($twig, '__TwigTemplate_'.hash('sha256', uniqid(mt_rand(), true), false).'_');
-            }
+            $p = new ReflectionProperty($twig, 'templateClassPrefix');
+            $p->setAccessible(true);
+            $p->setValue($twig, '__TwigTemplate_'.hash('sha256', uniqid(mt_rand(), true), false).'_');
 
             try {
                 $template = $twig->loadTemplate('index.twig');
@@ -196,7 +207,8 @@ abstract class Twig_Test_IntegrationTestCase extends PHPUnit_Framework_TestCase
 
             if (false !== $exception) {
                 list($class) = explode(':', $exception);
-                $this->assertThat(null, new PHPUnit_Framework_Constraint_Exception($class));
+                $constraintClass = class_exists('PHPUnit\Framework\Constraint\Exception') ? 'PHPUnit\Framework\Constraint\Exception' : 'PHPUnit_Framework_Constraint_Exception';
+                $this->assertThat(null, new $constraintClass($class));
             }
 
             $expected = trim($match[3], "\n ");
@@ -206,13 +218,7 @@ abstract class Twig_Test_IntegrationTestCase extends PHPUnit_Framework_TestCase
 
                 foreach (array_keys($templates) as $name) {
                     echo "Template: $name\n";
-                    $loader = $twig->getLoader();
-                    if (!$loader instanceof Twig_SourceContextLoaderInterface) {
-                        $source = new Twig_Source($loader->getSource($name), $name);
-                    } else {
-                        $source = $loader->getSourceContext($name);
-                    }
-                    echo $twig->compile($twig->parse($twig->tokenize($source)));
+                    echo $twig->compile($twig->parse($twig->tokenize($twig->getLoader()->getSourceContext($name))));
                 }
             }
             $this->assertEquals($expected, $output, $message.' (in '.$file.')');
@@ -230,3 +236,5 @@ abstract class Twig_Test_IntegrationTestCase extends PHPUnit_Framework_TestCase
         return $templates;
     }
 }
+
+class_alias('Twig_Test_IntegrationTestCase', 'Twig\Test\IntegrationTestCase', false);

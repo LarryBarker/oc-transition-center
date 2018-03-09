@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -27,10 +27,9 @@ class Google_Service_Logging_Resource_ProjectsSinks extends Google_Service_Resou
 {
   /**
    * Creates a sink that exports specified log entries to a destination. The
-   * export of newly-ingested log entries begins immediately, unless the current
-   * time is outside the sink's start and end times or the sink's writer_identity
-   * is not permitted to write to the destination. A sink can export log entries
-   * only from the resource owning the sink. (sinks.create)
+   * export of newly-ingested log entries begins immediately, unless the sink's
+   * writer_identity is not permitted to write to the destination. A sink can
+   * export log entries only from the resource owning the sink. (sinks.create)
    *
    * @param string $parent Required. The resource in which to create the sink:
    * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
@@ -119,12 +118,10 @@ class Google_Service_Logging_Resource_ProjectsSinks extends Google_Service_Resou
     return $this->call('list', array($params), "Google_Service_Logging_ListSinksResponse");
   }
   /**
-   * Updates a sink. If the named sink doesn't exist, then this method is
-   * identical to sinks.create. If the named sink does exist, then this method
-   * replaces the following fields in the existing sink with values from the new
-   * sink: destination, filter, output_version_format, start_time, and end_time.
-   * The updated filter might also have a new writer_identity; see the
-   * unique_writer_identity field. (sinks.update)
+   * Updates a sink. This method replaces the following fields in the existing
+   * sink with values from the new sink: destination, and filter. The updated sink
+   * might also have a new writer_identity; see the unique_writer_identity field.
+   * (sinks.patch)
    *
    * @param string $sinkName Required. The full resource name of the sink to
    * update, including the parent resource and the sink identifier:
@@ -143,7 +140,57 @@ class Google_Service_Logging_Resource_ProjectsSinks extends Google_Service_Resou
    * false or both true, then there is no change to the sink's writer_identity. If
    * the old value is false and the new value is true, then writer_identity is
    * changed to a unique service account. It is an error if the old value is true
-   * and the new value is false.
+   * and the new value is set to false or defaulted to false.
+   * @opt_param string updateMask Optional. Field mask that specifies the fields
+   * in sink that need an update. A sink field will be overwritten if, and only
+   * if, it is in the update mask. name and output only fields cannot be
+   * updated.An empty updateMask is temporarily treated as using the following
+   * mask for backwards compatibility purposes:
+   * destination,filter,includeChildren At some point in the future, behavior will
+   * be removed and specifying an empty updateMask will be an error.For a detailed
+   * FieldMask definition, see https://developers.google.com/protocol-
+   * buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
+   * @return Google_Service_Logging_LogSink
+   */
+  public function patch($sinkName, Google_Service_Logging_LogSink $postBody, $optParams = array())
+  {
+    $params = array('sinkName' => $sinkName, 'postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('patch', array($params), "Google_Service_Logging_LogSink");
+  }
+  /**
+   * Updates a sink. This method replaces the following fields in the existing
+   * sink with values from the new sink: destination, and filter. The updated sink
+   * might also have a new writer_identity; see the unique_writer_identity field.
+   * (sinks.update)
+   *
+   * @param string $sinkName Required. The full resource name of the sink to
+   * update, including the parent resource and the sink identifier:
+   * "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+   * "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+   * "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+   * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks
+   * /my-sink-id".
+   * @param Google_Service_Logging_LogSink $postBody
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param bool uniqueWriterIdentity Optional. See sinks.create for a
+   * description of this field. When updating a sink, the effect of this field on
+   * the value of writer_identity in the updated sink depends on both the old and
+   * new values of this field: If the old and new values of this field are both
+   * false or both true, then there is no change to the sink's writer_identity. If
+   * the old value is false and the new value is true, then writer_identity is
+   * changed to a unique service account. It is an error if the old value is true
+   * and the new value is set to false or defaulted to false.
+   * @opt_param string updateMask Optional. Field mask that specifies the fields
+   * in sink that need an update. A sink field will be overwritten if, and only
+   * if, it is in the update mask. name and output only fields cannot be
+   * updated.An empty updateMask is temporarily treated as using the following
+   * mask for backwards compatibility purposes:
+   * destination,filter,includeChildren At some point in the future, behavior will
+   * be removed and specifying an empty updateMask will be an error.For a detailed
+   * FieldMask definition, see https://developers.google.com/protocol-
+   * buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
    * @return Google_Service_Logging_LogSink
    */
   public function update($sinkName, Google_Service_Logging_LogSink $postBody, $optParams = array())

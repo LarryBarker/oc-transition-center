@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,6 +19,8 @@ class Google_Service_Dataflow_DistributionUpdate extends Google_Model
 {
   protected $countType = 'Google_Service_Dataflow_SplitInt64';
   protected $countDataType = '';
+  protected $histogramType = 'Google_Service_Dataflow_Histogram';
+  protected $histogramDataType = '';
   protected $maxType = 'Google_Service_Dataflow_SplitInt64';
   protected $maxDataType = '';
   protected $minType = 'Google_Service_Dataflow_SplitInt64';
@@ -27,34 +29,72 @@ class Google_Service_Dataflow_DistributionUpdate extends Google_Model
   protected $sumDataType = '';
   public $sumOfSquares;
 
+  /**
+   * @param Google_Service_Dataflow_SplitInt64
+   */
   public function setCount(Google_Service_Dataflow_SplitInt64 $count)
   {
     $this->count = $count;
   }
+  /**
+   * @return Google_Service_Dataflow_SplitInt64
+   */
   public function getCount()
   {
     return $this->count;
   }
+  /**
+   * @param Google_Service_Dataflow_Histogram
+   */
+  public function setHistogram(Google_Service_Dataflow_Histogram $histogram)
+  {
+    $this->histogram = $histogram;
+  }
+  /**
+   * @return Google_Service_Dataflow_Histogram
+   */
+  public function getHistogram()
+  {
+    return $this->histogram;
+  }
+  /**
+   * @param Google_Service_Dataflow_SplitInt64
+   */
   public function setMax(Google_Service_Dataflow_SplitInt64 $max)
   {
     $this->max = $max;
   }
+  /**
+   * @return Google_Service_Dataflow_SplitInt64
+   */
   public function getMax()
   {
     return $this->max;
   }
+  /**
+   * @param Google_Service_Dataflow_SplitInt64
+   */
   public function setMin(Google_Service_Dataflow_SplitInt64 $min)
   {
     $this->min = $min;
   }
+  /**
+   * @return Google_Service_Dataflow_SplitInt64
+   */
   public function getMin()
   {
     return $this->min;
   }
+  /**
+   * @param Google_Service_Dataflow_SplitInt64
+   */
   public function setSum(Google_Service_Dataflow_SplitInt64 $sum)
   {
     $this->sum = $sum;
   }
+  /**
+   * @return Google_Service_Dataflow_SplitInt64
+   */
   public function getSum()
   {
     return $this->sum;

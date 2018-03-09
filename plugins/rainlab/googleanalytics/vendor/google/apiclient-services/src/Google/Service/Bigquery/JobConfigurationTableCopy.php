@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,6 +19,8 @@ class Google_Service_Bigquery_JobConfigurationTableCopy extends Google_Collectio
 {
   protected $collection_key = 'sourceTables';
   public $createDisposition;
+  protected $destinationEncryptionConfigurationType = 'Google_Service_Bigquery_EncryptionConfiguration';
+  protected $destinationEncryptionConfigurationDataType = '';
   protected $destinationTableType = 'Google_Service_Bigquery_TableReference';
   protected $destinationTableDataType = '';
   protected $sourceTableType = 'Google_Service_Bigquery_TableReference';
@@ -35,26 +37,58 @@ class Google_Service_Bigquery_JobConfigurationTableCopy extends Google_Collectio
   {
     return $this->createDisposition;
   }
+  /**
+   * @param Google_Service_Bigquery_EncryptionConfiguration
+   */
+  public function setDestinationEncryptionConfiguration(Google_Service_Bigquery_EncryptionConfiguration $destinationEncryptionConfiguration)
+  {
+    $this->destinationEncryptionConfiguration = $destinationEncryptionConfiguration;
+  }
+  /**
+   * @return Google_Service_Bigquery_EncryptionConfiguration
+   */
+  public function getDestinationEncryptionConfiguration()
+  {
+    return $this->destinationEncryptionConfiguration;
+  }
+  /**
+   * @param Google_Service_Bigquery_TableReference
+   */
   public function setDestinationTable(Google_Service_Bigquery_TableReference $destinationTable)
   {
     $this->destinationTable = $destinationTable;
   }
+  /**
+   * @return Google_Service_Bigquery_TableReference
+   */
   public function getDestinationTable()
   {
     return $this->destinationTable;
   }
+  /**
+   * @param Google_Service_Bigquery_TableReference
+   */
   public function setSourceTable(Google_Service_Bigquery_TableReference $sourceTable)
   {
     $this->sourceTable = $sourceTable;
   }
+  /**
+   * @return Google_Service_Bigquery_TableReference
+   */
   public function getSourceTable()
   {
     return $this->sourceTable;
   }
+  /**
+   * @param Google_Service_Bigquery_TableReference
+   */
   public function setSourceTables($sourceTables)
   {
     $this->sourceTables = $sourceTables;
   }
+  /**
+   * @return Google_Service_Bigquery_TableReference
+   */
   public function getSourceTables()
   {
     return $this->sourceTables;

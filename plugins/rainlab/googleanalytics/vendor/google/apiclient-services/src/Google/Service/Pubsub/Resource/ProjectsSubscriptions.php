@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -111,8 +111,8 @@ class Google_Service_Pubsub_Resource_ProjectsSubscriptions extends Google_Servic
    * resource exists and does not have a policy set. (subscriptions.getIamPolicy)
    *
    * @param string $resource REQUIRED: The resource for which the policy is being
-   * requested. `resource` is usually specified as a path. For example, a Project
-   * resource is specified as `projects/{project}`.
+   * requested. See the operation documentation for the appropriate value for this
+   * field.
    * @param array $optParams Optional parameters.
    * @return Google_Service_Pubsub_Policy
    */
@@ -184,6 +184,26 @@ class Google_Service_Pubsub_Resource_ProjectsSubscriptions extends Google_Servic
     return $this->call('modifyPushConfig', array($params), "Google_Service_Pubsub_PubsubEmpty");
   }
   /**
+   * Updates an existing subscription. Note that certain properties of a
+   * subscription, such as its topic, are not modifiable. (subscriptions.patch)
+   *
+   * @param string $name The name of the subscription. It must have the format
+   * `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
+   * start with a letter, and contain only letters (`[A-Za-z]`), numbers
+   * (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus
+   * (`+`) or percent signs (`%`). It must be between 3 and 255 characters in
+   * length, and it must not start with `"goog"`.
+   * @param Google_Service_Pubsub_UpdateSubscriptionRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Google_Service_Pubsub_Subscription
+   */
+  public function patch($name, Google_Service_Pubsub_UpdateSubscriptionRequest $postBody, $optParams = array())
+  {
+    $params = array('name' => $name, 'postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('patch', array($params), "Google_Service_Pubsub_Subscription");
+  }
+  /**
    * Pulls messages from the server. Returns an empty list if there are no
    * messages available in the backlog. The server may return `UNAVAILABLE` if
    * there are too many concurrent pull requests pending for the given
@@ -202,12 +222,27 @@ class Google_Service_Pubsub_Resource_ProjectsSubscriptions extends Google_Servic
     return $this->call('pull', array($params), "Google_Service_Pubsub_PullResponse");
   }
   /**
+   * Seeks an existing subscription to a point in time or to a given snapshot,
+   * whichever is provided in the request. (subscriptions.seek)
+   *
+   * @param string $subscription The subscription to affect.
+   * @param Google_Service_Pubsub_SeekRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Google_Service_Pubsub_SeekResponse
+   */
+  public function seek($subscription, Google_Service_Pubsub_SeekRequest $postBody, $optParams = array())
+  {
+    $params = array('subscription' => $subscription, 'postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('seek', array($params), "Google_Service_Pubsub_SeekResponse");
+  }
+  /**
    * Sets the access control policy on the specified resource. Replaces any
    * existing policy. (subscriptions.setIamPolicy)
    *
    * @param string $resource REQUIRED: The resource for which the policy is being
-   * specified. `resource` is usually specified as a path. For example, a Project
-   * resource is specified as `projects/{project}`.
+   * specified. See the operation documentation for the appropriate value for this
+   * field.
    * @param Google_Service_Pubsub_SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_Pubsub_Policy
@@ -228,8 +263,8 @@ class Google_Service_Pubsub_Resource_ProjectsSubscriptions extends Google_Servic
    * "fail open" without warning. (subscriptions.testIamPermissions)
    *
    * @param string $resource REQUIRED: The resource for which the policy detail is
-   * being requested. `resource` is usually specified as a path. For example, a
-   * Project resource is specified as `projects/{project}`.
+   * being requested. See the operation documentation for the appropriate value
+   * for this field.
    * @param Google_Service_Pubsub_TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_Pubsub_TestIamPermissionsResponse

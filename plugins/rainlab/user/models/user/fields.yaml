@@ -74,8 +74,8 @@ secondaryTabs:
     fields:
 
         avatar:
-            label: 'Upload Resume'
+            label: rainlab.user::lang.user.avatar
             type: fileupload
-            mode: file
-            #imageHeight: 260
-            #imageWidth: 260
+            mode: image
+            imageHeight: 260
+            imageWidth: 260

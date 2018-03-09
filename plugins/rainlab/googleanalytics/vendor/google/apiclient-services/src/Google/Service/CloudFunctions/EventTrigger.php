@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -18,7 +18,10 @@
 class Google_Service_CloudFunctions_EventTrigger extends Google_Model
 {
   public $eventType;
+  protected $failurePolicyType = 'Google_Service_CloudFunctions_FailurePolicy';
+  protected $failurePolicyDataType = '';
   public $resource;
+  public $service;
 
   public function setEventType($eventType)
   {
@@ -28,6 +31,20 @@ class Google_Service_CloudFunctions_EventTrigger extends Google_Model
   {
     return $this->eventType;
   }
+  /**
+   * @param Google_Service_CloudFunctions_FailurePolicy
+   */
+  public function setFailurePolicy(Google_Service_CloudFunctions_FailurePolicy $failurePolicy)
+  {
+    $this->failurePolicy = $failurePolicy;
+  }
+  /**
+   * @return Google_Service_CloudFunctions_FailurePolicy
+   */
+  public function getFailurePolicy()
+  {
+    return $this->failurePolicy;
+  }
   public function setResource($resource)
   {
     $this->resource = $resource;
@@ -35,5 +52,13 @@ class Google_Service_CloudFunctions_EventTrigger extends Google_Model
   public function getResource()
   {
     return $this->resource;
+  }
+  public function setService($service)
+  {
+    $this->service = $service;
+  }
+  public function getService()
+  {
+    return $this->service;
   }
 }

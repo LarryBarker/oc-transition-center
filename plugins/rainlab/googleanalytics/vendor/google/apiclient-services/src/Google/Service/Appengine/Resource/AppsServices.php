@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -62,9 +62,9 @@ class Google_Service_Appengine_Resource_AppsServices extends Google_Service_Reso
    * resource. Example: apps/myapp.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param int pageSize Maximum results to return per page.
    * @opt_param string pageToken Continuation token for fetching the next page of
    * results.
+   * @opt_param int pageSize Maximum results to return per page.
    * @return Google_Service_Appengine_ListServicesResponse
    */
   public function listAppsServices($appsId, $optParams = array())
@@ -84,9 +84,9 @@ class Google_Service_Appengine_Resource_AppsServices extends Google_Service_Reso
    *
    * @opt_param string updateMask Standard field mask for the set of fields to be
    * updated.
-   * @opt_param bool migrateTraffic Set to true to gradually shift traffic from
-   * one version to another single version. By default, traffic is shifted
-   * immediately. For gradual traffic migration, the target version must be
+   * @opt_param bool migrateTraffic Set to true to gradually shift traffic to one
+   * or more versions that you specify. By default, traffic is shifted
+   * immediately. For gradual traffic migration, the target versions must be
    * located within instances that are configured for both warmup requests
    * (https://cloud.google.com/appengine/docs/admin-
    * api/reference/rest/v1/apps.services.versions#inboundservicetype) and

@@ -3,7 +3,6 @@
 use October\Rain\Auth\Manager as RainAuthManager;
 use RainLab\User\Models\Settings as UserSettings;
 use RainLab\User\Models\UserGroup as UserGroupModel;
-use October\Rain\Auth\AuthException;
 
 class AuthManager extends RainAuthManager
 {
@@ -35,47 +34,13 @@ class AuthManager extends RainAuthManager
     /**
      * {@inheritDoc}
      */
-    public function login($user, $remember = false)
-    {
-        if ($user->is_guest) {
-            $login = $user->getLogin();
-            throw new AuthException(sprintf(
-                'Cannot login user "%s" as they are not registered.', $login
-            ));
-        }
-
-        parent::login($user, $remember);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function register(array $credentials, $activate = false)
     {
         if ($guest = $this->findGuestUserByCredentials($credentials)) {
             return $this->convertGuestToUser($guest, $credentials, $activate);
         }
 
-        $user = $this->createUserModel();
-        $user->fill($credentials);
-        $user->save();
-
-        if ($activate) {
-            $user->attemptActivation($user->getActivationCode());
-        }
-
-        // Add user to employers group
-        $group = UserGroupModel::getEmployersGroup();
-        $user->groups()->add($group);
-        
-
-        // Prevents revalidation of the password field
-        // on subsequent saves to this model object
-        $user->password = null;
-
-        return $this->user = $user;
-        
-        //return self::register($credentials, $activate);
+        return parent::register($credentials, $activate);
     }
 
     //
@@ -153,38 +118,6 @@ class AuthManager extends RainAuthManager
 
         if ($activate) {
             $user->attemptActivation($user->getActivationCode());
-        }
-
-        // Prevents revalidation of the password field
-        // on subsequent saves to this model object
-        $user->password = null;
-
-        return $this->user = $user;
-    }
-
-    /**
-     * Registers an employer.
-     *
-     * @param array $credentials
-     * @return Models\User
-     */
-    public function registerEmployer(array $credentials)
-    {
-        
-        $newUser = false;
-
-        if (!$user) {
-            $user = $this->createUserModel();
-            $newUser = true;
-        }
-
-        $user->fill($credentials);
-        $user->is_guest = true;
-        $user->save();
-
-        // Add user to guest group
-        if ($newUser && $group = UserGroupModel::getGuestGroup()) {
-            $user->groups()->add($group);
         }
 
         // Prevents revalidation of the password field

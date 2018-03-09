@@ -4,14 +4,23 @@
 
 columns:
 
-    kdoc_number:
-        label: rainlab.user::lang.user.kdoc
+    id:
+        label: rainlab.user::lang.user.id
+        invisible: true
+
+    username:
+        label: rainlab.user::lang.user.username
         searchable: true
+        invisible: true
 
     name:
         label: rainlab.user::lang.user.name
         searchable: true
-        select: concat(surname, ', ', name)
+
+    surname:
+        label: rainlab.user::lang.user.surname
+        searchable: true
+        invisible: true
 
     email:
         label: rainlab.user::lang.user.email
@@ -25,5 +34,7 @@ columns:
         label: rainlab.user::lang.user.last_seen
         type: timetense
 
-    updated_at:
-        label: Updated
+    is_guest:
+        label: rainlab.user::lang.user.is_guest
+        type: switch
+        invisible: true

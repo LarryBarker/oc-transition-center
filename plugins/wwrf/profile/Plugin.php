@@ -298,6 +298,41 @@ class Plugin extends PluginBase
 
             });
 
+            $model->addDynamicMethod('scopeIsEmployed', function($query, $filter)
+            {
+                if($filter == 2){
+                    return $query->has('jobs', '>', 0);
+                }elseif($filter == 1) {
+                    return $query->has('jobs', '<', 1);
+                }
+            });
+
+            $model->addDynamicMethod('scopeFilterByGroup', function($query, $filter)
+            {
+                return $query->whereHas('groups', function($group) use ($filter) {
+                    $group->whereIn('id', $filter);
+                });
+            });
+
+            $model->addDynamicMethod('scopeFilterByStatus', function($query, $filter)
+            {
+                return $query->where('status', '=', $filter);
+            });
+
+            /**
+             * Scope a query to only filter according to date.
+             */
+            $model->addDynamicMethod('scopeFilterByStartDate', function($query, $after, $before)
+            {
+                $countJobs =  $query->whereHas('jobs', function($q) use ($after, $before) {
+                    $q->whereBetween('start_date', array($after, $before));
+                });
+
+                return $query->whereHas('jobs', function($q) use ($after, $before) {
+                        $q->whereBetween('start_date', array($after, $before));
+                });
+            });
+
         });
 
     }

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,19 +19,58 @@ class Google_Service_ShoppingContent_OrdersCancelLineItemRequest extends Google_
 {
   protected $amountType = 'Google_Service_ShoppingContent_Price';
   protected $amountDataType = '';
+  protected $amountPretaxType = 'Google_Service_ShoppingContent_Price';
+  protected $amountPretaxDataType = '';
+  protected $amountTaxType = 'Google_Service_ShoppingContent_Price';
+  protected $amountTaxDataType = '';
   public $lineItemId;
   public $operationId;
+  public $productId;
   public $quantity;
   public $reason;
   public $reasonText;
 
+  /**
+   * @param Google_Service_ShoppingContent_Price
+   */
   public function setAmount(Google_Service_ShoppingContent_Price $amount)
   {
     $this->amount = $amount;
   }
+  /**
+   * @return Google_Service_ShoppingContent_Price
+   */
   public function getAmount()
   {
     return $this->amount;
+  }
+  /**
+   * @param Google_Service_ShoppingContent_Price
+   */
+  public function setAmountPretax(Google_Service_ShoppingContent_Price $amountPretax)
+  {
+    $this->amountPretax = $amountPretax;
+  }
+  /**
+   * @return Google_Service_ShoppingContent_Price
+   */
+  public function getAmountPretax()
+  {
+    return $this->amountPretax;
+  }
+  /**
+   * @param Google_Service_ShoppingContent_Price
+   */
+  public function setAmountTax(Google_Service_ShoppingContent_Price $amountTax)
+  {
+    $this->amountTax = $amountTax;
+  }
+  /**
+   * @return Google_Service_ShoppingContent_Price
+   */
+  public function getAmountTax()
+  {
+    return $this->amountTax;
   }
   public function setLineItemId($lineItemId)
   {
@@ -48,6 +87,14 @@ class Google_Service_ShoppingContent_OrdersCancelLineItemRequest extends Google_
   public function getOperationId()
   {
     return $this->operationId;
+  }
+  public function setProductId($productId)
+  {
+    $this->productId = $productId;
+  }
+  public function getProductId()
+  {
+    return $this->productId;
   }
   public function setQuantity($quantity)
   {

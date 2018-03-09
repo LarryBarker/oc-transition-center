@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -95,5 +95,45 @@ class Google_Service_CloudBuild_Resource_ProjectsBuilds extends Google_Service_R
     $params = array('projectId' => $projectId);
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_CloudBuild_ListBuildsResponse");
+  }
+  /**
+   * Creates a new build based on the given build.
+   *
+   * This API creates a new build using the original build request,  which may or
+   * may not result in an identical build.
+   *
+   * For triggered builds:
+   *
+   * * Triggered builds resolve to a precise revision, so a retry of a triggered
+   * build will result in a build that uses the same revision.
+   *
+   * For non-triggered builds that specify RepoSource:
+   *
+   * * If the original build built from the tip of a branch, the retried build
+   * will build from the tip of that branch, which may not be the same revision as
+   * the original build. * If the original build specified a commit sha or
+   * revision ID, the retried build will use the identical source.
+   *
+   * For builds that specify StorageSource:
+   *
+   * * If the original build pulled source from Cloud Storage without specifying
+   * the generation of the object, the new build will use the current object,
+   * which may be different from the original build source. * If the original
+   * build pulled source from Cloud Storage and specified the generation of the
+   * object, the new build will attempt to use the same object, which may or may
+   * not be available depending on the bucket's lifecycle management settings.
+   * (builds.retry)
+   *
+   * @param string $projectId ID of the project.
+   * @param string $id Build ID of the original build.
+   * @param Google_Service_CloudBuild_RetryBuildRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Google_Service_CloudBuild_Operation
+   */
+  public function retry($projectId, $id, Google_Service_CloudBuild_RetryBuildRequest $postBody, $optParams = array())
+  {
+    $params = array('projectId' => $projectId, 'id' => $id, 'postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('retry', array($params), "Google_Service_CloudBuild_Operation");
   }
 }

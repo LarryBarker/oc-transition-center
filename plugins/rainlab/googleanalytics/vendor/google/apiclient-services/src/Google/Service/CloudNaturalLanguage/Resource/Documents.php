@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -26,9 +26,9 @@
 class Google_Service_CloudNaturalLanguage_Resource_Documents extends Google_Service_Resource
 {
   /**
-   * Finds named entities (currently finds proper names) in the text, entity
-   * types, salience, mentions for each entity, and other properties.
-   * (documents.analyzeEntities)
+   * Finds named entities (currently proper names and common nouns) in the text
+   * along with entity types, salience, mentions for each entity, and other
+   * properties. (documents.analyzeEntities)
    *
    * @param Google_Service_CloudNaturalLanguage_AnalyzeEntitiesRequest $postBody
    * @param array $optParams Optional parameters.
@@ -39,6 +39,21 @@ class Google_Service_CloudNaturalLanguage_Resource_Documents extends Google_Serv
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
     return $this->call('analyzeEntities', array($params), "Google_Service_CloudNaturalLanguage_AnalyzeEntitiesResponse");
+  }
+  /**
+   * Finds entities, similar to AnalyzeEntities in the text and analyzes sentiment
+   * associated with each entity and its mentions.
+   * (documents.analyzeEntitySentiment)
+   *
+   * @param Google_Service_CloudNaturalLanguage_AnalyzeEntitySentimentRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Google_Service_CloudNaturalLanguage_AnalyzeEntitySentimentResponse
+   */
+  public function analyzeEntitySentiment(Google_Service_CloudNaturalLanguage_AnalyzeEntitySentimentRequest $postBody, $optParams = array())
+  {
+    $params = array('postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('analyzeEntitySentiment', array($params), "Google_Service_CloudNaturalLanguage_AnalyzeEntitySentimentResponse");
   }
   /**
    * Analyzes the sentiment of the provided text. (documents.analyzeSentiment)
@@ -82,5 +97,18 @@ class Google_Service_CloudNaturalLanguage_Resource_Documents extends Google_Serv
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
     return $this->call('annotateText', array($params), "Google_Service_CloudNaturalLanguage_AnnotateTextResponse");
+  }
+  /**
+   * Classifies a document into categories. (documents.classifyText)
+   *
+   * @param Google_Service_CloudNaturalLanguage_ClassifyTextRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Google_Service_CloudNaturalLanguage_ClassifyTextResponse
+   */
+  public function classifyText(Google_Service_CloudNaturalLanguage_ClassifyTextRequest $postBody, $optParams = array())
+  {
+    $params = array('postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('classifyText', array($params), "Google_Service_CloudNaturalLanguage_ClassifyTextResponse");
   }
 }

@@ -2,6 +2,7 @@
 
 use Cms\Classes\ComponentBase;
 use Redirect;
+use System\Classes\PluginManager;
 
 class PostForm extends ComponentBase {
 	use \FireUnion\BlogFront\Traits\Loaders;
@@ -21,7 +22,31 @@ class PostForm extends ComponentBase {
 	}
 
 	public function init() {
+
 		$this->initFor('form');
+		$this->post = $this->loadPost();
+
+		if ($this->allow_images) {
+
+			$manager = PluginManager::instance();
+			if ($manager->exists('Responsiv.Uploader')) {
+
+				$component = $this->addComponent(
+					'Responsiv\Uploader\Components\ImageUploader',
+					'imageUploader',
+					[
+						'placeholderText' => 'Add Image',
+						'deferredBinding' => false,
+						//'fileTypes' => 'jpg',
+						'maxSize' => '3',
+					]
+				);
+				$component->bindModel('featured_images', $this->post);
+			} else {
+				$this->allow_images = false;
+				die('You must have <strong>Responsive.Uploader</strong> plugin installed and enabled to allow image uploading.  Disabling "Allow Image Uploading" should prvent this error from showing.');
+			}
+		}
 	}
 
 	public function onRun() {
@@ -38,7 +63,6 @@ class PostForm extends ComponentBase {
 		if (!$this->save()) {
 			return null;
 		}
-
 		// Redirect to the intended page after successful update
 		$redirectUrl = $this->pageUrl($this->property('listPage'));
 		return Redirect::to($redirectUrl);

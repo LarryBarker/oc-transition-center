@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,19 +17,28 @@
 
 class Google_Service_Dfareporting_LandingPage extends Google_Model
 {
-  public $default;
+  public $advertiserId;
+  public $archived;
   public $id;
   public $kind;
   public $name;
   public $url;
 
-  public function setDefault($default)
+  public function setAdvertiserId($advertiserId)
   {
-    $this->default = $default;
+    $this->advertiserId = $advertiserId;
   }
-  public function getDefault()
+  public function getAdvertiserId()
   {
-    return $this->default;
+    return $this->advertiserId;
+  }
+  public function setArchived($archived)
+  {
+    $this->archived = $archived;
+  }
+  public function getArchived()
+  {
+    return $this->archived;
   }
   public function setId($id)
   {

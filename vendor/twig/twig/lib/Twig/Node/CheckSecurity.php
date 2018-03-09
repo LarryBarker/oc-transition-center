@@ -14,9 +14,9 @@
  */
 class Twig_Node_CheckSecurity extends Twig_Node
 {
-    protected $usedFilters;
-    protected $usedTags;
-    protected $usedFunctions;
+    private $usedFilters;
+    private $usedTags;
+    private $usedFunctions;
 
     public function __construct(array $usedFilters, array $usedTags, array $usedFunctions)
     {
@@ -76,3 +76,5 @@ class Twig_Node_CheckSecurity extends Twig_Node
         ;
     }
 }
+
+class_alias('Twig_Node_CheckSecurity', 'Twig\Node\CheckSecurityNode', false);

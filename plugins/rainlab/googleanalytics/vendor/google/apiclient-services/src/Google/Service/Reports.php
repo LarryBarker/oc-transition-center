@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,8 +19,8 @@
  * Service definition for Reports (reports_v1).
  *
  * <p>
- * Fetches reports for the administrators of Google Apps customers about the
- * usage, collaboration, security, and risk for their users.</p>
+ * Fetches reports for the administrators of G Suite customers about the usage,
+ * collaboration, security, and risk for their users.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -41,6 +41,7 @@ class Google_Service_Reports extends Google_Service
   public $activities;
   public $channels;
   public $customerUsageReports;
+  public $entityUsageReports;
   public $userUsageReport;
   
   /**
@@ -192,6 +193,56 @@ class Google_Service_Reports extends Google_Service
                 'customerId' => array(
                   'location' => 'query',
                   'type' => 'string',
+                ),
+                'pageToken' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'parameters' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+              ),
+            ),
+          )
+        )
+    );
+    $this->entityUsageReports = new Google_Service_Reports_Resource_EntityUsageReports(
+        $this,
+        $this->serviceName,
+        'entityUsageReports',
+        array(
+          'methods' => array(
+            'get' => array(
+              'path' => 'usage/{entityType}/{entityKey}/dates/{date}',
+              'httpMethod' => 'GET',
+              'parameters' => array(
+                'entityType' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'entityKey' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'date' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'customerId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'filters' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'maxResults' => array(
+                  'location' => 'query',
+                  'type' => 'integer',
                 ),
                 'pageToken' => array(
                   'location' => 'query',

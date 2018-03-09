@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,10 +17,20 @@
 
 class Google_Service_CloudNaturalLanguage_Features extends Google_Model
 {
+  public $classifyText;
   public $extractDocumentSentiment;
   public $extractEntities;
+  public $extractEntitySentiment;
   public $extractSyntax;
 
+  public function setClassifyText($classifyText)
+  {
+    $this->classifyText = $classifyText;
+  }
+  public function getClassifyText()
+  {
+    return $this->classifyText;
+  }
   public function setExtractDocumentSentiment($extractDocumentSentiment)
   {
     $this->extractDocumentSentiment = $extractDocumentSentiment;
@@ -36,6 +46,14 @@ class Google_Service_CloudNaturalLanguage_Features extends Google_Model
   public function getExtractEntities()
   {
     return $this->extractEntities;
+  }
+  public function setExtractEntitySentiment($extractEntitySentiment)
+  {
+    $this->extractEntitySentiment = $extractEntitySentiment;
+  }
+  public function getExtractEntitySentiment()
+  {
+    return $this->extractEntitySentiment;
   }
   public function setExtractSyntax($extractSyntax)
   {

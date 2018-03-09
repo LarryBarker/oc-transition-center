@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,7 +19,7 @@
  * Service definition for Script (v1).
  *
  * <p>
- * Executes Google Apps Script projects.</p>
+ * An API for managing and executing Google Apps Script projects.</p>
  *
  * <p>
  * For more information about this service, see the API

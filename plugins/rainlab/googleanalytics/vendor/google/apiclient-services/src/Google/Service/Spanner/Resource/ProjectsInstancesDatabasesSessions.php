@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -76,20 +76,21 @@ class Google_Service_Spanner_Resource_ProjectsInstancesDatabasesSessions extends
    * Cloud Spanner limits the number of sessions that can exist at any given time;
    * thus, it is a good idea to delete idle and/or unneeded sessions. Aside from
    * explicit deletes, Cloud Spanner can delete sessions for which no operations
-   * are sent for more than an hour, or due to internal errors. If a session is
-   * deleted, requests to it return `NOT_FOUND`.
+   * are sent for more than an hour. If a session is deleted, requests to it
+   * return `NOT_FOUND`.
    *
    * Idle sessions can be kept alive by sending a trivial SQL query periodically,
    * e.g., `"SELECT 1"`. (sessions.create)
    *
    * @param string $database Required. The database in which the new session is
    * created.
+   * @param Google_Service_Spanner_CreateSessionRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_Spanner_Session
    */
-  public function create($database, $optParams = array())
+  public function create($database, Google_Service_Spanner_CreateSessionRequest $postBody, $optParams = array())
   {
-    $params = array('database' => $database);
+    $params = array('database' => $database, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
     return $this->call('create', array($params), "Google_Service_Spanner_Session");
   }
@@ -163,6 +164,36 @@ class Google_Service_Spanner_Resource_ProjectsInstancesDatabasesSessions extends
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
     return $this->call('get', array($params), "Google_Service_Spanner_Session");
+  }
+  /**
+   * Lists all sessions in a given database.
+   * (sessions.listProjectsInstancesDatabasesSessions)
+   *
+   * @param string $database Required. The database in which to list sessions.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string pageToken If non-empty, `page_token` should contain a
+   * next_page_token from a previous ListSessionsResponse.
+   * @opt_param int pageSize Number of sessions to be returned in the response. If
+   * 0 or less, defaults to the server's maximum allowed page size.
+   * @opt_param string filter An expression for filtering the results of the
+   * request. Filter rules are case insensitive. The fields eligible for filtering
+   * are:
+   *
+   *   * `labels.key` where key is the name of a label
+   *
+   * Some examples of using filters are:
+   *
+   *   * `labels.env:*` --> The session has the label "env".   * `labels.env:dev`
+   * --> The session has the label "env" and the value of
+   * the label contains the string "dev".
+   * @return Google_Service_Spanner_ListSessionsResponse
+   */
+  public function listProjectsInstancesDatabasesSessions($database, $optParams = array())
+  {
+    $params = array('database' => $database);
+    $params = array_merge($params, $optParams);
+    return $this->call('list', array($params), "Google_Service_Spanner_ListSessionsResponse");
   }
   /**
    * Reads rows from the database using key lookups and scans, as a simple

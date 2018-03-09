@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,13 +17,28 @@
 
 class Google_Service_Slides_TableCellProperties extends Google_Model
 {
+  public $contentAlignment;
   protected $tableCellBackgroundFillType = 'Google_Service_Slides_TableCellBackgroundFill';
   protected $tableCellBackgroundFillDataType = '';
 
+  public function setContentAlignment($contentAlignment)
+  {
+    $this->contentAlignment = $contentAlignment;
+  }
+  public function getContentAlignment()
+  {
+    return $this->contentAlignment;
+  }
+  /**
+   * @param Google_Service_Slides_TableCellBackgroundFill
+   */
   public function setTableCellBackgroundFill(Google_Service_Slides_TableCellBackgroundFill $tableCellBackgroundFill)
   {
     $this->tableCellBackgroundFill = $tableCellBackgroundFill;
   }
+  /**
+   * @return Google_Service_Slides_TableCellBackgroundFill
+   */
   public function getTableCellBackgroundFill()
   {
     return $this->tableCellBackgroundFill;

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -18,6 +18,7 @@
 class Google_Service_Bigquery_TimePartitioning extends Google_Model
 {
   public $expirationMs;
+  public $field;
   public $type;
 
   public function setExpirationMs($expirationMs)
@@ -27,6 +28,14 @@ class Google_Service_Bigquery_TimePartitioning extends Google_Model
   public function getExpirationMs()
   {
     return $this->expirationMs;
+  }
+  public function setField($field)
+  {
+    $this->field = $field;
+  }
+  public function getField()
+  {
+    return $this->field;
   }
   public function setType($type)
   {

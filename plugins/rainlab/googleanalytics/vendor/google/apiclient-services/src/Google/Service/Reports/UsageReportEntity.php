@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -18,6 +18,7 @@
 class Google_Service_Reports_UsageReportEntity extends Google_Model
 {
   public $customerId;
+  public $entityId;
   public $profileId;
   public $type;
   public $userEmail;
@@ -29,6 +30,14 @@ class Google_Service_Reports_UsageReportEntity extends Google_Model
   public function getCustomerId()
   {
     return $this->customerId;
+  }
+  public function setEntityId($entityId)
+  {
+    $this->entityId = $entityId;
+  }
+  public function getEntityId()
+  {
+    return $this->entityId;
   }
   public function setProfileId($profileId)
   {

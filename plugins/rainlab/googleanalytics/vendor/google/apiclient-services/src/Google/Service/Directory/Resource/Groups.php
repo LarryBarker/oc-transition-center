@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -28,7 +28,7 @@ class Google_Service_Directory_Resource_Groups extends Google_Service_Resource
   /**
    * Delete Group (groups.delete)
    *
-   * @param string $groupKey Email or immutable Id of the group
+   * @param string $groupKey Email or immutable ID of the group
    * @param array $optParams Optional parameters.
    */
   public function delete($groupKey, $optParams = array())
@@ -40,7 +40,7 @@ class Google_Service_Directory_Resource_Groups extends Google_Service_Resource
   /**
    * Retrieve Group (groups.get)
    *
-   * @param string $groupKey Email or immutable Id of the group
+   * @param string $groupKey Email or immutable ID of the group
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Group
    */
@@ -68,16 +68,16 @@ class Google_Service_Directory_Resource_Groups extends Google_Service_Resource
    *
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string customer Immutable id of the Google Apps account. In case
-   * of multi-domain, to fetch all groups for a customer, fill this field instead
-   * of domain.
+   * @opt_param string customer Immutable ID of the G Suite account. In case of
+   * multi-domain, to fetch all groups for a customer, fill this field instead of
+   * domain.
    * @opt_param string domain Name of the domain. Fill this field to get groups
    * from only this domain. To return all groups in a multi-domain fill customer
    * field instead.
    * @opt_param int maxResults Maximum number of results to return. Default is 200
    * @opt_param string pageToken Token to specify next page in the list
-   * @opt_param string userKey Email or immutable Id of the user if only those
-   * groups are to be listed, the given user is a member of. If Id, it should
+   * @opt_param string userKey Email or immutable ID of the user if only those
+   * groups are to be listed, the given user is a member of. If ID, it should
    * match with id of user object
    * @return Google_Service_Directory_Groups
    */
@@ -90,7 +90,7 @@ class Google_Service_Directory_Resource_Groups extends Google_Service_Resource
   /**
    * Update Group. This method supports patch semantics. (groups.patch)
    *
-   * @param string $groupKey Email or immutable Id of the group. If Id, it should
+   * @param string $groupKey Email or immutable ID of the group. If ID, it should
    * match with id of group object
    * @param Google_Service_Directory_Group $postBody
    * @param array $optParams Optional parameters.
@@ -105,7 +105,7 @@ class Google_Service_Directory_Resource_Groups extends Google_Service_Resource
   /**
    * Update Group (groups.update)
    *
-   * @param string $groupKey Email or immutable Id of the group. If Id, it should
+   * @param string $groupKey Email or immutable ID of the group. If ID, it should
    * match with id of group object
    * @param Google_Service_Directory_Group $postBody
    * @param array $optParams Optional parameters.

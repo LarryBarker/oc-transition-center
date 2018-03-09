@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -22,6 +22,8 @@ class Google_Service_Bigquery_JobConfigurationLoad extends Google_Collection
   public $allowQuotedNewlines;
   public $autodetect;
   public $createDisposition;
+  protected $destinationEncryptionConfigurationType = 'Google_Service_Bigquery_EncryptionConfiguration';
+  protected $destinationEncryptionConfigurationDataType = '';
   protected $destinationTableType = 'Google_Service_Bigquery_TableReference';
   protected $destinationTableDataType = '';
   public $encoding;
@@ -39,6 +41,8 @@ class Google_Service_Bigquery_JobConfigurationLoad extends Google_Collection
   public $skipLeadingRows;
   public $sourceFormat;
   public $sourceUris;
+  protected $timePartitioningType = 'Google_Service_Bigquery_TimePartitioning';
+  protected $timePartitioningDataType = '';
   public $writeDisposition;
 
   public function setAllowJaggedRows($allowJaggedRows)
@@ -73,10 +77,30 @@ class Google_Service_Bigquery_JobConfigurationLoad extends Google_Collection
   {
     return $this->createDisposition;
   }
+  /**
+   * @param Google_Service_Bigquery_EncryptionConfiguration
+   */
+  public function setDestinationEncryptionConfiguration(Google_Service_Bigquery_EncryptionConfiguration $destinationEncryptionConfiguration)
+  {
+    $this->destinationEncryptionConfiguration = $destinationEncryptionConfiguration;
+  }
+  /**
+   * @return Google_Service_Bigquery_EncryptionConfiguration
+   */
+  public function getDestinationEncryptionConfiguration()
+  {
+    return $this->destinationEncryptionConfiguration;
+  }
+  /**
+   * @param Google_Service_Bigquery_TableReference
+   */
   public function setDestinationTable(Google_Service_Bigquery_TableReference $destinationTable)
   {
     $this->destinationTable = $destinationTable;
   }
+  /**
+   * @return Google_Service_Bigquery_TableReference
+   */
   public function getDestinationTable()
   {
     return $this->destinationTable;
@@ -137,10 +161,16 @@ class Google_Service_Bigquery_JobConfigurationLoad extends Google_Collection
   {
     return $this->quote;
   }
+  /**
+   * @param Google_Service_Bigquery_TableSchema
+   */
   public function setSchema(Google_Service_Bigquery_TableSchema $schema)
   {
     $this->schema = $schema;
   }
+  /**
+   * @return Google_Service_Bigquery_TableSchema
+   */
   public function getSchema()
   {
     return $this->schema;
@@ -192,6 +222,20 @@ class Google_Service_Bigquery_JobConfigurationLoad extends Google_Collection
   public function getSourceUris()
   {
     return $this->sourceUris;
+  }
+  /**
+   * @param Google_Service_Bigquery_TimePartitioning
+   */
+  public function setTimePartitioning(Google_Service_Bigquery_TimePartitioning $timePartitioning)
+  {
+    $this->timePartitioning = $timePartitioning;
+  }
+  /**
+   * @return Google_Service_Bigquery_TimePartitioning
+   */
+  public function getTimePartitioning()
+  {
+    return $this->timePartitioning;
   }
   public function setWriteDisposition($writeDisposition)
   {

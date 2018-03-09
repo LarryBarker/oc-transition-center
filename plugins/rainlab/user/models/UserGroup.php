@@ -10,7 +10,6 @@ class UserGroup extends GroupBase
 {
     const GROUP_GUEST = 'guest';
     const GROUP_REGISTERED = 'registered';
-    const GROUP_EMPLOYERS = 'employers';
 
     /**
      * @var string The database table used by the model.
@@ -29,8 +28,8 @@ class UserGroup extends GroupBase
      * @var array Relations
      */
     public $belongsToMany = [
-        'users'       => ['RainLab\User\Models\User', 'table' => 'users_groups'],
-        'users_count' => ['RainLab\User\Models\User', 'table' => 'users_groups', 'count' => true]
+        'users'       => [User::class, 'table' => 'users_groups'],
+        'users_count' => [User::class, 'table' => 'users_groups', 'count' => true]
     ];
 
     /**
@@ -57,22 +56,5 @@ class UserGroup extends GroupBase
         $group = self::where('code', self::GROUP_GUEST)->first() ?: false;
 
         return self::$guestGroup = $group;
-    }
-
-    protected static $employersGroup = null;
-
-    /**
-     * Returns the employers user group.
-     * @return RainLab\User\Models\UserGroup
-     */
-    public static function getEmployersGroup()
-    {
-        if (self::$employersGroup !== null) {
-            return self::$employersGroup;
-        }
-
-        $group = self::where('code', self::GROUP_EMPLOYERS)->first() ?: false;
-
-        return self::$employersGroup = $group;
     }
 }

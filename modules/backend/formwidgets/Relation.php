@@ -29,11 +29,6 @@ class Relation extends FormWidgetBase
     public $nameFrom = 'name';
 
     /**
-     * @var string Model column to use for the description reference
-     */
-    public $descriptionFrom = 'description';
-
-    /**
      * @var string Custom SQL column selection to use for the name reference
      */
     public $sqlSelect;
@@ -47,7 +42,7 @@ class Relation extends FormWidgetBase
      * @var string Use a custom scope method for the list query.
      */
     public $scope;
-    
+
     //
     // Object properties
     //
@@ -69,9 +64,8 @@ class Relation extends FormWidgetBase
     {
         $this->fillFromConfig([
             'nameFrom',
-            'descriptionFrom',
             'emptyOption',
-            'scope'
+            'scope',
         ]);
 
         if (isset($this->config->select)) {
@@ -127,7 +121,7 @@ class Relation extends FormWidgetBase
             if ($scopeMethod = $this->scope) {
                 $query->$scopeMethod($model);
             }
-            
+
             // Even though "no constraints" is applied, belongsToMany constrains the query
             // by joining its pivot table. Remove all joins from the query.
             $query->getQuery()->getQuery()->joins = [];

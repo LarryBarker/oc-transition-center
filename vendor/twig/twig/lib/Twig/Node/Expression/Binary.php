@@ -11,7 +11,7 @@
  */
 abstract class Twig_Node_Expression_Binary extends Twig_Node_Expression
 {
-    public function __construct(Twig_NodeInterface $left, Twig_NodeInterface $right, $lineno)
+    public function __construct(Twig_Node $left, Twig_Node $right, $lineno)
     {
         parent::__construct(array('left' => $left, 'right' => $right), array(), $lineno);
     }
@@ -33,3 +33,5 @@ abstract class Twig_Node_Expression_Binary extends Twig_Node_Expression
 
     abstract public function operator(Twig_Compiler $compiler);
 }
+
+class_alias('Twig_Node_Expression_Binary', 'Twig\Node\Expression\Binary\AbstractBinary', false);

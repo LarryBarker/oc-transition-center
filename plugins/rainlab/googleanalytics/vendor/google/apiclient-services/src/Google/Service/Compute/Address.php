@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,14 +19,17 @@ class Google_Service_Compute_Address extends Google_Collection
 {
   protected $collection_key = 'users';
   public $address;
+  public $addressType;
   public $creationTimestamp;
   public $description;
   public $id;
+  public $ipVersion;
   public $kind;
   public $name;
   public $region;
   public $selfLink;
   public $status;
+  public $subnetwork;
   public $users;
 
   public function setAddress($address)
@@ -36,6 +39,14 @@ class Google_Service_Compute_Address extends Google_Collection
   public function getAddress()
   {
     return $this->address;
+  }
+  public function setAddressType($addressType)
+  {
+    $this->addressType = $addressType;
+  }
+  public function getAddressType()
+  {
+    return $this->addressType;
   }
   public function setCreationTimestamp($creationTimestamp)
   {
@@ -60,6 +71,14 @@ class Google_Service_Compute_Address extends Google_Collection
   public function getId()
   {
     return $this->id;
+  }
+  public function setIpVersion($ipVersion)
+  {
+    $this->ipVersion = $ipVersion;
+  }
+  public function getIpVersion()
+  {
+    return $this->ipVersion;
   }
   public function setKind($kind)
   {
@@ -100,6 +119,14 @@ class Google_Service_Compute_Address extends Google_Collection
   public function getStatus()
   {
     return $this->status;
+  }
+  public function setSubnetwork($subnetwork)
+  {
+    $this->subnetwork = $subnetwork;
+  }
+  public function getSubnetwork()
+  {
+    return $this->subnetwork;
   }
   public function setUsers($users)
   {

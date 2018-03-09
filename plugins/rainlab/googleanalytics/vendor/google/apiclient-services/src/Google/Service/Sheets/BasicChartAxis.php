@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -21,11 +21,19 @@ class Google_Service_Sheets_BasicChartAxis extends Google_Model
   protected $formatDataType = '';
   public $position;
   public $title;
+  protected $titleTextPositionType = 'Google_Service_Sheets_TextPosition';
+  protected $titleTextPositionDataType = '';
 
+  /**
+   * @param Google_Service_Sheets_TextFormat
+   */
   public function setFormat(Google_Service_Sheets_TextFormat $format)
   {
     $this->format = $format;
   }
+  /**
+   * @return Google_Service_Sheets_TextFormat
+   */
   public function getFormat()
   {
     return $this->format;
@@ -45,5 +53,19 @@ class Google_Service_Sheets_BasicChartAxis extends Google_Model
   public function getTitle()
   {
     return $this->title;
+  }
+  /**
+   * @param Google_Service_Sheets_TextPosition
+   */
+  public function setTitleTextPosition(Google_Service_Sheets_TextPosition $titleTextPosition)
+  {
+    $this->titleTextPosition = $titleTextPosition;
+  }
+  /**
+   * @return Google_Service_Sheets_TextPosition
+   */
+  public function getTitleTextPosition()
+  {
+    return $this->titleTextPosition;
   }
 }

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -51,6 +51,7 @@ class Google_Service_Drive_DriveFile extends Google_Collection
   protected $ownersType = 'Google_Service_Drive_User';
   protected $ownersDataType = 'array';
   public $parents;
+  public $permissionIds;
   protected $permissionsType = 'Google_Service_Drive_Permission';
   protected $permissionsDataType = 'array';
   public $properties;
@@ -87,18 +88,30 @@ class Google_Service_Drive_DriveFile extends Google_Collection
   {
     return $this->appProperties;
   }
+  /**
+   * @param Google_Service_Drive_DriveFileCapabilities
+   */
   public function setCapabilities(Google_Service_Drive_DriveFileCapabilities $capabilities)
   {
     $this->capabilities = $capabilities;
   }
+  /**
+   * @return Google_Service_Drive_DriveFileCapabilities
+   */
   public function getCapabilities()
   {
     return $this->capabilities;
   }
+  /**
+   * @param Google_Service_Drive_DriveFileContentHints
+   */
   public function setContentHints(Google_Service_Drive_DriveFileContentHints $contentHints)
   {
     $this->contentHints = $contentHints;
   }
+  /**
+   * @return Google_Service_Drive_DriveFileContentHints
+   */
   public function getContentHints()
   {
     return $this->contentHints;
@@ -191,10 +204,16 @@ class Google_Service_Drive_DriveFile extends Google_Collection
   {
     return $this->id;
   }
+  /**
+   * @param Google_Service_Drive_DriveFileImageMediaMetadata
+   */
   public function setImageMediaMetadata(Google_Service_Drive_DriveFileImageMediaMetadata $imageMediaMetadata)
   {
     $this->imageMediaMetadata = $imageMediaMetadata;
   }
+  /**
+   * @return Google_Service_Drive_DriveFileImageMediaMetadata
+   */
   public function getImageMediaMetadata()
   {
     return $this->imageMediaMetadata;
@@ -215,10 +234,16 @@ class Google_Service_Drive_DriveFile extends Google_Collection
   {
     return $this->kind;
   }
+  /**
+   * @param Google_Service_Drive_User
+   */
   public function setLastModifyingUser(Google_Service_Drive_User $lastModifyingUser)
   {
     $this->lastModifyingUser = $lastModifyingUser;
   }
+  /**
+   * @return Google_Service_Drive_User
+   */
   public function getLastModifyingUser()
   {
     return $this->lastModifyingUser;
@@ -287,10 +312,16 @@ class Google_Service_Drive_DriveFile extends Google_Collection
   {
     return $this->ownedByMe;
   }
+  /**
+   * @param Google_Service_Drive_User
+   */
   public function setOwners($owners)
   {
     $this->owners = $owners;
   }
+  /**
+   * @return Google_Service_Drive_User
+   */
   public function getOwners()
   {
     return $this->owners;
@@ -303,10 +334,24 @@ class Google_Service_Drive_DriveFile extends Google_Collection
   {
     return $this->parents;
   }
+  public function setPermissionIds($permissionIds)
+  {
+    $this->permissionIds = $permissionIds;
+  }
+  public function getPermissionIds()
+  {
+    return $this->permissionIds;
+  }
+  /**
+   * @param Google_Service_Drive_Permission
+   */
   public function setPermissions($permissions)
   {
     $this->permissions = $permissions;
   }
+  /**
+   * @return Google_Service_Drive_Permission
+   */
   public function getPermissions()
   {
     return $this->permissions;
@@ -343,10 +388,16 @@ class Google_Service_Drive_DriveFile extends Google_Collection
   {
     return $this->sharedWithMeTime;
   }
+  /**
+   * @param Google_Service_Drive_User
+   */
   public function setSharingUser(Google_Service_Drive_User $sharingUser)
   {
     $this->sharingUser = $sharingUser;
   }
+  /**
+   * @return Google_Service_Drive_User
+   */
   public function getSharingUser()
   {
     return $this->sharingUser;
@@ -415,10 +466,16 @@ class Google_Service_Drive_DriveFile extends Google_Collection
   {
     return $this->trashedTime;
   }
+  /**
+   * @param Google_Service_Drive_User
+   */
   public function setTrashingUser(Google_Service_Drive_User $trashingUser)
   {
     $this->trashingUser = $trashingUser;
   }
+  /**
+   * @return Google_Service_Drive_User
+   */
   public function getTrashingUser()
   {
     return $this->trashingUser;
@@ -431,10 +488,16 @@ class Google_Service_Drive_DriveFile extends Google_Collection
   {
     return $this->version;
   }
+  /**
+   * @param Google_Service_Drive_DriveFileVideoMediaMetadata
+   */
   public function setVideoMediaMetadata(Google_Service_Drive_DriveFileVideoMediaMetadata $videoMediaMetadata)
   {
     $this->videoMediaMetadata = $videoMediaMetadata;
   }
+  /**
+   * @return Google_Service_Drive_DriveFileVideoMediaMetadata
+   */
   public function getVideoMediaMetadata()
   {
     return $this->videoMediaMetadata;

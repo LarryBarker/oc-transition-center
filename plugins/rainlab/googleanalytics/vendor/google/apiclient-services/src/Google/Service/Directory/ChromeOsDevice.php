@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -24,6 +24,8 @@ class Google_Service_Directory_ChromeOsDevice extends Google_Collection
   public $annotatedLocation;
   public $annotatedUser;
   public $bootMode;
+  protected $deviceFilesType = 'Google_Service_Directory_ChromeOsDeviceDeviceFiles';
+  protected $deviceFilesDataType = 'array';
   public $deviceId;
   public $etag;
   public $ethernetMacAddress;
@@ -44,12 +46,20 @@ class Google_Service_Directory_ChromeOsDevice extends Google_Collection
   public $serialNumber;
   public $status;
   public $supportEndDate;
+  protected $tpmVersionInfoType = 'Google_Service_Directory_ChromeOsDeviceTpmVersionInfo';
+  protected $tpmVersionInfoDataType = '';
   public $willAutoRenew;
 
+  /**
+   * @param Google_Service_Directory_ChromeOsDeviceActiveTimeRanges
+   */
   public function setActiveTimeRanges($activeTimeRanges)
   {
     $this->activeTimeRanges = $activeTimeRanges;
   }
+  /**
+   * @return Google_Service_Directory_ChromeOsDeviceActiveTimeRanges
+   */
   public function getActiveTimeRanges()
   {
     return $this->activeTimeRanges;
@@ -85,6 +95,20 @@ class Google_Service_Directory_ChromeOsDevice extends Google_Collection
   public function getBootMode()
   {
     return $this->bootMode;
+  }
+  /**
+   * @param Google_Service_Directory_ChromeOsDeviceDeviceFiles
+   */
+  public function setDeviceFiles($deviceFiles)
+  {
+    $this->deviceFiles = $deviceFiles;
+  }
+  /**
+   * @return Google_Service_Directory_ChromeOsDeviceDeviceFiles
+   */
+  public function getDeviceFiles()
+  {
+    return $this->deviceFiles;
   }
   public function setDeviceId($deviceId)
   {
@@ -206,10 +230,16 @@ class Google_Service_Directory_ChromeOsDevice extends Google_Collection
   {
     return $this->platformVersion;
   }
+  /**
+   * @param Google_Service_Directory_ChromeOsDeviceRecentUsers
+   */
   public function setRecentUsers($recentUsers)
   {
     $this->recentUsers = $recentUsers;
   }
+  /**
+   * @return Google_Service_Directory_ChromeOsDeviceRecentUsers
+   */
   public function getRecentUsers()
   {
     return $this->recentUsers;
@@ -237,6 +267,20 @@ class Google_Service_Directory_ChromeOsDevice extends Google_Collection
   public function getSupportEndDate()
   {
     return $this->supportEndDate;
+  }
+  /**
+   * @param Google_Service_Directory_ChromeOsDeviceTpmVersionInfo
+   */
+  public function setTpmVersionInfo(Google_Service_Directory_ChromeOsDeviceTpmVersionInfo $tpmVersionInfo)
+  {
+    $this->tpmVersionInfo = $tpmVersionInfo;
+  }
+  /**
+   * @return Google_Service_Directory_ChromeOsDeviceTpmVersionInfo
+   */
+  public function getTpmVersionInfo()
+  {
+    return $this->tpmVersionInfo;
   }
   public function setWillAutoRenew($willAutoRenew)
   {

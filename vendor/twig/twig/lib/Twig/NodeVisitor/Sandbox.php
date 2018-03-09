@@ -12,16 +12,14 @@
 /**
  * Twig_NodeVisitor_Sandbox implements sandboxing.
  *
- * @final
- *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-class Twig_NodeVisitor_Sandbox extends Twig_BaseNodeVisitor
+final class Twig_NodeVisitor_Sandbox extends Twig_BaseNodeVisitor
 {
-    protected $inAModule = false;
-    protected $tags;
-    protected $filters;
-    protected $functions;
+    private $inAModule = false;
+    private $tags;
+    private $filters;
+    private $functions;
 
     protected function doEnterNode(Twig_Node $node, Twig_Environment $env)
     {
@@ -73,3 +71,5 @@ class Twig_NodeVisitor_Sandbox extends Twig_BaseNodeVisitor
         return 0;
     }
 }
+
+class_alias('Twig_NodeVisitor_Sandbox', 'Twig\NodeVisitor\SandboxNodeVisitor', false);

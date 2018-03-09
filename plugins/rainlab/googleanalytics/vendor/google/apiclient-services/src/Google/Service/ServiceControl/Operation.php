@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,7 +17,7 @@
 
 class Google_Service_ServiceControl_Operation extends Google_Collection
 {
-  protected $collection_key = 'metricValueSets';
+  protected $collection_key = 'resources';
   public $consumerId;
   public $endTime;
   public $importance;
@@ -31,6 +31,8 @@ class Google_Service_ServiceControl_Operation extends Google_Collection
   protected $quotaPropertiesType = 'Google_Service_ServiceControl_QuotaProperties';
   protected $quotaPropertiesDataType = '';
   public $resourceContainer;
+  protected $resourcesType = 'Google_Service_ServiceControl_ResourceInfo';
+  protected $resourcesDataType = 'array';
   public $startTime;
   public $userLabels;
 
@@ -66,18 +68,30 @@ class Google_Service_ServiceControl_Operation extends Google_Collection
   {
     return $this->labels;
   }
+  /**
+   * @param Google_Service_ServiceControl_LogEntry
+   */
   public function setLogEntries($logEntries)
   {
     $this->logEntries = $logEntries;
   }
+  /**
+   * @return Google_Service_ServiceControl_LogEntry
+   */
   public function getLogEntries()
   {
     return $this->logEntries;
   }
+  /**
+   * @param Google_Service_ServiceControl_MetricValueSet
+   */
   public function setMetricValueSets($metricValueSets)
   {
     $this->metricValueSets = $metricValueSets;
   }
+  /**
+   * @return Google_Service_ServiceControl_MetricValueSet
+   */
   public function getMetricValueSets()
   {
     return $this->metricValueSets;
@@ -98,10 +112,16 @@ class Google_Service_ServiceControl_Operation extends Google_Collection
   {
     return $this->operationName;
   }
+  /**
+   * @param Google_Service_ServiceControl_QuotaProperties
+   */
   public function setQuotaProperties(Google_Service_ServiceControl_QuotaProperties $quotaProperties)
   {
     $this->quotaProperties = $quotaProperties;
   }
+  /**
+   * @return Google_Service_ServiceControl_QuotaProperties
+   */
   public function getQuotaProperties()
   {
     return $this->quotaProperties;
@@ -113,6 +133,20 @@ class Google_Service_ServiceControl_Operation extends Google_Collection
   public function getResourceContainer()
   {
     return $this->resourceContainer;
+  }
+  /**
+   * @param Google_Service_ServiceControl_ResourceInfo
+   */
+  public function setResources($resources)
+  {
+    $this->resources = $resources;
+  }
+  /**
+   * @return Google_Service_ServiceControl_ResourceInfo
+   */
+  public function getResources()
+  {
+    return $this->resources;
   }
   public function setStartTime($startTime)
   {

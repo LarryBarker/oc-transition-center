@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -23,6 +23,8 @@ class Google_Service_ShoppingContent_Service extends Google_Collection
   public $deliveryCountry;
   protected $deliveryTimeType = 'Google_Service_ShoppingContent_DeliveryTime';
   protected $deliveryTimeDataType = '';
+  protected $minimumOrderValueType = 'Google_Service_ShoppingContent_Price';
+  protected $minimumOrderValueDataType = '';
   public $name;
   protected $rateGroupsType = 'Google_Service_ShoppingContent_RateGroup';
   protected $rateGroupsDataType = 'array';
@@ -51,13 +53,33 @@ class Google_Service_ShoppingContent_Service extends Google_Collection
   {
     return $this->deliveryCountry;
   }
+  /**
+   * @param Google_Service_ShoppingContent_DeliveryTime
+   */
   public function setDeliveryTime(Google_Service_ShoppingContent_DeliveryTime $deliveryTime)
   {
     $this->deliveryTime = $deliveryTime;
   }
+  /**
+   * @return Google_Service_ShoppingContent_DeliveryTime
+   */
   public function getDeliveryTime()
   {
     return $this->deliveryTime;
+  }
+  /**
+   * @param Google_Service_ShoppingContent_Price
+   */
+  public function setMinimumOrderValue(Google_Service_ShoppingContent_Price $minimumOrderValue)
+  {
+    $this->minimumOrderValue = $minimumOrderValue;
+  }
+  /**
+   * @return Google_Service_ShoppingContent_Price
+   */
+  public function getMinimumOrderValue()
+  {
+    return $this->minimumOrderValue;
   }
   public function setName($name)
   {
@@ -67,10 +89,16 @@ class Google_Service_ShoppingContent_Service extends Google_Collection
   {
     return $this->name;
   }
+  /**
+   * @param Google_Service_ShoppingContent_RateGroup
+   */
   public function setRateGroups($rateGroups)
   {
     $this->rateGroups = $rateGroups;
   }
+  /**
+   * @return Google_Service_ShoppingContent_RateGroup
+   */
   public function getRateGroups()
   {
     return $this->rateGroups;
