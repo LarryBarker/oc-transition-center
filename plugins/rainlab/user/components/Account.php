@@ -258,6 +258,17 @@ class Account extends ComponentBase
 
             Event::fire('rainlab.user.register', [$user, $data]);
 
+            $data['id'] = $user->id;
+
+            Mail::send('rainlab.user::mail.new_user', $data, function($message) {
+
+                $message->to('corey.brock@ks.gov', 'WWRF WEBSITE')
+                        ->to('user@wwrfresource.com', 'WWRF WEBSITE')
+                        ->subject('New account request');
+            });
+
+            Flash::success(Lang::get('rainlab.user::lang.account.account_registration_sent'));
+
             /*
              * Activation is by the user, send the email
              */

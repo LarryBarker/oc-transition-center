@@ -278,6 +278,12 @@ class Plugin extends PluginBase
         });
 
         UserModel::extend(function($model) {
+
+            $model->addFillable([
+                'company_title',
+                'company_phone',
+                'company_name'
+            ]);
             
             $model->addDynamicMethod('getYearOptions', function($value) use ($model)
             {
