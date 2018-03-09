@@ -284,6 +284,8 @@ class Plugin extends PluginBase
                 'company_phone',
                 'company_name'
             ]);
+
+            $model->rules['avatar'] = 'nullable';
             
             $model->addDynamicMethod('getYearOptions', function($value) use ($model)
             {
