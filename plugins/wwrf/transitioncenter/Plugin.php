@@ -142,15 +142,22 @@ class Plugin extends PluginBase
 
         });
 
-        Event::listen('backend.list.extendQuery', function ($widget, $query) {
-            // Test your model
+        /*Event::listen('backend.list.extendQuery', function ($widget, $query) {
+            // Test for employer model to extend list query
+            if ($widget->model instanceof \Wwrf\TransitionCenter\Models\Employer) {
+                $query->whereHas('groups', function($q){
+                    $q->where('id', '=', '3');
+                        //->where('status', '!=', 'unavailable');
+                });
+            }
+
             if ($widget->model instanceof \RainLab\User\Models\User) {
                 $query->whereHas('groups', function($q){
                     $q->where('id', '=', '2');
                         //->where('status', '!=', 'unavailable');
                 });
             }
-        });
+        });*/
 
         UsersController::extendFormFields(function($form, $model, $context){
             

@@ -82,6 +82,10 @@ class Users extends Controller
 
     public function listExtendQuery($query)
     {
+        $query->whereHas('groups', function($q){
+            $q->where('id', '=', '2');
+                //->where('status', '!=', 'unavailable');
+        });
         $query->withTrashed();
     }
 
