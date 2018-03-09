@@ -16,7 +16,7 @@
  */
 class Twig_Node_Sandbox extends Twig_Node
 {
-    public function __construct(Twig_NodeInterface $body, $lineno, $tag = null)
+    public function __construct(Twig_Node $body, $lineno, $tag = null)
     {
         parent::__construct(array('body' => $body), array(), $lineno, $tag);
     }
@@ -40,3 +40,5 @@ class Twig_Node_Sandbox extends Twig_Node
         ;
     }
 }
+
+class_alias('Twig_Node_Sandbox', 'Twig\Node\SandboxNode', false);

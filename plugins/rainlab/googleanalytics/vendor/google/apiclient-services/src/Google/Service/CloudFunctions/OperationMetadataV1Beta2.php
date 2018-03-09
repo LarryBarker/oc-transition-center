@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -20,6 +20,8 @@ class Google_Service_CloudFunctions_OperationMetadataV1Beta2 extends Google_Mode
   public $request;
   public $target;
   public $type;
+  public $updateTime;
+  public $versionId;
 
   public function setRequest($request)
   {
@@ -44,5 +46,21 @@ class Google_Service_CloudFunctions_OperationMetadataV1Beta2 extends Google_Mode
   public function getType()
   {
     return $this->type;
+  }
+  public function setUpdateTime($updateTime)
+  {
+    $this->updateTime = $updateTime;
+  }
+  public function getUpdateTime()
+  {
+    return $this->updateTime;
+  }
+  public function setVersionId($versionId)
+  {
+    $this->versionId = $versionId;
+  }
+  public function getVersionId()
+  {
+    return $this->versionId;
   }
 }

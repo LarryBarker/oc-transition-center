@@ -173,17 +173,17 @@
     },
     {
         "name": "guzzlehttp/guzzle",
-        "version": "6.2.3",
-        "version_normalized": "6.2.3.0",
+        "version": "6.3.0",
+        "version_normalized": "6.3.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/guzzle/guzzle.git",
-            "reference": "8d6c6cc55186db87b7dc5009827429ba4e9dc006"
+            "reference": "f4db5a78a5ea468d4831de7f0bf9d9415e348699"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/guzzle/guzzle/zipball/8d6c6cc55186db87b7dc5009827429ba4e9dc006",
-            "reference": "8d6c6cc55186db87b7dc5009827429ba4e9dc006",
+            "url": "https://api.github.com/repos/guzzle/guzzle/zipball/f4db5a78a5ea468d4831de7f0bf9d9415e348699",
+            "reference": "f4db5a78a5ea468d4831de7f0bf9d9415e348699",
             "shasum": ""
         },
         "require": {
@@ -193,10 +193,13 @@
         },
         "require-dev": {
             "ext-curl": "*",
-            "phpunit/phpunit": "^4.0",
+            "phpunit/phpunit": "^4.0 || ^5.0",
             "psr/log": "^1.0"
         },
-        "time": "2017-02-28 22:50:30",
+        "suggest": {
+            "psr/log": "Required for using the Log middleware"
+        },
+        "time": "2017-06-22 18:50:49",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -237,17 +240,17 @@
     },
     {
         "name": "phpseclib/phpseclib",
-        "version": "2.0.5",
-        "version_normalized": "2.0.5.0",
+        "version": "2.0.9",
+        "version_normalized": "2.0.9.0",
         "source": {
             "type": "git",
             "url": "https://github.com/phpseclib/phpseclib.git",
-            "reference": "f8dd0e18d2328c447dd4190fecd11ef52680d968"
+            "reference": "c9a3fe35e20eb6eeaca716d6a23cde03f52d1558"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/f8dd0e18d2328c447dd4190fecd11ef52680d968",
-            "reference": "f8dd0e18d2328c447dd4190fecd11ef52680d968",
+            "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/c9a3fe35e20eb6eeaca716d6a23cde03f52d1558",
+            "reference": "c9a3fe35e20eb6eeaca716d6a23cde03f52d1558",
             "shasum": ""
         },
         "require": {
@@ -265,7 +268,7 @@
             "ext-mcrypt": "Install the Mcrypt extension in order to speed up a few other cryptographic operations.",
             "ext-openssl": "Install the OpenSSL extension in order to speed up a wide variety of cryptographic operations."
         },
-        "time": "2017-05-08 05:58:35",
+        "time": "2017-11-29 06:38:08",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -380,17 +383,17 @@
     },
     {
         "name": "monolog/monolog",
-        "version": "1.22.1",
-        "version_normalized": "1.22.1.0",
+        "version": "1.23.0",
+        "version_normalized": "1.23.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/Seldaek/monolog.git",
-            "reference": "1e044bc4b34e91743943479f1be7a1d5eb93add0"
+            "reference": "fd8c787753b3a2ad11bc60c063cff1358a32a3b4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1e044bc4b34e91743943479f1be7a1d5eb93add0",
-            "reference": "1e044bc4b34e91743943479f1be7a1d5eb93add0",
+            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/fd8c787753b3a2ad11bc60c063cff1358a32a3b4",
+            "reference": "fd8c787753b3a2ad11bc60c063cff1358a32a3b4",
             "shasum": ""
         },
         "require": {
@@ -411,7 +414,7 @@
             "phpunit/phpunit-mock-objects": "2.3.0",
             "ruflin/elastica": ">=0.90 <3.0",
             "sentry/sentry": "^0.13",
-            "swiftmailer/swiftmailer": "~5.3"
+            "swiftmailer/swiftmailer": "^5.3|^6.0"
         },
         "suggest": {
             "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
@@ -426,7 +429,7 @@
             "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
             "sentry/sentry": "Allow sending log messages to a Sentry server"
         },
-        "time": "2017-03-13 07:08:03",
+        "time": "2017-06-19 01:22:40",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -460,23 +463,26 @@
     },
     {
         "name": "firebase/php-jwt",
-        "version": "v4.0.0",
-        "version_normalized": "4.0.0.0",
+        "version": "v5.0.0",
+        "version_normalized": "5.0.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/firebase/php-jwt.git",
-            "reference": "dccf163dc8ed7ed6a00afc06c51ee5186a428d35"
+            "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/firebase/php-jwt/zipball/dccf163dc8ed7ed6a00afc06c51ee5186a428d35",
-            "reference": "dccf163dc8ed7ed6a00afc06c51ee5186a428d35",
+            "url": "https://api.github.com/repos/firebase/php-jwt/zipball/9984a4d3a32ae7673d6971ea00bae9d0a1abba0e",
+            "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.0"
         },
-        "time": "2016-07-18 04:51:16",
+        "require-dev": {
+            "phpunit/phpunit": " 4.8.35"
+        },
+        "time": "2017-06-27 22:17:23",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -505,17 +511,17 @@
     },
     {
         "name": "google/apiclient-services",
-        "version": "v0.11",
-        "version_normalized": "0.11.0.0",
+        "version": "v0.39",
+        "version_normalized": "0.39.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/google/google-api-php-client-services.git",
-            "reference": "48c554aee06f2fd5700d7bdfa4fa6b82d184eb52"
+            "reference": "d20b726adcc93f1617e420dc352a3ecb112c458d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/google/google-api-php-client-services/zipball/48c554aee06f2fd5700d7bdfa4fa6b82d184eb52",
-            "reference": "48c554aee06f2fd5700d7bdfa4fa6b82d184eb52",
+            "url": "https://api.github.com/repos/google/google-api-php-client-services/zipball/d20b726adcc93f1617e420dc352a3ecb112c458d",
+            "reference": "d20b726adcc93f1617e420dc352a3ecb112c458d",
             "shasum": ""
         },
         "require": {
@@ -524,7 +530,7 @@
         "require-dev": {
             "phpunit/phpunit": "~4.8"
         },
-        "time": "2017-03-13 17:40:44",
+        "time": "2017-12-18 00:23:19",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -592,22 +598,22 @@
     },
     {
         "name": "google/auth",
-        "version": "v0.11.1",
-        "version_normalized": "0.11.1.0",
+        "version": "v1.2.0",
+        "version_normalized": "1.2.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/google/google-auth-library-php.git",
-            "reference": "a240674b08a09949fd5597f7590b3ed83663a12d"
+            "reference": "f3fc99fd621f339ee3d4de01bd6a709ed1396116"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/google/google-auth-library-php/zipball/a240674b08a09949fd5597f7590b3ed83663a12d",
-            "reference": "a240674b08a09949fd5597f7590b3ed83663a12d",
+            "url": "https://api.github.com/repos/google/google-auth-library-php/zipball/f3fc99fd621f339ee3d4de01bd6a709ed1396116",
+            "reference": "f3fc99fd621f339ee3d4de01bd6a709ed1396116",
             "shasum": ""
         },
         "require": {
-            "firebase/php-jwt": "~2.0|~3.0|~4.0",
-            "guzzlehttp/guzzle": "~5.3|~6.0",
+            "firebase/php-jwt": "~2.0|~3.0|~4.0|~5.0",
+            "guzzlehttp/guzzle": "~5.3.1|~6.0",
             "guzzlehttp/psr7": "~1.2",
             "php": ">=5.4",
             "psr/cache": "^1.0",
@@ -615,15 +621,14 @@
         },
         "require-dev": {
             "friendsofphp/php-cs-fixer": "^1.11",
-            "phpunit/phpunit": "3.7.*"
+            "guzzlehttp/promises": "0.1.1|^1.3",
+            "phpunit/phpunit": "^4.8.36",
+            "sebastian/comparator": ">=1.2.3"
         },
-        "time": "2016-11-02 14:59:14",
+        "time": "2017-12-06 21:27:53",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
-            "classmap": [
-                "src/"
-            ],
             "psr-4": {
                 "Google\\Auth\\": "src"
             }
@@ -642,24 +647,24 @@
     },
     {
         "name": "google/apiclient",
-        "version": "v2.1.3",
-        "version_normalized": "2.1.3.0",
+        "version": "v2.2.1",
+        "version_normalized": "2.2.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/google/google-api-php-client.git",
-            "reference": "43996f09df274158fd04fce98e8a82effe5f3717"
+            "reference": "b69b8ac4bf6501793c389d4e013a79d09c85c5f2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/google/google-api-php-client/zipball/43996f09df274158fd04fce98e8a82effe5f3717",
-            "reference": "43996f09df274158fd04fce98e8a82effe5f3717",
+            "url": "https://api.github.com/repos/google/google-api-php-client/zipball/b69b8ac4bf6501793c389d4e013a79d09c85c5f2",
+            "reference": "b69b8ac4bf6501793c389d4e013a79d09c85c5f2",
             "shasum": ""
         },
         "require": {
-            "firebase/php-jwt": "~2.0|~3.0|~4.0",
-            "google/apiclient-services": "^0.11",
-            "google/auth": "^0.11",
-            "guzzlehttp/guzzle": "~5.2|~6.0",
+            "firebase/php-jwt": "~2.0|~3.0|~4.0|~5.0",
+            "google/apiclient-services": "~0.13",
+            "google/auth": "^1.0",
+            "guzzlehttp/guzzle": "~5.3.1|~6.0",
             "guzzlehttp/psr7": "^1.2",
             "monolog/monolog": "^1.17",
             "php": ">=5.4",
@@ -675,7 +680,7 @@
         "suggest": {
             "cache/filesystem-adapter": "For caching certs and tokens (using Google_Client::setCache)"
         },
-        "time": "2017-03-22 18:32:04",
+        "time": "2017-11-03 01:19:53",
         "type": "library",
         "extra": {
             "branch-alias": {

@@ -5,6 +5,7 @@ namespace Renatio\DynamicPDF;
 use Backend\Facades\Backend;
 use Renatio\DynamicPDF\Classes\ServiceProvider;
 use System\Classes\PluginBase;
+use System\Classes\PluginManager;
 
 /**
  * Class Plugin
@@ -23,7 +24,7 @@ class Plugin extends PluginBase
             'description' => 'renatio.dynamicpdf::lang.plugin.description',
             'author' => 'Renatio',
             'icon' => 'icon-file-pdf-o',
-            'homepage' => 'http://octobercms.com/plugin/renatio-dynamicpdf'
+            'homepage' => 'http://octobercms.com/plugin/renatio-dynamicpdf',
         ];
     }
 
@@ -52,13 +53,13 @@ class Plugin extends PluginBase
                         'label' => 'renatio.dynamicpdf::lang.templates.templates',
                         'icon' => 'icon-file-text-o',
                         'url' => Backend::url('renatio/dynamicpdf/templates'),
-                        'permissions' => ['renatio.dynamicpdf.manage_templates']
+                        'permissions' => ['renatio.dynamicpdf.manage_templates'],
                     ],
                     'layouts' => [
                         'label' => 'renatio.dynamicpdf::lang.templates.layouts',
                         'icon' => 'icon-th-large',
                         'url' => Backend::url('renatio/dynamicpdf/layouts'),
-                        'permissions' => ['renatio.dynamicpdf.manage_layouts']
+                        'permissions' => ['renatio.dynamicpdf.manage_layouts'],
                     ]
                 ]
             ]
@@ -73,13 +74,38 @@ class Plugin extends PluginBase
         return [
             'renatio.dynamicpdf.manage_templates' => [
                 'tab' => 'renatio.dynamicpdf::lang.permissions.tab',
-                'label' => 'renatio.dynamicpdf::lang.permissions.manage_templates'
+                'label' => 'renatio.dynamicpdf::lang.permissions.manage_templates',
             ],
             'renatio.dynamicpdf.manage_layouts' => [
                 'tab' => 'renatio.dynamicpdf::lang.permissions.tab',
-                'label' => 'renatio.dynamicpdf::lang.permissions.manage_layouts'
+                'label' => 'renatio.dynamicpdf::lang.permissions.manage_layouts',
             ]
         ];
+    }
+
+    /**
+     * @return array
+     */
+    public function registerMarkupTags()
+    {
+        if (PluginManager::instance()->exists('RainLab.Translate')) {
+            return [];
+        }
+
+        return [
+            'filters' => [
+                '_' => ['Lang', 'get'],
+                '__' => ['Lang', 'choice'],
+            ]
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function registerSettings()
+    {
+        return [];
     }
 
 }

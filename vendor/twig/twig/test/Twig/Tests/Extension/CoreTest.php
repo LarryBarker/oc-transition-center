@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-class Twig_Tests_Extension_CoreTest extends PHPUnit_Framework_TestCase
+class Twig_Tests_Extension_CoreTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @dataProvider getRandomFunctionTestData
@@ -86,31 +86,23 @@ class Twig_Tests_Extension_CoreTest extends PHPUnit_Framework_TestCase
 
     public function testRandomFunctionOnNonUTF8String()
     {
-        if (!function_exists('iconv') && !function_exists('mb_convert_encoding')) {
-            $this->markTestSkipped('needs iconv or mbstring');
-        }
-
         $twig = new Twig_Environment($this->getMockBuilder('Twig_LoaderInterface')->getMock());
         $twig->setCharset('ISO-8859-1');
 
-        $text = twig_convert_encoding('Äé', 'ISO-8859-1', 'UTF-8');
+        $text = iconv('UTF-8', 'ISO-8859-1', 'Äé');
         for ($i = 0; $i < 30; ++$i) {
             $rand = twig_random($twig, $text);
-            $this->assertTrue(in_array(twig_convert_encoding($rand, 'UTF-8', 'ISO-8859-1'), array('Ä', 'é'), true));
+            $this->assertTrue(in_array(iconv('ISO-8859-1', 'UTF-8', $rand), array('Ä', 'é'), true));
         }
     }
 
     public function testReverseFilterOnNonUTF8String()
     {
-        if (!function_exists('iconv') && !function_exists('mb_convert_encoding')) {
-            $this->markTestSkipped('needs iconv or mbstring');
-        }
-
         $twig = new Twig_Environment($this->getMockBuilder('Twig_LoaderInterface')->getMock());
         $twig->setCharset('ISO-8859-1');
 
-        $input = twig_convert_encoding('Äé', 'ISO-8859-1', 'UTF-8');
-        $output = twig_convert_encoding(twig_reverse_filter($twig, $input), 'UTF-8', 'ISO-8859-1');
+        $input = iconv('UTF-8', 'ISO-8859-1', 'Äé');
+        $output = iconv('ISO-8859-1', 'UTF-8', twig_reverse_filter($twig, $input));
 
         $this->assertEquals($output, 'éÄ');
     }
@@ -264,7 +256,7 @@ class Twig_Tests_Extension_CoreTest extends PHPUnit_Framework_TestCase
             array(array(), new CoreTestIterator($i, $keys, true), count($keys) + 10),
             array('de', 'abcdef', 3, 2),
             array(array(), new SimpleXMLElement('<items><item>1</item><item>2</item></items>'), 3),
-            array(array(), new ArrayIterator(array(1, 2)), 3)
+            array(array(), new ArrayIterator(array(1, 2)), 3),
         );
     }
 }
@@ -344,7 +336,7 @@ final class CoreTestIterator implements Iterator
     {
         ++$this->position;
         if ($this->position === $this->maxPosition) {
-             throw new LogicException(sprintf('Code should not iterate beyond %d.', $this->maxPosition));
+            throw new LogicException(sprintf('Code should not iterate beyond %d.', $this->maxPosition));
         }
     }
 

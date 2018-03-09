@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,22 +19,27 @@ class Google_Service_Classroom_CourseWork extends Google_Collection
 {
   protected $collection_key = 'materials';
   public $alternateLink;
+  public $assigneeMode;
   protected $assignmentType = 'Google_Service_Classroom_Assignment';
   protected $assignmentDataType = '';
   public $associatedWithDeveloper;
   public $courseId;
   public $creationTime;
+  public $creatorUserId;
   public $description;
   protected $dueDateType = 'Google_Service_Classroom_Date';
   protected $dueDateDataType = '';
   protected $dueTimeType = 'Google_Service_Classroom_TimeOfDay';
   protected $dueTimeDataType = '';
   public $id;
+  protected $individualStudentsOptionsType = 'Google_Service_Classroom_IndividualStudentsOptions';
+  protected $individualStudentsOptionsDataType = '';
   protected $materialsType = 'Google_Service_Classroom_Material';
   protected $materialsDataType = 'array';
   public $maxPoints;
   protected $multipleChoiceQuestionType = 'Google_Service_Classroom_MultipleChoiceQuestion';
   protected $multipleChoiceQuestionDataType = '';
+  public $scheduledTime;
   public $state;
   public $submissionModificationMode;
   public $title;
@@ -49,10 +54,24 @@ class Google_Service_Classroom_CourseWork extends Google_Collection
   {
     return $this->alternateLink;
   }
+  public function setAssigneeMode($assigneeMode)
+  {
+    $this->assigneeMode = $assigneeMode;
+  }
+  public function getAssigneeMode()
+  {
+    return $this->assigneeMode;
+  }
+  /**
+   * @param Google_Service_Classroom_Assignment
+   */
   public function setAssignment(Google_Service_Classroom_Assignment $assignment)
   {
     $this->assignment = $assignment;
   }
+  /**
+   * @return Google_Service_Classroom_Assignment
+   */
   public function getAssignment()
   {
     return $this->assignment;
@@ -81,6 +100,14 @@ class Google_Service_Classroom_CourseWork extends Google_Collection
   {
     return $this->creationTime;
   }
+  public function setCreatorUserId($creatorUserId)
+  {
+    $this->creatorUserId = $creatorUserId;
+  }
+  public function getCreatorUserId()
+  {
+    return $this->creatorUserId;
+  }
   public function setDescription($description)
   {
     $this->description = $description;
@@ -89,18 +116,30 @@ class Google_Service_Classroom_CourseWork extends Google_Collection
   {
     return $this->description;
   }
+  /**
+   * @param Google_Service_Classroom_Date
+   */
   public function setDueDate(Google_Service_Classroom_Date $dueDate)
   {
     $this->dueDate = $dueDate;
   }
+  /**
+   * @return Google_Service_Classroom_Date
+   */
   public function getDueDate()
   {
     return $this->dueDate;
   }
+  /**
+   * @param Google_Service_Classroom_TimeOfDay
+   */
   public function setDueTime(Google_Service_Classroom_TimeOfDay $dueTime)
   {
     $this->dueTime = $dueTime;
   }
+  /**
+   * @return Google_Service_Classroom_TimeOfDay
+   */
   public function getDueTime()
   {
     return $this->dueTime;
@@ -113,10 +152,30 @@ class Google_Service_Classroom_CourseWork extends Google_Collection
   {
     return $this->id;
   }
+  /**
+   * @param Google_Service_Classroom_IndividualStudentsOptions
+   */
+  public function setIndividualStudentsOptions(Google_Service_Classroom_IndividualStudentsOptions $individualStudentsOptions)
+  {
+    $this->individualStudentsOptions = $individualStudentsOptions;
+  }
+  /**
+   * @return Google_Service_Classroom_IndividualStudentsOptions
+   */
+  public function getIndividualStudentsOptions()
+  {
+    return $this->individualStudentsOptions;
+  }
+  /**
+   * @param Google_Service_Classroom_Material
+   */
   public function setMaterials($materials)
   {
     $this->materials = $materials;
   }
+  /**
+   * @return Google_Service_Classroom_Material
+   */
   public function getMaterials()
   {
     return $this->materials;
@@ -129,13 +188,27 @@ class Google_Service_Classroom_CourseWork extends Google_Collection
   {
     return $this->maxPoints;
   }
+  /**
+   * @param Google_Service_Classroom_MultipleChoiceQuestion
+   */
   public function setMultipleChoiceQuestion(Google_Service_Classroom_MultipleChoiceQuestion $multipleChoiceQuestion)
   {
     $this->multipleChoiceQuestion = $multipleChoiceQuestion;
   }
+  /**
+   * @return Google_Service_Classroom_MultipleChoiceQuestion
+   */
   public function getMultipleChoiceQuestion()
   {
     return $this->multipleChoiceQuestion;
+  }
+  public function setScheduledTime($scheduledTime)
+  {
+    $this->scheduledTime = $scheduledTime;
+  }
+  public function getScheduledTime()
+  {
+    return $this->scheduledTime;
   }
   public function setState($state)
   {

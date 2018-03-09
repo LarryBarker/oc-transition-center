@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -27,7 +27,7 @@ class Google_Service_Script_Resource_Scripts extends Google_Service_Resource
 {
   /**
    * Runs a function in an Apps Script project. The project must be deployed for
-   * use with the Apps Script Execution API.
+   * use with the Apps Script API.
    *
    * This method requires authorization with an OAuth 2.0 token that includes at
    * least one of the scopes listed in the [Authorization](#authorization)
@@ -36,8 +36,8 @@ class Google_Service_Script_Resource_Scripts extends Google_Service_Resource
    * token, open the project in the script editor, then select **File > Project
    * properties** and click the **Scopes** tab. (scripts.run)
    *
-   * @param string $scriptId The project key of the script to be executed. To find
-   * the project key, open the project in the script editor and select **File >
+   * @param string $scriptId The script ID of the script to be executed. To find
+   * the script ID, open the project in the script editor and select **File >
    * Project properties**.
    * @param Google_Service_Script_ExecutionRequest $postBody
    * @param array $optParams Optional parameters.

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -79,12 +79,12 @@ class Google_Service_CloudKMS_Resource_ProjectsLocationsKeyRings extends Google_
    * with the KeyRings, in the format `projects/locations`.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string pageToken Optional pagination token, returned earlier via
-   * ListKeyRingsResponse.next_page_token.
    * @opt_param int pageSize Optional limit on the number of KeyRings to include
    * in the response.  Further KeyRings can subsequently be obtained by including
    * the ListKeyRingsResponse.next_page_token in a subsequent request.  If
    * unspecified, the server will pick an appropriate default.
+   * @opt_param string pageToken Optional pagination token, returned earlier via
+   * ListKeyRingsResponse.next_page_token.
    * @return Google_Service_CloudKMS_ListKeyRingsResponse
    */
   public function listProjectsLocationsKeyRings($parent, $optParams = array())

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -160,6 +160,22 @@ class Google_Service_Fusiontables_Resource_Table extends Google_Service_Resource
     $params = array('tableId' => $tableId, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
     return $this->call('patch', array($params), "Google_Service_Fusiontables_Table");
+  }
+  /**
+   * Replaces rows of the table with the rows of the spreadsheet that is first
+   * imported from. Current rows remain visible until all replacement rows are
+   * ready. (table.refetchSheet)
+   *
+   * @param string $tableId Table whose rows will be replaced from the
+   * spreadsheet.
+   * @param array $optParams Optional parameters.
+   * @return Google_Service_Fusiontables_Task
+   */
+  public function refetchSheet($tableId, $optParams = array())
+  {
+    $params = array('tableId' => $tableId);
+    $params = array_merge($params, $optParams);
+    return $this->call('refetchSheet', array($params), "Google_Service_Fusiontables_Task");
   }
   /**
    * Replaces rows of an existing table. Current rows remain visible until all

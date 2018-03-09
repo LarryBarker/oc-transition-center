@@ -3,33 +3,6 @@
 //
 // Styles specific to individual pages.
 //
-
-div#brand {
-	
-    .brand {
-	    float: left;
-	    //padding: 15px 15px;
-	    font-size: 36px;
-	    //line-height: 20px;
-	    height: 80px;
-	    padding-left: 80px;
-	    background-image: url('../images/october.png');
-	    background-size: auto 80%;
-	    background-repeat: no-repeat;
-	    color: white;
-	    font-variant: small-caps;
-    }
-    
-	.brand small {
-		display: -webkit-box;
-		font-size: 14px;
-		//line-height: 1em;
-	}
-	
-	a.brand {
-		text-decoration: none;
-	}
-}
 .form-box {
 	margin-top: 35px;
 }
@@ -305,4 +278,71 @@ div#brand {
 
 .footer-links li {
     display: inline-block;
+}
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+.brand {
+
+	font-weight: 300;
+	font-size: 36px;
+	background-image: url('../images/leaf.png');
+	background-size: auto 80%;
+	background-repeat: no-repeat;
+	background-position: right center;
+	
+	thin {
+		font-weight: 100;
+	}
+
+	small {
+		display: -webkit-box;
+		font-size: 14px;
+		font-variant: small-caps;
+		line-height: 1em;
+		margin-left: 32%;
+	}
+
+	a {
+		text-decoration: none;
+		color: white;
+	}
+
+} 
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) {  }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) {  }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @screen-lg-min) { 
+	.brand {
+
+		float: left;
+		font-weight: 300;
+		font-size: 36px;
+		height: 80px;
+		margin-left: 32%;
+		padding-top: 20px;
+		padding-right: 80px;
+		background-image: url('../images/leaf.png');
+		background-size: auto 80%;
+		background-repeat: no-repeat;
+		background-position: right center;
+		
+		thin {
+			font-weight: 100;
+		}
+
+		small {
+			display: -webkit-box;
+			font-size: 14px;
+			font-variant: small-caps;
+			line-height: 1em;
+			margin-left: 32%;
+		}
+
+	} 
 }

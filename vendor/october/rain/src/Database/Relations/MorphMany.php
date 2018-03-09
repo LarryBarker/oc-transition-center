@@ -35,8 +35,8 @@ class MorphMany extends MorphManyBase
             if ($this->parent->exists) {
                 $this->parent->bindEventOnce('model.afterSave', function() {
                     $this->update([
-                        $this->getPlainForeignKey() => null,
-                        $this->getPlainMorphType() => null
+                        $this->getForeignKeyName() => null,
+                        $this->getMorphType() => null
                     ]);
                 });
             }
@@ -52,8 +52,8 @@ class MorphMany extends MorphManyBase
 
             if ($this->parent->exists) {
                 $collection->each(function($instance) {
-                    $instance->setAttribute($this->getPlainForeignKey(), $this->getParentKey());
-                    $instance->setAttribute($this->getPlainMorphType(), $this->morphClass);
+                    $instance->setAttribute($this->getForeignKeyName(), $this->getParentKey());
+                    $instance->setAttribute($this->getMorphType(), $this->morphClass);
                 });
             }
         }
@@ -65,14 +65,14 @@ class MorphMany extends MorphManyBase
             $this->parent->setRelation($this->relationName, $collection);
 
             $this->parent->bindEventOnce('model.afterSave', function() use ($collection) {
-                $existingIds = $collection->lists($this->localKey);
+                $existingIds = $collection->pluck($this->localKey)->all();
                 $this->whereNotIn($this->localKey, $existingIds)->update([
-                    $this->getPlainForeignKey() => null,
-                    $this->getPlainMorphType() => null
+                    $this->getForeignKeyName() => null,
+                    $this->getMorphType() => null
                 ]);
                 $collection->each(function($instance) {
-                    $instance->setAttribute($this->getPlainForeignKey(), $this->getParentKey());
-                    $instance->setAttribute($this->getPlainMorphType(), $this->morphClass);
+                    $instance->setAttribute($this->getForeignKeyName(), $this->getParentKey());
+                    $instance->setAttribute($this->getMorphType(), $this->morphClass);
                     $instance->save(['timestamps' => false]);
                 });
             });
@@ -89,7 +89,7 @@ class MorphMany extends MorphManyBase
         $relationName = $this->relationName;
 
         if ($relation = $this->parent->$relationName) {
-            $value = $relation->lists($this->localKey);
+            $value = $relation->pluck($this->localKey)->all();
         }
 
         return $value;

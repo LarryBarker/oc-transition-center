@@ -12,11 +12,9 @@
 /**
  * Implements a no-cache strategy.
  *
- * @final
- *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-class Twig_Cache_Null implements Twig_CacheInterface
+final class Twig_Cache_Null implements Twig_CacheInterface
 {
     public function generateKey($name, $className)
     {
@@ -36,3 +34,5 @@ class Twig_Cache_Null implements Twig_CacheInterface
         return 0;
     }
 }
+
+class_alias('Twig_Cache_Null', 'Twig\Cache\NullCache', false);

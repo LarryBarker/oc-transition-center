@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -34,6 +34,12 @@ class Google_Service_Compute_Resource_InstanceGroupManagers extends Google_Servi
    * marked as DONE when the action is scheduled even if the instances have not
    * yet been removed from the group. You must separately verify the status of the
    * abandoning action with the listmanagedinstances method.
+   *
+   * If the group is part of a backend service that has enabled connection
+   * draining, it can take up to 60 seconds after the connection draining duration
+   * has elapsed before the VM instance is removed or deleted.
+   *
+   * You can specify a maximum of 1000 instances with this method per request.
    * (instanceGroupManagers.abandonInstances)
    *
    * @param string $project Project ID for this request.
@@ -42,6 +48,19 @@ class Google_Service_Compute_Resource_InstanceGroupManagers extends Google_Servi
    * @param string $instanceGroupManager The name of the managed instance group.
    * @param Google_Service_Compute_InstanceGroupManagersAbandonInstancesRequest $postBody
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Google_Service_Compute_Operation
    */
   public function abandonInstances($project, $zone, $instanceGroupManager, Google_Service_Compute_InstanceGroupManagersAbandonInstancesRequest $postBody, $optParams = array())
@@ -57,9 +76,9 @@ class Google_Service_Compute_Resource_InstanceGroupManagers extends Google_Servi
    * @param string $project Project ID for this request.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string filter Sets a filter expression for filtering listed
-   * resources, in the form filter={expression}. Your {expression} must be in the
-   * format: field_name comparison_string literal_string.
+   * @opt_param string filter Sets a filter {expression} for filtering listed
+   * resources. Your {expression} must be in the format: field_name
+   * comparison_string literal_string.
    *
    * The field_name is the name of the field you want to compare. Only atomic
    * field types are supported (string, number, boolean). The comparison_string
@@ -70,7 +89,7 @@ class Google_Service_Compute_Resource_InstanceGroupManagers extends Google_Servi
    * literal value must match the entire field.
    *
    * For example, to filter for instances that do not have a name of example-
-   * instance, you would use filter=name ne example-instance.
+   * instance, you would use name ne example-instance.
    *
    * You can filter on nested fields. For example, you could filter on instances
    * that have set the scheduling.automaticRestart field to true. Use filtering on
@@ -119,6 +138,19 @@ class Google_Service_Compute_Resource_InstanceGroupManagers extends Google_Servi
    * @param string $instanceGroupManager The name of the managed instance group to
    * delete.
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Google_Service_Compute_Operation
    */
   public function delete($project, $zone, $instanceGroupManager, $optParams = array())
@@ -134,7 +166,14 @@ class Google_Service_Compute_Resource_InstanceGroupManagers extends Google_Servi
    * instance group by the number of instances that you delete. This operation is
    * marked as DONE when the action is scheduled even if the instances are still
    * being deleted. You must separately verify the status of the deleting action
-   * with the listmanagedinstances method. (instanceGroupManagers.deleteInstances)
+   * with the listmanagedinstances method.
+   *
+   * If the group is part of a backend service that has enabled connection
+   * draining, it can take up to 60 seconds after the connection draining duration
+   * has elapsed before the VM instance is removed or deleted.
+   *
+   * You can specify a maximum of 1000 instances with this method per request.
+   * (instanceGroupManagers.deleteInstances)
    *
    * @param string $project Project ID for this request.
    * @param string $zone The name of the zone where the managed instance group is
@@ -142,6 +181,19 @@ class Google_Service_Compute_Resource_InstanceGroupManagers extends Google_Servi
    * @param string $instanceGroupManager The name of the managed instance group.
    * @param Google_Service_Compute_InstanceGroupManagersDeleteInstancesRequest $postBody
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Google_Service_Compute_Operation
    */
   public function deleteInstances($project, $zone, $instanceGroupManager, Google_Service_Compute_InstanceGroupManagersDeleteInstancesRequest $postBody, $optParams = array())
@@ -175,6 +227,9 @@ class Google_Service_Compute_Resource_InstanceGroupManagers extends Google_Servi
    * is marked as DONE when the group is created even if the instances in the
    * group have not yet been created. You must separately verify the status of the
    * individual instances with the listmanagedinstances method.
+   *
+   * A managed instance group can have up to 1000 VM instances per group. Please
+   * contact Cloud Support if you need an increase in this limit.
    * (instanceGroupManagers.insert)
    *
    * @param string $project Project ID for this request.
@@ -182,6 +237,19 @@ class Google_Service_Compute_Resource_InstanceGroupManagers extends Google_Servi
    * instance group.
    * @param Google_Service_Compute_InstanceGroupManager $postBody
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Google_Service_Compute_Operation
    */
   public function insert($project, $zone, Google_Service_Compute_InstanceGroupManager $postBody, $optParams = array())
@@ -199,9 +267,9 @@ class Google_Service_Compute_Resource_InstanceGroupManagers extends Google_Servi
    * located.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string filter Sets a filter expression for filtering listed
-   * resources, in the form filter={expression}. Your {expression} must be in the
-   * format: field_name comparison_string literal_string.
+   * @opt_param string filter Sets a filter {expression} for filtering listed
+   * resources. Your {expression} must be in the format: field_name
+   * comparison_string literal_string.
    *
    * The field_name is the name of the field you want to compare. Only atomic
    * field types are supported (string, number, boolean). The comparison_string
@@ -212,7 +280,7 @@ class Google_Service_Compute_Resource_InstanceGroupManagers extends Google_Servi
    * literal value must match the entire field.
    *
    * For example, to filter for instances that do not have a name of example-
-   * instance, you would use filter=name ne example-instance.
+   * instance, you would use name ne example-instance.
    *
    * You can filter on nested fields. For example, you could filter on instances
    * that have set the scheduling.automaticRestart field to true. Use filtering on
@@ -282,6 +350,12 @@ class Google_Service_Compute_Resource_InstanceGroupManagers extends Google_Servi
    * DONE when the action is scheduled even if the instances have not yet been
    * recreated. You must separately verify the status of the recreating action
    * with the listmanagedinstances method.
+   *
+   * If the group is part of a backend service that has enabled connection
+   * draining, it can take up to 60 seconds after the connection draining duration
+   * has elapsed before the VM instance is removed or deleted.
+   *
+   * You can specify a maximum of 1000 instances with this method per request.
    * (instanceGroupManagers.recreateInstances)
    *
    * @param string $project Project ID for this request.
@@ -290,6 +364,19 @@ class Google_Service_Compute_Resource_InstanceGroupManagers extends Google_Servi
    * @param string $instanceGroupManager The name of the managed instance group.
    * @param Google_Service_Compute_InstanceGroupManagersRecreateInstancesRequest $postBody
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Google_Service_Compute_Operation
    */
   public function recreateInstances($project, $zone, $instanceGroupManager, Google_Service_Compute_InstanceGroupManagersRecreateInstancesRequest $postBody, $optParams = array())
@@ -305,6 +392,10 @@ class Google_Service_Compute_Resource_InstanceGroupManagers extends Google_Servi
    * when the resize actions are scheduled even if the group has not yet added or
    * deleted any instances. You must separately verify the status of the creating
    * or deleting actions with the listmanagedinstances method.
+   *
+   * If the group is part of a backend service that has enabled connection
+   * draining, it can take up to 60 seconds after the connection draining duration
+   * has elapsed before the VM instance is removed or deleted.
    * (instanceGroupManagers.resize)
    *
    * @param string $project Project ID for this request.
@@ -316,6 +407,19 @@ class Google_Service_Compute_Resource_InstanceGroupManagers extends Google_Servi
    * removes instances to maintain the number of instances specified by this
    * parameter.
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Google_Service_Compute_Operation
    */
   public function resize($project, $zone, $instanceGroupManager, $size, $optParams = array())
@@ -335,6 +439,19 @@ class Google_Service_Compute_Resource_InstanceGroupManagers extends Google_Servi
    * @param string $instanceGroupManager The name of the managed instance group.
    * @param Google_Service_Compute_InstanceGroupManagersSetInstanceTemplateRequest $postBody
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Google_Service_Compute_Operation
    */
   public function setInstanceTemplate($project, $zone, $instanceGroupManager, Google_Service_Compute_InstanceGroupManagersSetInstanceTemplateRequest $postBody, $optParams = array())
@@ -358,6 +475,19 @@ class Google_Service_Compute_Resource_InstanceGroupManagers extends Google_Servi
    * @param string $instanceGroupManager The name of the managed instance group.
    * @param Google_Service_Compute_InstanceGroupManagersSetTargetPoolsRequest $postBody
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Google_Service_Compute_Operation
    */
   public function setTargetPools($project, $zone, $instanceGroupManager, Google_Service_Compute_InstanceGroupManagersSetTargetPoolsRequest $postBody, $optParams = array())

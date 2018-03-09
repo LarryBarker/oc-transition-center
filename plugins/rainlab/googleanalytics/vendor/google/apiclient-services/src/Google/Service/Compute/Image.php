@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -31,6 +31,8 @@ class Google_Service_Compute_Image extends Google_Collection
   protected $imageEncryptionKeyType = 'Google_Service_Compute_CustomerEncryptionKey';
   protected $imageEncryptionKeyDataType = '';
   public $kind;
+  public $labelFingerprint;
+  public $labels;
   public $licenses;
   public $name;
   protected $rawDiskType = 'Google_Service_Compute_ImageRawDisk';
@@ -40,6 +42,10 @@ class Google_Service_Compute_Image extends Google_Collection
   protected $sourceDiskEncryptionKeyType = 'Google_Service_Compute_CustomerEncryptionKey';
   protected $sourceDiskEncryptionKeyDataType = '';
   public $sourceDiskId;
+  public $sourceImage;
+  protected $sourceImageEncryptionKeyType = 'Google_Service_Compute_CustomerEncryptionKey';
+  protected $sourceImageEncryptionKeyDataType = '';
+  public $sourceImageId;
   public $sourceType;
   public $status;
 
@@ -59,10 +65,16 @@ class Google_Service_Compute_Image extends Google_Collection
   {
     return $this->creationTimestamp;
   }
+  /**
+   * @param Google_Service_Compute_DeprecationStatus
+   */
   public function setDeprecated(Google_Service_Compute_DeprecationStatus $deprecated)
   {
     $this->deprecated = $deprecated;
   }
+  /**
+   * @return Google_Service_Compute_DeprecationStatus
+   */
   public function getDeprecated()
   {
     return $this->deprecated;
@@ -91,10 +103,16 @@ class Google_Service_Compute_Image extends Google_Collection
   {
     return $this->family;
   }
+  /**
+   * @param Google_Service_Compute_GuestOsFeature
+   */
   public function setGuestOsFeatures($guestOsFeatures)
   {
     $this->guestOsFeatures = $guestOsFeatures;
   }
+  /**
+   * @return Google_Service_Compute_GuestOsFeature
+   */
   public function getGuestOsFeatures()
   {
     return $this->guestOsFeatures;
@@ -107,10 +125,16 @@ class Google_Service_Compute_Image extends Google_Collection
   {
     return $this->id;
   }
+  /**
+   * @param Google_Service_Compute_CustomerEncryptionKey
+   */
   public function setImageEncryptionKey(Google_Service_Compute_CustomerEncryptionKey $imageEncryptionKey)
   {
     $this->imageEncryptionKey = $imageEncryptionKey;
   }
+  /**
+   * @return Google_Service_Compute_CustomerEncryptionKey
+   */
   public function getImageEncryptionKey()
   {
     return $this->imageEncryptionKey;
@@ -122,6 +146,22 @@ class Google_Service_Compute_Image extends Google_Collection
   public function getKind()
   {
     return $this->kind;
+  }
+  public function setLabelFingerprint($labelFingerprint)
+  {
+    $this->labelFingerprint = $labelFingerprint;
+  }
+  public function getLabelFingerprint()
+  {
+    return $this->labelFingerprint;
+  }
+  public function setLabels($labels)
+  {
+    $this->labels = $labels;
+  }
+  public function getLabels()
+  {
+    return $this->labels;
   }
   public function setLicenses($licenses)
   {
@@ -139,10 +179,16 @@ class Google_Service_Compute_Image extends Google_Collection
   {
     return $this->name;
   }
+  /**
+   * @param Google_Service_Compute_ImageRawDisk
+   */
   public function setRawDisk(Google_Service_Compute_ImageRawDisk $rawDisk)
   {
     $this->rawDisk = $rawDisk;
   }
+  /**
+   * @return Google_Service_Compute_ImageRawDisk
+   */
   public function getRawDisk()
   {
     return $this->rawDisk;
@@ -163,10 +209,16 @@ class Google_Service_Compute_Image extends Google_Collection
   {
     return $this->sourceDisk;
   }
+  /**
+   * @param Google_Service_Compute_CustomerEncryptionKey
+   */
   public function setSourceDiskEncryptionKey(Google_Service_Compute_CustomerEncryptionKey $sourceDiskEncryptionKey)
   {
     $this->sourceDiskEncryptionKey = $sourceDiskEncryptionKey;
   }
+  /**
+   * @return Google_Service_Compute_CustomerEncryptionKey
+   */
   public function getSourceDiskEncryptionKey()
   {
     return $this->sourceDiskEncryptionKey;
@@ -178,6 +230,36 @@ class Google_Service_Compute_Image extends Google_Collection
   public function getSourceDiskId()
   {
     return $this->sourceDiskId;
+  }
+  public function setSourceImage($sourceImage)
+  {
+    $this->sourceImage = $sourceImage;
+  }
+  public function getSourceImage()
+  {
+    return $this->sourceImage;
+  }
+  /**
+   * @param Google_Service_Compute_CustomerEncryptionKey
+   */
+  public function setSourceImageEncryptionKey(Google_Service_Compute_CustomerEncryptionKey $sourceImageEncryptionKey)
+  {
+    $this->sourceImageEncryptionKey = $sourceImageEncryptionKey;
+  }
+  /**
+   * @return Google_Service_Compute_CustomerEncryptionKey
+   */
+  public function getSourceImageEncryptionKey()
+  {
+    return $this->sourceImageEncryptionKey;
+  }
+  public function setSourceImageId($sourceImageId)
+  {
+    $this->sourceImageId = $sourceImageId;
+  }
+  public function getSourceImageId()
+  {
+    return $this->sourceImageId;
   }
   public function setSourceType($sourceType)
   {

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -22,6 +22,7 @@ class Google_Service_ServiceControl_AuditLog extends Google_Collection
   protected $authenticationInfoDataType = '';
   protected $authorizationInfoType = 'Google_Service_ServiceControl_AuthorizationInfo';
   protected $authorizationInfoDataType = 'array';
+  public $metadata;
   public $methodName;
   public $numResponseItems;
   public $request;
@@ -34,21 +35,41 @@ class Google_Service_ServiceControl_AuditLog extends Google_Collection
   protected $statusType = 'Google_Service_ServiceControl_Status';
   protected $statusDataType = '';
 
+  /**
+   * @param Google_Service_ServiceControl_AuthenticationInfo
+   */
   public function setAuthenticationInfo(Google_Service_ServiceControl_AuthenticationInfo $authenticationInfo)
   {
     $this->authenticationInfo = $authenticationInfo;
   }
+  /**
+   * @return Google_Service_ServiceControl_AuthenticationInfo
+   */
   public function getAuthenticationInfo()
   {
     return $this->authenticationInfo;
   }
+  /**
+   * @param Google_Service_ServiceControl_AuthorizationInfo
+   */
   public function setAuthorizationInfo($authorizationInfo)
   {
     $this->authorizationInfo = $authorizationInfo;
   }
+  /**
+   * @return Google_Service_ServiceControl_AuthorizationInfo
+   */
   public function getAuthorizationInfo()
   {
     return $this->authorizationInfo;
+  }
+  public function setMetadata($metadata)
+  {
+    $this->metadata = $metadata;
+  }
+  public function getMetadata()
+  {
+    return $this->metadata;
   }
   public function setMethodName($methodName)
   {
@@ -74,10 +95,16 @@ class Google_Service_ServiceControl_AuditLog extends Google_Collection
   {
     return $this->request;
   }
+  /**
+   * @param Google_Service_ServiceControl_RequestMetadata
+   */
   public function setRequestMetadata(Google_Service_ServiceControl_RequestMetadata $requestMetadata)
   {
     $this->requestMetadata = $requestMetadata;
   }
+  /**
+   * @return Google_Service_ServiceControl_RequestMetadata
+   */
   public function getRequestMetadata()
   {
     return $this->requestMetadata;
@@ -114,10 +141,16 @@ class Google_Service_ServiceControl_AuditLog extends Google_Collection
   {
     return $this->serviceName;
   }
+  /**
+   * @param Google_Service_ServiceControl_Status
+   */
   public function setStatus(Google_Service_ServiceControl_Status $status)
   {
     $this->status = $status;
   }
+  /**
+   * @return Google_Service_ServiceControl_Status
+   */
   public function getStatus()
   {
     return $this->status;

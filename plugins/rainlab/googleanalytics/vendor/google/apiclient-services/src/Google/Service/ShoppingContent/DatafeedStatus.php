@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -18,17 +18,27 @@
 class Google_Service_ShoppingContent_DatafeedStatus extends Google_Collection
 {
   protected $collection_key = 'warnings';
+  public $country;
   public $datafeedId;
   protected $errorsType = 'Google_Service_ShoppingContent_DatafeedStatusError';
   protected $errorsDataType = 'array';
   public $itemsTotal;
   public $itemsValid;
   public $kind;
+  public $language;
   public $lastUploadDate;
   public $processingStatus;
   protected $warningsType = 'Google_Service_ShoppingContent_DatafeedStatusError';
   protected $warningsDataType = 'array';
 
+  public function setCountry($country)
+  {
+    $this->country = $country;
+  }
+  public function getCountry()
+  {
+    return $this->country;
+  }
   public function setDatafeedId($datafeedId)
   {
     $this->datafeedId = $datafeedId;
@@ -37,10 +47,16 @@ class Google_Service_ShoppingContent_DatafeedStatus extends Google_Collection
   {
     return $this->datafeedId;
   }
+  /**
+   * @param Google_Service_ShoppingContent_DatafeedStatusError
+   */
   public function setErrors($errors)
   {
     $this->errors = $errors;
   }
+  /**
+   * @return Google_Service_ShoppingContent_DatafeedStatusError
+   */
   public function getErrors()
   {
     return $this->errors;
@@ -69,6 +85,14 @@ class Google_Service_ShoppingContent_DatafeedStatus extends Google_Collection
   {
     return $this->kind;
   }
+  public function setLanguage($language)
+  {
+    $this->language = $language;
+  }
+  public function getLanguage()
+  {
+    return $this->language;
+  }
   public function setLastUploadDate($lastUploadDate)
   {
     $this->lastUploadDate = $lastUploadDate;
@@ -85,10 +109,16 @@ class Google_Service_ShoppingContent_DatafeedStatus extends Google_Collection
   {
     return $this->processingStatus;
   }
+  /**
+   * @param Google_Service_ShoppingContent_DatafeedStatusError
+   */
   public function setWarnings($warnings)
   {
     $this->warnings = $warnings;
   }
+  /**
+   * @return Google_Service_ShoppingContent_DatafeedStatusError
+   */
   public function getWarnings()
   {
     return $this->warnings;

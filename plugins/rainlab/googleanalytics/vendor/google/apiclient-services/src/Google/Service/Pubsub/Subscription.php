@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -18,9 +18,11 @@
 class Google_Service_Pubsub_Subscription extends Google_Model
 {
   public $ackDeadlineSeconds;
+  public $messageRetentionDuration;
   public $name;
   protected $pushConfigType = 'Google_Service_Pubsub_PushConfig';
   protected $pushConfigDataType = '';
+  public $retainAckedMessages;
   public $topic;
 
   public function setAckDeadlineSeconds($ackDeadlineSeconds)
@@ -31,6 +33,14 @@ class Google_Service_Pubsub_Subscription extends Google_Model
   {
     return $this->ackDeadlineSeconds;
   }
+  public function setMessageRetentionDuration($messageRetentionDuration)
+  {
+    $this->messageRetentionDuration = $messageRetentionDuration;
+  }
+  public function getMessageRetentionDuration()
+  {
+    return $this->messageRetentionDuration;
+  }
   public function setName($name)
   {
     $this->name = $name;
@@ -39,13 +49,27 @@ class Google_Service_Pubsub_Subscription extends Google_Model
   {
     return $this->name;
   }
+  /**
+   * @param Google_Service_Pubsub_PushConfig
+   */
   public function setPushConfig(Google_Service_Pubsub_PushConfig $pushConfig)
   {
     $this->pushConfig = $pushConfig;
   }
+  /**
+   * @return Google_Service_Pubsub_PushConfig
+   */
   public function getPushConfig()
   {
     return $this->pushConfig;
+  }
+  public function setRetainAckedMessages($retainAckedMessages)
+  {
+    $this->retainAckedMessages = $retainAckedMessages;
+  }
+  public function getRetainAckedMessages()
+  {
+    return $this->retainAckedMessages;
   }
   public function setTopic($topic)
   {

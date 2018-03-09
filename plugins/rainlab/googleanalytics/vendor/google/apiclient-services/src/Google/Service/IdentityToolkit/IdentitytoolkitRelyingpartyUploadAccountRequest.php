@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,9 +19,13 @@ class Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyUploadAccountReq
 {
   protected $collection_key = 'users';
   public $allowOverwrite;
+  public $blockSize;
+  public $cpuMemCost;
   public $delegatedProjectNumber;
+  public $dkLen;
   public $hashAlgorithm;
   public $memoryCost;
+  public $parallelization;
   public $rounds;
   public $saltSeparator;
   public $sanityCheck;
@@ -38,6 +42,22 @@ class Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyUploadAccountReq
   {
     return $this->allowOverwrite;
   }
+  public function setBlockSize($blockSize)
+  {
+    $this->blockSize = $blockSize;
+  }
+  public function getBlockSize()
+  {
+    return $this->blockSize;
+  }
+  public function setCpuMemCost($cpuMemCost)
+  {
+    $this->cpuMemCost = $cpuMemCost;
+  }
+  public function getCpuMemCost()
+  {
+    return $this->cpuMemCost;
+  }
   public function setDelegatedProjectNumber($delegatedProjectNumber)
   {
     $this->delegatedProjectNumber = $delegatedProjectNumber;
@@ -45,6 +65,14 @@ class Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyUploadAccountReq
   public function getDelegatedProjectNumber()
   {
     return $this->delegatedProjectNumber;
+  }
+  public function setDkLen($dkLen)
+  {
+    $this->dkLen = $dkLen;
+  }
+  public function getDkLen()
+  {
+    return $this->dkLen;
   }
   public function setHashAlgorithm($hashAlgorithm)
   {
@@ -61,6 +89,14 @@ class Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyUploadAccountReq
   public function getMemoryCost()
   {
     return $this->memoryCost;
+  }
+  public function setParallelization($parallelization)
+  {
+    $this->parallelization = $parallelization;
+  }
+  public function getParallelization()
+  {
+    return $this->parallelization;
   }
   public function setRounds($rounds)
   {
@@ -102,10 +138,16 @@ class Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyUploadAccountReq
   {
     return $this->targetProjectId;
   }
+  /**
+   * @param Google_Service_IdentityToolkit_UserInfo
+   */
   public function setUsers($users)
   {
     $this->users = $users;
   }
+  /**
+   * @return Google_Service_IdentityToolkit_UserInfo
+   */
   public function getUsers()
   {
     return $this->users;

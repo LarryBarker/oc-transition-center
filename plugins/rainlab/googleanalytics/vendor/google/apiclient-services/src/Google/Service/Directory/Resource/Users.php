@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -28,7 +28,7 @@ class Google_Service_Directory_Resource_Users extends Google_Service_Resource
   /**
    * Delete user (users.delete)
    *
-   * @param string $userKey Email or immutable Id of the user
+   * @param string $userKey Email or immutable ID of the user
    * @param array $optParams Optional parameters.
    */
   public function delete($userKey, $optParams = array())
@@ -40,7 +40,7 @@ class Google_Service_Directory_Resource_Users extends Google_Service_Resource
   /**
    * retrieve user (users.get)
    *
-   * @param string $userKey Email or immutable Id of the user
+   * @param string $userKey Email or immutable ID of the user
    * @param array $optParams Optional parameters.
    *
    * @opt_param string customFieldMask Comma-separated list of schema names. All
@@ -79,9 +79,9 @@ class Google_Service_Directory_Resource_Users extends Google_Service_Resource
    * @opt_param string customFieldMask Comma-separated list of schema names. All
    * fields from these schemas are fetched. This should only be set when
    * projection=custom.
-   * @opt_param string customer Immutable id of the Google Apps account. In case
-   * of multi-domain, to fetch all users for a customer, fill this field instead
-   * of domain.
+   * @opt_param string customer Immutable ID of the G Suite account. In case of
+   * multi-domain, to fetch all users for a customer, fill this field instead of
+   * domain.
    * @opt_param string domain Name of the domain. Fill this field to get users
    * from only this domain. To return all users in a multi-domain fill customer
    * field instead.
@@ -112,7 +112,7 @@ class Google_Service_Directory_Resource_Users extends Google_Service_Resource
   /**
    * change admin status of a user (users.makeAdmin)
    *
-   * @param string $userKey Email or immutable Id of the user as admin
+   * @param string $userKey Email or immutable ID of the user as admin
    * @param Google_Service_Directory_UserMakeAdmin $postBody
    * @param array $optParams Optional parameters.
    */
@@ -125,7 +125,7 @@ class Google_Service_Directory_Resource_Users extends Google_Service_Resource
   /**
    * update user. This method supports patch semantics. (users.patch)
    *
-   * @param string $userKey Email or immutable Id of the user. If Id, it should
+   * @param string $userKey Email or immutable ID of the user. If ID, it should
    * match with id of user object
    * @param Google_Service_Directory_User $postBody
    * @param array $optParams Optional parameters.
@@ -153,7 +153,7 @@ class Google_Service_Directory_Resource_Users extends Google_Service_Resource
   /**
    * update user (users.update)
    *
-   * @param string $userKey Email or immutable Id of the user. If Id, it should
+   * @param string $userKey Email or immutable ID of the user. If ID, it should
    * match with id of user object
    * @param Google_Service_Directory_User $postBody
    * @param array $optParams Optional parameters.
@@ -174,9 +174,9 @@ class Google_Service_Directory_Resource_Users extends Google_Service_Resource
    * @opt_param string customFieldMask Comma-separated list of schema names. All
    * fields from these schemas are fetched. This should only be set when
    * projection=custom.
-   * @opt_param string customer Immutable id of the Google Apps account. In case
-   * of multi-domain, to fetch all users for a customer, fill this field instead
-   * of domain.
+   * @opt_param string customer Immutable ID of the G Suite account. In case of
+   * multi-domain, to fetch all users for a customer, fill this field instead of
+   * domain.
    * @opt_param string domain Name of the domain. Fill this field to get users
    * from only this domain. To return all users in a multi-domain fill customer
    * field instead.

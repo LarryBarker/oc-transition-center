@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -34,8 +34,6 @@ class Google_Service_Clouderrorreporting_Resource_ProjectsEvents extends Google_
    * `projects/my-project-123`.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string groupId [Required] The group for which events shall be
-   * returned.
    * @opt_param string pageToken [Optional] A `next_page_token` provided by a
    * previous response.
    * @opt_param string serviceFilter.service [Optional] The exact value to match
@@ -51,6 +49,8 @@ class Google_Service_Clouderrorreporting_Resource_ProjectsEvents extends Google_
    * reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
    * @opt_param string timeRange.period Restricts the query to the specified time
    * range.
+   * @opt_param string groupId [Required] The group for which events shall be
+   * returned.
    * @return Google_Service_Clouderrorreporting_ListEventsResponse
    */
   public function listProjectsEvents($projectName, $optParams = array())

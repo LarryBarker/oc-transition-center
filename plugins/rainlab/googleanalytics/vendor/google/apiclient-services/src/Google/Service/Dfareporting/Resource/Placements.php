@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -35,6 +35,8 @@ class Google_Service_Dfareporting_Resource_Placements extends Google_Service_Res
    * This is a required field.
    * @opt_param string placementIds Generate tags for these placements.
    * @opt_param string tagFormats Tag formats to generate for these placements.
+   *
+   * Note: PLACEMENT_TAG_STANDARD can only be generated for 1x1 placements.
    * @return Google_Service_Dfareporting_PlacementsGenerateTagsResponse
    */
   public function generatetags($profileId, $optParams = array())
@@ -130,7 +132,7 @@ class Google_Service_Dfareporting_Resource_Placements extends Google_Service_Res
    * @opt_param string sizeIds Select only placements that are associated with
    * these sizes.
    * @opt_param string sortField Field by which to sort the list.
-   * @opt_param string sortOrder Order of sorted results, default is ASCENDING.
+   * @opt_param string sortOrder Order of sorted results.
    * @return Google_Service_Dfareporting_PlacementsListResponse
    */
   public function listPlacements($profileId, $optParams = array())

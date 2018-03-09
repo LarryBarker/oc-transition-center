@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-class Twig_Tests_ErrorTest extends PHPUnit_Framework_TestCase
+class Twig_Tests_ErrorTest extends \PHPUnit\Framework\TestCase
 {
     public function testErrorWithObjectFilename()
     {
@@ -41,6 +41,7 @@ class Twig_Tests_ErrorTest extends PHPUnit_Framework_TestCase
 {% endblock %}
 EOHTML
         ));
+
         $twig = new Twig_Environment($loader, array('strict_variables' => true, 'debug' => true, 'cache' => false));
 
         $template = $twig->loadTemplate('index.html');

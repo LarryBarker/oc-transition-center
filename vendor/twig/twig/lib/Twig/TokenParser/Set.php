@@ -25,10 +25,8 @@
  *
  *  {% set foo %}Some content{% endset %}
  * </pre>
- *
- * @final
  */
-class Twig_TokenParser_Set extends Twig_TokenParser
+final class Twig_TokenParser_Set extends Twig_TokenParser
 {
     public function parse(Twig_Token $token)
     {
@@ -71,3 +69,5 @@ class Twig_TokenParser_Set extends Twig_TokenParser
         return 'set';
     }
 }
+
+class_alias('Twig_TokenParser_Set', 'Twig\TokenParser\SetTokenParser', false);

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -25,6 +25,21 @@
  */
 class Google_Service_Bigquery_Resource_Projects extends Google_Service_Resource
 {
+  /**
+   * Returns the email address of the service account for your project used for
+   * interactions with Google Cloud KMS. (projects.getServiceAccount)
+   *
+   * @param string $projectId Project ID for which the service account is
+   * requested.
+   * @param array $optParams Optional parameters.
+   * @return Google_Service_Bigquery_GetServiceAccountResponse
+   */
+  public function getServiceAccount($projectId, $optParams = array())
+  {
+    $params = array('projectId' => $projectId);
+    $params = array_merge($params, $optParams);
+    return $this->call('getServiceAccount', array($params), "Google_Service_Bigquery_GetServiceAccountResponse");
+  }
   /**
    * Lists all projects to which you have been granted any project role.
    * (projects.listProjects)

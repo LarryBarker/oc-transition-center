@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -25,9 +25,15 @@ class Google_Service_Appengine_Application extends Google_Collection
   public $defaultHostname;
   protected $dispatchRulesType = 'Google_Service_Appengine_UrlDispatchRule';
   protected $dispatchRulesDataType = 'array';
+  protected $featureSettingsType = 'Google_Service_Appengine_FeatureSettings';
+  protected $featureSettingsDataType = '';
+  public $gcrDomain;
+  protected $iapType = 'Google_Service_Appengine_IdentityAwareProxy';
+  protected $iapDataType = '';
   public $id;
   public $locationId;
   public $name;
+  public $servingStatus;
 
   public function setAuthDomain($authDomain)
   {
@@ -69,13 +75,55 @@ class Google_Service_Appengine_Application extends Google_Collection
   {
     return $this->defaultHostname;
   }
+  /**
+   * @param Google_Service_Appengine_UrlDispatchRule
+   */
   public function setDispatchRules($dispatchRules)
   {
     $this->dispatchRules = $dispatchRules;
   }
+  /**
+   * @return Google_Service_Appengine_UrlDispatchRule
+   */
   public function getDispatchRules()
   {
     return $this->dispatchRules;
+  }
+  /**
+   * @param Google_Service_Appengine_FeatureSettings
+   */
+  public function setFeatureSettings(Google_Service_Appengine_FeatureSettings $featureSettings)
+  {
+    $this->featureSettings = $featureSettings;
+  }
+  /**
+   * @return Google_Service_Appengine_FeatureSettings
+   */
+  public function getFeatureSettings()
+  {
+    return $this->featureSettings;
+  }
+  public function setGcrDomain($gcrDomain)
+  {
+    $this->gcrDomain = $gcrDomain;
+  }
+  public function getGcrDomain()
+  {
+    return $this->gcrDomain;
+  }
+  /**
+   * @param Google_Service_Appengine_IdentityAwareProxy
+   */
+  public function setIap(Google_Service_Appengine_IdentityAwareProxy $iap)
+  {
+    $this->iap = $iap;
+  }
+  /**
+   * @return Google_Service_Appengine_IdentityAwareProxy
+   */
+  public function getIap()
+  {
+    return $this->iap;
   }
   public function setId($id)
   {
@@ -100,5 +148,13 @@ class Google_Service_Appengine_Application extends Google_Collection
   public function getName()
   {
     return $this->name;
+  }
+  public function setServingStatus($servingStatus)
+  {
+    $this->servingStatus = $servingStatus;
+  }
+  public function getServingStatus()
+  {
+    return $this->servingStatus;
   }
 }

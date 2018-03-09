@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -34,11 +34,11 @@ class Google_Service_Dfareporting_FloodlightActivity extends Google_Collection
   public $floodlightConfigurationId;
   protected $floodlightConfigurationIdDimensionValueType = 'Google_Service_Dfareporting_DimensionValue';
   protected $floodlightConfigurationIdDimensionValueDataType = '';
+  public $floodlightTagType;
   public $hidden;
   public $id;
   protected $idDimensionValueType = 'Google_Service_Dfareporting_DimensionValue';
   protected $idDimensionValueDataType = '';
-  public $imageTagEnabled;
   public $kind;
   public $name;
   public $notes;
@@ -68,10 +68,16 @@ class Google_Service_Dfareporting_FloodlightActivity extends Google_Collection
   {
     return $this->advertiserId;
   }
+  /**
+   * @param Google_Service_Dfareporting_DimensionValue
+   */
   public function setAdvertiserIdDimensionValue(Google_Service_Dfareporting_DimensionValue $advertiserIdDimensionValue)
   {
     $this->advertiserIdDimensionValue = $advertiserIdDimensionValue;
   }
+  /**
+   * @return Google_Service_Dfareporting_DimensionValue
+   */
   public function getAdvertiserIdDimensionValue()
   {
     return $this->advertiserIdDimensionValue;
@@ -92,10 +98,16 @@ class Google_Service_Dfareporting_FloodlightActivity extends Google_Collection
   {
     return $this->countingMethod;
   }
+  /**
+   * @param Google_Service_Dfareporting_FloodlightActivityDynamicTag
+   */
   public function setDefaultTags($defaultTags)
   {
     $this->defaultTags = $defaultTags;
   }
+  /**
+   * @return Google_Service_Dfareporting_FloodlightActivityDynamicTag
+   */
   public function getDefaultTags()
   {
     return $this->defaultTags;
@@ -148,13 +160,27 @@ class Google_Service_Dfareporting_FloodlightActivity extends Google_Collection
   {
     return $this->floodlightConfigurationId;
   }
+  /**
+   * @param Google_Service_Dfareporting_DimensionValue
+   */
   public function setFloodlightConfigurationIdDimensionValue(Google_Service_Dfareporting_DimensionValue $floodlightConfigurationIdDimensionValue)
   {
     $this->floodlightConfigurationIdDimensionValue = $floodlightConfigurationIdDimensionValue;
   }
+  /**
+   * @return Google_Service_Dfareporting_DimensionValue
+   */
   public function getFloodlightConfigurationIdDimensionValue()
   {
     return $this->floodlightConfigurationIdDimensionValue;
+  }
+  public function setFloodlightTagType($floodlightTagType)
+  {
+    $this->floodlightTagType = $floodlightTagType;
+  }
+  public function getFloodlightTagType()
+  {
+    return $this->floodlightTagType;
   }
   public function setHidden($hidden)
   {
@@ -172,21 +198,19 @@ class Google_Service_Dfareporting_FloodlightActivity extends Google_Collection
   {
     return $this->id;
   }
+  /**
+   * @param Google_Service_Dfareporting_DimensionValue
+   */
   public function setIdDimensionValue(Google_Service_Dfareporting_DimensionValue $idDimensionValue)
   {
     $this->idDimensionValue = $idDimensionValue;
   }
+  /**
+   * @return Google_Service_Dfareporting_DimensionValue
+   */
   public function getIdDimensionValue()
   {
     return $this->idDimensionValue;
-  }
-  public function setImageTagEnabled($imageTagEnabled)
-  {
-    $this->imageTagEnabled = $imageTagEnabled;
-  }
-  public function getImageTagEnabled()
-  {
-    return $this->imageTagEnabled;
   }
   public function setKind($kind)
   {
@@ -212,10 +236,16 @@ class Google_Service_Dfareporting_FloodlightActivity extends Google_Collection
   {
     return $this->notes;
   }
+  /**
+   * @param Google_Service_Dfareporting_FloodlightActivityPublisherDynamicTag
+   */
   public function setPublisherTags($publisherTags)
   {
     $this->publisherTags = $publisherTags;
   }
+  /**
+   * @return Google_Service_Dfareporting_FloodlightActivityPublisherDynamicTag
+   */
   public function getPublisherTags()
   {
     return $this->publisherTags;

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,13 +17,17 @@
 
 class Google_Service_Slides_Table extends Google_Collection
 {
-  protected $collection_key = 'tableRows';
+  protected $collection_key = 'verticalBorderRows';
   public $columns;
+  protected $horizontalBorderRowsType = 'Google_Service_Slides_TableBorderRow';
+  protected $horizontalBorderRowsDataType = 'array';
   public $rows;
   protected $tableColumnsType = 'Google_Service_Slides_TableColumnProperties';
   protected $tableColumnsDataType = 'array';
   protected $tableRowsType = 'Google_Service_Slides_TableRow';
   protected $tableRowsDataType = 'array';
+  protected $verticalBorderRowsType = 'Google_Service_Slides_TableBorderRow';
+  protected $verticalBorderRowsDataType = 'array';
 
   public function setColumns($columns)
   {
@@ -33,6 +37,20 @@ class Google_Service_Slides_Table extends Google_Collection
   {
     return $this->columns;
   }
+  /**
+   * @param Google_Service_Slides_TableBorderRow
+   */
+  public function setHorizontalBorderRows($horizontalBorderRows)
+  {
+    $this->horizontalBorderRows = $horizontalBorderRows;
+  }
+  /**
+   * @return Google_Service_Slides_TableBorderRow
+   */
+  public function getHorizontalBorderRows()
+  {
+    return $this->horizontalBorderRows;
+  }
   public function setRows($rows)
   {
     $this->rows = $rows;
@@ -41,20 +59,46 @@ class Google_Service_Slides_Table extends Google_Collection
   {
     return $this->rows;
   }
+  /**
+   * @param Google_Service_Slides_TableColumnProperties
+   */
   public function setTableColumns($tableColumns)
   {
     $this->tableColumns = $tableColumns;
   }
+  /**
+   * @return Google_Service_Slides_TableColumnProperties
+   */
   public function getTableColumns()
   {
     return $this->tableColumns;
   }
+  /**
+   * @param Google_Service_Slides_TableRow
+   */
   public function setTableRows($tableRows)
   {
     $this->tableRows = $tableRows;
   }
+  /**
+   * @return Google_Service_Slides_TableRow
+   */
   public function getTableRows()
   {
     return $this->tableRows;
+  }
+  /**
+   * @param Google_Service_Slides_TableBorderRow
+   */
+  public function setVerticalBorderRows($verticalBorderRows)
+  {
+    $this->verticalBorderRows = $verticalBorderRows;
+  }
+  /**
+   * @return Google_Service_Slides_TableBorderRow
+   */
+  public function getVerticalBorderRows()
+  {
+    return $this->verticalBorderRows;
   }
 }

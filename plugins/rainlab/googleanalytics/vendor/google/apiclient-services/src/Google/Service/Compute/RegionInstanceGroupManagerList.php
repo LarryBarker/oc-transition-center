@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -24,6 +24,8 @@ class Google_Service_Compute_RegionInstanceGroupManagerList extends Google_Colle
   public $kind;
   public $nextPageToken;
   public $selfLink;
+  protected $warningType = 'Google_Service_Compute_RegionInstanceGroupManagerListWarning';
+  protected $warningDataType = '';
 
   public function setId($id)
   {
@@ -33,10 +35,16 @@ class Google_Service_Compute_RegionInstanceGroupManagerList extends Google_Colle
   {
     return $this->id;
   }
+  /**
+   * @param Google_Service_Compute_InstanceGroupManager
+   */
   public function setItems($items)
   {
     $this->items = $items;
   }
+  /**
+   * @return Google_Service_Compute_InstanceGroupManager
+   */
   public function getItems()
   {
     return $this->items;
@@ -64,5 +72,19 @@ class Google_Service_Compute_RegionInstanceGroupManagerList extends Google_Colle
   public function getSelfLink()
   {
     return $this->selfLink;
+  }
+  /**
+   * @param Google_Service_Compute_RegionInstanceGroupManagerListWarning
+   */
+  public function setWarning(Google_Service_Compute_RegionInstanceGroupManagerListWarning $warning)
+  {
+    $this->warning = $warning;
+  }
+  /**
+   * @return Google_Service_Compute_RegionInstanceGroupManagerListWarning
+   */
+  public function getWarning()
+  {
+    return $this->warning;
   }
 }

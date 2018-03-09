@@ -114,6 +114,37 @@ class Plugin extends PluginBase
                 'Wwrf\TransitionCenter\Models\Questionnaire'
             ];
 
+            $model->addDynamicMethod('scopeListFrontEnd', function($query, $options = []){
+                extract(array_merge([
+                    'page' => 1,
+                    'perPage' => 10,
+                    'sort' => 'last_seen desc',
+                    'industries' => null
+                ], $options));
+        
+                $query = $query->whereHas('groups', function($q){
+                    $q->where('id', '=', '2')->where('status','!=','unavailable');
+                })->whereIsActivated(true)->orderBy('last_seen','desc');
+        
+                if($industries !== null){
+                    if(!is_array($industries)){
+                        $industries = [$industries];
+                    };
+                    foreach($industries as $industry){
+                        $query->whereHas('industries', function($q) use ($industry){
+                            $q->where('id', '=', $industry);
+                        });
+                    }
+                }
+        
+                $lastPage = $query->paginate($perPage, $page)->lastPage();
+        
+                if($lastPage < $page){
+                    $page = 1;
+                }
+                
+                return $query->paginate($perPage, $page);
+            });
         });
 
         UsersController::extend(function($controller){         
@@ -161,7 +192,23 @@ class Plugin extends PluginBase
 
         });
 
-        // Add fields to the user controller
+        /*Event::listen('backend.list.extendQuery', function ($widget, $query) {
+            // Test for employer model to extend list query
+            if ($widget->model instanceof \Wwrf\TransitionCenter\Models\Employer) {
+                $query->whereHas('groups', function($q){
+                    $q->where('id', '=', '3');
+                        //->where('status', '!=', 'unavailable');
+                });
+            }
+
+            if ($widget->model instanceof \RainLab\User\Models\User) {
+                $query->whereHas('groups', function($q){
+                    $q->where('id', '=', '2');
+                        //->where('status', '!=', 'unavailable');
+                });
+            }
+        });*/
+
         UsersController::extendFormFields(function($form, $model, $context){
             
             if (!$model instanceof UserModel)

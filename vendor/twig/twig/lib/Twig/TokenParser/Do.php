@@ -11,10 +11,8 @@
 
 /**
  * Evaluates an expression, discarding the returned value.
- *
- * @final
  */
-class Twig_TokenParser_Do extends Twig_TokenParser
+final class Twig_TokenParser_Do extends Twig_TokenParser
 {
     public function parse(Twig_Token $token)
     {
@@ -30,3 +28,5 @@ class Twig_TokenParser_Do extends Twig_TokenParser
         return 'do';
     }
 }
+
+class_alias('Twig_TokenParser_Do', 'Twig\TokenParser\DoTokenParser', false);

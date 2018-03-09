@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,9 +19,9 @@
  * Service definition for CloudNaturalLanguage (v1).
  *
  * <p>
- * Google Cloud Natural Language API provides natural language understanding
- * technologies to developers. Examples include sentiment analysis, entity
- * recognition, and text annotations.</p>
+ * Provides natural language understanding technologies to developers. Examples
+ * include sentiment analysis, entity recognition, entity sentiment analysis,
+ * and text annotations.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -32,6 +32,9 @@
  */
 class Google_Service_CloudNaturalLanguage extends Google_Service
 {
+  /** Apply machine learning models to reveal the structure and meaning of text. */
+  const CLOUD_LANGUAGE =
+      "https://www.googleapis.com/auth/cloud-language";
   /** View and manage your data across Google Cloud Platform services. */
   const CLOUD_PLATFORM =
       "https://www.googleapis.com/auth/cloud-platform";
@@ -61,6 +64,10 @@ class Google_Service_CloudNaturalLanguage extends Google_Service
               'path' => 'v1/documents:analyzeEntities',
               'httpMethod' => 'POST',
               'parameters' => array(),
+            ),'analyzeEntitySentiment' => array(
+              'path' => 'v1/documents:analyzeEntitySentiment',
+              'httpMethod' => 'POST',
+              'parameters' => array(),
             ),'analyzeSentiment' => array(
               'path' => 'v1/documents:analyzeSentiment',
               'httpMethod' => 'POST',
@@ -71,6 +78,10 @@ class Google_Service_CloudNaturalLanguage extends Google_Service
               'parameters' => array(),
             ),'annotateText' => array(
               'path' => 'v1/documents:annotateText',
+              'httpMethod' => 'POST',
+              'parameters' => array(),
+            ),'classifyText' => array(
+              'path' => 'v1/documents:classifyText',
               'httpMethod' => 'POST',
               'parameters' => array(),
             ),

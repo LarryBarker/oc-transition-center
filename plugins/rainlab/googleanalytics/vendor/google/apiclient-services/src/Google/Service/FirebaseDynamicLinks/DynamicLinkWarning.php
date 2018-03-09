@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -18,6 +18,7 @@
 class Google_Service_FirebaseDynamicLinks_DynamicLinkWarning extends Google_Model
 {
   public $warningCode;
+  public $warningDocumentLink;
   public $warningMessage;
 
   public function setWarningCode($warningCode)
@@ -27,6 +28,14 @@ class Google_Service_FirebaseDynamicLinks_DynamicLinkWarning extends Google_Mode
   public function getWarningCode()
   {
     return $this->warningCode;
+  }
+  public function setWarningDocumentLink($warningDocumentLink)
+  {
+    $this->warningDocumentLink = $warningDocumentLink;
+  }
+  public function getWarningDocumentLink()
+  {
+    return $this->warningDocumentLink;
   }
   public function setWarningMessage($warningMessage)
   {

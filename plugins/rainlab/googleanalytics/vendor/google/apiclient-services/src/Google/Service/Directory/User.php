@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -29,6 +29,7 @@ class Google_Service_Directory_User extends Google_Collection
   public $emails;
   public $etag;
   public $externalIds;
+  public $gender;
   public $hashFunction;
   public $id;
   public $ims;
@@ -39,8 +40,11 @@ class Google_Service_Directory_User extends Google_Collection
   public $isEnforcedIn2Sv;
   public $isEnrolledIn2Sv;
   public $isMailboxSetup;
+  public $keywords;
   public $kind;
+  public $languages;
   public $lastLoginTime;
+  public $locations;
   protected $nameType = 'Google_Service_Directory_UserName';
   protected $nameDataType = '';
   public $nonEditableAliases;
@@ -49,8 +53,10 @@ class Google_Service_Directory_User extends Google_Collection
   public $organizations;
   public $password;
   public $phones;
+  public $posixAccounts;
   public $primaryEmail;
   public $relations;
+  public $sshPublicKeys;
   public $suspended;
   public $suspensionReason;
   public $thumbnailPhotoEtag;
@@ -145,6 +151,14 @@ class Google_Service_Directory_User extends Google_Collection
   {
     return $this->externalIds;
   }
+  public function setGender($gender)
+  {
+    $this->gender = $gender;
+  }
+  public function getGender()
+  {
+    return $this->gender;
+  }
   public function setHashFunction($hashFunction)
   {
     $this->hashFunction = $hashFunction;
@@ -225,6 +239,14 @@ class Google_Service_Directory_User extends Google_Collection
   {
     return $this->isMailboxSetup;
   }
+  public function setKeywords($keywords)
+  {
+    $this->keywords = $keywords;
+  }
+  public function getKeywords()
+  {
+    return $this->keywords;
+  }
   public function setKind($kind)
   {
     $this->kind = $kind;
@@ -232,6 +254,14 @@ class Google_Service_Directory_User extends Google_Collection
   public function getKind()
   {
     return $this->kind;
+  }
+  public function setLanguages($languages)
+  {
+    $this->languages = $languages;
+  }
+  public function getLanguages()
+  {
+    return $this->languages;
   }
   public function setLastLoginTime($lastLoginTime)
   {
@@ -241,10 +271,24 @@ class Google_Service_Directory_User extends Google_Collection
   {
     return $this->lastLoginTime;
   }
+  public function setLocations($locations)
+  {
+    $this->locations = $locations;
+  }
+  public function getLocations()
+  {
+    return $this->locations;
+  }
+  /**
+   * @param Google_Service_Directory_UserName
+   */
   public function setName(Google_Service_Directory_UserName $name)
   {
     $this->name = $name;
   }
+  /**
+   * @return Google_Service_Directory_UserName
+   */
   public function getName()
   {
     return $this->name;
@@ -297,6 +341,14 @@ class Google_Service_Directory_User extends Google_Collection
   {
     return $this->phones;
   }
+  public function setPosixAccounts($posixAccounts)
+  {
+    $this->posixAccounts = $posixAccounts;
+  }
+  public function getPosixAccounts()
+  {
+    return $this->posixAccounts;
+  }
   public function setPrimaryEmail($primaryEmail)
   {
     $this->primaryEmail = $primaryEmail;
@@ -312,6 +364,14 @@ class Google_Service_Directory_User extends Google_Collection
   public function getRelations()
   {
     return $this->relations;
+  }
+  public function setSshPublicKeys($sshPublicKeys)
+  {
+    $this->sshPublicKeys = $sshPublicKeys;
+  }
+  public function getSshPublicKeys()
+  {
+    return $this->sshPublicKeys;
   }
   public function setSuspended($suspended)
   {

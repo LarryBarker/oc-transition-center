@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,24 +19,21 @@ class Google_Service_ServiceControl_AllocateQuotaRequest extends Google_Model
 {
   protected $allocateOperationType = 'Google_Service_ServiceControl_QuotaOperation';
   protected $allocateOperationDataType = '';
-  public $allocationMode;
   public $serviceConfigId;
 
+  /**
+   * @param Google_Service_ServiceControl_QuotaOperation
+   */
   public function setAllocateOperation(Google_Service_ServiceControl_QuotaOperation $allocateOperation)
   {
     $this->allocateOperation = $allocateOperation;
   }
+  /**
+   * @return Google_Service_ServiceControl_QuotaOperation
+   */
   public function getAllocateOperation()
   {
     return $this->allocateOperation;
-  }
-  public function setAllocationMode($allocationMode)
-  {
-    $this->allocationMode = $allocationMode;
-  }
-  public function getAllocationMode()
-  {
-    return $this->allocationMode;
   }
   public function setServiceConfigId($serviceConfigId)
   {
