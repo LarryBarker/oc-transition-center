@@ -74,7 +74,7 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
-
+        // Add scope for to category model to list as job industry
         CategoryModel::extend(function($model) {
             $model->addDynamicMethod('scopeIsJobIndustry', function($query) {
                 return $query->where('parent_id', 3)->get();
@@ -82,33 +82,86 @@ class Plugin extends PluginBase
         });
 
         UserModel::extend(function($model){
+
             $model->hasMany['viewedJobs'] = [
                 'Wwrf\TransitionCenter\Models\ViewedJob',
                 'key' => 'user_id',
                 'order' => 'created_at desc'
             ];
+
             $model->hasMany['appliedJobs'] = [
                 'Wwrf\TransitionCenter\Models\AppliedJob',
                 'key' => 'user_id',
                 'order' => 'created_at desc'
             ];
+
             $model->belongsTo['counselor'] = [
                 'RainLab\User\Models\User',
                 'order' => 'surname asc',
                 'conditions' => 'is_counselor = 1'
             ];
+
+            $model->belongsToMany['company'] = ['Wwrf\TransitionCenter\Models\Company', 'table' => 'wwrf_users_companies', 'key' => 'user_id'];
+
+            $model->hasMany['jobs'] = ['Wwrf\TransitionCenter\Models\Job', 'table' => 'wwrf_users_jobs', 'key' => 'user_id'];
+
+            $model->hasMany['usersprograms'] = [
+                'Wwrf\TransitionCenter\Models\UserProgram',
+                'table' => 'wwrf_programtracker_users_programs',
+            ];
+
+            $model->hasOne['questionnaire'] = [
+                'Wwrf\TransitionCenter\Models\Questionnaire'
+            ];
+
         });
 
         UsersController::extend(function($controller){         
-            // Splice in configuration safely
+            // Implement behavior if not already implemented
+            if (!$controller->isClassExtendedWith('Backend.Behaviors.RelationController')) {
+                $controller->implement[] = 'Backend.Behaviors.RelationController';
+            }
+
+            // Define property if not already defined
+            if (!isset($controller->relationConfig)) {
+                $controller->addDynamicProperty('relationConfig');
+            }
+
+            // Safely splice in config for jobs relation
+            $myConfigPath = '$/wwrf/transitioncenter/controllers/jobs/config_relation.yaml';
+
+            $controller->relationConfig = $controller->mergeConfig(
+                $controller->relationConfig,
+                $myConfigPath
+            );
+            
+            // And do the same for the user's viewed jobs
             $myConfigPath = '$/wwrf/transitioncenter/controllers/viewedjobs/config_relation.yaml';
 
             $controller->relationConfig = $controller->mergeConfig(
                 $controller->relationConfig,
                 $myConfigPath
             );
+
+            // And again for their programs
+            $myConfigPath = '$/wwrf/transitioncenter/controllers/usersprograms/config_relation.yaml';
+
+            $controller->relationConfig = $controller->mergeConfig(
+                $controller->relationConfig,
+                $myConfigPath
+            );
+
+            // Once more for the user's questionnaire relation field
+            $myConfigPath = '$/wwrf/transitioncenter/controllers/questionnaires/config_relation.yaml';
+
+            $controller->relationConfig = $controller->mergeConfig(
+                $controller->relationConfig,
+                $myConfigPath
+            );
+
         });
 
+        // Add fields to the user controller
         UsersController::extendFormFields(function($form, $model, $context){
             
             if (!$model instanceof UserModel)
@@ -117,14 +170,27 @@ class Plugin extends PluginBase
             if (!$model->exists)
                 return;
 
+            QuestionnaireModel::getFromUser($model);
+
             $form->addTabFields([
+                'questionnaire[updated_at]' => [
+                    'label' => 'Questionnaire Updated:',
+                    'type'  => 'datepicker',
+                    'mode'  => 'date',
+                    'disabled' => 'true'
+                ],
                 'viewedJobs' => [
                     'tab' => 'Activity',
                     'type'  => 'partial',
                     'path' => '$/wwrf/transitioncenter/controllers/viewedjobs/_viewed_jobs.htm'
+                ],
+                'usersprograms' => [
+                    //'label' => 'Programs',
+                    'tab' => 'Programs',
+                    'type'  => 'partial',
+                    'path'  => '$/wwrf/transitioncenter/controllers/usersprograms/_users_programs.htm',
                 ]
             ]);
-
             
         });
 
@@ -150,21 +216,6 @@ class Plugin extends PluginBase
             ]);
         });
 
-        /*UsersController::extendListColumns(function($list, $model) {
-
-            if (!$model instanceof UserModel)
-                return;
-    
-            $list->addColumns([
-                'counselor' => [
-                    'label' => 'Counselor',
-                    'relation' => 'counselor',
-                    'select' => 'surname'
-                ]
-            ]);
-    
-        });*/
-
         // extend post list controller to add link button
         Event::listen('backend.list.overrideColumnValue', function($widget, $model, $column, $value) {
             // Only for the Post model
@@ -181,129 +232,6 @@ class Plugin extends PluginBase
 
                 return $button;
             }
-        });
-
-        UserModel::extend(function($model) {
-            $model->belongsToMany['company'] = ['Wwrf\TransitionCenter\Models\Company', 'table' => 'wwrf_users_companies', 'key' => 'user_id'];
-            $model->hasMany['jobs'] = ['Wwrf\TransitionCenter\Models\Job', 'table' => 'wwrf_users_jobs', 'key' => 'user_id'];
-        });
-
-        UsersController::extend(function($controller){         
-            // Implement behavior if not already implemented
-            if (!$controller->isClassExtendedWith('Backend.Behaviors.RelationController')) {
-                $controller->implement[] = 'Backend.Behaviors.RelationController';
-            }
-
-            // Define property if not already defined
-            if (!isset($controller->relationConfig)) {
-                $controller->addDynamicProperty('relationConfig');
-            }
-
-            // Splice in configuration safely
-            $myConfigPath = '$/wwrf/transitioncenter/controllers/jobs/config_relation.yaml';
-
-            $controller->relationConfig = $controller->mergeConfig(
-                $controller->relationConfig,
-                $myConfigPath
-            );
-        });
-        
-        // Extend all backend form usage
-        Event::listen('backend.form.extendFields', function($widget) {
-            
-            // Only for the User controller
-            if (!$widget->getController() instanceof UsersController) {
-                return;
-            }
-
-            // Only for the User model
-            if (!$widget->model instanceof UserModel) {
-                return;
-            }
-            
-            // Add an job relation field
-            $widget->addTabFields([
-                'jobs' => [
-                    'label'   => 'Job(s)',
-                    'commentAbove' => "Add or update a user's job(s)...",
-                    'type'    => 'partial',
-                    'path' => '$/wwrf/transitioncenter/controllers/jobs/_jobs.htm',
-                    'tab' => 'Employment',
-                ]
-            ]);
-        });
-
-        UserModel::extend(function($model){
-            $model->hasMany['usersprograms'] = [
-                'Wwrf\TransitionCenter\Models\UserProgram',
-                'table' => 'wwrf_programtracker_users_programs',
-                ];
-        });
-
-        UsersController::extendFormFields(function($form, $model, $context){
-
-            if (!$model instanceof UserModel)
-                return;
-            
-            if (!$model->exists)
-                return;
-
-            $form->addTabFields([
-                'usersprograms' => [
-                    //'label' => 'Programs',
-                    'tab' => 'Programs',
-                    'type'  => 'partial',
-                    'path'  => '$/wwrf/transitioncenter/controllers/usersprograms/_users_programs.htm',
-                ]
-            ]);
-
-        });
-
-        UsersController::extend(function($controller){         
-            // Splice in configuration safely
-            $myConfigPath = '$/wwrf/transitioncenter/controllers/usersprograms/config_relation.yaml';
-
-            $controller->relationConfig = $controller->mergeConfig(
-                $controller->relationConfig,
-                $myConfigPath
-            );
-        });
-
-        UserModel::extend(function($model){
-            $model->hasOne['questionnaire'] = [
-                'Wwrf\TransitionCenter\Models\Questionnaire'
-            ];
-        });
-
-        UsersController::extendFormFields(function($form, $model, $context){
-
-            if (!$model instanceof UserModel)
-                return;
-            
-            if (!$model->exists)
-                return;
-
-            QuestionnaireModel::getFromUser($model);
-
-            $form->addSecondaryTabFields([
-                'questionnaire[updated_at]' => [
-                    'label' => 'Questionnaire Updated:',
-                    'type'  => 'datepicker',
-                    'mode'  => 'date',
-                    'disabled' => 'true'
-                ]
-            ]);
-
-        });
-
-        UsersController::extend(function($controller){         
-            // Splice in questionnaire configuration safely
-            $myConfigPath = '$/wwrf/transitioncenter/controllers/questionnaires/config_relation.yaml';
-
-            $controller->relationConfig = $controller->mergeConfig(
-                $controller->relationConfig,
-                $myConfigPath
-            );
         });
 
         // Extend all backend form usage
@@ -326,10 +254,17 @@ class Plugin extends PluginBase
                     'type'    => 'partial',
                     'path' => '$/wwrf/transitioncenter/controllers/questionnaires/_questionnaire.htm',
                     'tab' => 'Surveys',
+                ],
+                'jobs' => [
+                    'label'   => 'Job(s)',
+                    'commentAbove' => "Add or update a user's job(s)...",
+                    'type'    => 'partial',
+                    'path' => '$/wwrf/transitioncenter/controllers/jobs/_jobs.htm',
+                    'tab' => 'Employment',
                 ]
             ]);
 
-            // Add an questionnaire relation field
+            // Add an counselor relation field
             $widget->addFields([
                 'counselor' => [
                     'label'   => 'Counselor',
@@ -339,8 +274,10 @@ class Plugin extends PluginBase
                     'placeholder' => '-- Select a counselor --'
                 ]
             ]);
+
         });
 
+        // Used to add an icon list to the Theme customization page
         ThemeData::extend(function($model) {
             
             $model->addDynamicMethod('getLinkOptions', function($value) use ($model)
@@ -352,8 +289,8 @@ class Plugin extends PluginBase
                 return IconList::getList();
             });
 
-            
         });
+
     }
 
     public function registerListColumnTypes()

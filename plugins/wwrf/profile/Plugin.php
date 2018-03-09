@@ -42,8 +42,7 @@ class Plugin extends PluginBase
 
     public function boot()
     {
-        UserModel::extend(function($model)
-        {
+        UserModel::extend(function($model) {
             $model->addFillable([
                 'kdoc_number',
                 'status',
@@ -63,15 +62,33 @@ class Plugin extends PluginBase
             $model->bindEvent('model.beforeValidate', function() use ($model) {
                 $model->rules['industries'] = 'max:4';
             });
+
+            $model->addDynamicMethod('getYearOptions', function($value) use ($model)
+            {
+
+                    $query = Users::all();
+            
+                    $years = [];
+            
+                    foreach($query as $user) {
+                        $year = date('Y', strtotime($user->created_at));
+            
+                        $years[$year] = $year;
+                    }
+            
+                    $years = array_unique($years);
+            
+                    return $years;
+
+            });
+
         });
 
-        CategoryModel::extend(function($model)
-        {
+        CategoryModel::extend(function($model) {
             $model->belongsToMany['users'] = ['RainLab\User\Models\User', 'table' => 'wwrf_users_industries'];
         });
       
-        UsersController::extendFormFields(function($form, $model, $context)
-        {
+        UsersController::extendFormFields(function($form, $model, $context) {
             if (!$model instanceof UserModel) {
                 return;
             }
@@ -161,73 +178,6 @@ class Plugin extends PluginBase
             ]);
         });
 
-        // Extend all backend list usage
-        /*Event::listen('backend.list.extendColumns', function($widget) {
-            
-            // Only for the User controller
-            if (!$widget->getController() instanceof \RainLab\User\Controllers\Users) {
-                return;
-            }
-
-            // Only for the User model
-            if (!$widget->model instanceof \RainLab\User\Models\User) {
-                return;
-            }
-
-            // Add extra columns for reporting
-            $widget->addColumns([
-                'eligible_date' => [
-                    'label' => 'Eligible',
-                ],
-                'job_title' => [
-                    'label' => 'Title',
-                    'type' => 'partial',
-                    'path' => '~/plugins/wwrf/profile/models/UserExport/_title.htm',
-                    //'valueFrom' => 'title'
-                    'sortable' => false
-                ],
-                'company' => [
-                    'label' => 'Company',
-                    'type' => 'partial',
-                    'path' => '~/plugins/wwrf/profile/models/UserExport/_company.htm',
-                    //'valueFrom' => 'title'
-                    'sortable' => false
-                ],
-                'industries' => [
-                    'label' => 'Industry',
-                    'type' => 'partial',
-                    'path' => '~/plugins/wwrf/profile/models/UserExport/_industry.htm',
-                    'sortable' => false
-                ],
-                'start_date' => [
-                    'label' => 'Start Date',
-                    'type' => 'partial',
-                    'path' => '~/plugins/wwrf/profile/models/UserExport/_start_date.htm',
-                    //'valueFrom' => 'title'
-                    'sortable' => false
-                ],
-                'start_wage' => [
-                    'label' => 'Start Wage',
-                    'type' => 'partial',
-                    'path' => '~/plugins/wwrf/profile/models/UserExport/_wage.htm',
-                    //'valueFrom' => 'title'
-                    'sortable' => false
-                ],
-                'status' => [
-                    'label' => 'Status',
-                    'sortable' => true,
-                ],
-                
-                'lead_time' => [
-                    'label' => 'Lead Time',
-                    'type' => 'partial',
-                    'path' => '~/plugins/wwrf/profile/models/UserExport/_lead_time.htm',
-                    'sortable' => false
-                ],
-                
-            ]);
-        });*/
-
         Event::listen('backend.menu.extendItems', function ($manager) {
 			$manager->addSideMenuItems('RainLab.User', 'user', [
 				'exmployers' => [
@@ -252,6 +202,7 @@ class Plugin extends PluginBase
             return $this->listInjectRowClass($record);
         });
 
+        // Add import/export controller to user controller
         UsersController::extend(function($controller){
             
             // Implement behavior if not already implemented
@@ -275,29 +226,6 @@ class Plugin extends PluginBase
             $configUserListPath = '$/wwrf/profile/controllers/profiles/config_users_list.yaml';
 
             $controller->listConfig = $controller->makeConfig($configUserListPath);
-        });
-
-        UserModel::extend(function($model) {
-            
-            $model->addDynamicMethod('getYearOptions', function($value) use ($model)
-            {
-
-                    $query = Users::all();
-            
-                    $years = [];
-            
-                    foreach($query as $user) {
-                        $year = date('Y', strtotime($user->created_at));
-            
-                        $years[$year] = $year;
-                    }
-            
-                    $years = array_unique($years);
-            
-                    return $years;
-
-            });
-
         });
 
     }
