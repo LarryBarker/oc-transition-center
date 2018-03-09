@@ -1,0 +1,11 @@
+<?php
+
+if ($record->status == 'available') {
+    $class = 'text-success';
+} elseif ($record->status == 'employed') {
+    $class = 'text-warning';
+} elseif ($record->status == 'unavailable') {
+    $class = 'text-danger';
+}
+
+echo '<span class="oc-icon-circle '.$class.'">'.$record->status.'</span>';
