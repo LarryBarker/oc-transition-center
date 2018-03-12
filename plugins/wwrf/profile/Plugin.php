@@ -95,6 +95,16 @@ class Plugin extends PluginBase
 
             $form->removeField('comment');
 
+            $form->removeField('avatar');
+
+            $form->addSecondaryTabFields([
+                'avatar' => [
+                    'label' => 'Resume',
+                    'type' => 'fileupload',
+                    'mode' => 'file'
+                ]
+            ]);
+
             $form->addTabFields([
                 'kdoc_number' => [
                     'label' => 'wwrf.profile::lang.profile.kdoc_number',
