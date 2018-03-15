@@ -1,12 +1,14 @@
 columns:
-    user_id:
+    user_name:
         label: User
         relation: user
         select: concat(name, ' ', surname)
+        searchable: true
     job_id:
         label: Job
         relation: job
         select: title
+        searchable: true
     created_at:
         label: Date viewed
         type: datetime
