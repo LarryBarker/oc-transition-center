@@ -45,9 +45,9 @@ class StaffMembers extends Controller
             });
         }
         
-        if ($definition == 'caseload') {
+        /*if ($definition == 'caseload') {
             $query->where('counselor_id', $this->params[0]);
-        }
+        }*/
     }
 
     /**
