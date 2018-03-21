@@ -37,6 +37,10 @@ class StaffMembers extends Controller
         $this->makeLists();
     }
 
+    public function caseload() {
+        
+    }
+
     public function listExtendQuery($query, $definition = null)
     {
         if ($definition == 'index') {
@@ -45,9 +49,9 @@ class StaffMembers extends Controller
             });
         }
         
-        /*if ($definition == 'caseload') {
+        if ($definition == 'caseload') {
             $query->where('counselor_id', $this->params[0]);
-        }*/
+        }
     }
 
     /**

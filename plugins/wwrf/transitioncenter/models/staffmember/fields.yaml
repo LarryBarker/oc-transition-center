@@ -9,21 +9,8 @@ fields:
         span: auto
 
     surname:
-        label: rainlab.user::lang.user.surname
+        label: Last name
         span: auto
-
-    company_name:
-        label: Company
-    
-    company_title:
-        label: Title
-
-    company_phone:
-        label: Phone
-
-    is_counselor:
-        label: WWRF Counselor
-        type: checkbox
 
 tabs:
     fields:
@@ -78,6 +65,26 @@ tabs:
             emptyOption: rainlab.user::lang.user.empty_groups
             default: 4
             #readOnly: true
+            span: left
+
+        is_counselor:
+            label: Counselor
+            tab: rainlab.user::lang.user.account
+            comment: Check this box for all WWRF Counselors!
+            type: checkbox
+            span: right
+
+        company_name:
+            tab: Contact
+            label: Company
+    
+        company_title:
+            tab: Contact
+            label: Title
+
+        company_phone:
+            tab: Contact
+            label: Phone
 
         caseload:
             tab: Caseload
@@ -87,3 +94,5 @@ tabs:
                 action: show
                 field: is_counselor
                 condition: checked
+            context: [preview, update]
+

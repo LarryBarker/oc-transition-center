@@ -18,7 +18,7 @@ defaultRedirect: wwrf/transitioncenter/staffmembers
 create:
     title: Create Staff Member
     redirect: wwrf/transitioncenter/staffmembers/update/:id
-    redirectClose: wwrf/transitioncenter/staffmembers
+    redirectClose: wwrf/transitioncenter/staffmembers/preview/:id
 
 # Update page
 update:
