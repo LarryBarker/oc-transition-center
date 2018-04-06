@@ -17,6 +17,10 @@ columns:
         label: rainlab.user::lang.user.created_at
         type: timetense
 
+    arrival_date:
+        label: Arrival Date
+        invisible: true
+
     eligible_date:
         label: Eligible
 
