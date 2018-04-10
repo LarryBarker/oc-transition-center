@@ -1,9 +1,3 @@
-[searchInput]
-useAutoComplete = 1
-autoCompleteResultCount = 5
-showProviderBadge = 1
-searchPage = "search"
-==
 <ul class="navbar-nav">
     <li class="nav-item {% if this.page.title == 'Jobs' %}active{%endif%}">
         <a href="{{'jobs/jobs'|page}}" class="nav-link">View All</a>
@@ -31,8 +25,7 @@ searchPage = "search"
                         data-request="onType"
                         data-request-before-update="document.getElementById('autocomplete-results').classList.add('ss-search-form__results--visible')"
                         data-request-update="'{{ searchInput }}::autocomplete': '#autocomplete-results'"
-                    {% endif %}
-            >
+                    {% endif %} />
             <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3 ss-search-form__submit" type="submit">Search</button>
         </div>
         <div class="ss-search-form__results white z-depth-2" id="autocomplete-results"></div>
