@@ -1,0 +1,32 @@
+description = "Default"
+
+[session]
+security = "all"
+redirect = "home"
+
+[UserAgreement]
+
+[googleTracker]
+
+[RainLab\User\Components\Account account]
+paramCode = "code"
+forceSecure = 0
+
+[contactForm]
+injectBootstrapAssets = 0
+injectMainScript = 0
+
+[searchInput]
+useAutoComplete = 1
+autoCompleteResultCount = 5
+showProviderBadge = 1
+searchPage = "search.htm"
+
+[Questionnaire]
+modelClass = "Wwrf\TransitionCenter\Models\Questionnaire"
+==
+{% partial 'site/head' %}
+
+{% page %}
+
+{% partial 'site/footer' %}

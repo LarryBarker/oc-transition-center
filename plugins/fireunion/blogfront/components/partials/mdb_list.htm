@@ -1,0 +1,51 @@
+<!-- Start partial-list.htm -->
+{% for post in __SELF__.posts  %}
+<!-- Job card-->
+<div class="card mb-4">
+    <!--Card content-->
+    <div class="card-body">
+        <!--Title-->
+        <h4 class="card-title">{{ post.title }}</h4>
+        <p class="small">Posted on {{ post.published?post.published_at|date('m/d/Y'):'--/--/----' }} in {{ __SELF__.categoryStr(post)|raw }} by {{ post.author.name }} {{ post.author.surname }}.</p>
+        <hr>
+        <!--Text-->
+        <p class="card-text">{{post.content|raw}}</p>
+        {% if __SELF__.isAjax %}
+        <a href="#"
+            class="btn btn-default btn-sm" 
+            title="{{ __SELF__.trans('general.btn_edit') }}"
+            data-request="{{ __SELF__ }}::onPostForm"  
+            data-request-data="id: {{ post.id }}"
+            data-request-update="'{{ __SELF__ }}::form': '#bloginfo'">
+        {% else %}
+        <a href="{{ post.url }}"
+            class="btn btn-default btn-sm" 
+            title="{{ __SELF__.trans('general.btn_edit') }}">
+        {% endif %}
+            <i class="fa fa-pencil btn-icon danger"></i>
+        </a>
+        <a
+            class="btn unique-color btn-sm" 
+            title="Preview"
+            href="{{ 'jobs/post'|page({ slug: post.slug }) }}">
+            <i class="fa fa-eye btn-icon danger"></i>
+        </a>
+        <button
+            class="btn btn-danger btn-sm" 
+            title="{{ __SELF__.trans('general.btn_delete') }}"
+            data-request="{{ __SELF__ }}::onDelete" 
+            data-request-data="id: {{ post.id }}"
+            data-request-confirm="{{ __SELF__.trans('general.delete_conf') }}"
+            data-request-update="'{{ __SELF__ }}::list': '#bloginfo'">
+            <i class="fa fa-trash btn-icon danger"></i>
+        </button>
+    </div>
+    <!--/.Card content-->
+</div>
+<!--/.Card Light-->
+{% else %}
+<div class="alert alert-warning">
+    <p>You have no jobs posted.</p>
+</div>
+{% endfor %}
+<!-- End partial-list.htm -->

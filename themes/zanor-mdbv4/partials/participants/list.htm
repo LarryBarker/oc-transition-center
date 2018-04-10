@@ -1,0 +1,48 @@
+{% if participants|length %}
+<div class="row">
+{% for user in participants %}
+<!--Card-->
+<div class="col-lg-5 mx-auto card card-personal mb-4 hoverable">
+
+    <!--Card content-->
+    <div class="card-body">
+        <!--Title-->
+        <h4 class="card-title"><a href="#" data-request-data="id: {{user.id}}" data-request="ueuser::onVisitProfile">
+            {{user.name}} {{user.surname}}
+            </a></h4>
+        <a class="card-meta">{{ user.profile_headline }}</a>
+
+        <!--Text-->
+        <p class="card-text">{% if user.status == 'available' %}
+            {% if user.eligible_date > date() %}
+            Available {{ user.eligible_date|date('M d, Y') }}
+            {% else %}
+            Available now
+            {% endif %}
+        {% elseif user.status == 'employed' %}
+            Employed but looking
+        {% endif %}</p>
+        <p class="card-text">{% set industries = user.industries %}
+            {% for industry in user.industries %}
+                {{ industry.name }}{% if not loop.last %}<br />{% endif %}
+            {% endfor %}</p>
+        <p class="card-meta">Last seen {% if user.last_seen %}{{user.last_seen|relative}}{% else %}Never{% endif %}</p>
+        <hr>
+        <a class="card-meta"><span>
+                <a href="#" data-request-data="id: {{user.id}}" data-request="ueuser::onVisitProfile" class="btn mdb-color btn-sm btn-block mb-2" alt="Preview"><i class="fa fa-eye mr-2"></i> Preview</a>
+                        
+                <a href="mailto:{{ user.email }}" class="btn btn-sm unique-color btn-block mb-2" alt="Message"><i class="fa fa-envelope-o mr-2"></i> Message</a></span></a>
+
+                <a href="{{ user.avatar.path }}" class="btn btn-sm btn-default btn-block" alt="Download"><i class="fa fa-download mr-2"></i> Download</a></span></a>
+    </div>
+    <!--Card content-->
+
+</div>
+<!--Card-->
+{% endfor %}
+</div>
+{% else %}
+<div class="alert alert-warning">
+    No users found
+</div>
+{% endif %}

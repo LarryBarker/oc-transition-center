@@ -1,0 +1,123 @@
+title = "Temp Services"
+url = "/jobs/temp"
+layout = "default"
+is_hidden = 0
+
+[builderList]
+modelClass = "Wwrf\TransitionCenter\Models\TempService"
+scope = "-"
+displayColumn = "name"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+sortColumn = "name"
+sortDirection = "asc"
+==
+{% if user.groups.first.name == 'Users' or user.groups.first.name == 'Staff' %}
+{% set records = builderList.records %}
+
+{% set displayColumn = builderList.displayColumn %}
+
+{% set noRecordsMessage = builderList.noRecordsMessage %}
+
+{% set detailsPage = builderList.detailsPage %}
+
+{% set detailsKeyColumn = builderList.detailsKeyColumn %}
+
+{% set detailsUrlParameter = builderList.detailsUrlParameter %}
+<!-- Temp services page -->
+<div class="container">
+
+    <!-- Partial: Jobs toolbar -->
+    <section class="pt-5 mt-5 pb-3">
+        {% partial 'jobs/toolbar' %}
+    </section>
+    <!-- /Partial: Jobs toolbar -->
+
+    <!-- Section: Temp services table -->
+    <section class="section pt-2">
+        <h2 class="h2-responsive">{{this.page.title}}</h2>
+        <!--Table-->
+        <table class="table table-responsive-sm table-striped table-hover">
+
+            <!--Table head-->
+            <thead class="blue-grey lighten-4">
+                <tr>
+                    <th>Agency</th>
+                    <th>Type of Work</th>
+                    <th>Do you work with persons w/felonies?</th>
+                    <th>Are there certain felonies you will not accept?</th>
+                    <th>Do you specialize in any type of employment?</th>
+                    <th>What do your clients need to know if applying?</th>
+                </tr>
+            </thead>
+            <!--Table head-->
+        
+            <!--Table body-->
+            <tbody>
+            {% for record in records %}
+                <tr href="{{record.website}}">
+                    <td><a href="{{record.website}}" target="_blank">{{record.name}}</a><br />
+                    <a href="http://www.google.com/maps?q={{record.address}}+wichita+ks" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=yes,dependent=no,width=800,height=600'); return false;">{{record.address}}</a><br />
+                    {{record.phone}}<br />
+                    {{record.website}}</td>
+                    <td>{% for type_of_work in record.type_of_work %}{{type_of_work}}<br/>{%endfor%}</td>
+                    <td>{{record.accept_felonies}}</td>
+                    <td>{{record.rejected_felonies}}</td>
+                    <td>{{record.employment_type}}</td>
+                    <td>{{record.comments}}</td>
+                </tr>
+            {% else %}
+                No records available.
+            {% endfor %}
+            <tr>
+                <td>DL = Day Labor</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>TA = Temporary Assignments</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>TH = Temp to Hire</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>DH = Direct Hire</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            </tbody>
+            <!--Table body-->
+        
+        </table>
+        <!--Table-->
+
+    </section>
+    <!-- /Section: Temp services table -->
+
+</div>
+{% else %}
+<div class="container mt-5">
+    <div class="jumbotron col-10 mx-auto">
+    <h1>Error</h1>
+    <p class="alert alert-danger"><i class="fa fa-warning"></i>We're sorry, but something went wrong and the page cannot be displayed.</p>
+    </div>
+</div>
+{% endif %}

@@ -1,0 +1,128 @@
+title = "Jobs" 
+url = "/jobs/:page?" 
+layout = "default" 
+is_hidden = 0 
+
+[blogPosts] 
+pageNumber = "{{ :page }}" 
+categoryFilter = "{{ :industry }}" 
+postsPerPage = 10 
+noPostsMessage = "No posts found" 
+sortOrder = "published_at desc" 
+categoryPage = "jobs/industry"
+postPage = "jobs/post" 
+
+[blogCategories] 
+slug = "{{ :slug }}" 
+displayEmpty = 0 
+categoryPage = "jobs/industry" 
+
+[JobTracker]
+jobPage = "jobs/post"
+
+[PostList]
+use_authors = 0
+restrict_owner = 1
+category[] = 8
+category[] = 9
+category[] = 10
+category[] = 11
+category[] = 12
+category[] = 13
+category[] = 14
+category[] = 15
+category[] = 17
+category[] = 18
+category[] = 19
+category[] = 22
+category[] = 23
+backUser = 1
+formPage = "jobs/new"
+== 
+{% if user.groups.first.name == 'Employers' %}
+<!-- Jobs page -->
+<div class="container">
+    <!-- Partial: Jobs toolbar-->
+    <section class="pt-5 mt-5 pb-3">
+        {% partial 'jobs/toolbar' %}
+    </section>
+    <!-- /Partial: Jobs toolbar -->
+
+    <!-- Section: Jobs list -->
+    <section class="section pt-4">
+
+        <!-- Grid row -->
+        <div class="row">
+
+            <!-- Start postlist-default.htm -->
+            {% if PostList.backUser %}
+                <div class="col-md-4 mb-2">
+                    <div  class="text-right">
+                        <a href="{{ PostList.formPage }}"
+                            class="btn unique-color-dark btn-block"
+                            title="{{ PostList.trans('general.btn_add') }}">
+                            <i class="fa fa-plus mr-3"></i>Add new</i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div id="bloginfo">
+                        {% partial PostList~'::mdb_list' %}
+                    </div>
+                </div>
+            {% else %}
+                <p>{{ PostList.trans('general.unauthorized') }}</p>
+            {% endif %}
+            <!-- End postlist-default.htm -->
+
+        </div>
+    </section>
+</div>
+{% elseif user.groups.first.name == 'Users' or user.groups.first.name == 'Staff' %}
+<!-- Jobs page -->
+<div class="container">
+    <!-- Partial: Jobs toolbar-->
+    <section class="pt-5 mt-5 pb-3">
+        {% partial 'jobs/toolbar' %}
+    </section>
+    <!-- /Partial: Jobs toolbar -->
+
+    <!-- Section: Jobs list -->
+    <section class="section pt-4">
+
+        <!-- Grid row -->
+        <div class="row">
+
+            <!-- Posts column-->
+            <div class="col-lg-8 col-md-12 mb-3 pb-lg-2 mx-auto">
+
+                {% partial 'jobs/posts.htm' %}
+            
+            </div>
+            <!-- /Post column -->
+
+            {% if user.groups.first.name == 'Users' or user.groups.first.name == 'Staff' %}
+                <!-- Sidebar column-->
+                <div class="col-lg-4 col-md-12 mb-4 mx-auto">
+
+                    {% partial 'jobs/sidebar.htm' %}
+
+                </div>
+                <!-- /Sidebar column-->
+            {% endif %}
+        </div>
+        <!--Grid row-->
+
+    </section>
+    <!-- /Section: Jobs list -->
+</div>
+<!-- /Jobs page -->
+{% else %}
+<div class="container">
+    <div class="row">
+        <div class="col-6 mx-auto mt-5 pt-5">
+            <div class="alert alert-danger">Not authorized.</div>
+        </div>
+    </div>
+</div>
+{% endif %}

@@ -1,0 +1,21 @@
+<!-- User Agreement Modal -->
+<div class="modal fade" id="userAgreement" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-body">
+            {% content 'user_agreement' %}
+            {{ user.name }} {{ user.surname }} <span class="pull-right">{{ today|date('M d, Y') }}</span>
+        </div>
+        <div class="modal-footer">
+            <button type="button" 
+                    class="btn btn-primary btn-block" 
+                    data-request="onUserAgreement" 
+                    id="acceptAgreement"
+                    >Accept</button>
+        </div>
+        </div>
+        
+    </div>
+</div>

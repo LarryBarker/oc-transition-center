@@ -57,7 +57,7 @@ class Plugin extends PluginBase
                 'questionnaire',
             ]);
 
-            $model->belongsToMany['industries'] = ['RainLab\Blog\Models\Category', 'table' => 'wwrf_users_industries', 'otherKey' => 'industry_id'];
+            $model->belongsToMany['industries'] = ['RainLab\Blog\Models\Category', 'table' => 'wwrf_users_industries', 'key' => 'user_id', 'otherKey' => 'industry_id'];
 
             $model->bindEvent('model.beforeValidate', function() use ($model) {
                 $model->rules['industries'] = 'max:4';
@@ -85,7 +85,7 @@ class Plugin extends PluginBase
         });
 
         CategoryModel::extend(function($model) {
-            $model->belongsToMany['users'] = ['RainLab\User\Models\User', 'table' => 'wwrf_users_industries'];
+            $model->belongsToMany['users'] = ['RainLab\User\Models\User', 'table' => 'wwrf_users_industries', 'key' => 'user_id'];
         });
       
         UsersController::extendFormFields(function($form, $model, $context) {

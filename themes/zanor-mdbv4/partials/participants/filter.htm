@@ -1,0 +1,28 @@
+<div class="widget-wrapper">
+    <h4>Search</h4>
+    <!-- Search form -->
+
+    <form class="form-inline d-flex w-100" data-request="ueuser::onSearch" method="GET">
+        <input class="form-control w-100" type="text" placeholder="Enter job title, skill, or other criteria here..." aria-label="Search" name="phrase">
+    </form>
+
+</div>
+{{ form_ajax('onFilterUsers', { update: { 'participants/list': '#userFilterResults' } }) }}
+<div id="UsersFilter">
+    <h4>Industries</h4>
+    {% for industry in industries %}
+    <div class="form-group">
+        <input type="checkbox" name="Filter[industries][]" value="{{ industry.id }}" id="Filter[industries][]"/>
+        <label for="Filter[Industries][]">{{ industry.name }}</label>
+    </div>
+    {% endfor %}
+</div>
+<div>
+    <label>Page</label>
+    <select name="Filter[page]">
+        {% for i in 1..pages %}
+            <option value="{{i}}">{{ i }}</option>
+        {% endfor %}
+    </select>
+</div>
+{{ form_close() }}

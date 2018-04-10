@@ -94,9 +94,7 @@ class Questionnaire extends ComponentBase
 
     {
 
-        $this->addCss('/modules/system/assets/ui/storm.css');
-
-
+        //$this->addCss('/modules/system/assets/ui/storm.css');
 
         // Build a back-end form with the context of 'frontend'
 

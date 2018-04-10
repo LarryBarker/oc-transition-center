@@ -1,0 +1,79 @@
+title = "resource listing"
+url = "/resources/listing"
+layout = "default"
+is_hidden = 0
+==
+<div class="container">
+    <!--Section: Users home page-->
+    <section class="pt-5 mt-5 pb-3">
+        {% partial 'users/resources_toolbar' %}
+    </section>
+    <div class="row">
+        <div class="col-xl-8">
+
+            <h4>Listing title</h4>
+
+            <!--Text-->
+            <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(38).jpg" alt="Card image cap">
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(19).jpg" alt="Card image cap">
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(42).jpg" alt="Card image cap">
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(8).jpg" alt="Card image cap">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4">
+
+                <!--Title-->
+                <h4>Address</h4>
+    
+                <!--Text-->
+                <p>1234 Main St</p>
+                <p>Wichita, KS 67202</p>
+
+                <hr />
+
+                <!--Title-->
+                <h4>Phone</h4>
+    
+                <!--Text-->
+                <p>(316) 265-5211</p>
+
+                <hr />
+
+                <!--Title-->
+                <h4>Rent</h4>
+    
+                <!--Text-->
+                <p>$250/mo</p>
+
+                <hr />
+
+        </div>
+
+    </div>
+    <div id="resource-listing-map" class="z-depth-1 mb-4" style="height: 300px"></div>
+</div>
+                        
+<!--Google Maps-->
+<script src="https://maps.google.com/maps/api/js"></script>

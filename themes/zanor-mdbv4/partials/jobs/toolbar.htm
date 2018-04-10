@@ -1,0 +1,21 @@
+==
+<nav class="navbar navbar-expand-lg navbar-dark unique-color">
+
+    <!-- Navbar brand -->
+    <a class="font-weight-bold white-text mr-4" href="#">Jobs</a>
+
+    {% if user.groups.first.name == 'Users' or user.groups.first.name == 'Staff' %}
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+        
+            {% partial 'users/jobs_nav' %}
+        
+    </div>
+    <!-- Collapsible content -->
+    {% else %}
+        {% partial 'employers/jobs_nav' %}
+    {% endif %}
+</nav>

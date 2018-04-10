@@ -16,12 +16,12 @@ fields:
         label: 'wwrf.transitioncenter::lang.questionnaire.can_type'
         span: full
         required: 0
-        type: switch
+        type: checkbox
     applied_online:
         label: 'wwrf.transitioncenter::lang.questionnaire.applied_online'
         span: full
         required: 0
-        type: switch
+        type: checkbox
     computer_skill:
         label: 'What is your basic computer skill level?'
         options:
@@ -40,25 +40,25 @@ fields:
         label: 'wwrf.transitioncenter::lang.questionnaire.owd_class'
         span: full
         required: 0
-        type: switch
+        type: checkbox
         comment: 'HINT: OWD, COG, BEST, etc.'
     has_sap:
         label: 'wwrf.transitioncenter::lang.questionnaire.has_sap'
         span: full
-        type: switch
+        type: checkbox
     interest_profiler:
         label: 'wwrf.transitioncenter::lang.questionnaire.interest_profiler'
         span: full
         default: 0
         cssClass: ''
         required: 0
-        type: switch
+        type: checkbox
         comment: 'HINT: MyNextMove, oNET, WIP, etc.'
     continue_education:
         label: 'wwrf.transitioncenter::lang.questionnaire.continue_education'
         span: full
         required: 0
-        type: switch
+        type: checkbox
     workready_section:
         label: 'Work Ready'
         span: full
@@ -67,7 +67,7 @@ fields:
         label: 'wwrf.transitioncenter::lang.questionnaire.resume'
         span: full
         required: 0
-        type: switch
+        type: checkbox
     workready_cert:
         label: 'Do you have a Kansas WorkREADY! Certificate?'
         oc.commentPosition: ''
@@ -83,13 +83,13 @@ fields:
         label: 'wwrf.transitioncenter::lang.questionnaire.kansasworks'
         span: full
         required: 0
-        type: switch
+        type: checkbox
         comment: 'HINT: If you have WorkREADY! Certificate, this is probably ''yes.'''
     workforce:
         label: 'wwrf.transitioncenter::lang.questionnaire.workforce'
         span: full
         required: 0
-        type: switch
+        type: checkbox
     military_section:
         label: Military
         span: full
@@ -98,7 +98,7 @@ fields:
         label: 'wwrf.transitioncenter::lang.questionnaire.veteran'
         span: full
         required: 0
-        type: switch
+        type: checkbox
     discharge:
         label: 'wwrf.transitioncenter::lang.questionnaire.discharge'
         span: full
@@ -107,7 +107,7 @@ fields:
             action: show
             field: is_veteran
             condition: checked
-        type: switch
+        type: checkbox
     discharge_date:
         label: 'wwrf.transitioncenter::lang.questionnaire.discharge_date'
         oc.commentPosition: ''
@@ -125,7 +125,7 @@ fields:
         label: 'wwrf.transitioncenter::lang.questionnaire.owes_childsupport'
         span: full
         required: 0
-        type: switch
+        type: checkbox
     background_section:
         label: 'Criminal History'
         span: full
@@ -134,7 +134,7 @@ fields:
         label: 'wwrf.transitioncenter::lang.questionnaire.three_speech'
         span: full
         required: 0
-        type: switch
+        type: checkbox
         comment: 'HINT: Do you remember your 3R speech?'
     felony_type:
         label: 'What type of felony(ies) do you have?'
@@ -154,11 +154,11 @@ fields:
         label: 'wwrf.transitioncenter::lang.questionnaire.pov'
         span: full
         required: 0
-        type: switch
+        type: checkbox
         comment: 'wwrf.transitioncenter::lang.pov.comment'
     valid_dl:
         label: 'Do you have a VALID Driver''s License?'
         span: full
         required: 0
-        type: switch
+        type: checkbox
         comment: 'Note: No suspensions, expiration, revoction, etc.'

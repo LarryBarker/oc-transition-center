@@ -1,0 +1,14 @@
+<li class="nav-item {% if this.page.title == 'Program Participants' %}active{%endif%}">
+<a class="nav-link" href="{{'participants'|page}}">Participants</a>
+</li>
+<li class="nav-item {% if this.page.title == 'Jobs' or this.page.title == 'Post New Employer Job' %}active{%endif%}">
+<a class="nav-link" href="{{'jobs/jobs'|page}}">Jobs</a>
+</li>
+{% if user.groups.first.name == 'Staff' %}
+<li class="nav-item {% if this.page.title == 'Wichita Parolee Housing Map' %}active{%endif%}">
+<a class="nav-link" href="{{'resources/housing'|page}}">Resources</a>
+</li>
+{% endif %}
+<li class="nav-item {% if this.page.title == 'Account Settings' %}active{%endif%}">
+<a class="nav-link" href="{{'account'|page}}">Account</a>
+</li>

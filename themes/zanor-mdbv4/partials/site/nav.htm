@@ -1,0 +1,36 @@
+==
+<!-- Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark scrolling-navbar">
+    <div class="container">
+
+        <!-- Brand -->
+        <a class="navbar-brand" href="{{'default'|page}}"><img src="{{'assets/images/leaf.png'|theme}}" height="30px" alt="Transition Center"> 
+        TRANSITION <strong>CENTER</strong>
+        </a>
+
+        <!-- Collapse -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <!-- Left -->
+            <ul class="navbar-nav ml-auto">
+                {% if user.groups.first.name == 'Users' %}
+                    {% partial 'nav/users' %}
+                {% else %}
+                    {% partial 'nav/employers' %}
+                {% endif %}
+                
+                <li class="nav-item">
+                    <a class="nav-link" data-request="onLogout" data-request-data="redirect: '/'" data-request-redirect="{{'default'|page}}">Logout</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+<!-- Navbar -->

@@ -1,0 +1,65 @@
+title = "Jobs Industry"
+url = "/jobs/industry/:slug/:page?"
+layout = "default"
+description = "Viewing job posts in a specific category."
+is_hidden = 0
+
+[blogPosts]
+pageNumber = "{{ :page }}"
+categoryFilter = "{{ :slug }}"
+postsPerPage = 10
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+categoryPage = "jobs/industry"
+postPage = "jobs/post"
+
+[blogCategories]
+slug = "{{ :slug }}"
+displayEmpty = 0
+categoryPage = "jobs/industry"
+
+[blogArchiveList]
+monthsToShow = 5
+slug = "{{ :slug }}"
+archivePage = "jobs/archive"
+
+[JobTracker]
+jobPage = "blog/post"
+== 
+<!-- Jobs page -->
+<div class="container">
+    <!-- Partial: Jobs toolbar-->
+    <section class="pt-5 mt-5 pb-3">
+        {% partial 'jobs/toolbar' %}
+    </section>
+    <!-- /Partial: Jobs toolbar -->
+
+    <!-- Section: Jobs list -->
+    <section class="section pt-4">
+
+        <!-- Grid row -->
+        <div class="row">
+
+            <!-- Posts column-->
+            <div class="col-lg-8 col-md-12 mb-3 pb-lg-2">
+
+                {% partial 'jobs/posts.htm' %}
+            
+            </div>
+            <!-- /Post column -->
+
+            <!-- Sidebar column-->
+            <div class="col-lg-4 col-md-12 mb-4">
+
+                {% partial 'jobs/sidebar.htm' %}
+
+            </div>
+            <!-- /Sidebar column-->
+
+        </div>
+        <!--Grid row-->
+
+    </section>
+    <!-- /Section: Jobs list -->
+</div>
+<!-- /Jobs page -->

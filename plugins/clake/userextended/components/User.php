@@ -123,7 +123,7 @@ class User extends ComponentBase
     {
         Plugin::injectAssets($this);
         $this->page['groups'] = UserGroupManager::currentUser()->allGroups()->getUsersGroups();
-        $this->addCss('/modules/system/assets/ui/storm.css');
+        //$this->addCss('/modules/system/assets/ui/storm.css');
         $this->addJs('assets/js/lists.js');
         $this->addJs('assets/js/list.min.js');
 
@@ -220,8 +220,8 @@ class User extends ComponentBase
      */
     private function renderResults($results)
     {
-        $content = $this->renderPartial('ueuser::search-results.htm', ['results' => $results]);
-        return ['#userSearchResults' => $content];
+        $content = $this->renderPartial('ueuser::cards.htm', ['results' => $results]);
+        return ['#partialUsers' => $content];
     }
 
 

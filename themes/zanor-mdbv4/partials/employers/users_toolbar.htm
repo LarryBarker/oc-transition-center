@@ -1,0 +1,28 @@
+==
+<nav class="navbar navbar-expand-lg navbar-dark unique-color">
+
+    <!-- Navbar brand -->
+    <a class="font-weight-bold white-text mr-4" href="#">Participants</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+        <ul class="navbar-nav">
+            <li class="nav-item {% if this.page.title == 'Program Participants' %}active{%endif%}">
+                <a href="{{'participants'|page}}" class="nav-link">View All</a>
+            </li>
+        </ul>
+        
+        <!-- Search form -->
+        <form class="form-inline my-2 my-lg-0 ml-auto" data-request="ueuser::onSearch" method="GET">
+            <input class="form-control" type="text" placeholder="Search" aria-label="Search" name="phrase"
+            data-request="ueuser::onSearch" data-track-input />
+            <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
+        </form>
+
+    </div>
+    <!-- Collapsible content -->
+
+</nav>

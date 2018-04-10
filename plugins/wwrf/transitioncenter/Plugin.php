@@ -119,12 +119,13 @@ class Plugin extends PluginBase
                     'page' => 1,
                     'perPage' => 10,
                     'sort' => 'last_seen desc',
-                    'industries' => null
+                    'industries' => null,
+                    'keywords' => null
                 ], $options));
-        
+
                 $query = $query->whereHas('groups', function($q){
                     $q->where('id', '=', '2')->where('status','!=','unavailable');
-                })->whereIsActivated(true)->orderBy('last_seen','desc');
+                });
         
                 if($industries !== null){
                     if(!is_array($industries)){
@@ -136,14 +137,21 @@ class Plugin extends PluginBase
                         });
                     }
                 }
-        
+
+                /*if($keywords !== null){
+                    $query->orWhere('profile_headline', 'LIKE', "%{$keywords}%")
+                    ->orWhere('profile_summary', 'LIKE', "%{$keywords}%")
+                    ->orWhere('name', 'LIKE', "%{$keywords}%")
+                    ->orWhere('surname', 'LIKE', "%{$keywords}%");
+                }*/
+
                 $lastPage = $query->paginate($perPage, $page)->lastPage();
         
                 if($lastPage < $page){
                     $page = 1;
                 }
                 
-                return $query->paginate($perPage, $page);
+                return $query->whereIsActivated(true)->orderBy('last_seen','desc')->paginate($perPage, $page);
             });
         });
 

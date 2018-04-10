@@ -1,0 +1,54 @@
+{% if results is not empty %}
+    <h4>Search Results {{ results|length }} potential found.</h4>
+    <div class="row">
+    {% for profile in results %}
+
+            {% if ueuser.loggedIn.id != profile.id %}
+
+            <!--Card-->
+            <div class="col-lg-5 mx-auto card card-personal mb-4 hoverable">
+
+                <!--Card content-->
+                <div class="card-body">
+                    <!--Title-->
+                    <h4 class="card-title"><a href="#" data-request-data="id: {{profile.id}}" data-request="ueuser::onVisitProfile">
+                        {{profile.name}} {{profile.surname}}
+                        </a></h4>
+                    <a class="card-meta">{{ profile.profile_headline }}</a>
+            
+                    <!--Text-->
+                    <p class="card-text">{% if profile.status == 'available' %}
+                        {% if profile.eligible_date > date() %}
+                        Available {{ profile.eligible_date|date('M d, Y') }}
+                        {% else %}
+                        Available now
+                        {% endif %}
+                    {% elseif profile.status == 'employed' %}
+                        Employed but looking
+                    {% endif %}</p>
+                    <p class="card-text">{% set industries = profile.industries %}
+                        {% for industry in profile.industries %}
+                            {{ industry.name }}{% if not loop.last %}<br />{% endif %}
+                        {% endfor %}</p>
+                    <p class="card-meta">Last seen {% if profile.last_seen %}{{profile.last_seen|relative}}{% else %}Never{% endif %}</p>
+                    <hr>
+                    <a class="card-meta"><span>
+                        <a href="#" data-request-data="id: {{profile.id}}" data-request="ueuser::onVisitProfile" class="btn mdb-color btn-sm btn-block mb-2" alt="Preview"><i class="fa fa-eye mr-2"></i> Preview</a>
+                        
+                        <a href="mailto:{{ profile.email }}" class="btn btn-sm unique-color btn-block mb-2" alt="Message"><i class="fa fa-envelope-o mr-2"></i> Message</a></span></a>
+
+                        <a href="{{ profile.avatar.path }}" class="btn btn-sm btn-default btn-block" alt="Download"><i class="fa fa-download mr-2"></i> Download</a>
+                </div>
+                <!--Card content-->
+            
+            </div>
+            <!--Card-->
+            {% endif %}
+
+    {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-warning">
+        No users found
+    </div>
+{% endif %}

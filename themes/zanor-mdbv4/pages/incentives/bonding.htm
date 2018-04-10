@@ -1,0 +1,95 @@
+title = "Federal Bonding Program (FBP)"
+url = "/employers/incentives/bonding"
+layout = "default"
+is_hidden = 0
+==
+<div class="carousel" style="background-image: url('{{'assets/images/fbp_header.jpg'|theme}}');">
+    <div class="mask flex-center rgba-blue-grey-light">
+    </div>
+    <!-- Mask & flexbox options -->
+    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+    </div>
+    <!-- /Mask & flexbox options -->
+</div>
+{% if user.groups.first.name == 'Employers' or user.groups.first.name == 'Staff' %}
+<div class="container free-bird mb-4">
+    <div class="row">
+        <div class="col-10 col-sm-7 mx-auto white z-depth-1 py-4 pl-3 mb-4">
+            <h6 class="h6-responsive"><a href="{{'default'|page}}" alt="Transition Center">Transition Center</a> > <a href="{{'default'|page}}" alt="Employers">Employers</a> > <a href="{{'incentives/default'|page}}" alt="Incentive Programs">Incentive Programs</a> > {{this.page.title}}</h6>
+            <h3 class="h3-responsive">{{this.page.title}}</h3>
+            <p>
+                By participating in the Federal Bonding Program, you are helping your business and contributing to your community’s present and future health. <a href="mailto:corey.brock@ks.gov">Contact your State Bonding Coordinator today</a> to begin taking advantage of this easy-to-use program.
+            </p>
+            
+            <p>Read details below to learn more about The Federal Bonding Program.</p>
+            <!-- Main heading -->
+
+            <hr />
+            <h4 class="h4-responsive">Bonding is a job placement tool</h4>
+            <p>
+                <strong>Now you can hire and you can be hired because...</strong> The Federal Bonding Program (FBP) provides individual fidelity bonds to employers for job applicants who are (or may be) denied coverage by commercial carriers because of a:
+            </p>
+            <ul>
+                <li><strong>Record of arrest, conviction or imprisonment;</strong></li>
+                <li>History of alcohol or drug abuse;</li>
+                <li>Poor credit history;</li>
+                <li>Lack of an employment history; or</li>
+                <li>Dishonorable discharge from military service.</li>
+            </ul>  
+
+            <hr />
+
+            <p><strong>What is Bonding?</strong> Many employers carry insurance to protect themselves against employee theft or dishonesty. Employees who handle money or
+            valuable tools or goods are covered. This insurance is called fidelity bonding. When such commercial insurance is denied
+            because of an individual’s background, the employer often denies a job to that person. FBP coverage is provided at no cost
+            to the employer or the job applicant.
+            </p>
+
+            <hr />
+
+            <p>
+                <strong>Processing</strong>... the application procedure is simple and quick. Bonding coverage becomes effective immediately when:
+            </p>
+            <ul>
+                <li>
+                    The authorized state or local employment security office personnel have certified the bond (the process usually takes one
+                    or two days); and
+                </li>
+                <li>
+                    The applicant has a job offer with a date scheduled to start work or has begun work.
+                </li>
+            </ul>
+            </p>
+
+            <!-- CTA -->
+            <a href="#" class="btn btn-indigo btn-md waves-effect waves-light">Download
+                <i class="fa fa-download ml-1"></i>
+            </a>
+            <a href="mailto:corey.brock@ks.gov" class="btn btn-indigo btn-md waves-effect waves-light">Request your bond
+                <i class="fa fa-image ml-1"></i>
+            </a>
+        </div>
+
+        <div class="col-10 col-sm-3 mx-auto white z-depth-1 pt-4 pl-3">
+            <h4 class="h4-responsive">Additional Information</h4>
+            <p>For additional information <a href="mailto:corey.brock@ks.gov">contact our State Bonding Coordinator</a> or call: <br />(785) 296-7435</p>
+            <p>
+                Kansas Department of Commerce<br />
+                1000 S.W. Jackson St., Suite 100<br />
+                Topeka, KS 66612-1354 <br />
+                (785) 296-7435 TTY: 711 <br />
+                <a href="http://www.kansascommerce.com" target="_blank" alt="Kansas Department of Commerce"KansasCommerce.com></a>
+            </p>
+            <img src="{{'assets/images/kansasworks.png'|theme}}" alt="Kansas Works" />
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="container mt-5">
+    <div class="row mt-5">
+        <div class="col-10 mx-auto alert alert-danger mt-5">
+            <i class="fa fa-warning"></i>You are not authorized to view this page.
+        </div>
+    </div>
+</div>
+{% endif %}
