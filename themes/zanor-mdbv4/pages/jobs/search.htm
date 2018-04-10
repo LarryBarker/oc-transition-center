@@ -1,24 +1,22 @@
-title = "Jobs Search" 
-url = "/jobs/search/:search/:page?" 
-layout = "default" 
+title = "Jobs Search"
+url = "/jobs/search"
+layout = "default"
 is_hidden = 0
 
-[searchResult]
-searchTerm = "{{ :search }}"
-pageNumber = "{{ :page }}"
-disableUrlMapping = 0
-hightlight = 1
-postsPerPage = 5
-noPostsMessage = "No posts found"
-sortOrder = "published_at desc"
-includeCategories[] = 1
-includeCategories[] = 2
-includeCategories[] = 3
-categoryPage = "jobs/industry"
-postPage = "jobs/post"
+[searchResults]
+resultsPerPage = 10
+showProviderBadge = 1
+noResultsMessage = "Your search did not return any results."
+visitPageMessage = "Visit page"
 
 [JobTracker]
 jobPage = "jobs/post"
+
+[searchInput]
+useAutoComplete = 1
+autoCompleteResultCount = 5
+showProviderBadge = 1
+searchPage = "jobs/search.htm"
 ==
 {% set posts = searchResult.posts %}
 <!-- Jobs page -->
@@ -29,86 +27,22 @@ jobPage = "jobs/post"
     </section>
     <!-- /Partial: Jobs toolbar -->
 
-    <!-- Section: Jobs list -->
+    <!-- Section: Jobs search results list -->
     <section class="section pt-4">
+
+        <div class="row">
+            {% component 'searchInput' %}
+        </div>
 
         <!-- Grid row -->
         <div class="row">
 
-            <!-- Posts column-->
+            <!-- Search results column-->
             <div class="col-lg-8 col-md-12 mb-3 pb-lg-2 mx-auto">
                 
-                {% if posts.count > 0 %}
-                <h2>{{ 'Found'|_ }} {{ posts.count }} {{' jobs for:'|_ }} <mark>{{ searchResult.searchTerm }}</mark></h2>
-                
-                {% for post in posts %}
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <h3>
-                                <a href="{{ post.url }}" {% if user.groups.first.name == 'Users' %}
-                                    data-request="onViewJob"
-                                    data-request-data="job_id: {{post.id}}"
-                                {%endif%}><u>{{ post.title|raw }}</u></a>
-                                <br/>{{ post.company }}
-                            </h3>
-                            <p class="small">
-            
-                                {{ 'Posted'|_ }}
-                                {% if post.categories.count %} {{ 'in'|_ }} {% endif %}
-                                {% for category in post.categories %}
-                                <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
-                                {% endfor %}
-                                {{ 'on'|_ }} {{ post.published_at|date('M d, Y') }}
-            
-                            </p>
-                            <p class="lead">
-                                {% if post.excerpt %} 
-                                    {{ str_limit(post.excerpt|raw, '140', '...') }}
-                                {% else %} 
-                                    {{ str_limit(html_strip(post.content|raw), '140', '...') }} 
-                                {% endif %}
-                            </p>
-                        </div>
-                    </div>
-                {% endfor %}
-                <!--Pagination-->
-                {% if posts.lastPage > 1 %}
-                <div class="row justify-content-center">
-                        <nav aria-label="pagination example">
-                            <ul class="pagination pagination-lg pg-blue">
-                                {% if posts.currentPage > 1 %}
-                                <!--Arrow left-->
-                                <li class="page-item">
-                                    <a class="page-link" href="{{ this.page.baseFileName|page({ (pageParam): (posts.currentPage-1) }) }}" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo; Previous</span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                </li>
-                                {% endif %} 
-                                {% if posts.lastPage > posts.currentPage %}
-                                <li class="page-item">
-                                    <a class="page-link" href="{{ this.page.baseFileName|page({ (pageParam): (posts.currentPage+1) }) }}" aria-label="Next">
-                                        <span aria-hidden="true">Next &raquo;</span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </li>
-                                {% endif %}
-                            </ul>
-                        </nav>
-                </div>
-                {% endif %}
-                <!--/Pagination-->
-                {% else %}
-                    <h1>Oops!</h1>
-                    <p class="lead">We're sorry, we couldn't find any jobs with <mark>{{ searchResult.searchTerm }}</mark> in the post. Please try searching again.</p>
-                    <p class="lead">P.S. Have you tried searching Google?</p>
-                    <form action="https://www.google.com/search" target="#" method="get">
-                        <div class="search">
-                            <input name="q" type="text" value="{{searchResult.searchTerm}}"/>
-                            <input type="submit" value="Search">
-                        </div>
-                    </form>
-                {% endif %}
+                <h2>Search results for {{ searchResults.query }}</h2>
+
+                {% component 'searchResults' %}
                 
             </div>
 
