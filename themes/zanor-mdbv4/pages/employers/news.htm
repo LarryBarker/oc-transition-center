@@ -1,0 +1,71 @@
+title = "Employer News"
+url = "/employers/news/:slug"
+layout = "default"
+is_hidden = 0
+
+[blogPost]
+slug = "{{ :slug }}"
+categoryPage = "jobs/industry"
+
+[blogCategories]
+slug = "{{ :slug }}"
+displayEmpty = 0
+categoryPage = "job/industry"
+==
+<?php
+function onEnd()
+{
+    $this->page->title = $this->post->title;
+}
+?>
+==
+{% set post = blogPost.post %}
+<div class="carousel" style="background-image: url('{{'assets/images/guidelines_header.jpg'|theme}}');">
+    <div class="mask flex-center rgba-blue-grey-light">
+    </div>
+    <!-- Mask & flexbox options -->
+    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+    </div>
+    <!-- /Mask & flexbox options -->
+</div>
+<div class="container free-bird mb-4">
+
+    <!-- Section: News post -->
+    <section class="section">
+
+        <!-- Grid row -->
+        <div class="row">
+
+            <!-- Post column-->
+            <div class="col-lg-8 col-md-12 mb-3 pb-lg-2 mx-auto white z-depth-1 mb-4 pt-4 pl-3">
+
+                <div class="mb-2 px-4 py-2">
+                    <h2 class="font-weight-bold pt-2"><strong>{{ post.title }}</strong></h2>
+                    {% if post.company %}
+                    <h4><i class="fa fa-building-o mr-3"></i> {% if post.website %}
+                        <a href="{{post.website}}" 
+                                target="#">{{post.company}}</a>{% else %}{{post.company}}{% endif %}</h4>
+                    {% endif %}
+                    {% if post.address %}
+                    <h4 class="h4-responsive">
+                        <i class="fa fa-map-marker mr-3"></i> {{post.address}}
+                    </h4>
+                    {% endif %}
+                    {% if post.phone %}
+                    <h4 class="h4-responsive">
+                        <i class="fa fa-phone mr-3"></i> {{post.phone}}
+                    </h4>
+                    {% endif %}
+                    <hr />
+                    <p class="">{{ post.content_html|raw }}</p>
+
+                </div>
+
+            </div>
+            <!-- /Post column-->
+
+        </div>
+        <!--Grid row-->
+
+    </section>
+</div>

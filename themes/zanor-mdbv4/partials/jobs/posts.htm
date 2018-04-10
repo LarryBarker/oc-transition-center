@@ -1,0 +1,66 @@
+{% set posts = blogPosts.posts %}
+
+{% set categories = posts.categories %}
+
+{% for post in posts %}
+<!-- Post card -->
+<div class="mb-5 px-3 py-3 z-depth-1">
+    <h2 class="card-title font-weight-bold pt-2 ">
+        <strong>
+            <a href="{{post.url}}" {% if user.groups.first.name=='Users' %} data-request="onViewJob" data-request-data="job_id: {{post.id}}"
+                {%endif%}>{{ post.title }}</a>
+        </strong>
+    </h2>
+    <h4 class="h4-responsive">{{post.company}}</h4>
+    <p class="small">Posted on
+        <i class="icon icon-clock-o"></i> {{ post.published_at|date('M d, Y') }} by
+        <i class="fa fa-user fa-small"></i>
+
+        {% if post.author.company_name %} {{ post.author.company_name }} {% elseif post.author.name %} {{ post.author.name }} {{
+        post.author.surname }} {% else %} {{ post.user.first_name }} {{ post.user.last_name }} {%endif%}
+    </p>
+    <p class="small">Categories: {% for category in post.categories %}
+        <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %} {% endfor %}
+    </p>
+    <p class="small">{% if post.excerpt %} {{ str_limit(post.excerpt|raw, '140', '...') }} {% else %} {{ str_limit(html_strip(post.content|raw),
+        '140', '...') }} {% endif %}</p>
+    
+    <form data-request="onApplyJob" data-request-data="job_id: {{post.id}}" data-request-flash method="post" onSubmit="window.open('{{post.link}}','_blank');">
+    {% if user.groups.first.name == 'Users' and post.link %}
+        <button type="sumbit" class="btn unique-color btn-sm">Apply Online
+            <i class="fa fa-clone"></i>
+        </button>
+    {% endif %}
+    <a href="{{post.url}}" class="btn unique-color btn-sm">Read more</a>
+    </form>
+</div>
+{% endfor %}
+<!-- /Post card -->
+
+<!--Pagination-->
+{% if posts.lastPage > 1 %}
+<div class="row justify-content-center">
+        <nav aria-label="pagination example">
+            <ul class="pagination pagination-lg pg-blue">
+                {% if posts.currentPage > 1 %}
+                <!--Arrow left-->
+                <li class="page-item">
+                    <a class="page-link" href="{{ this.page.baseFileName|page({ (pageParam): (posts.currentPage-1) }) }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo; Previous</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                {% endif %} 
+                {% if posts.lastPage > posts.currentPage %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ this.page.baseFileName|page({ (pageParam): (posts.currentPage+1) }) }}" aria-label="Next">
+                        <span aria-hidden="true">Next &raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+</div>
+{% endif %}
+<!--/Pagination-->

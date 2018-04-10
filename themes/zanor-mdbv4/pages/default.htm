@@ -1,0 +1,53 @@
+title = "Welcome"
+url = "/"
+layout = "default"
+is_hidden = 0
+
+[JobTracker]
+jobPage = "jobs/post"
+
+[randomPosts]
+postsCount = 3
+cacheLifetime = 0
+postPage = "jobs/post"
+
+[blogPosts userAnnouncements]
+pageNumber = "{{ :page }}"
+categoryFilter = "Announcements"
+postsPerPage = 5
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+categoryPage = "jobs/industry"
+postPage = "jobs/post"
+
+[blogPost featuredUserBlogPost]
+slug = "free-tax-prep"
+categoryPage = "jobs/industry"
+
+[blogPosts employerNews]
+pageNumber = "{{ :page }}"
+categoryFilter = "employer-news"
+postsPerPage = 5
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+categoryPage = "jobs/industry"
+postPage = "employers/news"
+
+[blogPost featuredEmployerPost]
+slug = "free-tax-prep"
+categoryPage = "jobs/industry"
+
+[blogCategories usersQuickLinks]
+slug = "{{ :slug }}"
+displayEmpty = 0
+categoryPage = "jobs/industry"
+
+[LaminSanneh\FlexiContact\Components\ContactForm contactForm]
+injectBootstrapAssets = 0
+injectMainScript = 1
+==
+{% if not user %}
+	{% partial 'landing' %}
+{% else %}
+	{% partial 'default' %}
+{% endif %}

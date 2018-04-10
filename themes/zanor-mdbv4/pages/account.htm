@@ -1,0 +1,43 @@
+title = "Account Settings"
+url = "/account/:code?"
+layout = "default"
+description = "Sign in, registration and account management."
+is_hidden = 0
+
+[RainLab\User\Components\Account account]
+redirect = "default"
+paramCode = "code"
+forceSecure = 0
+==
+<div class="carousel" style="background-image: url('{{'assets/images/account_header.jpg'|theme}}');">
+    <div class="mask flex-center rgba-blue-grey-light">
+    </div>
+    <!-- Mask & flexbox options -->
+    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+    </div>
+    <!-- /Mask & flexbox options -->
+</div>
+<div class="container free-bird mb-4">
+    <div class="row">
+        <div class="col-10 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 mx-auto white z-depth-1 py-4 px-5">
+            {% flash %}
+                <div class="alert alert-{{ type }}">{{ message }}</div>
+            {% endflash %}
+            <h3 class="h3-responsive">
+                Account Settings
+            </h3>
+            {% if user and user.groups.first.name == 'Employers' or user.groups.first.name == 'Staff' %}
+                <h2 class="form-signin-heading">{{user.name}} {{user.surname}}</h2>
+                {% partial account ~ '::update' %}
+            {% elseif not user %}
+                <h2 class="form-signin-heading">Please sign in</h2>
+            {% partial account ~ '::signin' %}
+                <hr/>
+                <h2>Are you an employer?</h2>
+            
+                <p class="lead">Are you interested in partnering with us? We would love to work with you.</p>
+                <p class="lead">Please click <strong><a href="{{ 'register'|page }}">here</a></strong> to request an account.</p>
+            {% endif %}
+        </div>
+    </div> 
+</div>

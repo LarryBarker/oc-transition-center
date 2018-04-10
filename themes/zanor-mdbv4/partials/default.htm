@@ -1,0 +1,97 @@
+==
+<div class="container">
+    <!--Section: Users home page-->
+    <section class="pt-5 mt-5 pb-3">
+
+        {% partial 'jobs/toolbar' %}
+        
+        <div class="row pt-4">
+
+            {% if user.groups.first.name == 'Users' %}
+                {% partial 'jobs/deck' %}
+            {% else %}
+                {% partial 'employers/cards' %}
+            {% endif %}
+
+        </div>
+
+        <section class="section pt-4">
+
+            <!-- Grid row -->
+            <div class="row">
+
+                <!--Grid column-->
+                <div class="col-lg-8 col-md-12 mb-3 pb-lg-2">
+                    {% if user.groups.first.name == 'Users' %}
+                        {% set featuredPost = featuredUserBlogPost.post %}
+                    {% else %}
+                        {% set featuredPost = featuredEmployerPost.post %}
+                    {% endif %}
+                    <!-- Featured article -->
+                    <div class="user-feature zoom z-depth-1">
+
+                        <img src="https://mdbootstrap.com/img/Photos/Others/product2.jpg" class="img-fluid" alt="sample image">
+                        <div class="mask rgba-white-light">
+                            <div class="dark-grey-text d-flex align-items-center pt-3 pl-4">
+                                <div>
+                                    <h2 class="h2-responsive card-title font-weight-bold pt-2"><strong>{{featuredPost.title}}</strong></h2>
+                                    <p class="d-none d-md-block">{{ str_limit(featuredPost.content|raw, '160', '...') }}</p>
+                                    <a href="{{ 'jobs/post'| page({slug:featuredPost.slug}) }}" class="btn unique-color btn-sm btn-rounded clearfix d-none d-md-inline-block waves-effect waves-light">Read more</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /Featured article -->
+                    <hr />
+
+                    {% if user.groups.first.name == 'Users' %}
+                        {% set defaultPosts = userAnnouncements.posts %}
+                    {% else %}
+                        {% set defaultPosts = employerNews.posts %}
+                    {% endif %}
+
+                    {% for post in defaultPosts %}
+                    <div class="row pt-5">
+                        <!--Second column-->
+                        <div class="col-md-12 mb-r">
+                            <!--Excerpt-->
+                            <h4><a href="{{ post.url }}"></a>{{ post.title }}</a></h4>
+                            <p>{{ post.summary|raw }}</p>
+                            <a href="{{post.url}}" class="btn unique-color waves-effect waves-light">Read more</a>
+                        </div>
+                        <!--/Second column-->
+                    </div>
+                    {% else %}
+                        <li class="no-data">{{ noPostsMessage }}</li>
+                    {% endfor %}
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-12 mb-4">
+
+                    <!-- Section: Quicklinks -->
+                    <section class="quicklinks">
+
+                        {% if user.groups.first.name == 'Users' %}
+                            {% partial 'users/quicklinks' %}
+                        {% else %}
+                            {% partial 'employers/quicklinks' %}
+                        {% endif %}
+
+                    </section>
+                    <!-- /Section: Quicklinks -->
+
+                </div>
+                <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+
+        </section>
+    
+    </section>
+    <!--/Section-->
+</div>

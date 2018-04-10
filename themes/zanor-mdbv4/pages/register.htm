@@ -1,0 +1,146 @@
+title = "Register"
+url = "/register"
+layout = default
+is_hidden = 0
+
+[RainLab\User\Components\Account account]
+paramCode = "code"
+forceSecure = 0
+==
+<?php
+public function onCheckEmail()
+    {
+        return ['isTaken' => Auth::findUserByLogin(post('email')) ? 1 : 0];
+    }
+?>
+==
+<!-- Registration page -->
+<div class="register">
+    <!-- Mask & flexbox options-->
+    <div class="mask flex-center rgba-black-strong">
+    </div>    
+    <!-- Mask & flexbox options-->
+</div>
+<!-- /Registration page -->
+
+        <!-- Content -->
+        <div class="container free-bird mb-5">
+
+            <div class="row">
+                <div class="col-10 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 mx-auto white z-depth-1 py-4 px-5">
+                    <h3 class="h3-responsive">Request your account today!</h3>
+                    <p>Just provide us some basic information...</p>
+                    <form
+                        data-request="onRegister">
+                        <div class="md-form form-sm">
+                            <label for="registerName">First Name</label>
+                            <input
+                                name="name"
+                                type="text"
+                                class="form-control"
+                                id="registerName"
+                                required="{{attributes.options.validation}}"
+                                />
+                        </div>
+                        <span data-validate-for="name"></span>
+
+                        <div class="md-form form-sm">
+                            <label for="registerSurname">Last Name</label>
+                            <input
+                                name="surname"
+                                type="text"
+                                class="form-control"
+                                id="registerSurname"
+                                required="{{attributes.options.validation}}"
+                                />
+                        </div>
+                        <span data-validate-for="surname"></span>
+
+                        <div class="md-form form-sm">
+                            <label for="registerCompany_Title">Job Title</label>
+                            <input
+                                name="company_title"
+                                type="text"
+                                class="form-control"
+                                id="registerCompany_Title"
+                                required="{{attributes.options.validation}}"
+                                />
+                        </div>
+                        <span data-validate-for="company_title"></span>
+
+                        <div class="md-form form-sm">
+                            <label for="registerCompany_Phone">Phone</label>
+                            <input
+                                name="company_phone"
+                                type="text"
+                                class="form-control"
+                                id="registerCompany_Phone"
+                                required="{{attributes.options.validation}}"
+                                />
+                        </div>
+                        <span data-validate-for="company_phone"></span>
+
+                        <div class="md-form form-sm">
+                            <label for="registerCompany_Name">Company Name</label>
+                            <input
+                                name="company_name"
+                                type="text"
+                                class="form-control"
+                                id="registerCompany_Name"
+                                required="{{attributes.options.validation}}"
+                                />
+                        </div>
+                        <span data-validate-for="company_name"></span>
+
+                        <h3 class="h3-responsive mt-5">Account Information</h3>
+                        <div class="md-form form-sm">
+                            <label for="registerEmail">Email</label>
+                            <input
+                                name="email"
+                                type="email"
+                                class="form-control"
+                                data-request="onCheckEmail"
+                                data-request-success="$('#loginTaken').toggle(!!data.isTaken)"
+                                id="registerEmail"
+                                required="{{attributes.options.validation}}"
+                                data-track-input/>
+                        </div>
+                        <div id="loginTaken" class="alert alert-danger" style="display: none">
+                            Sorry, that email address is already in use.
+                        </div>
+                        <span data-validate-for="password_confirmation"></span>
+
+                        <div class="md-form form-sm">
+                            <label for="registerPassword">Password</label>
+                            <input
+                                name="password"
+                                type="password"
+                                class="form-control"
+                                id="registerPassword"
+                                required="{{attributes.options.validation}}"
+                                />
+                        </div>
+                        <span data-validate-for="password_confirmation"></span>
+
+                        <div class="md-form form-sm">
+                            <label for="registerConfirmPassword">Confirm Password</label>
+                            <input
+                                    name="password_confirmation"
+                                    type="password"
+                                    class="form-control"
+                                    id="registerConfirmPassword"
+                                    required="{{attributes.options.validation}}"
+                                    />
+                        </div>
+                        <span data-validate-for="password_confirmation"></span><br>
+                        <div class="g-recaptcha" data-sitekey="6LerFykUAAAAAKBDQDbHwiLVXxWcq5Q2ligtnPIi"></div>
+                        <div class="md-form form-sm">
+                            
+                            <button type="submit" class="btn btn-lg unique-color btn-block">Submit Registration</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <!-- Content -->

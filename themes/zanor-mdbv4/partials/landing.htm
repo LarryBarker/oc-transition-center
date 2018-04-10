@@ -1,0 +1,405 @@
+==
+<!-- Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+    <div class="container">
+
+        <!-- Brand -->
+        <a class="navbar-brand" href="#" target="_blank"><img src="{{'assets/images/leaf.png'|theme}}" height="30px" alt="Transition Center"> 
+        TRANSITION <strong>CENTER</strong>
+        </a>
+
+    </div>
+</nav>
+<!-- Navbar -->
+<!-- Full Page Intro -->
+  <div class="view full-page-intro">
+    <!-- Mask & flexbox options-->
+    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+      <!-- Content -->
+      <div class="container">
+
+        <!--Grid row-->
+        <div class="row wow fadeIn mt-5">
+
+          <!--Grid column-->
+          <div class="col-md-6 mb-4 white-text text-center text-md-left d-none d-md-block">
+
+            <h1 class="h1-responsive display-4 font-weight-bold">Partnering to make our community a better place</h1>
+
+            <hr class="hr-light">
+
+            <p>
+              <strong>Are you an employer?</strong>
+            </p>
+
+            <p class="mb-4">
+              <strong>Are you interested in partnering with us? We would love to work with you. Please click below to request an account.</strong>
+            </p>
+
+            <a target="_blank" href="{{'register'|page}}" class="btn unique-color btn-lg inline">Request your account today <i class="fa fa-exclamation"></i>
+            </a>
+
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-md-6 col-xl-6 mb-4 mx-auto">
+
+            
+
+            <section class="form-simple">
+                
+                <!--Form with header-->
+                <div class="card">
+
+                    <!--Header-->
+                    <div class="header pt-3 grey lighten-2">
+
+                        <div class="row d-flex justify-content-start">
+                            <h3 class="deep-grey-text mt-3 mb-4 pb-1 mx-5">Log in</h3>
+                        </div>
+
+                    </div>
+                    <!--Header-->
+
+                    <div class="card-body mx-4 mt-4">
+                        {% flash %}
+                            <div class="alert alert-{{ type }}">{{ message }}</div>
+                        {% endflash %}
+                        <form role="form" action="" data-request-flash data-request="onSignin" class="login-form">
+                        <!--Body-->
+                        <div class="md-form">
+                            <label for="userSigninLogin">{{ loginAttributeLabel }}...</label>
+                            <input type="email" name="login" id="userSigninLogin" class="form-control" required autofocus>
+                        </div>
+
+                        <div class="md-form pb-3">
+                            <input type="password" id="userSigninPassword" name="password" class="form-control" required>
+                            <label for="userSigninPassword">Password...</label>
+                            <!--<label for="Form-pass4">Your password</label>-->
+                            <p class="font-small grey-text d-flex justify-content-end">Forgot <a href="{{'password'|page}}" class="dark-grey-text font-weight-bold ml-1"> Password?</a></p>
+                        </div>
+
+                        <div class="text-center mb-4">
+                            <button type="submit" class="btn special-color btn-block z-depth-1">Log in</button>
+                        </div>
+                        </form>
+                        <p class="font-small grey-text d-flex justify-content-center">Don't have an account? <a href="{{'register'|page}}" class="dark-grey-text font-weight-bold ml-1"> Sign up</a></p>
+
+                    </div>
+
+                </div>
+                <!--/Form with header-->
+
+            </section>
+            
+
+          </div>
+          <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+      </div>
+      <!-- Content -->
+
+    </div>
+    <!-- Mask & flexbox options-->
+
+  </div>
+
+    <!--Main layout-->
+    <main>
+        <div class="container">
+    
+          <!--Section: Main info-->
+          <section class="mt-5 wow fadeIn">
+    
+            <!--Grid row-->
+            <div class="row">
+    
+              <!--Grid column-->
+              <div class="col-md-6 mb-4">
+    
+                <img src="{{'assets/images/landing_media.jpg'|theme}}" class="img-fluid z-depth-1-half" alt="">
+    
+              </div>
+              <!--Grid column-->
+    
+              <!--Grid column-->
+              <div class="col-md-6 mb-4">
+    
+                <!-- Main heading -->
+                <h3 class="h3 mb-3">Transition Center Online</h3>
+                <h4>at Wichita Work Release</h4>
+                <p>Work Release strives to provide inmates with an opportunity to gain and maintain full-time employment; save money to be used upon parole release; pay dependent support, if applicable; pay any restitution and court costs owed; and, in general, learn to manage their money and lives under the supervision of employers and facility staff.</p>
+                <p>Read details below to learn more about our facility and program.</p>
+                <!-- Main heading -->
+    
+                <hr>
+    
+                <p>
+                  <strong>400+</strong> successful placements,
+                  <strong>$12.48</strong> average wage, and a
+                  <strong>13</strong> day average start time.
+                  <strong>Free access for employers.</strong>
+                </p>
+    
+                <!-- CTA -->
+                <a target="_blank" href="{{'about'|page}}" class="btn unique-color btn-md">More info
+                  <i class="fa fa-clone ml-1"></i>
+                </a>
+                <a href="{{'register'|page}}" class="btn unique-color btn-md">Sign up
+                  <i class="fa fa-pencil ml-1"></i>
+                </a>
+    
+              </div>
+              <!--Grid column-->
+    
+            </div>
+            <!--Grid row-->
+    
+          </section>
+          <!--Section: Main info-->
+    
+          <hr class="my-5">
+    
+          <!--Section: Main features & Quick Start-->
+          <section>
+    
+            <h3 class="h3 text-center mb-5">Why us?</h3>
+    
+            <!--Grid row-->
+            <div class="row wow fadeIn">
+    
+              <!--Grid column-->
+              <div class="col-lg-6 col-md-12 px-4">
+    
+                <!--First row-->
+                <div class="row">
+                  <div class="col-1 mr-3">
+                    <i class="fa fa-road fa-2x indigo-text"></i>
+                  </div>
+                  <div class="col-10">
+                    <h5 class="feature-title">New beginnings</h5>
+                    <p class="grey-text">Employment is essential for previously incarcerated individuals returning to society. Jobs help with rehabilitation and create opportunities to start a new life.</p>
+                  </div>
+                </div>
+                <!--/First row-->
+    
+                <div style="height:30px"></div>
+    
+                <!--Second row-->
+                <div class="row">
+                  <div class="col-1 mr-3">
+                    <i class="fa fa-wrench fa-2x blue-text"></i>
+                  </div>
+                  <div class="col-10">
+                    <h5 class="feature-title">Work ready</h5>
+                    <p class="grey-text">Many times, these individuals have the knowledge, skills, and abilities needed to fulfill the position and duties you are looking for.
+                    </p>
+                  </div>
+                </div>
+                <!--/Second row-->
+    
+                <div style="height:30px"></div>
+    
+                <!--Third row-->
+                <div class="row">
+                  <div class="col-1 mr-3">
+                    <i class="fa fa-bank fa-2x cyan-text"></i>
+                  </div>
+                  <div class="col-10">
+                    <h5 class="feature-title">Employer incentives</h5>
+                    <p class="grey-text">As an employer, there are additional incentives available to you for working with an offender. These programs help save you time and money, at no cost to you!</p>
+                  </div>
+                </div>
+                <!--/Third row-->
+    
+              </div>
+              <!--/Grid column-->
+    
+              <!--Grid column-->
+              <div class="col-lg-6 col-md-12">
+    
+                <p class="h5 text-center mb-4">Watch a quick tour of our facility</p>
+                <div class="embed-responsive embed-responsive-16by9">
+                        <div class="mcclatchy-embed"><iframe src="http://www.kansas.com/news/local/crime/article161786268.html/video-embed" width="640" height="400" frameborder="0" allowfullscreen="true"></iframe></div>
+                </div>
+              </div>
+              <!--/Grid column-->
+    
+            </div>
+            <!--/Grid row-->
+    
+          </section>
+          <!--Section: Main features & Quick Start-->
+    
+          <hr class="my-5">
+          
+          <!--Section: Features v.1-->
+          <section class="text-center">
+
+              <!--Section heading-->
+              <h3 class="h3 text-center mb-5">Here's why</h3>
+              <!--Section description-->
+              <p class="px-5 mb-5 pb-3 lead grey-text">Many times, these individuals have the knowledge, skills, and abilities needed to fulfill the position and duties you are looking for.</p>
+
+              <!--Grid row-->
+              <div class="row">
+
+              <!--Grid column-->
+              <div class="col-md-4">
+                  <i class="fa fa-magic fa-3x red-text"></i>
+                  <h5 class="font-weight-bold mt-3">Available</h5>
+                  <p class="grey-text">Our clients are ready to start work within a week of their arrival to our program. Most are applying to jobs within 72 hours of their arrival.
+                  </p>
+              </div>
+              <!--Grid column-->
+
+              <!--Grid column-->
+              <div class="col-md-4">
+                  <i class="fa fa-thumbs-up fa-3x cyan-text"></i>
+                  <h5 class="font-weight-bold mt-3">Accountable</h5>
+                  <p class="grey-text">Offenders are monitored through records checks, office and field contacts, and drug testing to ensure that they comply with the conditions of our program.
+                  </p>
+              </div>
+              <!--Grid column-->
+
+              <!--Grid column-->
+              <div class="col-md-4">
+                  <i class="fa fa-cogs fa-3x orange-text"></i>
+                  <h5 class="font-weight-bold mt-3">Dependable</h5>
+                  <p class="grey-text">In general, former offenders are as dependable as other employees (United States Probation Office, Eastern District of Wisconsin).
+                  </p>
+              </div>
+              <!--Grid column-->
+
+              </div>
+              <!--Grid row-->
+
+          </section>
+          <!--Section: Features v.1-->
+
+          <hr class="my-5" />
+
+          <!--Section: Features v.1-->
+          <section class="text-center">
+
+              <!--Section heading-->
+              <h3 class="h3 text-center mb-5">Want more?</h3>
+              <!--Section description-->
+              <p class="px-5 mb-5 pb-3 lead grey-text">As an employer, you are eligible for a number of incentive programs to help save your business money, minimize risk, and pay for training.</p>
+
+              <!--Grid row-->
+              <div class="row">
+
+              <!--Grid column-->
+              <div class="col-md-4">
+                  <i class="fa fa-dollar fa-3x red-text"></i>
+                  <h5 class="font-weight-bold mt-3">SAVE MONEY</h5>
+                  <p class="grey-text">All of our candidates are eligible for the Work Opportunity Tax Credit. Your business can apply to earn a $2,400 tax credit contingent on an offer of employment.
+                  </p>
+              </div>
+              <!--Grid column-->
+
+              <!--Grid column-->
+              <div class="col-md-4">
+                  <i class="fa fa-shield fa-3x cyan-text"></i>
+                  <h5 class="font-weight-bold mt-3">Minimize Risk</h5>
+                  <p class="grey-text">Each employee is bondable and insurable, at no cost to you, through the Federal Bonding Program, for up to $5,000, renewable every 6 months for 3 years. Our bonding agent will handle all of the paperwork for you.
+                  </p>
+              </div>
+              <!--Grid column-->
+
+              <!--Grid column-->
+              <div class="col-md-4">
+                  <i class="fa fa-bank fa-3x orange-text"></i>
+                  <h5 class="font-weight-bold mt-3">Grant Programs</h5>
+                  <p class="grey-text">Gain access to the Workforce Innovation Fund. Funds are available for On-the-Job Training (OJT) to employers who hire eligible participants. Our program participants qualify for this grant.
+                  </p>
+              </div>
+              <!--Grid column-->
+
+              </div>
+              <!--Grid row-->
+
+          </section>
+          <!--Section: Features v.1-->
+
+          <hr class="my-5" />
+
+          <section class="partners text-center">
+
+            <h3 class="h3 text-center mb-5">Community Partners</h3>
+            <p class="px-5 mb-5 pb-3 lead grey-text">We are currently partnered with over 130 employers in a dozen different industries, from dishwashers to draftsmen, and entry level to electricians.</p>
+            <!-- Testimonial card -->
+            <div class="card card-image" style="background-image: url('{{'assets/images/wichita_pan_1.jpg'|theme}}');">
+
+              <!-- Content -->
+              <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                  <div>
+                      <h5 class="light-grey-text"><i class="fa fa-quote-right"></i> </h5>
+                      <p>As the owner of Cholitas Mexican Restaurant, I am writing to let you know about a recent client in your facility.</p>
+                      <p>Your client worked for me for approximately 9 months. I have never had a more loyal, hard working man than this gentleman. He did his job and always responded positively when asked to do things. He was very eager to learn and didnt hesitate to ask questions. He was very courteous to all my staff members at Cholitas and a very big part of our Cholitas team. He will be missed by all and knows that if fate brings him back to Wichita that I would rehire him providing we have an opening.</p>
+                  </div>
+              </div>
+              <!-- Content -->
+          </div>
+          <!--/ Testimonial Card -->
+          </section>
+          
+          <hr class="my-5" />
+
+          <!--Section: Contact -->
+          <section class="pb-5">
+
+              <!--Grid row-->
+              <div class="row">
+
+                  <!--Grid column-->
+                  <div class="col-md-12">
+                        <h3 class="h3 text-center mb-5">Contact Us</h3>
+                        <div class="alert alert-warning">
+                                <p>For scheduling, supervisory changes or inmate extensions, please contact our facility's CONTROL CENTER at: 316-265-5211. Ext. 208</p>
+
+                                <p>For questions, concerns, or for more information on the many benefits of hiring inmate employees through the Wichita Work Release Program, please contact a Security Supervisor on duty 24 hours a day.</p>
+                          </div>
+                      <!--Form with header-->
+                      <div class="card">
+                          <div class="row">
+                              <div class="col-lg-8">
+                                  <div class="card-body form">
+                                      <!--Header-->
+                                      <div class="formHeader mb-1 pt-3">
+                                          <h3>
+                                              <i class="fa fa-envelope"></i> We'd love to hear from you</h3>
+                                      </div>
+
+                                      {% component 'contactForm' %}
+
+                                  </div>
+                              </div>
+
+                              <div class="col-lg-4">
+                                  <div class="card-body contact text-center unique-color"> 
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!--/Form with header-->
+
+                  </div>
+                  <!--Grid column-->
+
+              </div>
+              <!--Grid row-->
+
+          </section>
+          <!--/Section: Contact-->
+            
+    
+        </div>
+      </main>
+      <!--Main layout-->

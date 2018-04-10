@@ -1,0 +1,28 @@
+==
+<nav class="navbar navbar-expand-lg navbar-dark unique-color">
+
+    <!-- Navbar brand -->
+    <a class="font-weight-bold white-text mr-4" href="#">Employers</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+        <ul class="navbar-nav">
+            <li class="nav-item {% if this.page.title == 'users' %}active{%endif%}">
+                <a href="{{'users'|page}}" class="nav-link">View Participants</a>
+            </li>
+            <li class="nav-item {% if this.page.title == 'walk route' %}active{%endif%}">
+                <a href="{{'employers/jobs'|page}}" class="nav-link">My Jobs</a>
+            </li>
+        </ul>
+        <!-- Search form -->
+        <form class="form-inline my-2 my-lg-0 ml-auto">
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
+        </form>
+    </div>
+    <!-- Collapsible content -->
+
+</nav>

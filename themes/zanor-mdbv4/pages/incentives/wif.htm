@@ -1,0 +1,64 @@
+title = "Workforce Innovation Fund (WIF)"
+url = "/employers/incentives/wif"
+layout = "default"
+is_hidden = 0
+==
+<div class="carousel" style="background-image: url('{{'assets/images/wif_header.jpg'|theme}}');">
+    <div class="mask flex-center rgba-blue-grey-light">
+    </div>
+    <!-- Mask & flexbox options -->
+    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+    </div>
+    <!-- /Mask & flexbox options -->
+</div>
+{% if user.groups.first.name == 'Employers' or user.groups.first.name == 'Staff' %}
+<div class="container free-bird mb-4">
+    <div class="row">
+        <div class="col-10 col-sm-7 mx-auto white z-depth-1 py-4 pl-3 mb-4">
+            <h6 class="h6-responsive"><a href="{{'default'|page}}" alt="Transition Center">Transition Center</a> > <a href="{{'default'|page}}" alt="Employers">Employers</a> > <a href="{{'incentives/default'|page}}" alt="Incentive Programs">Incentive Programs</a> > {{this.page.title}}</h6>
+            <h3 class="h3-responsive">{{this.page.title}}</h3>
+            <p>
+                The WIF OJT program is an opportunity for jobseekers to learn while you are on the job earning wages and an oppor-tunity for employers to be reimbursed for their time training their new hires. Eligible job seekers will have a team to support their career goals. The support is specific to the jobseekers needs and goals but is an added benefit to employ-ers to ensure the success of their new hire. <a href="mailto:corey.brock@ks.gov">Contact us today</a> for more information on this program.
+            </p>
+            
+            <p>Read details below to learn more about The Federal Bonding Program.</p>
+            <!-- Main heading -->
+
+            <hr />
+            <h4 class="h4-responsive">Funds are available for On-the-Job Training (OJT) to employers who hire eligible participants.</h4>
+            <p>
+                <strong>OJT Program Details</strong>
+            </p>
+            <ul>
+                <li>Up to <strong>$7,200</strong> in training funds reimbursed to employers for each eligible new hire</li>
+                <li>Employers will be <strong>reimbursed 50% on new hires wages</strong> during training</li>
+                <li>Up to <strong>24 weeks</strong> of training is available to OJT Participants</li>
+                <li>OJT Participants will have a <strong>dedicated support team</strong> to <strong>increase OJT success</strong></li>
+                <li>New hire must be determined eligible by the Workforce Centers of South Central Kansas</li>
+            </ul>  
+
+            <!-- CTA -->
+            <a href="mailto:corey.brock@ks.gov" class="btn btn-indigo btn-md waves-effect waves-light">Request more information
+                <i class="fa fa-copy ml-1"></i>
+            </a>
+        </div>
+
+        <div class="col-10 col-sm-3 mx-auto white z-depth-1 pt-4 pl-3">
+            <h4 class="h4-responsive">Additional Information</h4>
+            <p>For more information on eligibility requirements call the Wichita Workforce Center at 316-771-6800</p>
+
+            <p>For more employer information on obtaining OJT funds contact Business Services at 316-771-6658
+            </p>
+            <img src="{{'assets/images/workforce_logo.png'|theme}}" alt="Workforce Centers" class="img-responsive" style="height: 100px;" />
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="container mt-5">
+    <div class="row mt-5">
+        <div class="col-10 mx-auto alert alert-danger mt-5">
+            <i class="fa fa-warning"></i>You are not authorized to view this page.
+        </div>
+    </div>
+</div>
+{% endif %}

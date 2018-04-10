@@ -1,0 +1,71 @@
+description = "Head"
+==
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-102153755-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-102153755-1');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KC5K5PH');</script>
+    <!-- End Google Tag Manager -->
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <title>Transition Center Online | {{ this.page.title }}</title>
+
+    <meta name="description" content="{{ this.page.meta_description }}">
+    <meta name="title" content="{{ this.page.meta_title }}">
+    <meta name="author" content="WWRF">
+
+    <link rel="icon" type="image/png" href="{{ 'assets/images/leaf.png'|theme }}" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+        
+    <link href="{{ [
+        'assets/css/bootstrap.min.css',
+        'assets/css/mdb.min.css',
+        'assets/css/style.css',
+    ]|theme }}" rel="stylesheet">
+    
+    {% styles %}
+
+    <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyBb5AkQHSFXfIqxr2BoxQt5zQmcMqd3HmE"></script>
+    <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/58972d559260fa1f2c7b8cd12/9750bd67ea90705f7e734234a.js");</script>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KC5K5PH"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    {% if user %}
+        {% partial 'site/nav' %}
+    {% else %}
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+        <div class="container">
+    
+            <!-- Brand -->
+            <a class="navbar-brand" href="{{'default'|page}}" target="_blank"><img src="{{'assets/images/leaf.png'|theme}}" height="30px" alt="Transition Center"> 
+            TRANSITION <strong>CENTER</strong>
+            </a>
+    
+        </div>
+    </nav>
+    <!-- Navbar -->
+    {% endif %}

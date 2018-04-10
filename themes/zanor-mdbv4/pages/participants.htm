@@ -1,0 +1,93 @@
+title = "Program Participants"
+url = "/participants/:page?"
+layout = "default"
+is_hidden = 0
+
+[ueuser]
+type = "all"
+maxItems = 5
+paramCode = "{{ :id }}"
+profilePage = "users/profile"
+template = "portfolio"
+==
+<?php
+    use RainLab\User\Models\User;
+    Use RainLab\Blog\Models\Category;
+
+    function onStart() {
+        $this->prepareVars();
+    }
+
+    function onFilterUsers() {
+        $this->prepareVars();
+    }
+
+    function prepareVars() {
+        $options = post('Filter', []);
+
+        $this['participants'] = User::listFrontEnd($options);
+
+        $this['industries'] = Category::where('parent_id', '=', 3)->get();
+
+        $this['pages'] = $this['participants']->lastPage();
+
+        $this['page'] = $this['participants']->currentPage();
+    }
+?>
+==
+{% if user.groups.first.name == 'Employers' or user.groups.first.name == 'Staff' %}
+<div class="container">
+    <!-- Toolbar: Participants toolbar for employers-->
+    <div class="pt-5 mt-5 pb-3">
+        {% partial 'employers/users_toolbar' %}
+    </div>
+    <div class="row pt-4">
+            
+        <div class="col-10 col-md-3 mx-auto">  
+            {{ form_ajax('onFilterUsers', { update: { 'participants/list': '#partialUsers', 'participants/paginate':'#paginateResults' } }) }}
+                <nav class="navbar navbar-dark special-color">
+                    <a class="font-weight-bold white-text mr-4" href="#">Industries</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </nav>
+                <div class="collapse" id="navbarToggleExternalContent">
+                    <div id="UsersFilter" class="white z-depth-1 py-4 px-4">
+                        {% for industry in industries %}
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" value="{{industry.id}}" name="Filter[industries][]">
+                                <label class="form-check-label" for="{{industry.name}}">{{industry.name}}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>               
+            {{ form_close() }}
+        </div>
+        <div class="col-10 col-md-9 mx-auto">
+            <!-- Users Table-->
+            <div id="partialUsers">
+                {% partial 'participants/list' %}
+            </div>
+            <!-- /Users Table-->
+
+            <!-- Pagination -->
+            <div class="row justify-content-center">
+                {{ form_ajax('onFilterUsers', { update: { 'participants/list': '#partialUsers', 'participants/paginate':'#paginateResults' } }) }}
+                    <div id="paginateResults" class="paginateResults mx-auto mt-3">
+                        {% partial 'participants/paginate' %}
+                    </div>
+                {{ form_close() }}
+            </div>
+            <!-- /Pagination -->
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="container mt-5">
+    <div class="row mt-5">
+        <div class="col-10 mx-auto alert alert-danger mt-5">
+            <i class="fa fa-warning"></i>You are not authorized to view this page.
+        </div>
+    </div>
+</div>
+{% endif %}
