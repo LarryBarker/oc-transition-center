@@ -45,8 +45,7 @@ jobPage = "jobs/post"
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <h3>
-                                <a href="{{ post.url }}"
-                                {% if user.groups.first.name == 'Users' %}
+                                <a href="{{ post.url }}" {% if user.groups.first.name == 'Users' %}
                                     data-request="onViewJob"
                                     data-request-data="job_id: {{post.id}}"
                                 {%endif%}><u>{{ post.title|raw }}</u></a>
