@@ -1,6 +1,9 @@
 <h4 class="ss-autocomplete-result__title">
-    <a href="{{ result.url }}" {% if user.groups.first.name=='Users' %} data-request="onViewJob" data-request-data="job_id: {{result.id}}"
-    {%endif%}>{{ result.title | raw }}</a>
+    <a href="{{ result.url }}"
+    {% if user.groups.first.name == 'Users' %}
+        data-request="onViewJob"
+        data-request-data="job_id: {{result.id}}"{%endif%}>
+        {{ result.title | raw }}</a>
     {% if __SELF__.showProviderBadge %}
         <span class="ss-autocomplete-result__badge">
             {{ result.provider }}

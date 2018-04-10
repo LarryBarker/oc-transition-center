@@ -19,7 +19,7 @@
 <form action="{{ searchInput.searchPage | page }}?q={{ query | url_encode(true) }}" method="GET" class="form-inline my-2 my-lg-0 ml-auto">
     <div class="ss-search-form">
         <div class="ss-search-form__input">
-            <input name="q" type="text" placeholder="What are you looking for?" autocomplete="off"
+            <input name="q" type="text" placeholder="What are you looking for?" autocomplete="on"
                     {% if searchInput.useAutoComplete %}
                         data-track-input
                         data-request="onType"
