@@ -260,7 +260,7 @@ class Account extends ComponentBase
 
             $data['id'] = $user->id;
 
-            Mail::queue('rainlab.user::mail.new_user', $data, function ($message) {
+            Mail::later(5, 'rainlab.user::mail.new_user', $data, function ($message) {
                 $message->to('corey.brock@ks.gov', 'WWRF WEBSITE')
                         ->to('user@wwrfresource.com', 'WWRF WEBSITE')
                         ->subject('New account request');
