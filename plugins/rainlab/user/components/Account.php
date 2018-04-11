@@ -260,12 +260,17 @@ class Account extends ComponentBase
 
             $data['id'] = $user->id;
 
-            Mail::send('rainlab.user::mail.new_user', $data, function($message) {
-
+            Mail::queue('rainlab.user::mail.new_user', $data, function ($message) {
                 $message->to('corey.brock@ks.gov', 'WWRF WEBSITE')
                         ->to('user@wwrfresource.com', 'WWRF WEBSITE')
                         ->subject('New account request');
             });
+
+            /*Mail::send('rainlab.user::mail.new_user', $data, function($message) {
+                $message->to('corey.brock@ks.gov', 'WWRF WEBSITE')
+                        ->to('user@wwrfresource.com', 'WWRF WEBSITE')
+                        ->subject('New account request');
+            });*/
 
             Flash::success(Lang::get('You account request has been sent. We will review your information within 24 hours and notify you when your account is activated. Thank you.'));
 
