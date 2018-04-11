@@ -184,6 +184,8 @@ class UserUtil
         $filtered = $collection->filter(function ($user) {
             return $user->groups->first()->id == 2 && $user->status != 'unavailable';
         });
+
+        $filtered = $filtered->values()->sortByDesc('last_seen');
         
         return $filtered->all();
 
