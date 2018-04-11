@@ -21,6 +21,7 @@ use Auth;
 use RainLab\User\Models\User as RainLabUser;
 use Backend\Widgets\Lists;
 use Backend\Controllers\ListController;
+use Illuminate\Support\Collection;
 
 /**
  * User Extended by Shawn Clake

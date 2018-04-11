@@ -3,6 +3,7 @@
 use Auth;
 use RainLab\User\Models\User;
 use Redirect;
+use Illuminate\Support\Collection;
 
 /**
  * User Extended by Shawn Clake
@@ -178,7 +179,15 @@ class UserUtil
         $results = new \Clake\Userextended\Models\UserExtended();
         //$results = new \RainLab\User\Models\User();
 
-        return $results->search($phrase);
+        $collection = new Collection($results->search($phrase));
+
+        $filtered = $collection->filter(function ($user) {
+            return $user->groups->first()->id == 2 && $user->status != 'unavailable';
+        });
+        
+        return $filtered->all();
+
+        //return $filtered->search($phrase);
     }
 
     /**
