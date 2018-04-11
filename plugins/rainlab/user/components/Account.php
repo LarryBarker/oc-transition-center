@@ -267,7 +267,7 @@ class Account extends ComponentBase
                         ->subject('New account request');
             });
 
-            Flash::success(Lang::get('rainlab.user::lang.account.account_registration_sent'));
+            Flash::success(Lang::get('You account request has been sent. We will review your information within 24 hours and notify you when your account is activated. Thank you.'));
 
             /*
              * Activation is by the user, send the email
