@@ -1,13 +1,13 @@
 <h4 class="ss-result__title">
     {% if user.groups.first.name == 'Users' %}
-    <a data-request="onViewJob" data-request-data="job_id: {{ result.id }}">
+    <a href="#" data-request="onViewJob" data-request-data="job_id: {{ result.id }}">
         {{ result.title | raw }}
     </a>
     {% else %}
     <a href="{{ result.url }}">{{ result.title | raw }}</a>
     {% endif %}
     {% if __SELF__.showProviderBadge %}
-        <span class="ss-result__badge">
+        <span class="ss-result__badge badge red pull-right">
             {{ result.provider }}
         </span>
     {% endif %}
@@ -19,13 +19,17 @@
     {# Some results contain the original model.   #}
     {# You can access it using result.model       #}
 </h4>
-
+<p class="meta">{{ result.meta|date(M, d, Y) }}</p>
 <p class="ss-result__text">
     {{ result.excerpt | raw }}
-
-    {{result.meta}}
 </p>
 
 <p class="ss-result__url">
+    {% if user.groups.first.name == 'Users' %}
+    <a href="#" data-request="onViewJob" data-request-data="job_id: {{ result.id }}">
+        {{ __SELF__.visitPageMessage }} &rarr;
+    </a>
+    {% else %}
     <a href="{{ result.url | app }}" class="ss-result__link">{{ __SELF__.visitPageMessage }} &rarr;</a>
+    {% endif %}
 </p>

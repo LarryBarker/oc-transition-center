@@ -1,16 +1,10 @@
-<h4 class="ss-autocomplete-result__title">
-
-    {% if user.groups.first.name == 'Users' %}
-    <a href="{{ result.url }}" data-request="onViewJob" data-request-data="job_id: {{ result.id }}">
-        {{ result.title | raw }}
+<h5 class="h5-responsive ss-autocomplete-result__title">
+    <a href="{{ result.url }}" {% if session.user.groups.first.name == 'Users' %}data-request="onViewJob" data-request-data="job_id: {{ result.id }}"{% endif %}>
+        {{ result.title | raw }} {{ user.id }}
     </a>
-    {% else %}
-    <a href="{{ result.url }}">{{ result.title | raw }}</a>
-    {% endif %}
-    
-    {% if __SELF__.showProviderBadge %}
-        <span class="ss-autocomplete-result__badge">
-            {{ result.provider }}
-        </span>
-    {% endif %}
-</h4>
+</h5>
+{% if __SELF__.showProviderBadge %}
+    <span class="ss-autocomplete-result__badge badge red">
+        {{ result.provider }}
+    </span>
+{% endif %}

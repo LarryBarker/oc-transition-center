@@ -1,3 +1,4 @@
+<div class="white z-depth-2 px-2 py-2">
 {% if results.count %}
     {% for result in results | slice(0, __SELF__.autoCompleteResultCount) %}
         {# Display results #}
@@ -15,3 +16,4 @@
     {# No results found #}
     <p>Your search for {{ query }} returned no results.</p>
 {% endif %}
+</div>
