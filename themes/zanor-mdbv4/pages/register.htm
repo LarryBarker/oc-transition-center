@@ -31,7 +31,7 @@ public function onCheckEmail()
                 <div class="col-10 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 mx-auto white z-depth-1 py-4 px-5">
                     <h3 class="h3-responsive">Request your account today!</h3>
                     <p>Just provide us some basic information...</p>
-                    <form
+                    <form onSubmit="this.submitButton.disabled = true;"
                         data-request="onRegister">
                         <div class="md-form form-sm">
                             <label for="registerName">First Name</label>
@@ -137,7 +137,7 @@ public function onCheckEmail()
                         <div class="g-recaptcha" data-sitekey="6LerFykUAAAAAKBDQDbHwiLVXxWcq5Q2ligtnPIi"></div>
                         <div class="md-form form-sm">
                             
-                            <button type="submit" class="btn btn-lg unique-color btn-block">Submit Registration</button>
+                            <button type="submit" id="submitButton" class="btn btn-lg unique-color btn-block">Submit Registration </button>
                         </div>
                     </form>
                 </div>
