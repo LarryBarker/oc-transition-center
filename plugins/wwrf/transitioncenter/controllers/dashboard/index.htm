@@ -1,30 +1,42 @@
-<?= Form::open(['class'=>'layout-relative dashboard-container']) ?>
+<div class="control-tabs primary-tabs" data-control="tab">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#primaryTabOne">Dashboard</a></li>
+        <li><a href="#primaryTabTwo">Upcoming Releases</a></li>
+        <li><a href="#primaryTabThree">Top Jobs</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active">
+            <?= Form::open(['class'=>'layout-relative dashboard-container']) ?>
 
-    <div id="dashReportContainer" class="report-container loading">
-
-
-
-        <!-- Loading -->
-
-        <div class="loading-indicator-container">
-
-            <div class="loading-indicator indicator-center">
-
-                <span></span>
-
-                <div><?= e(trans('backend::lang.list.loading')) ?></div>
-
-            </div>
-
+                <div id="dashReportContainer" class="report-container loading">
+            
+                    <!-- Loading -->
+            
+                    <div class="loading-indicator-container">
+            
+                        <div class="loading-indicator indicator-center">
+            
+                            <span></span>
+            
+                            <div><?= e(trans('backend::lang.list.loading')) ?></div>
+            
+                        </div>
+            
+                    </div>
+            
+                </div>
+                
+            <?= Form::close() ?>
         </div>
-
-
-
+        <div class="tab-pane">
+            <?= $this->listRender('releases'); ?>
+        </div>
+        <div class="tab-pane">
+            <?= $this->listRender('appliedJobs'); ?> 
+        </div>
     </div>
+</div>
 
-    <?= $this->listRender() ?>
-    
-<?= Form::close() ?>
 <script>
 
     $(document).ready(function() {

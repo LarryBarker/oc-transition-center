@@ -46,7 +46,10 @@ class Dashboard extends Controller
         'Backend.Behaviors.ListController'
     ];
 
-    public $listConfig = 'config_list.yaml';
+    public $listConfig = [
+        'releases' => 'config_list.yaml',
+        'appliedJobs' => 'config_top_jobs_list.yaml'
+    ];
 
     public $bodyClass = 'compact-container';
 
@@ -102,8 +105,10 @@ class Dashboard extends Controller
 
 
 
-    public function listExtendQuery($query) {
-        $query->whereYear('release_date', '=', date('Y'))->whereMonth('release_date','=', date('m'))->get();
+    public function listExtendQuery($query, $definition = null) {
+        if ($definition == 'releases') {
+            $query->whereYear('release_date', '=', date('Y'))->whereMonth('release_date','=', date('m'))->get();
+        } 
     }
 
 

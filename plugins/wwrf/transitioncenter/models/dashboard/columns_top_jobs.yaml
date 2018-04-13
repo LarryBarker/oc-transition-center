@@ -1,0 +1,10 @@
+columns:
+
+    job:
+        label: Job Title
+        relation: job
+        select: title
+    posted_on:
+        label: Posted On
+        type: date
+        select: created_at

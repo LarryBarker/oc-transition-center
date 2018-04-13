@@ -1,0 +1,32 @@
+# ===================================
+#  List Behavior Config
+# ===================================
+
+# List Title
+title: Top 10 Applied Jobs
+
+# Model List Column configuration
+list: $/wwrf/transitioncenter/models/dashboard/columns_top_jobs.yaml
+
+# Model Class name
+modelClass: Wwrf\TransitionCenter\Models\AppliedJob
+
+# Link URL for each record
+#recordUrl: rainlab/user/users/preview/:id
+
+# Message to display if the list is empty
+noRecordsMessage: backend::lang.list.no_records
+
+# Records to display per page
+recordsPerPage: 10
+
+# Display checkboxes next to each record
+showCheckboxes: false
+
+# Displays the list column set up button
+showSetup: false
+
+# Sort list according to release date
+defaultSort:
+    column: created_at
+    direction: asc
