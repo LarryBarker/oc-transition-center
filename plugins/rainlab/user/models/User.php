@@ -80,6 +80,10 @@ class User extends UserBase
             return false;
         }
 
+        if ($mailTemplate = UserSettings::get('welcome_template')) {
+            Mail::sendTo($this, $mailTemplate, $this->getNotificationVars());
+        }
+        
         Event::fire('rainlab.user.activate', [$this]);
 
         return true;
