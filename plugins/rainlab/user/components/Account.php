@@ -194,7 +194,7 @@ class Account extends ComponentBase
 
             Event::fire('rainlab.user.beforeAuthenticate', [$this, $credentials]);
 
-            $user = Auth::authenticate($credentials, true);
+            $user = Auth::authenticate($credentials, false);
             if ($user->isBanned()) {
                 Auth::logout();
                 throw new AuthException(/*Sorry, this user is currently not activated. Please contact us for further assistance.*/'rainlab.user::lang.account.banned');
