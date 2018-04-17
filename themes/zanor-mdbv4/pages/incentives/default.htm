@@ -11,7 +11,7 @@ is_hidden = 0
     </div>
     <!-- /Mask & flexbox options -->
 </div>
-{% if user.groups.first.name == 'Employers' or user.groups.first.name == 'Staff' %}
+
 <div class="container free-bird mb-4">
        
     <div class="row">
@@ -64,10 +64,11 @@ is_hidden = 0
                         <a href="mailto:corey.brock@ks.gov" class="btn unique-color btn-md waves-effect waves-light">Request  info
                             <i class="fa fa-paper-plane ml-1"></i>
                         </a>
+                        {% if user %}
                         <a href="{{'incentives/wotc'|page}}" class="btn unique-color btn-md waves-effect waves-light">Read more
                             <i class="fa fa-clone ml-1"></i>
                         </a>
-            
+                        {% endif %}
                     </div>
                     <!--Grid column-->
         
@@ -105,9 +106,11 @@ is_hidden = 0
                         <a href="mailto:corey.brock@ks.gov" class="btn unique-color btn-md waves-effect waves-light">Request your bond
                             <i class="fa fa-paper-plane ml-1"></i>
                         </a>
+                        {% if user %}
                         <a href="{{'incentives/bonding'|page}}" class="btn unique-color btn-md waves-effect waves-light">Read more
                             <i class="fa fa-clone ml-1"></i>
                         </a>
+                        {% endif %}
         
                     </div>
                     <!--Grid column-->
@@ -183,10 +186,11 @@ is_hidden = 0
                         <a href="mailto:corey.brock@ks.gov" class="btn unique-color btn-md waves-effect waves-light">Questions
                             <i class="fa fa-question ml-1"></i>
                         </a>
+                        {% if user %}
                         <a href="{{'incentives/wif'|page}}" class="btn unique-color btn-md waves-effect waves-light">Read more
                             <i class="fa fa-clone ml-1"></i>
                         </a>
-        
+                        {% endif %}
                     </div>
                     <!--Grid column-->
         
@@ -202,12 +206,3 @@ is_hidden = 0
     
 
 </div>
-{% else %}
-<div class="container mt-5">
-    <div class="row mt-5">
-        <div class="col-10 mx-auto alert alert-danger mt-5">
-            <i class="fa fa-warning"></i>You are not authorized to view this page.
-        </div>
-    </div>
-</div>
-{% endif %}

@@ -11,7 +11,15 @@ is_hidden = 0
     </div>
     <!-- /Mask & flexbox options -->
 </div>
-{% if user.groups.first.name == 'Employers' or user.groups.first.name == 'Staff' %}
+{% if user.groups.first.name == 'Users' %}
+<div class="container mt-5">
+    <div class="row mt-5">
+        <div class="col-10 mx-auto alert alert-danger mt-5">
+            <i class="fa fa-warning"></i>You are not authorized to view this page.
+        </div>
+    </div>
+</div>
+{% else %}
 <div class="container free-bird mb-4">
     
     <div class="row">
@@ -96,14 +104,6 @@ is_hidden = 0
                 <ul>
                 <li>Employers shall be notified as soon as possible if an employee is removed from the work release program for any reason.</li>
                 </ul>
-        </div>
-    </div>
-</div>
-{% else %}
-<div class="container mt-5">
-    <div class="row mt-5">
-        <div class="col-10 mx-auto alert alert-danger mt-5">
-            <i class="fa fa-warning"></i>You are not authorized to view this page.
         </div>
     </div>
 </div>

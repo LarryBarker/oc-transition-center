@@ -1,5 +1,5 @@
 title = "Employer News"
-url = "/employers/news/:slug"
+url = "/employers/news/:slug?"
 layout = "default"
 is_hidden = 0
 
@@ -15,7 +15,8 @@ categoryPage = "job/industry"
 <?php
 function onEnd()
 {
-    $this->page->title = $this->post->title;
+    if ($this->post) 
+        $this->page->title = $this->post->title;
 }
 ?>
 ==
