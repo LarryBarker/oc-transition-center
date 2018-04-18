@@ -215,17 +215,23 @@ class Result
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @param integer $id
      *
      * @return Result
      */
     public function setId($id = null)
 =======
+=======
+>>>>>>> da3aadac... Update site search id field.
      * @param Int $id
      *
      * @return Result
      */
     public function setID($id)
+<<<<<<< HEAD
+>>>>>>> da3aadac... Update site search id field.
+=======
 >>>>>>> da3aadac... Update site search id field.
     {
         $this->id = $id;
