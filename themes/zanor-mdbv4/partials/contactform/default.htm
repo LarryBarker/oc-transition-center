@@ -1,78 +1,107 @@
+    <section class="py-3">
 
-<div class="confirm-container">
-    <!--This will contain the confirmation when the email is successfully sent-->
-</div>
-<form class="flexiContactForm" 
-      role="form" 
-      data-request="{{ __SELF__ }}::onMailSent" 
-      data-request-update="'{{ __SELF__ }}::confirm': '.confirm-container'">
-        <!--Grid row-->
+        <!--Section heading-->
+        <h3 class="h3 text-center mb-5">Contact us</h3>
+        <!--Section description-->
+        <p class="px-5 lead text-center grey-text">For scheduling, supervisory changes or inmate extensions, please contact our facility's CONTROL CENTER at: <br/>316-265-5211. Ext. 208</p>
+    
+        <p class="px-5 mb-5 pb-3 lead text-center grey-text">For questions, concerns, or for more information on the many benefits of hiring inmate employees through the Wichita Work Release Program, please contact a Security Supervisor on duty 24 hours a day.</p>
+    
         <div class="row">
-
+    
             <!--Grid column-->
-            <div class="col-md-6">
-                <div class="md-form">
-                    <input type="text" name="name" class="form-control">
-                    <label for="name" class="">Your name</label>
+            <div class="col-lg-5 mb-4">
+    
+                <!--Form with header-->
+                <div class="card">
+    
+                    <div class="card-body confirm-container">
+   
+                        <p>We'd love to hear from you.</p>
+                        <p>Fill out the form below to send us a message...</p>
+                        <br>
+                        <form class="flexiContactForm" 
+                        role="form" 
+                        data-request="{{ __SELF__ }}::onMailSent" 
+                        data-request-update="'{{ __SELF__ }}::confirm': '.confirm-container'">
+                        <!--Body-->
+                        <div class="md-form">
+                            <i class="fa fa-user prefix grey-text"></i>
+                            <input type="text" id="name" name="name" class="form-control">
+                            <label for="name">Your name</label>
+                        </div>
+    
+                        <div class="md-form">
+                            <i class="fa fa-envelope prefix grey-text"></i>
+                            <input type="email" id="email" name="email" class="form-control">
+                            <label for="email">Your email</label>
+                        </div>
+    
+                        <div class="md-form">
+                            <i class="fa fa-tag prefix grey-text"></i>
+                            <input type="text" id="subject" name="subject" class="form-control">
+                            <label for="submit">Subject</label>
+                        </div>
+    
+                        <div class="md-form">
+                            <i class="fa fa-pencil prefix grey-text"></i>
+                            <textarea type="text" id="body" name="body" class="form-control md-textarea" rows="3"></textarea>
+                            <label for="body">Message</label>
+                        </div>
+                        {% if __SELF__.enableCaptcha %}
+                        
+                            <div class="md-form mx-auto">
+                                <div class="g-recaptcha" data-sitekey="{{ __SELF__.siteKey }}"></div>
+                            </div>
+                            
+                        {% endif %}
+                        <div class="text-center mt-2">
+                            <button type="submit" class="btn unique-color btn-block">Send <i class="fa fa-send-o"></i></button>
+                        </div>
+                        </form>
+                    </div>
+    
                 </div>
+                <!--Form with header-->
+    
             </div>
             <!--Grid column-->
-
+    
             <!--Grid column-->
-            <div class="col-md-6">
-                <div class="md-form">
-                    <input type="email" name="email" class="form-control">
-                    <label for="email" class="">Your email</label>
+            <div class="col-lg-7">
+    
+                <!--Google map-->
+                <div id="contact-map-container" class="rounded z-depth-1-half map-container" style="height: 400px"></div>
+    
+                <br>
+                <!--Buttons-->
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <a class="btn-floating unique-color accent-1">
+                            <i class="fa fa-map-marker"></i>
+                        </a>
+                        <p>401 S. Emporia</p>
+                        <p>Wichita, KS 67202</p>
+                    </div>
+    
+                    <div class="col-md-4">
+                        <a class="btn-floating unique-color accent-1">
+                            <i class="fa fa-phone"></i>
+                        </a>
+                        <p>(316) 265-5211 ext. 234</p>
+                    </div>
+    
+                    <div class="col-md-4">
+                        <a class="btn-floating unique-color accent-1">
+                            <i class="fa fa-envelope"></i>
+                        </a>
+                        <p><a href="mailto:corey.brock@ks.gov">corey.brock@ks.gov</a></p>
+                    </div>
                 </div>
+    
             </div>
             <!--Grid column-->
-
+    
         </div>
-        <!--Grid row-->
-
-        <!--Grid row-->
-        <div class="row">
-
-            <!--Grid column-->
-            <div class="col-md-12">
-                <div class="md-form">
-                    <input type="text" id="subject" name="subject" class="form-control">
-                    <label for="subject" class="">Subject</label>
-                </div>
-            </div>
-            <!--Grid column-->
-
-        </div>
-        <!--Grid row-->
-
-        <!--Grid row-->
-        <div class="row">
-
-            <!--Grid column-->
-            <div class="col-md-12">
-
-                <div class="md-form">
-                    <textarea type="text" name="body" class="form-control md-textarea" rows="3"></textarea>
-                    <label for="body">Your message</label>
-                    <button type="submit" class="btn-floating btn-lg unique-color z-depth-1 hoverable">
-                        <i class="fa fa-send-o"></i>
-                    </button>
-                </div>
-
-            </div>
-            <!--Grid column-->
-
-        </div>
-        <!--Grid row-->
-
-        <!--Grid row-->
-        {% if __SELF__.enableCaptcha %}
-        <div class="row">
-            
-            <div class="form-group">
-                <div class="g-recaptcha" data-sitekey="{{ __SELF__.siteKey }}"></div>
-            </div>
-            
-        </div>
-        {% endif %}
-    </form>
+    
+    </section>
