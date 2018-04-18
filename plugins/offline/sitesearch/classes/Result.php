@@ -49,6 +49,10 @@ class Result
      * @var Model
      */
     public $model;
+    /**
+     * @var Int
+     */
+    public $id;
 
     /**
      * Result constructor.
@@ -210,11 +214,19 @@ class Result
     }
 
     /**
+<<<<<<< HEAD
      * @param integer $id
      *
      * @return Result
      */
     public function setId($id = null)
+=======
+     * @param Int $id
+     *
+     * @return Result
+     */
+    public function setID($id)
+>>>>>>> da3aadac... Update site search id field.
     {
         $this->id = $id;
 
