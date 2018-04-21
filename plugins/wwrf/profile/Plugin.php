@@ -102,6 +102,17 @@ class Plugin extends PluginBase
                     'label' => 'Resume',
                     'type' => 'fileupload',
                     'mode' => 'file'
+                ],
+                'user_agreement' => [
+                    'label' => 'User Agreement signed:',
+                    'type'  => 'datepicker',
+                    'mode'  => 'date',
+                    //'disabled' => 'true'
+                ],
+                'profile_comment' => [
+                    'label' => 'wwrf.profile::lang.comment',
+                    'type'  => 'textarea',
+                    'size'  => 'small'
                 ]
             ]);
 
@@ -173,25 +184,6 @@ class Plugin extends PluginBase
                 ]
             ]);
 
-            $form->addSecondaryTabFields([
-                'user_agreement' => [
-                    'label' => 'User Agreement signed:',
-                    'type'  => 'datepicker',
-                    'mode'  => 'date',
-                    //'disabled' => 'true'
-                ],
-                'questionnaire[updated_at]' => [
-                    'label' => 'Questionnaire Updated:',
-                    'type'  => 'datepicker',
-                    'mode'  => 'date',
-                    'disabled' => 'true'
-                ],
-                'profile_comment' => [
-                    'label' => 'wwrf.profile::lang.comment',
-                    'type'  => 'textarea',
-                    'size'  => 'small'
-                ]
-            ]);
         });
 
         Event::listen('backend.menu.extendItems', function ($manager) {

@@ -240,6 +240,15 @@ class Plugin extends PluginBase
                     'path'  => '$/wwrf/transitioncenter/controllers/usersprograms/_users_programs.htm',
                 ]
             ]);
+
+            $form->addSecondaryTabFields([
+                'questionnaire[updated_at]' => [
+                    'label' => 'Questionnaire Updated:',
+                    'type'  => 'datepicker',
+                    'mode'  => 'date',
+                    'disabled' => 'true'
+                ]
+            ]);
             
         });
 
