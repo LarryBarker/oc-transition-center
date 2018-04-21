@@ -24,19 +24,6 @@ postPage = "jobs/post"
 slug = "free-tax-prep"
 categoryPage = "jobs/industry"
 
-[blogPosts employerNews]
-pageNumber = "{{ :page }}"
-categoryFilter = "employer-news"
-postsPerPage = 5
-noPostsMessage = "No posts found"
-sortOrder = "published_at desc"
-categoryPage = "jobs/industry"
-postPage = "employers/news"
-
-[blogPost featuredEmployerPost]
-slug = "free-tax-prep"
-categoryPage = "jobs/industry"
-
 [blogCategories usersQuickLinks]
 slug = "{{ :slug }}"
 displayEmpty = 0
@@ -45,6 +32,22 @@ categoryPage = "jobs/industry"
 [LaminSanneh\FlexiContact\Components\ContactForm contactForm]
 injectBootstrapAssets = 0
 injectMainScript = 1
+
+[newsPosts employerNews]
+pageNumber = "{{ :page }}"
+postsPerPage = 3
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+postPage = "employers/news"
+postFeatured = 0
+
+[newsPosts featuredEmployerNews]
+pageNumber = "{{ :page }}"
+postsPerPage = 1
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+postPage = "employers/news"
+postFeatured = 1
 ==
 {% if not user %}
 	{% partial 'landing' %}
