@@ -1,0 +1,12 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+variants:
+    label: Variant
+    manage:
+        form: $/mohsin/mobile/models/variant/fields.yaml
+        list: $/mohsin/mobile/models/variant/columns.yaml
+    view:
+        list: $/mohsin/mobile/models/variant/columns.yaml
+        toolbarButtons: create|delete

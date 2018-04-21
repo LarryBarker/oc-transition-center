@@ -1,0 +1,11 @@
+# ===================================
+#  Rest Behavior Config
+# ===================================
+
+# Allowed Rest Actions
+allowedActions:
+  signin:
+  register:
+
+# Model Class name
+modelClass: Mohsin\User\Models\Account

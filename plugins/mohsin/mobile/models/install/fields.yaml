@@ -1,0 +1,9 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    scoreboard:
+      type: partial
+      stretch: true
+      path: $/mohsin/mobile/controllers/installs/_preview_scoreboard.htm

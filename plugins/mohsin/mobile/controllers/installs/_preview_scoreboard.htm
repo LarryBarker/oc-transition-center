@@ -1,0 +1,46 @@
+<div class="scoreboard">
+    <div data-control="toolbar">
+      <div class="scoreboard-item title-value">
+          <h4>Instance</h4>
+          <p><?= $formModel->instance_id ?></p>
+          <?php if (System\Classes\PluginManager::instance()->exists('Mohsin.User')): ?>
+            <p class="description">
+            <?php if ($formModel->user): ?>
+                <a href="<?= Backend::url('rainlab/user/users/preview/'.$formModel->user->id) ?>">
+                    User #<?= $formModel->user->id ?>
+                </a>
+            <?php else: ?>
+                <?php echo e(trans('mohsin.user::lang.installs.unregistered')) ?>
+            <?php endif ?>
+            </p>
+          <?php endif ?>
+      </div>
+      <?php if ($formModel->variant): ?>
+          <div class="scoreboard-item title-value">
+              <h4>App</h4>
+              <p><?= Mohsin\Mobile\Models\App::find($formModel->variant->app_id)->name ?></p>
+              <p class="description">
+                  <?= $formModel->variant->package ?>
+              </p>
+          </div>
+      <?php endif ?>
+      <?php if ($formModel->created_at): ?>
+          <div class="scoreboard-item title-value">
+              <h4>Joined</h4>
+              <p title="<?= e($formModel->name) ?>"><?= $formModel->created_at->toFormattedDateString() ?></p>
+              <p class="description">
+                  <?= $formModel->created_at->diffForHumans() ?>
+              </p>
+          </div>
+      <?php endif ?>
+      <?php if ($formModel->last_seen): ?>
+          <div class="scoreboard-item title-value">
+              <h4>Last seen</h4>
+              <p><?= $formModel->last_seen->diffForHumans() ?></p>
+              <p class="description">
+                  <?= $formModel->isOnline() ? 'Online now' : 'Currently offline' ?>
+              </p>
+          </div>
+      <?php endif ?>
+  </div>
+</div>

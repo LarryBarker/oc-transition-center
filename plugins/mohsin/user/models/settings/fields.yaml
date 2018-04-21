@@ -1,0 +1,19 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    instruction:
+        type: partial
+        path: $/mohsin/user/models/settings/_template_hint.htm
+
+    provider:
+        label: mohsin.user::lang.settings.provider_label
+        commentAbove: mohsin.user::lang.settings.provider_comment
+        type: dropdown
+
+    activation_page:
+      label: mohsin.user::lang.settings.activation_page_label
+      comment: mohsin.user::lang.settings.activation_page_comment
+      type: dropdown
+      cssClass: hide

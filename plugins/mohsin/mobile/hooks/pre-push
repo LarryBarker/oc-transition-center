@@ -1,0 +1,18 @@
+#!/bin/sh
+public_repo="/Users/Moz/Projects/SaifurRahmanMohsin/Mobile-Plugin"
+
+remote="$1"
+url="$2"
+message=$(git log -1 HEAD --pretty=format:%s)
+
+[ -d lang ] && yes | ditto lang $public_repo/lang
+[ -d updates ] && yes | ditto updates/version.yaml $public_repo/updates/version.yaml
+cd $public_repo
+if [ ! -z "$(git status --porcelain)" ]; then
+	echo "\nAdding, committing and pushing public repo"
+  git add .
+	git commit -am "$message"
+	git push origin master
+	echo "Successfully updated public repo, continuing...\n"
+fi
+exit 0

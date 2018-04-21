@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: App
+
+# Model Form Field configuration
+form: $/mohsin/mobile/models/app/fields.yaml
+
+# Model Class name
+modelClass: Mohsin\Mobile\Models\App
+
+# Default redirect location
+defaultRedirect: mohsin/mobile/apps
+
+# Create page
+create:
+    title: Create App
+    redirect: mohsin/mobile/apps/update/:id
+    redirectClose: mohsin/mobile/apps
+
+# Update page
+update:
+    title: Edit App
+    redirect: mohsin/mobile/apps
+    redirectClose: mohsin/mobile/apps
+
+# Preview page
+preview:
+    title: Preview App

@@ -1,0 +1,20 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+
+    instance_id:
+        label: Instance ID
+        searchable: true
+
+    created_at:
+        label: Installed On
+        type: timetense
+
+    last_seen:
+        label: Last seen
+        type: timetense
