@@ -1,16 +1,18 @@
 title = "Employer News"
-url = "/employers/news/:slug?"
+url = "/employers/news/:slug?/:page?"
 layout = "default"
 is_hidden = 0
 
-[blogPost]
-slug = "{{ :slug }}"
-categoryPage = "jobs/industry"
+[newsPosts employerNews]
+pageNumber = "{{ :page }}"
+postsPerPage = 5
+noPostsMessage = "No posts found"
+sortOrder = "published_at asc"
+postPage = "employers/news"
+postFeatured = 0
 
-[blogCategories]
+[newsPost]
 slug = "{{ :slug }}"
-displayEmpty = 0
-categoryPage = "job/industry"
 ==
 <?php
 function onEnd()
@@ -20,7 +22,6 @@ function onEnd()
 }
 ?>
 ==
-{% set post = blogPost.post %}
 <div class="carousel" style="background-image: url('{{'assets/images/guidelines_header.jpg'|theme}}');">
     <div class="mask flex-center rgba-blue-grey-light">
     </div>
@@ -31,42 +32,63 @@ function onEnd()
 </div>
 <div class="container free-bird mb-4">
 
-    <!-- Section: News post -->
+    <!-- Section: Employer News -->
     <section class="section">
+        {% if this.param.slug %}
 
-        <!-- Grid row -->
-        <div class="row">
-
-            <!-- Post column-->
-            <div class="col-lg-8 col-md-12 mb-3 pb-lg-2 mx-auto white z-depth-1 mb-4 pt-4 pl-3">
-
-                <div class="mb-2 px-4 py-2">
-                    <h2 class="font-weight-bold pt-2"><strong>{{ post.title }}</strong></h2>
-                    {% if post.company %}
-                    <h4><i class="fa fa-building-o mr-3"></i> {% if post.website %}
-                        <a href="{{post.website}}" 
-                                target="#">{{post.company}}</a>{% else %}{{post.company}}{% endif %}</h4>
-                    {% endif %}
-                    {% if post.address %}
-                    <h4 class="h4-responsive">
-                        <i class="fa fa-map-marker mr-3"></i> {{post.address}}
-                    </h4>
-                    {% endif %}
-                    {% if post.phone %}
-                    <h4 class="h4-responsive">
-                        <i class="fa fa-phone mr-3"></i> {{post.phone}}
-                    </h4>
-                    {% endif %}
-                    <hr />
-                    <p class="">{{ post.content_html|raw }}</p>
+            {% set post = newsPost.post %}
+            <!-- Employer posts row -->
+            <div class="row">
+                <!-- Post column-->
+                <div class="col-lg-8 col-md-12 mb-3 pb-lg-2 mx-auto white z-depth-1 mb-4 pt-4 pl-3">
+                    <div class="mb-2 px-4 py-2 dark-grey-text">
+                        {% if post.image%}
+                            <div class="img-responsive"><img src="{{ post.image|media }}" alt="{{post.title}}"></div>
+                        {% endif %}
+                        <h2 class="font-weight-bold pt-2"><strong>{{ post.title }}</strong></h2>
+                        <p class="post-date">Posted on {{ post.published_at|date('M d, Y') }}</p>
+                        <hr />
+                        {% if post.introductory %}
+                            <p>{{ post.introductory|raw }}</p>
+                        {%endif%}
+                        {% if post.content %}
+                            <p>{{ post.content|raw }}</p>
+                        {% endif %}
+    
+                    </div>
 
                 </div>
-
+                <!-- /Post column-->
             </div>
-            <!-- /Post column-->
-
-        </div>
-        <!--Grid row-->
-
+            <!-- /Employer posts row -->
+        {% else %}
+            {% set posts = employerNews.posts %}
+            {% for post in posts %}
+                <div class="row">
+                    <div class="col-lg-8 col-md-12 mb-3 pb-lg-2 mx-auto white z-depth-1 mb-4 pt-4 pl-3">
+                        {% if post.image%}
+                            <div class="img-responsive"><img src="{{ post.image|media }}" alt="{{post.title}}"></div>
+                        {% endif %}
+                        <h2 class="font-weight-bold pt-2"><a href="/{{postPage}}/{{post.slug}}">{{ post.title }}</a></h2>
+                        <p class="post-date">Posted on {{ post.published_at|date('M d, y') }}</p>
+                        {% if post.introductory %}
+                            <p>{{ post.introductory|raw }}</p>
+                        {%elseif post.content %}
+                            <p>{{ post.content|raw }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% else %}
+                <div class="row">
+                    <div class="col-lg-8 col-md-12 mb-3 pb-lg-2 mx-auto white z-depth-1 mb-4 pt-4 pl-3">
+                        <span>{{ noPostsMessage }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="row pt-2 justify-content-center">
+                {{ posts.render|raw }}
+            </div>
+        {% endif %}
     </section>
+    <!-- /Employer News -->
 </div>
