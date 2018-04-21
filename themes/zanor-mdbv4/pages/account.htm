@@ -8,6 +8,10 @@ is_hidden = 0
 redirect = "default"
 paramCode = "code"
 forceSecure = 0
+
+[newsSubscribe]
+
+[newsUnsubscribe]
 ==
 <div class="carousel" style="background-image: url('{{'assets/images/account_header.jpg'|theme}}');">
     <div class="mask flex-center rgba-blue-grey-light">
@@ -39,5 +43,18 @@ forceSecure = 0
                 <p class="lead">Please click <strong><a href="{{ 'register'|page }}">here</a></strong> to request an account.</p>
             {% endif %}
         </div>
-    </div> 
+        <div class="col-10 col-sm-4 mx-auto py-4 px-5 white z-depth-1">
+            <div class="">
+                <h3 class="h3-responsive"><i class="fa fa-newspaper-o"></i> Newsletter Settings</h3>
+                <div id="newsletter">
+                    {% if subscriber and subscriber.status == 1 %}
+                        {% component 'newsUnsubscribe' %}
+                    {% else %}
+                        {% component 'newsSubscribe' %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

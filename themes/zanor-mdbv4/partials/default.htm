@@ -76,10 +76,10 @@
 	                        <li class="no-data">{{ noPostsMessage }}</li>
 	                    {% endfor %}
                     {% else %}
-                    	<h3 class="h3-responsive"><i class="fa fa-newspaper-o"></i> Employer News</h3>
+                    	<h3 class="h3-responsive pt-4"><i class="fa fa-copy"></i> Employer News</h3>
 						{% set posts = employerNews.posts %}
 					    {% for post in posts %}
-						    <div class="row">
+						    <div class="row pt-4">
 						    	<div class="col-md-12 mb-r">
 						        {% if post.image %}<div class="post-image"><h4><a href="/{{ postPage }}/{{ post.slug }}"><img src="{{ post.image|media }}" alt="{{ post.title }}"></a></h4></div>{% endif %}
 						
@@ -109,8 +109,13 @@
 
                         {% if user.groups.first.name == 'Users' %}
                             {% partial 'users/quicklinks' %}
-                        {% else %}
-                            {% partial 'employers/quicklinks' %}
+						{% else %}
+							{% if not subscriber or subscriber.status != 1 %}
+								<h3 class="h3-responsive"><i class="fa fa-newspaper-o"></i> Newsletter</h3>
+								{% component 'newsSubscribe' %}
+							{% endif %}
+							<h3 class="h3-responsive pt-2"><i class="fa fa-link"></i> Employer Quicklinks</h3>
+							{% partial 'employers/quicklinks' %}
                         {% endif %}
 
                     </section>

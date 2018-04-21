@@ -1,0 +1,23 @@
+<form data-request="onSubscription" data-request-redirect="{{this.page.name|page}}">
+    <div class="form-group">
+        <label for="subscriberName">{{text_name}}</label>
+        <input name="name" type="text" class="form-control" id="subscribersName" value="{{user.name}} {{user.surname}}" required>
+    </div>
+    <div class="form-group">
+        <label for="subscriberName">{{text_email}}</label>
+        <input name="email" type="email" class="form-control" id="subscribersEmail" value="{{user.email}}" required>
+    </div>
+    {% if category_count == 0 %}
+    <input type="hidden" name="category" value="0">
+    {% else %}
+    <div class="form-group">
+        <label>{{text_category}}</label>
+        {% for category in category_list %}
+        <div class="checkbox">
+            <label><input type="checkbox" name="category[]" value="{{category.id}}" checked>{{category.name}}</label>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <button type="submit" class="btn btn-default btn-block">SUBSCRIBE <i class="fa fa-check"></i></button>
+</form>
