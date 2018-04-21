@@ -1,0 +1,41 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+fields:
+
+    locale:
+        label: indikator.news::lang.form.locale
+        placeholder: indikator.news::lang.form.lang
+        span: right
+
+    name:
+        label: indikator.news::lang.form.name
+        span: left
+
+    email:
+        label: indikator.news::lang.form.email
+        required: true
+        span: left
+
+    categories:
+        label: indikator.news::lang.menu.categories
+        type: relation
+        comment: indikator.news::lang.form.categories_comment
+        span: right
+
+    common:
+        label: indikator.news::lang.form.comment
+        type: textarea
+        size: small
+        span: left
+
+    status:
+        label: indikator.news::lang.form.status
+        required: true
+        type: balloon-selector
+        options:
+            1: indikator.news::lang.form.status_active
+            2: indikator.news::lang.form.status_unsubscribed
+        default: 1
+        span: right

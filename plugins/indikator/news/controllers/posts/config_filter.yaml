@@ -1,0 +1,40 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+
+    status_published:
+        label: indikator.news::lang.form.status_published
+        type: checkbox
+        conditions: status = 1
+
+    status_hide:
+        label: indikator.news::lang.form.status_hide
+        type: checkbox
+        conditions: status = 2
+
+    status_draft:
+        label: indikator.news::lang.form.status_draft
+        type: checkbox
+        conditions: status = 3
+
+    last_send_at:
+        label: indikator.news::lang.form.last_send
+        type: daterange
+        conditions: last_send_at >= ':after' AND last_send_at <= ':before'
+
+    published_date:
+        label: indikator.news::lang.form.published
+        type: daterange
+        conditions: published_at >= ':after' AND published_at <= ':before'
+
+    created_date:
+        label: indikator.news::lang.form.created
+        type: daterange
+        conditions: created_at >= ':after' AND created_at <= ':before'
+
+    updated_date:
+        label: indikator.news::lang.form.updated
+        type: daterange
+        conditions: updated_at >= ':after' AND updated_at <= ':before'

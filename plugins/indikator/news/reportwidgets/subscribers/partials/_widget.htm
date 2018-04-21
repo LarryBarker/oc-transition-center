@@ -1,0 +1,31 @@
+<div class="report-widget">
+    <h3><?= e(trans($this->property('title'))) ?></h3>
+
+    <?php if (!isset($error)): ?>
+    <div class="control-status-list">
+        <ul>
+            <?php if ($this->property('total')): ?>
+            <li>
+                <span class="status-text"><?= e(trans('indikator.news::lang.widget.total')) ?></span>
+                <span class="status-label primary"><?= $total ?></span>
+            </li>
+            <?php endif ?>
+            <?php if ($this->property('active')): ?>
+            <li>
+                <span class="status-text"><?= e(trans('indikator.news::lang.form.status_active')) ?></span>
+                <span class="status-label primary"><?= $active ?></span>
+            </li>
+            <?php endif ?>
+            <?php if ($this->property('unsub')): ?>
+            <li>
+                <span class="status-text"><?= e(trans('indikator.news::lang.form.status_unsubscribed')) ?></span>
+                <span class="status-label primary"><?= $unsub ?></span>
+            </li>
+            <?php endif ?>
+        </ul>
+    </div>
+
+    <?php else: ?>
+    <p class="flash-message static warning"><?= e($error) ?></p>
+    <?php endif ?>
+</div>

@@ -1,0 +1,74 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+fields:
+
+    title:
+        label: indikator.news::lang.form.title
+        required: true
+        span: auto
+
+    slug:
+        label: indikator.news::lang.form.slug
+        required: true
+        preset: title
+        span: auto
+
+tabs:
+    fields:
+
+        introductory:
+            tab: indikator.news::lang.form.introductory
+            type: richeditor
+            size: large
+
+        content:
+            tab: indikator.news::lang.form.content
+            type: richeditor
+            size: giant
+
+secondaryTabs:
+    fields:
+
+        image:
+            label: indikator.news::lang.form.image
+            type: mediafinder
+            mode: image
+
+        published_at:
+            label: indikator.news::lang.form.published
+            type: datepicker
+            mode: datetime
+
+        category:
+            label: indikator.news::lang.form.category
+            type: relation
+
+        status:
+            label: indikator.news::lang.form.status
+            required: true
+            type: radio
+            options:
+                1: indikator.news::lang.form.status_published
+                2: indikator.news::lang.form.status_hide
+                3: indikator.news::lang.form.status_draft
+            default: 3
+            span: auto
+
+        featured:
+            label: indikator.news::lang.form.featured
+            required: true
+            type: radio
+            options:
+                1: indikator.news::lang.form.yes
+                2: indikator.news::lang.form.no
+            default: 2
+            span: auto
+
+        last_send_at:
+            label: indikator.news::lang.form.last_send_at
+            type: datepicker
+            readOnly: true
+            mode: datetime
+            disabled: disabeld

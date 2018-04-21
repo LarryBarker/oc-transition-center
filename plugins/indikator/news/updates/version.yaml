@@ -1,0 +1,88 @@
+1.0.0:
+    - First version of News & Newsletter.
+    - create_posts_table.php
+    - create_subscribers_table.php
+1.0.1: Modified the subject of emails.
+1.1.0: Added two front-end components.
+1.1.1: Improved the permissions.
+1.1.2: Added the Published at field.
+1.1.3: Minor improvements and bugfix.
+1.2.0: Added post front-end components.
+1.2.1: Added the Introductory field.
+1.2.2: Improvement the post status.
+1.2.3:
+    - Select images via Media finder.
+    - add_image_field_to_table.php
+1.2.4: Minor improvements.
+1.2.5: Support the Translate plugin.
+1.2.6: Improved the posts component.
+1.2.7: Added Russian translation.
+1.2.8: Fixed the translate issues.
+1.3.0: Improvements and bug fixes.
+1.3.1: Fixed the posts component issue.
+1.3.2: Improved the widget exception handling.
+1.3.3: Improved the dashboard posts widget.
+1.3.4: Improved the post form and list.
+1.3.5: Minor improvements.
+1.3.6: Added Polish translation.
+1.3.7: Improvements and bug fixes.
+1.3.8: Autocomplete the Slug field.
+1.3.9: Minor improvements.
+1.4.0: Fully compatible for Translate plugin.
+1.4.1: Support the Sitemap plugin.
+1.4.2: Minor UI improvements.
+1.4.3: Added the daterange filters for lists.
+1.4.4: Added the image column to post list.
+1.4.5:
+    - Minor improvements and bugfix.
+    - add_new_fields_to_table.php
+    - update_timestamp_nullable.php
+1.4.6: Fixed the post view issue.
+1.4.7: Added the Statistics page.
+1.4.8: Added more post statistics.
+1.5.0: Added translation support for slug.
+1.5.1: Improved the front-end components.
+1.5.2: SEO support for front-end component.
+1.5.3: Added 404 support to component.
+1.5.4: Minor improvements.
+1.5.5: Support the SiteSearch plugin.
+1.5.6: Added the Import/Export feature.
+1.5.7:
+    - Fixed the statistics columns sorting.
+    - change_columns_type.php
+1.5.8: Added featured filtering on PostList.
+1.6.0: Added the sending test email feature.
+1.6.1: Added the Length column for Post list.
+1.6.2: Added new icon for main navigation.
+1.7.0: Added unsubscribe feature.
+1.7.1: Added Deutsch translation.
+1.7.2: Translated the front-end components.
+1.7.3: Post view statistics now automatic.
+1.7.4:
+    - Added the multilingual subscription.
+    - add_locale_field_to_table.php
+1.7.5: Redesigned the report widgets.
+1.7.6: Added two brand new report widgets.
+1.7.7: Added Featured column and minor bugfix.
+1.7.8: Improved the list of Subscribers.
+1.8.0:
+    - Adding feature of logging newsletters.
+    - create_logs_table.php
+    - add_prefix_to_tables.php
+1.8.1:
+    - Reworked sending newsletter and resend feature.
+    - update_send_feature.php
+1.8.2: Minor improvements and bugfix.
+1.8.3: Fixed the sending bug and added new settings.
+1.8.4: Added the preview feature for posts.
+1.8.5: Added more options for Settings page.
+1.8.6:
+    - !!! Reworked again the sending newsletter feature.
+    - update_send_feature_2.php
+1.9.0:
+    - Added categories feature.
+    - create_categories_table.php
+    - add_category_field_to_table.php
+1.9.1: Minor improvements and bugfix.
+1.9.2: Added HTML variables to docs.
+1.9.3: Added show only translated posts option.

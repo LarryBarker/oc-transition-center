@@ -1,0 +1,36 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+
+    status_active:
+        label: indikator.news::lang.form.status_active
+        type: checkbox
+        conditions: status = 1
+
+    status_unsubscribed:
+        label: indikator.news::lang.form.status_unsubscribed
+        type: checkbox
+        conditions: status = 2
+
+    categories:
+        label: indikator.news::lang.form.category
+        modelClass: Indikator\News\Models\Categories
+        nameFrom: name
+        scope: FilterCategories
+
+    statistics:
+        label: indikator.news::lang.stat.mail
+        type: numberrange
+        conditions: statistics >= ':min' and statistics <= ':max'
+
+    created_date:
+        label: indikator.news::lang.form.created
+        type: daterange
+        conditions: created_at >= ':after' AND created_at <= ':before'
+
+    updated_date:
+        label: indikator.news::lang.form.updated
+        type: daterange
+        conditions: updated_at >= ':after' AND updated_at <= ':before'
