@@ -228,12 +228,6 @@ class Plugin extends PluginBase
             QuestionnaireModel::getFromUser($model);
 
             $form->addTabFields([
-                'questionnaire[updated_at]' => [
-                    'label' => 'Questionnaire Updated:',
-                    'type'  => 'datepicker',
-                    'mode'  => 'date',
-                    'disabled' => 'true'
-                ],
                 'viewedJobs' => [
                     'tab' => 'Activity',
                     'type'  => 'partial',

@@ -180,6 +180,12 @@ class Plugin extends PluginBase
                     'mode'  => 'date',
                     //'disabled' => 'true'
                 ],
+                'questionnaire[updated_at]' => [
+                    'label' => 'Questionnaire Updated:',
+                    'type'  => 'datepicker',
+                    'mode'  => 'date',
+                    'disabled' => 'true'
+                ],
                 'profile_comment' => [
                     'label' => 'wwrf.profile::lang.comment',
                     'type'  => 'textarea',
