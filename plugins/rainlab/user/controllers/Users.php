@@ -38,6 +38,8 @@ class Users extends Controller
      */
     public $relationConfig;
 
+    public $importExportConfig;
+
     /**
      * @var array Permissions required to view this page.
      */
