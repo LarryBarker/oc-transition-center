@@ -2,7 +2,7 @@
 <div class="container">
     <!--Section: Users home page-->
     <section class="pt-5 mt-5 pb-3">
-
+		<!-- Toolbar and header -->
         {% partial 'jobs/toolbar' %}
         
         <div class="row pt-4">
@@ -14,13 +14,15 @@
             {% endif %}
 
         </div>
+		<!-- /Toolbar and header -->
 
+		<!-- Content -->
         <section class="section pt-4">
 
-            <!-- Grid row -->
+            <!-- Main row -->
             <div class="row">
 
-                <!--Grid column-->
+                <!-- Left column-->
                 <div class="col-lg-8 col-md-12 mb-3 pb-lg-2">
                     
                     <!-- Featured article -->
@@ -28,37 +30,39 @@
 
                         <img src="https://mdbootstrap.com/img/Photos/Others/product2.jpg" class="img-fluid" alt="sample image">
                         <div class="mask rgba-white-light">
-                            <div class="dark-grey-text d-flex align-items-center pt-3 pl-4">
-                                <div>
-                                	{% if user.groups.first.name == 'Users' %}
-				                        {% set featuredPost = featuredUserBlogPost.post %}
-                                        <h2 class="h2-responsive card-title font-weight-bold pt-2"><strong>{{featuredPost.title}}</strong></h2>
-	                                    <p class="d-none d-md-block">{{ str_limit(featuredPost.content|raw, '160', '...') }}</p>
-	                                    <a href="{{ 'jobs/post'| page({slug:featuredPost.slug}) }}" class="btn unique-color btn-sm btn-rounded clearfix d-none d-md-inline-block waves-effect waves-light">Read more</a>
-				                    {% else %}
-										{% set posts = featuredEmployerNews.posts %}
-										
-										<div class="post-list">
-										    {% for post in posts %}
-												<h2 class="h2-responsive card-title font-weight-bold pt-2"><a href="/{{ postPage }}/{{ post.slug }}">{{ post.title }}</a></h2>
-										        {% if post.introductory %}
-										        <div class="introduction">{{ str_limit(post.introductory|raw, '160', '...') }}</div>
-										        {% elseif post.content %}
-										        <div class="content">{{ str_limit(post.content|raw, '160', '...') }}</div>
-										        {% endif %}
-									    </div>
-										    {% else %}
-										    <span class="post-nodata">{{ noPostsMessage }}</span>
-										    {% endfor %}
-				                    {% endif %}
-								</div>
+                            <div class="dark-grey-text pt-3 pl-4">
+
+								{% if user.groups.first.name == 'Users' %}
+									{% set featuredPost = featuredUserBlogPost.post %}
+									<h2 class="h2-responsive card-title font-weight-bold pt-2"><strong>{{featuredPost.title}}</strong></h2>
+									<p class="d-none d-md-block">{{ str_limit(featuredPost.content|raw, '160', '...') }}</p>
+									<a href="{{ 'jobs/post'| page({slug:featuredPost.slug}) }}" class="btn unique-color btn-sm btn-rounded clearfix d-none d-md-inline-block waves-effect waves-light">Read more</a>
+								{% else %}
+									{% set posts = featuredEmployerNews.posts %}
+									{% for post in posts %}
+										<h2 class="h2-responsive card-title font-weight-bold pt-2"><a href="/{{ postPage }}/{{ post.slug }}">{{ post.title }}</a></h2>
+										<div>
+											{% if post.introductory %}
+												{{ str_limit(post.introductory|raw, '160', '...') }}
+											{% elseif post.content %}
+												{{ str_limit(post.content|raw, '160', '...') }}
+											{% endif %}
+										</div>
+										<a href=href="/{{ postPage }}/{{ post.slug }}" class="btn unique-color btn-sm btn-rounded clearfix d-none d-md-inline-block waves-effect waves-light">Read more</a>
+									{% else %}
+										<span class="post-nodata">
+											{{ noPostsMessage }}</span>
+									{% endfor %}
+								{% endif %}
+
                             </div>
                         </div>
 
                     </div>
-                    <!-- /Featured article -->
+					<!-- /Featured article -->
+					
                     <hr />
-
+					<!-- Blog posts -->
                     {% if user.groups.first.name == 'Users' %}
                         {% set defaultPosts = userAnnouncements.posts %}
                         {% for post in defaultPosts %}
@@ -81,27 +85,33 @@
 					    {% for post in posts %}
 						    <div class="row pt-4">
 						    	<div class="col-md-12 mb-r">
-						        {% if post.image %}<div class="post-image"><h4><a href="/{{ postPage }}/{{ post.slug }}"><img src="{{ post.image|media }}" alt="{{ post.title }}"></a></h4></div>{% endif %}
-						
-						        <h2 class="post-title"><a href="/{{ postPage }}/{{ post.slug }}">{{ post.title }}</a></h2>
-						        <p>Posted on{{ post.published_at|date('M d, Y') }}</p>
-						        {% if post.introductory %}
-						        <p>{{ str_limit(post.introductory|raw, '160', '...') }}</p>
-						        {% elseif post.content %}
-						        <p>{{ str_limit(post.content|raw, '160', '...') }}</p>
-						        {% endif %}
-						        <a href="/{{ postPage }}/{{ post.slug }}" class="btn unique-color waves-effect waves-light">Read more</a>
+									{% if post.image %}
+										<img src="{{ post.image|media }}" alt="{{ post.title }}" class="img-responsive"></a>
+									{% endif %}
+									<h2 class="h2-responsive"><a href="/{{ postPage }}/{{ post.slug }}">{{ post.title }}</a></h2>
+									<p>Posted on{{ post.published_at|date('M d, Y') }}</p>
+									<div>
+										{% if post.introductory %}
+											{{ str_limit(post.introductory|raw, '160', '...') }}
+										{% elseif post.content %}
+											{{ str_limit(post.content|raw, '160', '...') }}
+										{% endif %}
+									</div>
+									<a href="/{{ postPage }}/{{ post.slug }}" class="btn unique-color waves-effect waves-light">Read more</a>
 						        </div>
 						    </div>
 					    {% else %}
 						    <span class="post-nodata">{{ noPostsMessage }}</span>
-					    {% endfor %}
-						{{ posts.render|raw }}
-                    {% endif %}
+						{% endfor %}
+						<div class="row pt-3 justify-content-center">
+							<a href="{{'employers/news'|page}}" alt="Employer News">More news <i class="fa fa-arrow-right"></i></a>
+						</div>
+					{% endif %}
+					<!-- /Blog posts -->
                 </div>
-                <!--Grid column-->
+                <!-- /Left column-->
 
-                <!--Grid column-->
+                <!-- Right column-->
                 <div class="col-lg-4 col-md-12 mb-4">
 
                     <!-- Section: Quicklinks -->
@@ -122,12 +132,13 @@
                     <!-- /Section: Quicklinks -->
 
                 </div>
-                <!--Grid column-->
+                <!-- /Right column-->
 
             </div>
-            <!--Grid row-->
+            <!-- /Main row-->
 
-        </section>
+		</section>
+		<!-- /Content -->
     
     </section>
     <!--/Section-->
