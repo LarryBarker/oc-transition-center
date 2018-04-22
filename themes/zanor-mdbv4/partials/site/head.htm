@@ -29,11 +29,6 @@ description = "Head"
     <meta name="description" content="{{ this.page.meta_description }}">
     <meta name="title" content="{{ this.page.meta_title }}">
     <meta name="author" content="WWRF">
-
-    <link rel="icon" type="image/png" href="{{ 'assets/images/leaf.png'|theme }}" />
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
         
     <link href="{{ [
         'assets/css/bootstrap.min.css',
@@ -43,9 +38,13 @@ description = "Head"
     
     {% styles %}
 
-    <script type="text/javascript"
-    src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyBb5AkQHSFXfIqxr2BoxQt5zQmcMqd3HmE"></script>
+    
     <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/58972d559260fa1f2c7b8cd12/9750bd67ea90705f7e734234a.js");</script>
+    <script type='text/javascript'>
+        //<![CDATA[ 
+        function loadCSS(e, t, n) { "use strict"; var i = window.document.createElement("link"); var o = t || window.document.getElementsByTagName("script")[0]; i.rel = "stylesheet"; i.href = e; i.media = "only x"; o.parentNode.insertBefore(i, o); setTimeout(function () { i.media = n || "all" }) }loadCSS("https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css");
+        //]]> 
+    </script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
