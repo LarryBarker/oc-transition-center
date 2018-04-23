@@ -31,7 +31,8 @@
             <i class="fa fa-clone"></i>
         </button>
     {% endif %}
-    <a href="{{post.url}}" class="btn unique-color btn-sm">Read more</a>
+    <a href="{{post.url}}" class="btn unique-color btn-sm" {% if user.groups.first.name=='Users' %} data-request="onViewJob" data-request-data="job_id: {{post.id}}"
+    {%endif%}>Read more</a>
     </form>
 </div>
 {% endfor %}

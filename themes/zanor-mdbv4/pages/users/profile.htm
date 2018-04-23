@@ -100,7 +100,7 @@ forceSecure = 0
                             <div class="tab-pane fade" id="jobs" role="tabpanel">
 
                                 <h2 class="h2-responsive"><strong>Job</strong> activity</h2>
-                                <table class="table table-sm table-responsive table-striped table-hover">
+                                <table class="table-sm table-responsive table-striped table-hover w-auto">
                                     <thead class="blue-grey lighten-4">
                                         <tr>
                                         <th scope="col">Position</th>
@@ -114,7 +114,7 @@ forceSecure = 0
                                     <tbody>
                                         {% for viewedJob in ueuser.user.viewedJobs %}
                                         <tr>
-                                        <td>{{ viewedJob.job.title }}</td>
+                                        <td><a href="{{'jobs/post'|page({ slug: viewedJob.job.slug})}}">{{ viewedJob.job.title }}</a></td>
                                         <td>{{ viewedJob.job.company }}</td>
                                         <td>{{ viewedJob.job.address }}</td>
                                         <td>{{ viewedJob.job.phone }}</td>
