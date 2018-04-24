@@ -186,3 +186,40 @@ section .contact {
 .modal {
   overflow-y:scroll;
 }
+
+.peach-gradient{
+  background: peachpuff; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#FED373, #F15245);
+  background: -webkit-linear-gradient(33% 100% circle, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);
+  background: linear-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.aqua-gradient{
+  background: aqua; /* For browsers that do not support gradients */
+  background: linear-gradient(40deg,#2096ff,#05ffa3);
+  background: -webkit-linear-gradient(33% 100% circle, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);
+  background: linear-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.blue-gradient{
+  background: lightblue; /* For browsers that do not support gradients */
+  background: linear-gradient(40deg,#45cafc,#303f9f);
+  background: -webkit-linear-gradient(33% 100% circle, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);
+  background: linear-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.purple-gradient{
+  background: purple; /* For browsers that do not support gradients */
+  background: linear-gradient(40deg,#ff6ec4,#7873f5);
+  background: -webkit-linear-gradient(33% 100% circle, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);
+  background: linear-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+

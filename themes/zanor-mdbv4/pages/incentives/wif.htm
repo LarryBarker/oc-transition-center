@@ -17,29 +17,11 @@ is_hidden = 0
         <div class="col-10 col-sm-7 mx-auto white z-depth-1 py-4 pl-3 mb-4">
             <h6 class="h6-responsive"><a href="{{'default'|page}}" alt="Transition Center">Transition Center</a> > <a href="{{'default'|page}}" alt="Employers">Employers</a> > <a href="{{'incentives/default'|page}}" alt="Incentive Programs">Incentive Programs</a> > {{this.page.title}}</h6>
             <h3 class="h3-responsive">{{this.page.title}}</h3>
-            <p>
-                The WIF OJT program is an opportunity for jobseekers to learn while you are on the job earning wages and an oppor-tunity for employers to be reimbursed for their time training their new hires. Eligible job seekers will have a team to support their career goals. The support is specific to the jobseekers needs and goals but is an added benefit to employ-ers to ensure the success of their new hire. <a href="mailto:corey.brock@ks.gov">Contact us today</a> for more information on this program.
-            </p>
-            
-            <p>Read details below to learn more about The Federal Bonding Program.</p>
-            <!-- Main heading -->
-
-            <hr />
-            <h4 class="h4-responsive">Funds are available for On-the-Job Training (OJT) to employers who hire eligible participants.</h4>
-            <p>
-                <strong>OJT Program Details</strong>
-            </p>
-            <ul>
-                <li>Up to <strong>$7,200</strong> in training funds reimbursed to employers for each eligible new hire</li>
-                <li>Employers will be <strong>reimbursed 50% on new hires wages</strong> during training</li>
-                <li>Up to <strong>24 weeks</strong> of training is available to OJT Participants</li>
-                <li>OJT Participants will have a <strong>dedicated support team</strong> to <strong>increase OJT success</strong></li>
-                <li>New hire must be determined eligible by the Workforce Centers of South Central Kansas</li>
-            </ul>  
+            {% content 'incentives/wif'|raw %}
 
             <!-- CTA -->
-            <a href="mailto:corey.brock@ks.gov" class="btn btn-indigo btn-md waves-effect waves-light">Request more information
-                <i class="fa fa-copy ml-1"></i>
+            <a href="mailto:corey.brock@ks.gov" class="btn unique-color btn-md waves-effect waves-light">Request more information
+                <i class="fa fa-external-link ml-1"></i>
             </a>
         </div>
 

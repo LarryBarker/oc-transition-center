@@ -1,5 +1,6 @@
-name: 'MDB [v4.4.1]'
-description: 'Material Design for Booststrap version 4.4.1 (stable)'
-author: Zanor
-homepage: ''
-code: 'MDBv4'
+name: TransitionCenter
+description: 'Template for WWRF Transition Center based on MDBoostrap.'
+author: 'Larry Barker'
+homepage: 'http://www.wwrfresource.com'
+code: wwrfTransitionCenter
+form: config/fields.yaml
