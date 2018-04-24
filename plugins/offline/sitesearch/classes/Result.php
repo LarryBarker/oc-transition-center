@@ -46,6 +46,10 @@ class Result
      */
     public $id;
     /**
+     * @var string
+     */
+    public $company;
+    /**
      * @var Model
      */
     public $model;
@@ -141,13 +145,24 @@ class Result
      *
      * @return Result
      */
+    public function setCompany($company)
+    {
+        $this->company = $this->markQuery($this->prepare($company));
+
+        return $this;
+    }
+
+    /**
+     * @param string $company
+     *
+     * @return Result
+     */
     public function setTitle($title)
     {
         $this->title = $this->markQuery($this->prepare($title));
 
         return $this;
     }
-
     /**
      * Sets the text property and creates
      * a separate excerpt to display in the results

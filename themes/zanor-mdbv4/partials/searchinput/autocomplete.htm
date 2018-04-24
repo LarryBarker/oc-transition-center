@@ -15,5 +15,6 @@
 {% else %}
     {# No results found #}
     <p>Your search for {{ query }} returned no results.</p>
+    <p><a href="http://www.google.com/search?q={{ query }}" target="_blank">Try Google instead.</a></p>
 {% endif %}
 </div>

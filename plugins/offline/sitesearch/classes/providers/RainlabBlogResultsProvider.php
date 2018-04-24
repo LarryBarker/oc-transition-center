@@ -59,6 +59,7 @@ class RainlabBlogResultsProvider extends ResultsProvider
             $result->text  = $post->summary;
             $result->meta  = $post->created_at;
             $result->id    = $post->id;
+            $result->company = $post->company;
             $result->model = $post;
 
             // Maintain compatibility with old setting
