@@ -38,7 +38,7 @@ defaultSort:
 toolbar:
 
     # Partial for toolbar buttons
-    buttons: list_toolbar
+    buttons: $/wwrf/profile/controllers/profiles/_list_toolbar.htm
 
     # Search widget configuration
     search:

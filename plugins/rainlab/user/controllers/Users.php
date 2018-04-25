@@ -274,6 +274,15 @@ class Users extends Controller
                     case 'unban':
                         $user->unban();
                         break;
+                    case 'available':
+                        $user->update(['status' => 'available']);
+                        break;
+                    case 'employed':
+                        $user->update(['status' => 'employed']);
+                        break;
+                    case 'unavailable':
+                        $user->update(['status' => 'unavailable']);
+                        break;
                 }
             }
 

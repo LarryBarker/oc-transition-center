@@ -4,15 +4,6 @@
 
 scopes:
 
-    release_date:
-        label: Year
-        type: group
-        #scope: filterByYear
-        conditions: year(arrival_date) = (:filtered)
-        options:
-            2017: '2017'
-            2016: '2016'
-
     status:
         label: Status
         type: group
@@ -49,5 +40,9 @@ scopes:
         label: Employed
         # Filter type
         type: switch
-        default: 2
         scope: isEmployed
+
+    current:
+        label: Current
+        type: checkbox
+        scope: withoutTrashed

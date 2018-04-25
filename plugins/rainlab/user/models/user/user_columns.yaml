@@ -68,8 +68,6 @@ columns:
         type: partial
         path: ~/plugins/wwrf/transitioncenter/partials/_user_status.htm
     
-    
-
     counselor:
         label: Counselor
         relation: counselor
