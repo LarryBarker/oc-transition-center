@@ -7,6 +7,7 @@ use Str;
 use Html;
 use Lang;
 use Model;
+use Input;
 use Markdown;
 use BackendAuth;
 use ValidationException;
@@ -122,8 +123,7 @@ class Post extends Model
         }
     }
     
-    public function beforeValidate() {
-
+    /*public function beforeValidate() {
         $slugCount = self::whereRaw("slug REGEXP '^{$this->slug}(-[0-9]*)?$'")->count();
 
         if ($slugCount > 0) {
@@ -132,7 +132,7 @@ class Post extends Model
             return;
         }
 
-    }
+    }*/
 
     public function afterValidate()
     {
