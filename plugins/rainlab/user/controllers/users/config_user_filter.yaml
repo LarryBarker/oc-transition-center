@@ -45,4 +45,5 @@ scopes:
     current:
         label: Current
         type: checkbox
+        default: 1
         scope: withoutTrashed

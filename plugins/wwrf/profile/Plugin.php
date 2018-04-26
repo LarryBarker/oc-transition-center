@@ -59,6 +59,10 @@ class Plugin extends PluginBase
 
             $model->belongsToMany['industries'] = ['RainLab\Blog\Models\Category', 'table' => 'wwrf_users_industries', 'key' => 'user_id', 'otherKey' => 'industry_id'];
 
+            $model->attachMany['documents'] = [
+                \System\Models\File::class
+            ];
+
             $model->bindEvent('model.beforeValidate', function() use ($model) {
                 $model->rules['industries'] = 'max:4';
             });
@@ -102,6 +106,12 @@ class Plugin extends PluginBase
                     'label' => 'Resume',
                     'type' => 'fileupload',
                     'mode' => 'file'
+                ],
+                'documents' => [
+                    'label' => 'Portfolio Documents',
+                    'type' => 'fileupload',
+                    'mode' => 'file',
+                    'useCaption' => 'true'
                 ],
                 'user_agreement' => [
                     'label' => 'User Agreement signed:',

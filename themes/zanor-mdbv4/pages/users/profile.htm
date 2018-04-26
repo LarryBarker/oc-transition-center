@@ -37,7 +37,7 @@ forceSecure = 0
                     <p class="small">Last online {{ ueuser.user.last_seen|relative }}</p>
                     {% if ueuser.userAvatar and user.groups.first.name == 'Staff' or user.groups.first.name == 'Employers' %}
         
-                        <a href="{{ ueuser.userAvatar.path  }}" class="btn unique-color btn-block">Download resume <i class="fa fa-download"></i></a>
+                        <a href="{{ ueuser.userAvatar.path  }}" download="{{ ueuser.userAvatar.filename }}" class="btn unique-color btn-block">Download resume <i class="fa fa-download"></i></a>
                     
                         <a href="https://kdocrepository.doc.ks.gov/kasper/search/detail?kdocNumber={{ ueuser.user.kdoc_number }}" target="#" class="btn unique-color btn-block">View on Kasper <i class="fa fa-external-link"></i></a>
             
