@@ -24,9 +24,10 @@ class Program extends Model
      */
     public $table = 'wwrf_programtracker_programs';
 
-    public $belongsTo = [
-        'userprogram' => [
+    public $hasMany = [
+        'usersprograms' => [
             'Wwrf\TransitionCenter\Models\UserProgram',
+            'table' => 'wwrf_programtracker_users_programs'
         ]
     ];
 }

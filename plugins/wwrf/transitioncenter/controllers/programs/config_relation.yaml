@@ -1,0 +1,8 @@
+usersprograms:
+    label: Participants
+    manage:
+        form: $/wwrf/transitioncenter/models/userprogram/participant_fields.yaml
+        list: $/wwrf/transitioncenter/models/userprogram/participant_columns.yaml
+    view:
+        list: $/wwrf/transitioncenter/models/userprogram/participant_columns.yaml
+        toolbarButtons: create|delete

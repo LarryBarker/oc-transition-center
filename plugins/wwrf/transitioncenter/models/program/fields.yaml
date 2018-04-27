@@ -4,3 +4,10 @@ fields:
         span: auto
         oc.commentPosition: ''
         type: text
+tabs:
+    fields:    
+        participants:
+            span: full
+            tab: Participants
+            type: partial
+            path: $/wwrf/transitioncenter/controllers/programs/_users.htm

@@ -1,0 +1,20 @@
+fields:
+    user:
+        label: Participant
+        oc.commentPosition: ''
+        nameFrom: name
+        descriptionFrom: description
+        span: auto
+        type: recordfinder
+        list: $/rainlab/user/models/user/columns.yaml
+        prompt: 'Click the %s button to find a participant'
+    status:
+        label: 'wwrf.transitioncenter::lang.userprograms.status'
+        span: auto
+        oc.commentPosition: ''
+        options:
+            attending: Attending
+            completed: Complete
+            declined: Declined
+            na: 'Not Attending'
+        type: dropdown
