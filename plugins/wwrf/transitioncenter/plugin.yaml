@@ -5,7 +5,7 @@ plugin:
     icon: oc-icon-leaf
     homepage: 'http://wwrfresource.com'
 permissions:
-    'wwrf.transitioncenter.*':
+    wwrf.transitioncenter.*:
         tab: 'wwrf.transitioncenter::lang.plugin.name'
         label: 'Manage Transition Center features.'
     wwrf.transitioncenter.manage_activity:
@@ -46,7 +46,7 @@ permissions:
         label: 'Create, update, remove temp services information for the front-end website.'
 navigation:
     transitioncenter:
-        label: 'Transition Center'
+        label: 'WWRF'
         url: wwrf/transitioncenter/dashboard
         icon: icon-leaf
         permissions:
@@ -55,22 +55,22 @@ navigation:
             users:
                 label: Users
                 url: rainlab/user/users
-                icon: icon-users
-                group: Users
+                icon: icon-user-circle-o
+                group: Accounts
                 permissions:
                     - 'wwrf.transitioncenter.*'
             staff:
                 label: Staff
                 url: wwrf/transitioncenter/staffmembers
                 icon: icon-user-secret
-                group: Users
+                group: Accounts
                 permissions:
                     - 'wwrf.transitioncenter.*'
             employers:
                 label: Employers
                 url: wwrf/transitioncenter/employers
-                icon: icon-user
-                group: Users
+                icon: icon-black-tie
+                group: Accounts
                 permissions:
                     - 'wwrf.transitioncenter.*'
             jobtracker:
@@ -90,21 +90,21 @@ navigation:
             tempservices:
                 label: 'Temp Services'
                 url: wwrf/transitioncenter/tempservices
-                icon: icon-share-alt
+                icon: icon-refresh
                 group: Employment
                 permissions:
                     - 'wwrf.transitioncenter.*'
             programs:
                 label: Programs
                 url: wwrf/transitioncenter/programs
-                icon: icon-comments-o
+                icon: icon-bell-o
                 group: Programs
                 permissions:
                     - 'wwrf.transitioncenter.*'
             groups:
                 label: Groups
                 url: wwrf/transitioncenter/usersprograms
-                icon: icon-commenting-o
+                icon: icon-users
                 group: Programs
                 permissions:
                     - 'wwrf.transitioncenter.*'
