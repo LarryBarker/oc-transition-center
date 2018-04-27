@@ -101,13 +101,6 @@ navigation:
                 group: Programs
                 permissions:
                     - 'wwrf.transitioncenter.*'
-            groups:
-                label: Groups
-                url: wwrf/transitioncenter/usersprograms
-                icon: icon-users
-                group: Programs
-                permissions:
-                    - 'wwrf.transitioncenter.*'
             questionnaires:
                 label: Questionnaires
                 url: wwrf/transitioncenter/questionnaires
