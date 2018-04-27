@@ -1,8 +1,12 @@
 columns:
-    user_id:
-        label: Program
+    number:
+        label: Number
         relation: user
-        select: name
+        select: kdoc_number
+    user_id:
+        label: Name
+        relation: user
+        select: concat(name, ' ', surname)
     status:
         label: Status
         type: text

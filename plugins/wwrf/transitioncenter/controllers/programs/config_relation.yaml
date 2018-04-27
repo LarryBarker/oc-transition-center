@@ -1,5 +1,6 @@
 usersprograms:
     label: Participants
+    deferredBinding: true
     manage:
         form: $/wwrf/transitioncenter/models/userprogram/participant_fields.yaml
         list: $/wwrf/transitioncenter/models/userprogram/participant_columns.yaml
