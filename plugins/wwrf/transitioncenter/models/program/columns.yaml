@@ -2,12 +2,23 @@ columns:
     name:
         label: name
         type: text
-    created_at:
-        label: created_at
-        type: datetime
-    updated_at:
-        label: updated_at
-        type: datetime
-    deleted_at:
-        label: deleted_at
-        type: datetime
+    attending_count:
+        label: Attending
+        relation: attending_count
+        valueFrom: count
+        default: 0
+    completed_count:
+        label: Completed
+        relation: completed_count
+        valueFrom: count
+        default: 0
+    declined_count:
+        label: Declined
+        relation: declined_count
+        valueFrom: count
+        default: 0
+    na_count:
+        label: Not Attending
+        relation: na_count
+        valueFrom: count
+        default: 0

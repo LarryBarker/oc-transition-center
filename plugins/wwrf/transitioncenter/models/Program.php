@@ -28,6 +28,30 @@ class Program extends Model
         'usersprograms' => [
             'Wwrf\TransitionCenter\Models\UserProgram',
             'table' => 'wwrf_programtracker_users_programs'
+        ],
+        'attending_count' => [
+            'Wwrf\TransitionCenter\Models\UserProgram',
+            'table' => 'wwrf_programtracker_users_programs',
+            'conditions' => 'status = "attending"',
+            'count' => true
+        ],
+        'completed_count' => [
+            'Wwrf\TransitionCenter\Models\UserProgram',
+            'table' => 'wwrf_programtracker_users_programs',
+            'conditions' => 'status = "completed"',
+            'count' => true
+        ],
+        'declined_count' => [
+            'Wwrf\TransitionCenter\Models\UserProgram',
+            'table' => 'wwrf_programtracker_users_programs',
+            'conditions' => 'status = "declined"',
+            'count' => true
+        ],
+        'na_count' => [
+            'Wwrf\TransitionCenter\Models\UserProgram',
+            'table' => 'wwrf_programtracker_users_programs',
+            'conditions' => 'status = "na"',
+            'count' => true
         ]
     ];
 }
