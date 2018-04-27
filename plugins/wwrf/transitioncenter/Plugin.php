@@ -81,6 +81,14 @@ class Plugin extends PluginBase
             });
         });
 
+        UserModel::extend(function($model) {
+            $model->addDynamicMethod('scopeIsOffender', function($query) {
+                return $query->whereHas('groups', function($q){
+                    $q->where('id', '=', '2');
+                })->get();
+            });
+        });
+
         UserModel::extend(function($model){
 
             $model->hasMany['viewedJobs'] = [

@@ -31,7 +31,8 @@ class UserProgram extends Model
         ],
         'user' => [
             'RainLab\User\Models\User',
-            'key' => 'user_id'
+            'key' => 'user_id',
+            'scope' => 'isOffender'
         ]
     ];
 }
