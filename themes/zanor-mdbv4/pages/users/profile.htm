@@ -60,6 +60,32 @@ forceSecure = 0
                     </div>
 
                 </div>
+                {% if user.documents.count > 0 %}
+                <div class="white z-depth-1 mb-4">
+                	<div class="card-body">
+                		<i class="fa fa-file-o fa-2x float-left mr-3" aria-hidden="true"></i>
+                		<h4 class="card-title h4-responsive">Other Documents</h4>
+                		<div class="card-text small">
+                			<ul>
+								{% for document in user.documents %}
+									{% set ext = document.getFileName()|split('.')|last %}
+									{% if ext == 'pdf' %}
+										{% set icon = 'fa-file-pdf-o' %}
+									{% elseif ext == 'doc' or 'docx' %}
+										{% set icon = 'fa-file-word-o' %}
+									{% else %}
+										{% set icon = 'fa-file' %}
+									{% endif %}
+								<li>
+									<a href="{{ user.documents.first.getPath() }}" download="{{ user.documents.first.getFileName() }}" class="download-link">
+									{{ document.getFileName()|split('.')[0] }}</a> <i class="fa {{icon}}"></i> 
+								</li>
+								{% endfor %}	
+							</ul>
+                		</div>
+                	</div>
+                </div>
+                {% endif %}
             </div>
             <div class="col-md-7 col-lg-7 mx-auto float-none py-2 px-2">
                 {% if user.groups.first.name == 'Users' or user.groups.first.name =='Staff' %}
