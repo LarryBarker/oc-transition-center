@@ -357,6 +357,30 @@ class Plugin extends PluginBase
 
         });
 
+        PostModel::extend(function($model) {
+            $model->addFillable([
+                'is_featured'
+            ]);
+        });
+
+        PostsController::extendFormFields(function($form, $model, $context){
+            
+            if (!$model instanceof PostModel)
+                return;
+            
+            if (!$model->exists)
+                return;
+
+            $form->addSecondaryTabFields([
+                'is_featured' => [
+                    'tab' => 'rainlab.blog::lang.post.tab_manage',
+                    'label' => 'Featured post',
+                    'span' => 'auto',
+                    'type' => 'checkbox',
+                ]
+            ]);
+        });
+
     }
 
     public function registerListColumnTypes()
@@ -382,7 +406,8 @@ class Plugin extends PluginBase
 
         return [
             'Wwrf\TransitionCenter\Components\JobTracker' => 'JobTracker',
-            'Wwrf\TransitionCenter\Components\Questionnaire' => 'Questionnaire'
+            'Wwrf\TransitionCenter\Components\Questionnaire' => 'Questionnaire',
+            'Wwrf\TransitionCenter\Components\FeaturedUserPosts' => 'FeaturedUserPosts'
         ];
     }
 }

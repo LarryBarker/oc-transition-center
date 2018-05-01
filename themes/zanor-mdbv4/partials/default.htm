@@ -33,7 +33,7 @@
                             <div class="dark-grey-text pt-3 pl-4">
 
 								{% if user.groups.first.name == 'Users' %}
-									{% set featuredPost = featuredUserBlogPost.post %}
+									{% set featuredPost = FeaturedUserPosts.posts.first %}
 									<h2 class="h2-responsive card-title font-weight-bold pt-2"><strong>{{featuredPost.title}}</strong></h2>
 									<p class="d-none d-md-block">{{ str_limit(featuredPost.content|raw, '160', '...') }}</p>
 									<a href="{{ 'jobs/post'| page({slug:featuredPost.slug}) }}" class="btn unique-color btn-sm btn-rounded clearfix d-none d-md-inline-block waves-effect waves-light">Read more</a>

@@ -14,3 +14,6 @@
 1.0.6:
     - 'Created table wwrf_transitioncenter_temp_services'
     - builder_table_create_wwrf_transitioncenter_.php
+1.0.7:
+    - 'Add featured column to RainLab Blog posts table'
+    - update_rainlab_blog_posts_featured.php
