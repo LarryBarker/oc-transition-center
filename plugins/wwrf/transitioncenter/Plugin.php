@@ -159,7 +159,7 @@ class Plugin extends PluginBase
                     $page = 1;
                 }
                 
-                return $query->whereIsActivated(true)->orderBy('last_seen','desc')->paginate($perPage, $page);
+                return $query->whereIsActivated(true)->orderBy('created_at','desc')->orderBy('last_seen','desc')->orderBy('status','asc')->paginate($perPage, $page);
             });
         });
 

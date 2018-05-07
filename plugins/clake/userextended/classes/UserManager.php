@@ -56,7 +56,7 @@ class UserManager extends StaticFactory
         //$users = User::whereIsActivated(true)->get();
         $users = User::whereHas('groups', function($q){
             $q->where('id', '=', '2')->where('status','!=','unavailable');
-        })->orderBy('last_seen','desc')->paginate(10);
+        })->orderBy('status', 'asc')->paginate(10);
 
 		if(empty($users))
 		    return $users;

@@ -185,7 +185,7 @@ class UserUtil
             return $user->groups->first()->id == 2 && $user->status != 'unavailable';
         });
 
-        $filtered = $filtered->values()->sortByDesc('last_seen');
+        $filtered = $filtered->values()->sortByDesc('last_seen')->sortByDesc('created_at')->sortBy('status');
         
         return $filtered->all();
 

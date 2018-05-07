@@ -30,7 +30,7 @@
                         {% for industry in profile.industries %}
                             {{ industry.name }}{% if not loop.last %}<br />{% endif %}
                         {% endfor %}</p>
-                    <p class="card-meta">Last seen {% if profile.last_seen %}{{profile.last_seen|relative}}{% else %}Never{% endif %}</p>
+                    <p class="card-meta">{% if profile.last_seen %}Last seen {{profile.last_seen|relative}}{% else %}New arrival{% endif %}</p>
                     <hr>
                     <a class="card-meta"><span>
                         <a href="#" data-request-data="id: {{profile.id}}" data-request="ueuser::onVisitProfile" class="btn mdb-color btn-sm btn-block mb-2" alt="Preview"><i class="fa fa-eye mr-2"></i> Preview</a>
