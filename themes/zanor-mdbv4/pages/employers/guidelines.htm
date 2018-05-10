@@ -3,7 +3,7 @@ url = "/employers/guidelines"
 layout = "default"
 is_hidden = 0
 ==
-<div class="carousel" style="background-image: url('{{'assets/images/guidelines_header.jpg'|theme}}');">
+<div class="half-page-intro" style="background-image: url('{{'assets/images/guidelines_header.jpg'|theme}}');">
     <div class="mask flex-center rgba-blue-grey-light">
     </div>
     <!-- Mask & flexbox options -->
@@ -23,14 +23,17 @@ is_hidden = 0
 <div class="container free-bird mb-4">
     
     <div class="row">
-        <div class="col-10 col-sm-4 mx-auto white z-depth-1 mb-4 pt-4 pl-3">
-            <h3 class="h3-responsive">Contents</h3>
-            <ul class="fa-ul">
-                {% for section in this.theme.guidelines_page_sections %}
-                <li><i class="fa-li fa {{ section.icon|replace({'icon':'fa'}) }}"></i><a href="#{{loop.index}}">{{ section.title }}</a></li>
-                {% endfor %}
-            </ul>
-            <a href="{{this.theme.guidelines_page_file|media}}" class="btn btn-block btn-default">DOWNLOAD GUIDELINES <i class="fa fa-download ml-3"></i></a>
+        <div class="col-10 col-sm-4 mx-auto">
+            <div class="white z-depth-1 mb-4 pt-4 px-3">
+                    <h3 class="h3-responsive">Contents</h3>
+                    <ul class="fa-ul">
+                        {% for section in this.theme.guidelines_page_sections %}
+                        <li><i class="fa-li fa {{ section.icon|replace({'icon':'fa'}) }}"></i><a href="#{{loop.index}}">{{ section.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{{this.theme.guidelines_page_file|media}}" class="btn btn-block btn-default">DOWNLOAD GUIDELINES <i class="fa fa-download ml-3"></i></a>
+            </div>
+            
         </div>
         <div class="col-10 col-sm-7 mx-auto white z-depth-1 pt-4 pl-3">
             <h3 class="h3-responsive">{{this.page.title}}</h3>

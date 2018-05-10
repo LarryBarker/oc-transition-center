@@ -16,7 +16,7 @@
     height: 100%; } }
 
 /* Half Page header */
-.carousel {
+.half-page-intro {
   height: 50%; 
   background-image: url('../images/profile.jpg'); 
   background-repeat: no-repeat; 
@@ -32,7 +32,7 @@
 }
 /* Adjustment for mobile devices*/
 @media (max-width: 776px) {
-  .carousel, .register {
+  .half-page-intro, .register {
     height: 50%; } }
 
 /* Navbar animation */

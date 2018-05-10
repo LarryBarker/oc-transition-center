@@ -1,11 +1,12 @@
 title = "Temp Services"
 url = "/jobs/temp"
-layout = "default"
+layout = "restricted"
 is_hidden = 0
 
 [builderList]
 modelClass = "Wwrf\TransitionCenter\Models\TempService"
 scope = "-"
+scopeValue = "{{ :scope }}"
 displayColumn = "name"
 noRecordsMessage = "No records found"
 detailsPage = "-"

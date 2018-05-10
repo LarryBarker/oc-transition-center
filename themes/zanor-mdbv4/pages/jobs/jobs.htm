@@ -1,21 +1,21 @@
-title = "Jobs" 
-url = "/jobs/:page?" 
-layout = "default" 
-is_hidden = 0 
+title = "Jobs"
+url = "/jobs/:page?"
+layout = "restricted"
+is_hidden = 0
 
-[blogPosts] 
-pageNumber = "{{ :page }}" 
-categoryFilter = "{{ :industry }}" 
-postsPerPage = 10 
-noPostsMessage = "No posts found" 
-sortOrder = "published_at desc" 
+[blogPosts]
+pageNumber = "{{ :page }}"
+categoryFilter = "{{ :industry }}"
+postsPerPage = 10
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
 categoryPage = "jobs/industry"
-postPage = "jobs/post" 
+postPage = "jobs/post"
 
-[blogCategories] 
-slug = "{{ :slug }}" 
-displayEmpty = 0 
-categoryPage = "jobs/industry" 
+[blogCategories]
+slug = "{{ :slug }}"
+displayEmpty = 0
+categoryPage = "jobs/industry"
 
 [JobTracker]
 jobPage = "jobs/post"
@@ -38,7 +38,7 @@ category[] = 22
 category[] = 23
 backUser = 1
 formPage = "jobs/new"
-== 
+==
 {% if user.groups.first.name == 'Employers' %}
 <!-- Jobs page -->
 <div class="container">

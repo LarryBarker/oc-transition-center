@@ -1,7 +1,6 @@
-
 title = "Wichita Parolee Housing Map"
 url = "/resources/housing/map"
-layout = "default"
+layout = "restricted"
 is_hidden = 0
 ==
 {% if user.groups.first.name == 'Users' or user.groups.first.name == 'Staff' %}
@@ -38,4 +37,3 @@ is_hidden = 0
     </div>
 </div>
 {% endif %}
-

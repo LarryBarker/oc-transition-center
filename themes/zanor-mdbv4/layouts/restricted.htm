@@ -1,0 +1,45 @@
+description = "Restricted page layout"
+
+[session]
+security = "user"
+redirect = "default"
+
+[googleTracker]
+
+[RainLab\User\Components\Account account]
+redirect = "default"
+paramCode = "code"
+forceSecure = 0
+
+[contactForm]
+injectBootstrapAssets = 0
+injectMainScript = 0
+
+[searchInput]
+useAutoComplete = 1
+autoCompleteResultCount = 5
+showProviderBadge = 1
+searchPage = "jobs/search.htm"
+
+[newsSubscribe]
+
+[newsUnsubscribe]
+==
+<?php
+use RainLab\User\Models\User;
+use Indikator\News\Models\Subscribers;
+
+function onStart() {
+    if($this->account->user()){
+        $this['user_email'] = $this->account->user()->email;
+
+        $this['subscriber'] = Subscribers::where('email', '=', $this['user_email'])->first();
+    }
+}
+?>
+==
+{% partial 'site/head' %}
+
+{% page %}
+
+{% partial 'site/footer' %}

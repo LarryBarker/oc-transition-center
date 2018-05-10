@@ -1,6 +1,6 @@
 title = "Account Settings"
 url = "/account/:code?"
-layout = "default"
+layout = "restricted"
 description = "Sign in, registration and account management."
 is_hidden = 0
 
@@ -13,7 +13,8 @@ forceSecure = 0
 
 [newsUnsubscribe]
 ==
-<div class="carousel" style="background-image: url('{{'assets/images/account_header.jpg'|theme}}');">
+{% if user and user.groups.first.name == 'Employers' or user.groups.first.name == 'Staff' %}
+<div class="half-page-intro" style="background-image: url('{{'assets/images/account_header.jpg'|theme}}');">
     <div class="mask flex-center rgba-blue-grey-light">
     </div>
     <!-- Mask & flexbox options -->
@@ -30,7 +31,7 @@ forceSecure = 0
             <h3 class="h3-responsive">
                 Account Settings
             </h3>
-            {% if user and user.groups.first.name == 'Employers' or user.groups.first.name == 'Staff' %}
+            {% if user %}
                 <h2 class="form-signin-heading">{{user.name}} {{user.surname}}</h2>
                 {% partial account ~ '::update' %}
             {% elseif not user %}
@@ -43,8 +44,8 @@ forceSecure = 0
                 <p class="lead">Please click <strong><a href="{{ 'register'|page }}">here</a></strong> to request an account.</p>
             {% endif %}
         </div>
-        <div class="col-10 col-sm-4 mx-auto py-4 px-5 white z-depth-1">
-            <div class="">
+        <div class="col-10 col-sm-4 mx-auto">
+            <div class=" py-4 px-5 white z-depth-1">
                 <h3 class="h3-responsive"><i class="fa fa-newspaper-o"></i> Newsletter Settings</h3>
                 <div id="newsletter">
                     {% if subscriber and subscriber.status == 1 %}
@@ -58,3 +59,12 @@ forceSecure = 0
     </div>
 
 </div>
+{% else %}
+<div class="container mt-5">
+    <div class="row mt-5">
+        <div class="col-10 mx-auto alert alert-danger mt-5">
+            <i class="fa fa-warning"></i>You are not authorized to view this page.
+        </div>
+    </div>
+</div>
+{% endif %}

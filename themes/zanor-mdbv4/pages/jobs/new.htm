@@ -1,6 +1,6 @@
 title = "Post New Employer Job"
 url = "/jobs/new/:slug?"
-layout = "default"
+layout = "restricted"
 is_hidden = 0
 
 [PostForm]
@@ -21,6 +21,7 @@ category[] = 22
 category[] = 23
 backUser = 1
 allowpublish = 1
+allow_images = 1
 slug = "{{ :slug }}"
 listPage = "jobs/jobs"
 postPage = "jobs/post"
