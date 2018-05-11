@@ -1,5 +1,8 @@
 <?php
-    $start_date = $record->jobs->first()['start_date'];
+    $start_date = $record->jobs->sortBy('start_date')->last()['start_date'];
 
-    echo $start_date;
+    $date = date_create($start_date);
+
+    echo date_format($date, 'M d, Y');
+
 ?>

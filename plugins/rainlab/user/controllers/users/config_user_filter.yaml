@@ -18,6 +18,11 @@ scopes:
         type: daterange
         conditions: created_at >= ':after' AND created_at <= ':before'
 
+    release_date:
+        label: Releases
+        type: daterange
+        conditions: release_date >= ':after' AND release_date <= ':before'
+
     employment_date:
         label: Employment
         modelClass: Wwrf\TransitionCenter\Models\Job

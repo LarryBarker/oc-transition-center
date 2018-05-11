@@ -5,7 +5,7 @@
 columns:
 
     kdoc_number:
-        label: Number
+        label: '#'
         searchable: true
 
     name:
@@ -15,20 +15,16 @@ columns:
 
     created_at:
         label: rainlab.user::lang.user.created_at
-        type: timetense
+        type: dateformat
 
     arrival_date:
         label: Arrival Date
+        type: dateformat
         invisible: true
 
     eligible_date:
         label: Eligible
-
-    start_date:
-        label: Start Date
-        type: partial
-        path: ~/plugins/wwrf/profile/models/UserExport/_start_date.htm
-        sortable: false
+        type: dateformat
 
     lead_time:
         label: Lead Time
@@ -39,19 +35,31 @@ columns:
     start_wage:
         label: Start Wage
         type: partial
-        path: ~/plugins/wwrf/profile/models/UserExport/_wage.htm
+        path: ~/plugins/wwrf/profile/models/UserExport/_start_wage.htm
         sortable: false
 
     job_title:
-        label: Title
+        label: Current Position
         type: partial
         path: ~/plugins/wwrf/profile/models/UserExport/_title.htm
         sortable: false
     
     company:
-        label: Company
+        label: at Company
         type: partial
         path: ~/plugins/wwrf/profile/models/UserExport/_company.htm
+        sortable: false
+
+    start_date:
+        label: Started
+        type: partial
+        path: ~/plugins/wwrf/profile/models/UserExport/_start_date.htm
+        sortable: false
+
+    wage:
+        label: Current Wage
+        type: partial
+        path: ~/plugins/wwrf/profile/models/UserExport/_wage.htm
         sortable: false
     
     industries:

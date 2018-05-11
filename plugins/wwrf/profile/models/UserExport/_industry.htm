@@ -1,5 +1,5 @@
 <?php
-    if ($industry = $record->jobs->first()['company']['industry']['name']) {
+    if ($industry = $record->jobs->sortBy('start_date')->last()['company']['industry']['name']) {
         echo $industry;
     }
 ?>

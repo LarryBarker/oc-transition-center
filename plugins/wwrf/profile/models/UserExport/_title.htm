@@ -1,6 +1,6 @@
 <?php
 
-    $job_title = $record->jobs->first()['title'];
+    $job_title = $record->jobs->sortBy('start_date')->last()['title'];
 
     echo $job_title;
     

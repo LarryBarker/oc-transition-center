@@ -10,7 +10,7 @@
             data-trigger-condition="checked"
             data-request-success="$(this).prop('disabled', true).next().prop('disabled', true)"
             data-stripe-load-indicator>
-            <?= e(trans('rainlab.user::lang.users.deactivate_selected')) ?>
+            Release selected user(s)
         </button>
         <button
             type="button"
@@ -21,10 +21,10 @@
             data-toggle="dropdown">
             <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu" data-dropdown-title="<?= e(trans('rainlab.user::lang.users.deactivate_selected')) ?>">
+        <ul class="dropdown-menu" data-dropdown-title="Release selected user(s)">
             <li>
-                <a href="javascript:;" class="oc-icon-user-times" data-action="deactivate" data-confirm="<?= e(trans('rainlab.user::lang.users.deactivate_selected_confirm')) ?>">
-                    <?= e(trans('rainlab.user::lang.users.deactivate_selected')) ?>
+                <a href="javascript:;" class="oc-icon-sign-out" data-action="deactivate" data-confirm="<?= e(trans('rainlab.user::lang.users.deactivate_selected_confirm')) ?>">
+                    Release selected user(s)
                 </a>
             </li>
             <li role="separator" class="divider"></li>

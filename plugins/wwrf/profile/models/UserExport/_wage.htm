@@ -1,6 +1,6 @@
 <?php
 
-    $start_wage = $record->jobs->first()['start_wage'];
+    $start_wage = $record->jobs->sortBy('start_date')->last()['start_wage'];
 
     echo $start_wage;
     

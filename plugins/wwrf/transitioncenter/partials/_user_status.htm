@@ -1,5 +1,6 @@
 <?php
 
+
 if ($record->status == 'available') {
     $class = 'text-success';
 } elseif ($record->status == 'employed') {
@@ -8,4 +9,4 @@ if ($record->status == 'available') {
     $class = 'text-danger';
 }
 
-echo '<span class="oc-icon-circle '.$class.'">'.$record->status.'</span>';
+echo '<span class="oc-icon-circle '.$class.'">'.ucwords($record->status).'</span>';

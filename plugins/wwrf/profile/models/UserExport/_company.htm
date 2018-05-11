@@ -1,5 +1,5 @@
 <?php
-    $company_name = $record->jobs->first()['company']['name'];
+    $company_name = $record->jobs->sortBy('start_date')->last()['company']['name'];
 
     echo $company_name;
 ?>

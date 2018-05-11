@@ -1,7 +1,7 @@
 <?php
 if($record->jobs->count() > 0)
 {
-    $start_date = new DateTime($record->jobs->first()['start_date']);
+    $start_date = new DateTime($record->jobs->sortBy('start_date')->first()['start_date']);
 
     $eligible_date = new DateTime($record->eligible_date);
 

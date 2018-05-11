@@ -314,6 +314,16 @@ class Plugin extends PluginBase
 
     }
 
+    public function registerListColumnTypes()
+    {
+      return [
+        'dateformat' => function($value) {
+                        $date = date_create($value); 
+                        return date_format($date, 'M d, Y');
+                    }
+        ];
+    }
+
     public function listInjectRowClass($record)
     {
         // return the css class
