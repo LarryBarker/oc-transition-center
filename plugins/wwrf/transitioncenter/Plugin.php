@@ -165,9 +165,9 @@ class Plugin extends PluginBase
 
         UsersController::extend(function($controller){         
             // Implement behavior if not already implemented
-            /*if (!$controller->isClassExtendedWith('Backend.Behaviors.RelationController')) {
+            if (!$controller->isClassExtendedWith('Backend.Behaviors.RelationController')) {
                 $controller->implement[] = 'Backend.Behaviors.RelationController';
-            }*/
+            }
 
             // Define property if not already defined
             if (!isset($controller->relationConfig)) {
