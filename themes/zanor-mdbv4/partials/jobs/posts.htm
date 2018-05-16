@@ -10,7 +10,16 @@
             <a href="{{post.url}}" {% if user.groups.first.name=='Users' %} data-request="onViewJob" data-request-data="job_id: {{post.id}}"
                 {%endif%}>{{ post.title }}</a>
         </strong>
+
+        <span class="h5 float-md-right">
+            {% if not post.isFavorited() %}
+                <a data-request="onFavoriteJob" data-request-data="job_id: {{post.id}}" class="grey-text favorite"><i class="fa fa-star-o"></i> Favorite</a>
+            {% else %}
+                <a data-request="onToggleFavorite" data-request-data="job_id: {{post.id}}" data-request-refresh><i class="fa fa-star orange-text"></i> Favorite</a>
+            {% endif %}
+        </span>
     </h2>
+    
     <h4 class="h4-responsive">{{post.company}}</h4>
     <p class="small">Posted on
         <i class="icon icon-clock-o"></i> {{ post.published_at|date('M d, Y') }} by

@@ -104,4 +104,32 @@ class JobTracker extends ComponentBase
             //return Redirect::intended($url);
         }
     }
+
+    public function onFavoriteJob($job_id = null) {
+
+        $user = Auth::getUser();
+
+        if(!isset($job_id))
+            $job_id = post('job_id');
+        
+        $job = Job::where('id', '=', $job_id)->first();
+
+        $job->addFavorite($user);
+
+        return;
+    }
+
+    public function onToggleFavorite($job_id = null) {
+
+        $user = Auth::getUser();
+
+        if(!isset($job_id))
+            $job_id = post('job_id');
+        
+        $job = Job::where('id', '=', $job_id)->first();
+
+        $job->toggleFavorite($user);
+
+        return;
+    }
 }

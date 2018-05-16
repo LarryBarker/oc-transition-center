@@ -22,7 +22,10 @@ class Post extends Model
     use \October\Rain\Database\Traits\Validation;
 
     public $table = 'rainlab_blog_posts';
-    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
+    public $implement = [
+        '@RainLab.Translate.Behaviors.TranslatableModel',
+        'Alxy.Favorites.Behaviors.Favoriteable'
+    ];
 
     /*
      * Validation

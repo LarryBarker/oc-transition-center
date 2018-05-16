@@ -223,3 +223,30 @@ section .contact {
   -webkit-text-fill-color: transparent;
 }
 
+.favorite:hover > i{
+  color: orange;
+}
+
+@media print {
+
+  nav {
+    display: none;
+  }
+
+  footer {
+    display: none; 
+  }
+
+  form {
+    display: none;
+  }
+
+  .free-bird {
+    margin-top: 100px;
+  }
+
+  @page {
+    margin: 0.5cm;
+  }
+
+}

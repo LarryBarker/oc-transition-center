@@ -15,7 +15,7 @@ paramCode = "code"
 forceSecure = 0
 ==
 {% set appliedJobs = ueuser.user.appliedJobs %}
-<div class="half-page-intro">
+<div class="half-page-intro d-print-none">
     <div class="mask flex-center rgba-blue-grey-light">
     </div>
     <!-- Mask & flexbox options -->
@@ -61,7 +61,7 @@ forceSecure = 0
 
                 </div>
                 {% if user.documents.count > 0 %}
-                <div class="white z-depth-1 mb-4">
+                <div class="white z-depth-1 mb-4 d-print-none">
                 	<div class="card-body">
                 		<i class="fa fa-file-o fa-2x float-left mr-3" aria-hidden="true"></i>
                 		<h4 class="card-title h4-responsive">Other Documents</h4>
@@ -94,7 +94,7 @@ forceSecure = 0
                         <a class="nav-link active" data-toggle="tab" href="#profile" role="tab">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#jobs" role="tab">Jobs</a>
+                        <a class="nav-link" data-toggle="tab" href="#jobs" role="tab">History</a>
                     </li>
                 </ul>
                 {% endif %}
@@ -125,25 +125,24 @@ forceSecure = 0
                             <!--Panel 2-->
                             <div class="tab-pane fade" id="jobs" role="tabpanel">
 
-                                <h2 class="h2-responsive"><strong>Job</strong> activity</h2>
                                 <table class="table-sm table-responsive table-striped table-hover w-auto">
                                     <thead class="blue-grey lighten-4">
                                         <tr>
-                                        <th scope="col">Position</th>
-                                        <th scope="col">Company Name</th>
-                                        <th scope="col">Address</th>
-                                        <th scope="col">Phone</th>
-                                        <th scope="col">Date Viewed</th>
-                                        <th scope="col">Applied on</th>
+                                        <th scope="col">Job</th>
+                                        <th scope="col">Viewed</th>
+                                        <th scope="col">Applied</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {% for viewedJob in ueuser.user.viewedJobs %}
                                         <tr>
-                                        <td><a href="{{'jobs/post'|page({ slug: viewedJob.job.slug})}}">{{ viewedJob.job.title }}</a></td>
-                                        <td>{{ viewedJob.job.company }}</td>
-                                        <td>{{ viewedJob.job.address }}</td>
-                                        <td>{{ viewedJob.job.phone }}</td>
+                                        <td>
+                                            {% if viewedJob.job.isFavorited() %}    <i class="fa fa-star orange-text"></i>
+                                            {%endif%}
+                                            <a href="{{'jobs/post'|page({ slug: viewedJob.job.slug})}}">{{ viewedJob.job.title }}</a><br />
+                                            {{ viewedJob.job.company }}<br />
+                                            {{ viewedJob.job.address }}<br />
+                                            {{ viewedJob.job.phone }}</td>
                                         <td>{{ viewedJob.created_at|date('m/d/y') }}</td>
                                         <td>{% for appliedJob in appliedJobs %}
                                                 {% if appliedJob.job_id == viewedJob.job_id %}
