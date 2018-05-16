@@ -1,15 +1,19 @@
 <?php
 
-    $user_id = $record->user->id;
+    use RainLab\User\Models\User;
 
-    $job_id = $record->job_id;
+    $recordUserId = $record->user_id;
 
-    $user = $record->user;
+    $recordUser = User::where('id', '=', $recordUserId)->withTrashed()->first();
 
-    $appliedJobs = $user->appliedJobs;
+    $userId = $recordUser->id;
+
+    $appliedJobs = $recordUser->appliedJobs;
+
+    $viewedJobId = $record->job_id;
 
     foreach($appliedJobs as $appliedJob)
-        if($appliedJob->job_id == $job_id)
+        if($appliedJob->job_id == $viewedJobId)
             echo $appliedJob->created_at->format('M d, Y');
     
 ?>
