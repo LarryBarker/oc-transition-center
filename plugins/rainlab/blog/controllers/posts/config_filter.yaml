@@ -41,3 +41,8 @@ scopes:
 
         # SQL Conditions
         conditions: created_at >= ':after' AND created_at <= ':before'
+
+    is_featured:
+        label: Featured
+        type: checkbox
+        scope: isFeatured

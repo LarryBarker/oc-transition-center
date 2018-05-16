@@ -361,9 +361,13 @@ class Plugin extends PluginBase
             $model->addFillable([
                 'is_featured'
             ]);
+
+            $model->addDynamicMethod('scopeIsFeatured', function($query) {
+                return $query->where('is_featured', 1)->get();
+            });
         });
 
-        PostsController::extendFormFields(function($form, $model, $context){
+        /*PostsController::extendFormFields(function($form, $model, $context){
             
             if (!$model instanceof PostModel)
                 return;
@@ -379,7 +383,7 @@ class Plugin extends PluginBase
                     'type' => 'checkbox',
                 ]
             ]);
-        });
+        });*/
 
     }
 

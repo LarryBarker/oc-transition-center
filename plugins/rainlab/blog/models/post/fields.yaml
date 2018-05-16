@@ -72,6 +72,13 @@ secondaryTabs:
             span: left
             type: checkbox
 
+        is_featured:
+            tab: rainlab.blog::lang.post.tab_manage
+            label: Featured post
+            comment: 'Feature up to 3 posts on user homepage'
+            span: right
+            type: checkbox
+
         published_at:
             tab: rainlab.blog::lang.post.tab_manage
             label: rainlab.blog::lang.post.published_on
