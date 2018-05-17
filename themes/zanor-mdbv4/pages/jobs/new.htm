@@ -21,6 +21,7 @@ category[] = 22
 category[] = 23
 backUser = 1
 allowpublish = 1
+non_std_fields = "address,phone"
 allow_images = 1
 slug = "{{ :slug }}"
 listPage = "jobs/jobs"
@@ -55,10 +56,24 @@ postPage = "jobs/post"
                                 <div id="ajaxResponse">
                                 </div>
 
-                                <div class="form-group"><br>
+                                <div class="form-group">
+
                                     <label for="Form-field-blog-title">{{ PostForm.blogtrans('post.title') }}</label>
                                     <input type="text" name="title" id="Form-field-blog-title" value="{{ PostForm.post.title }}" placeholder="{{ PostForm.blogtrans('post.title_placeholder') }}" class="form-control" maxlength="255">
+                                    
                                 </div>
+
+                                <div class="row form-group">
+                                    <div class="col-6">
+                                        <label for="address">Address</label>
+                                        <input type="text" name="address" id="address" value="{{ PostForm.post.address }}" placeholder="" class="form-control" maxlength="255">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="phone">Phone</label>
+                                        <input type="text" name="phone" id="phone" value="{{ PostForm.post.phone }}" placeholder="(316) 555-1212" class="form-control" maxlength="255">
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="Form-field-blog-content">{{ PostForm.blogtrans('post.content') }}</label>
                                     <textarea name="content" id="Form-field-blog-content" class="form-control ckeditor">{{ PostForm.post.content }}</textarea>

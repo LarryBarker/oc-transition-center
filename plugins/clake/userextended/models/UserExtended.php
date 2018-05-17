@@ -77,6 +77,14 @@ class UserExtended extends User
         ];
         $this->hasOne = $hasOne;
 
+        $hasOne = $this->hasOne;
+        $hasOne['survey'] = [
+            'Wwrf\TransitionCenter\Models\Questionnaire', 
+            'table' => 'wwrf_surveys_questions', 
+            'key' => 'user_id',
+        ];
+        $this->hasOne = $hasOne;
+
         $json = $this->jsonable;
         array_push($json, 'settings');
         $this->jsonable = $json;

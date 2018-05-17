@@ -254,6 +254,20 @@ class User extends ComponentBase
         return $user->avatar;
     }
 
+    /*
+     * Retrieve additional user documents
+     * 
+     */
+    public function userDocuments() {
+
+        $userid = $this->property('paramCode');
+
+         if(!$user = UserUtil::getRainlabUser($userid))
+            return;
+
+        return $user->documents;
+    }
+
     /**
      * Returns whether or not the user is our friend and thus
      * whether or not the page should be partially restricted

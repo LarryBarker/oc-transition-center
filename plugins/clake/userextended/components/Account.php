@@ -293,6 +293,15 @@ class Account extends ComponentBase
     }
 
     /**
+     * Returns the user's documents model relation
+     * @return mixed
+     */
+    public function userDocuments()
+    {
+        return UserUtil::getRainlabUser($this->user()->id)->documents;
+    }
+
+    /**
      * AJAX handler for updating a users avatar
      */
     public function onChangeAvatar()

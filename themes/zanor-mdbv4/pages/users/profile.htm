@@ -34,6 +34,14 @@ forceSecure = 0
                     <h3>{{ ueuser.user.profile_headline }}</h3>
                     <h4 class="h4-responsive"><a href="mailto:{{ ueuser.user.email }}">{{ ueuser.user.email }}</a></h4>
                     <h4 class="h4-responsive"><a href="tel:{{ ueuser.user.profile_phone }}">{{ ueuser.user.profile_phone }}</a></h4>
+                    <h6 class="h6-responsive my-2 py-2">
+                        {% if ueuser.user.survey.valid_dl == 1 %}
+                        <i class="fa fa-id-card-o mr-3"></i> Valid DL
+                        {% endif %}
+                        {% if ueuser.user.survey.has_pov == 1 %}
+                        <br /><i class="fa fa-car mr-3"></i> Private vehicle
+                        {% endif %}
+                    </h6>
                     <p class="small">Last online {{ ueuser.user.last_seen|relative }}</p>
                     {% if ueuser.userAvatar and user.groups.first.name == 'Staff' or user.groups.first.name == 'Employers' %}
         
@@ -60,14 +68,15 @@ forceSecure = 0
                     </div>
 
                 </div>
-                {% if user.documents.count > 0 %}
+
+                {% if ueuser.userDocuments.count > 0 %}
                 <div class="white z-depth-1 mb-4 d-print-none">
                 	<div class="card-body">
                 		<i class="fa fa-file-o fa-2x float-left mr-3" aria-hidden="true"></i>
                 		<h4 class="card-title h4-responsive">Other Documents</h4>
                 		<div class="card-text small">
                 			<ul>
-								{% for document in user.documents %}
+								{% for document in ueuser.userDocuments %}
 									{% set ext = document.getFileName()|split('.')|last %}
 									{% if ext == 'pdf' %}
 										{% set icon = 'fa-file-pdf-o' %}
@@ -77,7 +86,7 @@ forceSecure = 0
 										{% set icon = 'fa-file' %}
 									{% endif %}
 								<li>
-									<a href="{{ user.documents.first.getPath() }}" download="{{ user.documents.first.getFileName() }}" class="download-link">
+									<a href="{{ ueuser.userDocuments.first.getPath() }}" download="{{ ueuser.userDocuments.first.getFileName() }}" class="download-link">
 									{{ document.getFileName()|split('.')[0] }}</a> <i class="fa {{icon}}"></i> 
 								</li>
 								{% endfor %}	
@@ -86,6 +95,7 @@ forceSecure = 0
                 	</div>
                 </div>
                 {% endif %}
+
             </div>
             <div class="col-md-7 col-lg-7 mx-auto float-none py-2 px-2">
                 {% if user.groups.first.name == 'Users' or user.groups.first.name =='Staff' %}
@@ -105,7 +115,7 @@ forceSecure = 0
                         <h4 class="h4-responsive"><i class="fa fa-building-o mr-3"></i>Current Employer</h4>
                         <h5 class="h5-responsive">{{ ueuser.user.jobs.last.title }}</h5>
                         <h5 class="h5-responsive">{{ ueuser.user.jobs.last.company.name }}</h5>
-                        <h5 class="h5-responsive">{{ ueuser.user.jobs.last.start_date }}</h5>
+                        <h5 class="h5-responsive">{{ ueuser.user.jobs.last.start_date|date('M d, Y') }}</h5>
                         
                     </div>
                 </div>
@@ -116,7 +126,7 @@ forceSecure = 0
                             
                             <!--Panel 1-->
                             <div class="tab-pane fade in show active" id="profile" role="tabpanel">
-                                <h4 class="h4-responsive"><i class="fa fa-clone mr-3"></i>Profile</h4>
+
                                 {{ ueuser.user.profile_summary|raw }}
 
                             </div>
@@ -125,7 +135,7 @@ forceSecure = 0
                             <!--Panel 2-->
                             <div class="tab-pane fade" id="jobs" role="tabpanel">
 
-                                <table class="table-sm table-responsive table-striped table-hover w-auto">
+                                <table class="table-sm table-responsive table-striped table-hover w-100">
                                     <thead class="blue-grey lighten-4">
                                         <tr>
                                         <th scope="col">Job</th>

@@ -37,6 +37,7 @@ class Questionnaire extends Model
         'continue_education',
         'has_pov',
         'user_id',
+        'valid_dl'
     ];
     public $belongsTo =[
         'user' => 'RainLab\User\Models\User',
