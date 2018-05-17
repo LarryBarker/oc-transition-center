@@ -26,6 +26,8 @@ return [
 		'listpage_description' => 'Page containing Blog List component.',
 		'formpage_title' => 'Form Page',
 		'formpage_description' => 'Page containing Blog Form component.',
+		'non_std_fields_title' => 'Non-standard Fields',
+		'non_std_fields_description' => 'Comma seperated list of field names to save that do not come standard with Rainlab-Blog.',
 		'opt_no' => 'No',
 		'opt_yes' => 'Yes',
 		'btn_add' => 'Add Post',

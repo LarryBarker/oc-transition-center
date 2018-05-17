@@ -114,6 +114,7 @@ class Plugin extends PluginBase
         return [
             'Indikator\News\Components\Posts'       => 'newsPosts',
             'Indikator\News\Components\Post'        => 'newsPost',
+            'Indikator\News\Components\Categories'  => 'newsCategories',
             'Indikator\News\Components\Subscribe'   => 'newsSubscribe',
             'Indikator\News\Components\Unsubscribe' => 'newsUnsubscribe'
         ];

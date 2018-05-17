@@ -132,6 +132,12 @@ trait Loaders {
 							1 => 'fireunion.blogfront::lang.general.opt_yes',
 						],
 					],
+					'non_std_fields' => [
+						'title' => 'fireunion.blogfront::lang.general.non_std_fields_title',
+						'description' => 'fireunion.blogfront::lang.general.non_std_fields_description',
+						'type' => 'text',
+						'default' => '',
+					],
 				]);
 		}
 
@@ -359,6 +365,8 @@ trait Loaders {
 				$this->post->published_at ?: date('Y-m-d H:i:s'))
 			: $this->post->published_at;
 		}
+		// Check for other fields that may need saving
+		$this->updateNonStdFields();
 
 		$id = $this->post->save();
 
@@ -383,6 +391,22 @@ trait Loaders {
 			$this->notifyGroups($groups, $this->post, $this->postPage);
 		}
 		return $id;
+	}
+
+	/**
+	 * Allow custom fields to be saved from custom form partials
+	 * This is used where someone has extended Post model with their own fields
+	 * @return null
+	 */
+	protected function updateNonStdFields() {
+		$non_std_fields = $this->property('non_std_fields');
+		if ($non_std_fields) {
+			foreach (explode(',', $non_std_fields) as $field) {
+				if (post($field)) {
+					$this->post->$field = post($field);
+				}
+			}
+		}
 	}
 
 	/**

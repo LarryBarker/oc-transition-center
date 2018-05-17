@@ -4,6 +4,7 @@ use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
 use Lang;
 use Indikator\News\Models\Posts as NewsPost;
+use Indikator\News\Models\Categories as NewsCategory;
 use Redirect;
 
 class Posts extends ComponentBase
@@ -15,6 +16,10 @@ class Posts extends ComponentBase
     public $postPage;
 
     public $sortOrder;
+
+    public $category;
+
+    public $searchFilter;
 
     public function componentDetails()
     {
@@ -56,17 +61,12 @@ class Posts extends ComponentBase
                     'title asc'         => Lang::get('indikator.news::lang.sorting.title_asc'),
                     'title desc'        => Lang::get('indikator.news::lang.sorting.title_desc'),
                     'created_at asc'    => Lang::get('indikator.news::lang.sorting.created_at_asc'),
-                    'created_at desc  ' => Lang::get('indikator.news::lang.sorting.created_at_desc'),
+                    'created_at desc'   => Lang::get('indikator.news::lang.sorting.created_at_desc'),
                     'updated_at asc'    => Lang::get('indikator.news::lang.sorting.updated_at_asc'),
                     'updated_at desc'   => Lang::get('indikator.news::lang.sorting.updated_at_desc'),
                     'published_at asc'  => Lang::get('indikator.news::lang.sorting.published_at_asc'),
                     'published_at desc' => Lang::get('indikator.news::lang.sorting.published_at_desc')
                 ]
-            ],
-            'postPage' => [
-                'title'       => 'indikator.news::lang.settings.post_title',
-                'description' => 'indikator.news::lang.settings.post_description',
-                'default'     => 'news'
             ],
             'postFeatured' => [
                 'title'       => 'indikator.news::lang.settings.featured_title',
@@ -85,7 +85,32 @@ class Posts extends ComponentBase
                 'default'     => false,
                 'type'        => 'checkbox'
             ],
+            'categoryFilter' => [
+                'title'       => 'indikator.news::lang.settings.category_filter_title',
+                'description' => 'indikator.news::lang.settings.category_filter_description',
+                'type'        => 'string',
+                'default'     => ''
+            ],
+            'postPage' => [
+                'title'       => 'indikator.news::lang.settings.post_title',
+                'description' => 'indikator.news::lang.settings.post_description',
+                'type'        => 'dropdown',
+                'default'     => 'news/post',
+                'group'       => 'indikator.news::lang.settings.links'
+            ],
+            'categoryPage' => [
+                'title'       => 'indikator.news::lang.settings.category_page_title',
+                'description' => 'indikator.news::lang.settings.category_page_description',
+                'type'        => 'dropdown',
+                'default'     => '',
+                'group'       => 'indikator.news::lang.settings.links'
+            ]
         ];
+    }
+
+    public function getCategoryPageOptions()
+    {
+        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
     public function getPostPageOptions()
@@ -95,9 +120,10 @@ class Posts extends ComponentBase
 
     public function onRun()
     {
-        $this->page['postPage'] = $this->property('postPage');
-        $this->page['noPostsMessage'] = $this->property('noPostsMessage');
+        $this->prepareVars();
 
+        $this->category = $this->page['category'] = $this->loadCategory();
+        $this->page['currentCategorySlug'] = $this->category ? $this->category->slug : null;
         $this->posts = $this->page['posts'] = $this->listPosts();
 
         if ($pageNumberParam = $this->paramName('pageNumber')) {
@@ -109,15 +135,54 @@ class Posts extends ComponentBase
         }
     }
 
+    protected function prepareVars()
+    {
+        $this->pageParam = $this->page['pageParam'] = $this->paramName('pageNumber');
+        $this->noPostsMessage = $this->page['noPostsMessage'] = $this->property('noPostsMessage');
+        $this->searchFilter = $this->page['searchFilter'] = trim(input('search'));
+        /*
+         * Page links
+         */
+        $this->postPage = $this->page['postPage'] = $this->property('postPage');
+        $this->categoryPage = $this->page['categoryPage'] = $this->property('categoryPage');
+    }
+
     protected function listPosts()
     {
-        return NewsPost::listFrontEnd([
+        $category = $this->category ? $this->category->id : null;
+
+        $posts =  NewsPost::listFrontEnd([
             'page'     => $this->property('pageNumber'),
             'sort'     => $this->property('sortOrder'),
             'perPage'  => $this->property('postsPerPage'),
             'featured' => $this->property('postFeatured'),
-            'search'   => trim(input('search')),
-            'isTrans'  => $this->property('postTranslated')
+            'search'   => $this->searchFilter,
+            'isTrans'  => $this->property('postTranslated'),
+            'category' => $category
         ]);
+
+        $posts->each(function($post) {
+            $post->setUrl($this->postPage, $this->controller);
+            $post->category->each(function($category) {
+                $category->setUrl($this->categoryPage, $this->controller);
+            });
+        });
+
+        return $posts;
+    }
+
+    protected function loadCategory()
+    {
+        if (!$slug = $this->property('categoryFilter')) {
+            return null;
+        }
+
+        $category = new NewsCategory;
+        $category = $category->isClassExtendedWith('RainLab.Translate.Behaviors.TranslatableModel')
+            ? $category->transWhere('slug', $slug)
+            : $category->where('slug', $slug);
+        $category = $category->first();
+
+        return $category ?: null;
     }
 }

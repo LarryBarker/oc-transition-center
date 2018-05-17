@@ -21,3 +21,5 @@
     - Fixes notifications mail errors in pre 420 installs.
 1.1.4:
     - Fixes Database error with PostgreSQL 9.6.5. Thank you "silverxanga"
+1.1.5:
+    - Adds custom fields to be saved from custom form partials where someone has extended Post model with their own fields
