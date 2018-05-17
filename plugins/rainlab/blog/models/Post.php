@@ -23,8 +23,7 @@ class Post extends Model
 
     public $table = 'rainlab_blog_posts';
     public $implement = [
-        '@RainLab.Translate.Behaviors.TranslatableModel',
-        'Alxy.Favorites.Behaviors.Favoriteable'
+        '@RainLab.Translate.Behaviors.TranslatableModel'
     ];
 
     /*
