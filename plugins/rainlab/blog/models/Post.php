@@ -33,6 +33,8 @@ class Post extends Model
         'title' => 'required',
         'slug' => ['required', 'regex:/^[a-z0-9\/\:_\-\*\[\]\+\?\|]*$/i', 'unique:rainlab_blog_posts'],
         'content' => 'required',
+        'phone' => ['regex:/^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$/i'],
+        'link' => ['active_url'],
         'excerpt' => ''
     ];
 

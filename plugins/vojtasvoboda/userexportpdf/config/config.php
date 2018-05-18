@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'template' => 'basic',
+    'template' => 'Responsive',
 ];

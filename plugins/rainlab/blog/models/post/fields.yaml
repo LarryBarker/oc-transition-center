@@ -59,6 +59,7 @@ secondaryTabs:
             label: Application Link
             span: full
             type: text
+            placeholder: 'http://'
             
         categories:
             tab: rainlab.blog::lang.post.tab_categories
