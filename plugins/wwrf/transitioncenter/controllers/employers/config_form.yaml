@@ -17,13 +17,13 @@ defaultRedirect: wwrf/transitioncenter/employers
 # Create page
 create:
     title: Create Employer
-    redirect: wwrf/transitioncenter/employers/update/:id
+    redirect: wwrf/transitioncenter/employers/preview/:id
     redirectClose: wwrf/transitioncenter/employers
 
 # Update page
 update:
     title: Edit Employer
-    redirect: wwrf/transitioncenter/employers
+    redirect: wwrf/transitioncenter/employers/preview/:id
     redirectClose: wwrf/transitioncenter/employers
 
 # Preview page

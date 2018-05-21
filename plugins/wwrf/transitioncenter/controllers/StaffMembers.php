@@ -57,7 +57,7 @@ class StaffMembers extends Controller
     /**
      * Manually activate a user
      */
-     public function preview_onActivate($recordId = null)
+     public function onActivate($recordId = null)
      {
          $model = $this->formFindModelObject($recordId);
  

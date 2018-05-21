@@ -1,13 +1,26 @@
 <div class="scoreboard-item title-value">
     <h4><?= e(trans('rainlab.user::lang.user.label')) ?></h4>
     <?php if ($formModel->name): ?>
-        <p><?= e($formModel->name) ?></p>
+        <p><?= e($formModel->name) ?> <?= e($formModel->surname) ?></p>
     <?php else: ?>
         <p><em><?= e(trans('rainlab.user::lang.user.name_empty')) ?></em></p>
     <?php endif ?>
     <p class="description">
         <a href="mailto:<?= e($formModel->email) ?>">
             <?= e($formModel->email) ?>
+        </a>
+    </p>
+</div>
+<div class="scoreboard-item title-value">
+    <h4><?= e($formModel->company_name) ?></h4>
+    <?php if ($formModel->company_title): ?>
+        <p><?= e($formModel->company_title) ?></p>
+    <?php else: ?>
+        <p><em>Title empty</em></p>
+    <?php endif ?>
+    <p class="description">
+        <a href="tel:<?= e($formModel->company_phone) ?>">
+            <?= e($formModel->company_phone) ?>
         </a>
     </p>
 </div>

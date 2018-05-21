@@ -12,16 +12,8 @@ fields:
         label: rainlab.user::lang.user.surname
         span: auto
 
-    company_name:
-        label: Company
-    
-    company_title:
-        label: Title
-
-    company_phone:
-        label: Phone
-
 tabs:
+
     fields:
 
         email:
@@ -36,14 +28,6 @@ tabs:
             tab: rainlab.user::lang.user.account
             default: true
             context: create
-
-        #block_mail:
-        #    label: rainlab.user::lang.user.block_mail
-        #    tab: rainlab.user::lang.user.account
-        #    type: checkbox
-        #    span: full
-        #    cssClass: field-align-above
-        #    context: update
 
         password@create:
             label: rainlab.user::lang.user.create_password
@@ -67,10 +51,24 @@ tabs:
             span: right
             context: [create, update]
 
+        company_name:
+            label: Company
+            tab: Company
+        
+        company_title:
+            label: Title
+            tab: Company
+
+        company_phone:
+            label: Phone
+            tab: Company
+
+secondaryTabs:
+    fields:
         groups:
             label: rainlab.user::lang.user.groups
             tab: rainlab.user::lang.user.account
             type: relation
             emptyOption: rainlab.user::lang.user.empty_groups
             default: 3
-            #readOnly: true
+            context: [create, update, preview]

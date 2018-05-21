@@ -17,13 +17,13 @@ defaultRedirect: wwrf/transitioncenter/staffmembers
 # Create page
 create:
     title: Create Staff Member
-    redirect: wwrf/transitioncenter/staffmembers/update/:id
-    redirectClose: wwrf/transitioncenter/staffmembers/preview/:id
+    redirect: wwrf/transitioncenter/staffmembers/preview/:id
+    redirectClose: wwrf/transitioncenter/staffmembers
 
 # Update page
 update:
     title: Edit Staff Member
-    redirect: wwrf/transitioncenter/staffmembers
+    redirect: wwrf/transitioncenter/staffmembers/preview/:id
     redirectClose: wwrf/transitioncenter/staffmembers
 
 # Preview page
