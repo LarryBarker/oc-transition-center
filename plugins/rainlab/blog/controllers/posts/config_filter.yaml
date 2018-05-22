@@ -46,3 +46,8 @@ scopes:
         label: Featured
         type: checkbox
         scope: isFeatured
+
+    is_employer_post:
+        label: Employer Posts
+        type: checkbox
+        conditions: author_id
