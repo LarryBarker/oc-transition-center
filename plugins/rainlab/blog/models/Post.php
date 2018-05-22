@@ -127,16 +127,9 @@ class Post extends Model
         }
     }
     
-    /*public function beforeValidate() {
-        $slugCount = self::whereRaw("slug REGEXP '^{$this->slug}(-[0-9]*)?$'")->count();
-
-        if ($slugCount > 0) {
-            $slugCount++;
-            $this->slug = "{$this->slug}-{$slugCount}";
-            return;
-        }
-
-    }*/
+    public function beforeValidate() {
+        $this->slug = self::getSlug($this->title);
+    }
 
     public function afterValidate()
     {
@@ -144,9 +137,9 @@ class Post extends Model
             throw new ValidationException([
                'published_at' => Lang::get('rainlab.blog::lang.post.published_validation')
             ]);
-        }  
+        }
     }
-
+    
     public function beforeSave()
     {
         $this->content_html = self::formatHtml($this->content);
@@ -674,4 +667,15 @@ class Post extends Model
         return $url;
     }
 
+    /**
+     * Appends a count to the slug if it already ecists
+     * @param string $title
+     */
+    public static function getSlug($title) 
+    {
+		$slug = str_slug($title, "-");
+		$slugCount = count(self::whereRaw("slug REGEXP '^{$slug}(-[0-9]*)?$'")->get());
+
+		return ($slugCount > 0) ? "{$slug}-{$slugCount}" : $slug;
+    }
 }
