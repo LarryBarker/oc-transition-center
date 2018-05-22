@@ -301,7 +301,7 @@ class Plugin extends PluginBase
 
             // Override post author column if posted by front end user
             if ($column->columnName == 'author' && $model->author_id) {
-                $author = UserModel::find($model->author_id)->first(); // Find user with frontend author id
+                $author = UserModel::where('id', '=', $model->author_id)->first(); // Find employer with frontend author id
                 $authorCompany = $author->company_name; // Set company name to author company name
                 return $authorCompany; // Return company name for column value
             }
