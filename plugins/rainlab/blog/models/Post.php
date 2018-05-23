@@ -127,9 +127,9 @@ class Post extends Model
         }
     }
     
-    public function beforeValidate() {
+    /*public function beforeValidate() {
         $this->slug = self::getSlug($this->title);
-    }
+    }*/
 
     public function afterValidate()
     {
