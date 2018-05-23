@@ -31,11 +31,13 @@ secondaryTabs:
             stretch: true
             mode: split
         company:
-            tab: Job Details
-            label: Company
             span: auto
-            type: text
-            
+            label: 'Name of Place'
+            tab: Job Details
+            type: \Wwrf\TransitionCenter\FormWidgets\GooglePlaces
+            modelClass: \Wwrf\TransitionCenter\Models\Program
+            selectFrom: company
+            pattern: text
         website:
             tab: Job Details
             label: Website

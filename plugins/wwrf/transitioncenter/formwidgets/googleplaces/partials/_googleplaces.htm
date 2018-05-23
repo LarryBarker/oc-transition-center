@@ -1,0 +1,23 @@
+<?php if ($this->previewMode): ?>
+
+    <div class="form-control">
+        <?= $value ?>
+    </div>
+
+<?php else: ?>
+
+
+    <input
+        id="<?= $this->getId('input') ?>"
+        name="<?= $name ?>" 
+        placeholder="Enter your address"
+        onFocus="geolocate()" 
+        type="text"
+        class="form-control"
+        value="<?= $value ?>"></input>
+
+
+<?php endif ?>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCEEQWmjat4dZoYXpY9zBg4w3zLD91Sfo&libraries=places&callback=initAutocomplete"
+        async defer></script>
