@@ -108,17 +108,16 @@ forceSecure = 0
                     </li>
                 </ul>
                 {% endif %}
-                {% if ueuser.user.jobs.count > 0 %}
-                
-                <div class="white z-depth-1 mb-4 pt-2">
-                    <div class="card-body">
-                        <h4 class="h4-responsive"><i class="fa fa-building-o mr-3"></i>Current Employer</h4>
-                        <h5 class="h5-responsive">{{ ueuser.user.jobs.last.title }}</h5>
-                        <h5 class="h5-responsive">{{ ueuser.user.jobs.last.company.name }}</h5>
-                        <h5 class="h5-responsive">{{ ueuser.user.jobs.last.start_date|date('M d, Y') }}</h5>
-                        
+                {% if ueuser.user.jobs.count > 0 and ueuser.user.status == 'employed' %} 
+                    <div class="white z-depth-1 mb-4 pt-2">
+                        <div class="card-body">
+                            <h4 class="h4-responsive"><i class="fa fa-building-o mr-3"></i>Current Employer</h4>
+                            <h5 class="h5-responsive">{{ ueuser.user.jobs.last.title }}</h5>
+                            <h5 class="h5-responsive">{{ ueuser.user.jobs.last.company.name }}</h5>
+                            <h5 class="h5-responsive">{{ ueuser.user.jobs.last.start_date|date('M d, Y') }}</h5>
+                            
+                        </div>
                     </div>
-                </div>
                 {% endif %}
                 <div class="card-body white z-depth-1 pt-2">
                     <!-- Tab panels -->
