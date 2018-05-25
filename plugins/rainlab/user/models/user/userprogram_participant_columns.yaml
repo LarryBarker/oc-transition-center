@@ -1,0 +1,18 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+
+    kdoc_number:
+        label: '#'
+        searchable: true
+
+    name:
+        label: Name
+        searchable: true
+        select: concat(name, ' ', surname)
+
+    release_date:
+        label: Release date
+        type: timetense

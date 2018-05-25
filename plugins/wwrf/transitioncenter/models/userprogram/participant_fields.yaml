@@ -6,7 +6,7 @@ fields:
         descriptionFrom: description
         span: auto
         type: recordfinder
-        list: $/rainlab/user/models/user/columns.yaml
+        list: $/rainlab/user/models/user/userprogram_participant_columns.yaml
         prompt: 'Click the %s button to find a participant'
     status:
         label: 'wwrf.transitioncenter::lang.userprograms.status'
