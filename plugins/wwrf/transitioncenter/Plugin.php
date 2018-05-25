@@ -85,7 +85,7 @@ class Plugin extends PluginBase
             $model->addDynamicMethod('scopeIsOffender', function($query) {
                 return $query->whereHas('groups', function($q){
                     $q->where('id', '=', '2');
-                })->get();
+                })->withTrashed();
             });
         });
 
