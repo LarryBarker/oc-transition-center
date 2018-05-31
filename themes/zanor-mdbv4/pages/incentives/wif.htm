@@ -2,6 +2,10 @@ title = "Workforce Innovation Fund (WIF)"
 url = "/employers/incentives/wif"
 layout = "default"
 is_hidden = 0
+child_of = "incentives/default"
+hide_crumb = 0
+remove_crumb_trail = 0
+crumb_disabled = 0
 ==
 <div class="half-page-intro" style="background-image: url('{{'assets/images/wif_header.jpg'|theme}}');">
     <div class="mask flex-center rgba-blue-grey-light">
@@ -13,25 +17,31 @@ is_hidden = 0
 </div>
 {% if user.groups.first.name == 'Employers' or user.groups.first.name == 'Staff' %}
 <div class="container free-bird mb-4">
-    <div class="row">
-        <div class="col-10 col-sm-7 mx-auto white z-depth-1 py-4 pl-3 mb-4">
-            <h6 class="h6-responsive"><a href="{{'default'|page}}" alt="Transition Center">Transition Center</a> > <a href="{{'default'|page}}" alt="Employers">Employers</a> > <a href="{{'incentives/default'|page}}" alt="Incentive Programs">Incentive Programs</a> > {{this.page.title}}</h6>
-            <h3 class="h3-responsive">{{this.page.title}}</h3>
-            {% content 'incentives/wif'|raw %}
 
-            <!-- CTA -->
-            <a href="mailto:corey.brock@ks.gov" class="btn unique-color btn-md waves-effect waves-light">Request more information
-                <i class="fa fa-external-link ml-1"></i>
-            </a>
+    <div class="row no-gutters">
+        <div class="col-10 col-sm-7 mx-auto white z-depth-1 pb-4 mb-4">
+            {% component 'breadcrumbs' %}
+            <div class="px-4 pt-4">
+                <h3 class="h3-responsive mt-3">{{this.page.title}}</h3>
+
+                {% content 'incentives/wif'|raw %}
+            </div>
+            
         </div>
 
-        <div class="col-10 col-sm-3 mx-auto white z-depth-1 pt-4 pl-3">
+        <div class="col-10 col-sm-4 mx-auto">
+            <div class="white z-depth-1 py-4 px-3">
             <h4 class="h4-responsive">Additional Information</h4>
             <p>For more information on eligibility requirements call the Wichita Workforce Center at 316-771-6800</p>
 
             <p>For more employer information on obtaining OJT funds contact Business Services at 316-771-6658
             </p>
             <img src="{{'assets/images/workforce_logo.png'|theme}}" alt="Workforce Centers" class="img-responsive" style="height: 100px;" />
+            <!-- CTA -->
+                <a href="mailto:corey.brock@ks.gov" class="btn unique-color btn-block btn-md">Request more information
+                    <i class="fa fa-external-link ml-1"></i>
+                </a>
+            </div>
         </div>
     </div>
 </div>

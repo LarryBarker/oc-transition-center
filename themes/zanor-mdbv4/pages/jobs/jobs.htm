@@ -3,6 +3,11 @@ url = "/jobs/:page?"
 layout = "restricted"
 is_hidden = 0
 
+child_of = "default"
+hide_crumb = 0
+remove_crumb_trail = 0
+crumb_disabled = 0
+
 [blogPosts]
 pageNumber = "{{ :page }}"
 categoryFilter = "{{ :industry }}"
@@ -42,11 +47,20 @@ formPage = "jobs/new"
 {% if user.groups.first.name == 'Employers' %}
 <!-- Jobs page -->
 <div class="container">
-    <!-- Partial: Jobs toolbar-->
-    <section class="pt-5 mt-5 pb-3">
-        {% partial 'jobs/toolbar' %}
-    </section>
-    <!-- /Partial: Jobs toolbar -->
+
+    {% if user.groups.first.name == 'users' %}
+        <!-- Partial: Jobs toolbar-->
+        <section class="mt-3 pb-3">
+            
+            {% partial 'jobs/toolbar' %}
+            
+        </section>
+        <!-- /Partial: Jobs toolbar -->
+    {% else %}
+        <div class="pt-3 mt-5">
+            {% component 'breadcrumbs' %}
+        </div>
+    {% endif %}
 
     <!-- Section: Jobs list -->
     <section class="section pt-4">

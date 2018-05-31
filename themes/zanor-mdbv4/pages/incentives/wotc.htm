@@ -2,52 +2,59 @@ title = "Work Opportunity Tax Credit (WOTC)"
 url = "/employers/incentives/wotc"
 layout = "default"
 is_hidden = 0
+child_of = "incentives/default"
+hide_crumb = 0
+remove_crumb_trail = 0
+crumb_disabled = 0
 ==
 <div class="half-page-intro" style="background-image: url('{{'assets/images/wotc_header.jpg'|theme}}');">
-    <div class="mask flex-center rgba-blue-grey-light">
+    <div class="mask rgba-blue-grey-light">
+        
     </div>
     <!-- Mask & flexbox options -->
     <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+            
     </div>
     <!-- /Mask & flexbox options -->
 </div>
 {% if user.groups.first.name == 'Employers' or user.groups.first.name == 'Staff' %}
 <div class="container free-bird mb-4">
-    <div class="row">
-        <div class="col-10 col-sm-7 mx-auto white z-depth-1 py-4 pl-3 mb-4">
-            <h6 class="h6-responsive"><a href="{{'default'|page}}" alt="Transition Center">Transition Center</a> > <a href="{{'default'|page}}" alt="Employers">Employers</a> > <a href="{{'incentives/default'|page}}" alt="Incentive Programs">Incentive Programs</a> > Work Opportunity Tax Credit (WOTC)</h6>
-            <h3 class="h3-responsive">{{this.page.title}}</h3>
-			{% content 'incentives/wotc'|raw %}
-
-            <!-- CTA -->
-            <a href="#" class="btn btn-default waves-effect waves-light">Download
-                <i class="fa fa-download ml-1"></i>
-            </a>
-            <a href="mailto:corey.brock@ks.gov?subject=WOTC Program" class="btn unique-color waves-effect waves-light">More info
-                <i class="fa fa-external-link ml-1"></i>
-            </a>
+        
+    <div class="row no-gutters">
+        <div class="col-10 col-sm-7 mx-auto white z-depth-1 pb-4 mb-4">
+            {% component 'breadcrumbs' %}
+            <div class="px-4">
+                <h3 class="h3-responsive mt-3">{{this.page.title}}</h3>
+                {% content 'incentives/wotc'|raw %}
+            </div>
         </div>
 
-        <div class="col-10 col-sm-3 mx-auto white z-depth-1 pt-4 pl-3">
-            <h4 class="h4-responsive">Additional Information and Forms</h4>
-            <p>For more information and to print forms, call or <a href="http://www.kansascommerce.com" target="_blank" alt="Kansas Department of Corrections">visit the Kansas Department of Commerce</a> and type "WOTC" in the search box.</p>
-
-            <p><i class="fa fa-phone"></i> (785) 296-7435</p>
-            <p>Forms may also be accessed at:</p>
-            <p><a href="http://www.irs.gov" target="_blank" alt="IRS">www.irs.gov</a> (IRS 8850)</p>
-            
-
-            <p>
-                For inclusive details on laws and regulations governing the WOTC program, <a href="http://www.doleta.gov/business/Incentives/opptax" target="_blank" alt="USDOL">visit the U.S. Department of Labor</a> (ETA 9061)
-            </p>
-            <p>
-                For WOTC IRS tax law questions, call:<br />
-                <i class="fa fa-phone"></i> (202) 622-6080
-            </p>
-            <p>
-                For information about an Enterprise Community (EC), Renewal Community (RC) or Empowerment Zone (EZ), <a href="http://egis.hud.gov/egis" target="_blank" alt="USHUD">visit the U.S. Department of Housing and Urban Development</a> or call 1-800-998-9999.
-            </p>
-
+        <div class="col-10 col-sm-4 mx-auto">
+            <div class="white z-depth-1 px-4 py-4">
+                    <h4 class="h4-responsive">Additional Information and Forms</h4>
+                    <p>For more information and to print forms, call or <a href="http://www.kansascommerce.com" target="_blank" alt="Kansas Department of Corrections">visit the Kansas Department of Commerce</a> and type "WOTC" in the search box.</p>
+        
+                    <p><i class="fa fa-phone"></i> (785) 296-7435</p>
+                    <p>Forms may also be accessed at:</p>
+                    <p><a href="http://www.irs.gov" target="_blank" alt="IRS">www.irs.gov</a> (IRS 8850)</p>
+                    <p>
+                        For inclusive details on laws and regulations governing the WOTC program, <a href="http://www.doleta.gov/business/Incentives/opptax" target="_blank" alt="USDOL">visit the U.S. Department of Labor</a> (ETA 9061)
+                    </p>
+                    <p>
+                        For WOTC IRS tax law questions, call:<br />
+                        <i class="fa fa-phone"></i> (202) 622-6080
+                    </p>
+                    <p>
+                        For information about an Enterprise Community (EC), Renewal Community (RC) or Empowerment Zone (EZ), <a href="http://egis.hud.gov/egis" target="_blank" alt="USHUD">visit the U.S. Department of Housing and Urban Development</a> or call 1-800-998-9999.
+                    </p>
+                    <!-- CTA -->
+                    <a href="#" class="btn btn-default btn-block mb-2">Download brochure
+                        <i class="fa fa-download ml-1"></i>
+                    </a>
+                    <a href="mailto:corey.brock@ks.gov?subject=WOTC Program" class="btn unique-color btn-block">More info
+                        <i class="fa fa-external-link ml-1"></i>
+                    </a>
+            </div>
         </div>
     </div>
 </div>

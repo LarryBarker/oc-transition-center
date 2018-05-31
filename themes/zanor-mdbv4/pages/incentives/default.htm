@@ -2,22 +2,34 @@ title = "Employer Incentive Programs"
 url = "/employers/incentives"
 layout = "default"
 is_hidden = 0
+child_of = "default"
+hide_crumb = 0
+crumb_title = "Incentives"
+remove_crumb_trail = 0
+crumb_disabled = 0
 ==
 <div class="half-page-intro" style="background-image: url('{{'assets/images/incentives_header.jpg'|theme}}');">
-    <div class="mask flex-center rgba-blue-grey-light">
+    <div class="mask flex-center rgba-blue-grey-light text-white">
+
     </div>
     <!-- Mask & flexbox options -->
     <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+        
     </div>
     <!-- /Mask & flexbox options -->
+    
 </div>
 
-<div class="container free-bird mb-4">
-       
+<div class="container mb-4">
     <div class="row">
-        <div class="col-10 col-sm-10 mx-auto white z-depth-1 pt-4 pl-3">
-            <h6 class="h6-responsive"><a href="{{'default'|page}}" alt="Transition Center">Transition Center</a> > <a href="{{'default'|page}}" alt="Employers">Employers</a> > <a href="{{'incentives/default'|page}}" alt="Incentive Programs">Incentive Programs</a></h6>
-            <h3 class="h3-responsive">{{this.page.title}}</h3>
+        <div class="col-10 col-sm-10 mx-auto mb-3">   
+            {% component 'breadcrumbs' %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10 col-sm-10 mx-auto">
+        
+            <h3 class="h3-responsive pt-3">{{this.page.title}}</h3>
             <p>As an employer you are eligible for a number of incentive programs for working with a former felon. Your business may qualify for tax credits, our clients are fully bondable at no cost to you, and there are new grants to help pay for on-the-job training. Additionally, many of our clients are WorkREADY! Certified, meaning they come ready with the knowledge, skills, and abilities needed to fulfil your candidacy requirements.</p>
         </div>
     </div>
@@ -201,8 +213,5 @@ is_hidden = 0
 
             <hr class="my-4" />
         </div>
-    </div>
-
-    
-
+    </div>  
 </div>

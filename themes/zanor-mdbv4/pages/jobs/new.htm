@@ -2,6 +2,11 @@ title = "Post New Employer Job"
 url = "/jobs/new/:slug?"
 layout = "restricted"
 is_hidden = 0
+child_of = "jobs/jobs"
+hide_crumb = 0
+crumb_title = "New Job"
+remove_crumb_trail = 0
+crumb_disabled = 0
 
 [PostForm]
 use_authors = 0
@@ -32,8 +37,8 @@ postPage = "jobs/post"
     <div class="container">
 
         <!-- Partial: Jobs toolbar-->
-        <section class="pt-5 mt-5 pb-3">
-            {% partial 'jobs/toolbar' %}
+        <section class="pt-3 mt-5 pb-3">
+            {% component 'breadcrumbs' %}
         </section>
         <!-- /Partial: Jobs toolbar -->
 
