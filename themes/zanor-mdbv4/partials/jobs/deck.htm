@@ -1,8 +1,8 @@
 {% set randomPosts = randomPosts.posts %}
-
+<div class="card-deck">
 {% for post in randomPosts %}
-<div class="col-sm-4">
-    <div class="alert alert-info alert-dismissible" role="alert">
+
+    <div class="card alert alert-info alert-dismissible" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       <a href="{{ post.url }}"
                   role="button"
@@ -18,7 +18,8 @@
                 {% endif %}
         </p>
     </div>
-</div>
+
 {% else %}
     <p>There are no posts to display.</p>
 {% endfor %}
+</div>

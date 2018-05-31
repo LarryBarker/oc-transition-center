@@ -3,6 +3,11 @@ url = "/participants/:page?"
 layout = "restricted"
 is_hidden = 0
 
+child_of = "default"
+hide_crumb = 0
+remove_crumb_trail = 0
+crumb_disabled = 0
+
 [ueuser]
 type = "all"
 maxItems = 5
@@ -37,13 +42,18 @@ template = "portfolio"
 ==
 {% if user.groups.first.name == 'Employers' or user.groups.first.name == 'Staff' %}
 <div class="container">
-    <!-- Toolbar: Participants toolbar for employers-->
-    <div class="pt-5 mt-5 pb-3">
-        {% partial 'employers/users_toolbar' %}
+
+    <div class="pt-3 mt-5">
+        {% component 'breadcrumbs' %}
     </div>
+
     <div class="row pt-4">
             
-        <div class="col-10 col-md-3 mx-auto">  
+        <div class="col-10 col-md-3 mx-auto">
+            <h4 class="h4-responsive">Search</h4>
+            {% partial 'employers/profile_search_form' %} 
+
+            <h4 class="h4-responsive">Filter</h4>
             {{ form_ajax('onFilterUsers', { update: { 'participants/list': '#partialUsers', 'participants/paginate':'#paginateResults' } }) }}
                 <nav class="navbar navbar-dark special-color">
                     <a class="font-weight-bold white-text mr-4" href="#">Industries</a>
