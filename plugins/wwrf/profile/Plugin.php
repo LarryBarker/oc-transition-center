@@ -287,7 +287,7 @@ class Plugin extends PluginBase
                 if($filter == 2){
                     return $query->has('jobs', '>', 0)->where('status', '!=', 'available')->where('is_unemployed', 0);
                 }elseif($filter == 1) {
-                    return $query->where('status', '=', 'available')->whereDate('eligible_date', '<', date('Y-m-d').' 00:00:00')->orWhere('is_unemployed', 1)->orHas('jobs','<',1);
+                    return $query->where('status', '=', 'available')->whereDate('eligible_date', '<', date('Y-m-d').' 00:00:00')->orWhere('is_unemployed', 1);
                 }
             });
 
