@@ -285,9 +285,9 @@ class Plugin extends PluginBase
             $model->addDynamicMethod('scopeIsEmployed', function($query, $filter)
             {
                 if($filter == 2){
-                    return $query->has('jobs', '>', 0);
+                    return $query->has('jobs', '>', 0)->where('status', '!=', 'available')->where('is_unemployed', 0);
                 }elseif($filter == 1) {
-                    return $query->has('jobs', '<', 1);
+                    return $query->where('status', '=', 'available')->orWhere('is_unemployed', 1)->orHas('jobs', '<', 1);
                 }
             });
 

@@ -161,6 +161,10 @@ class Plugin extends PluginBase
                 
                 return $query->whereIsActivated(true)->orderBy('created_at','desc')->orderBy('last_seen','desc')->orderBy('status','asc')->paginate($perPage, $page);
             });
+
+            $model->addDynamicMethod('scopeIsUnemployed', function($query) {
+                return $query->where('status', '=', 'available')->orWhere('is_unemployed', 1)->orHas('jobs', '<', 1)->get();
+            });
         });
 
         UsersController::extend(function($controller){         
