@@ -57,11 +57,11 @@ template = "portfolio"
             {{ form_ajax('onFilterUsers', { update: { 'participants/list': '#partialUsers', 'participants/paginate':'#paginateResults' } }) }}
                 <nav class="navbar navbar-dark special-color">
                     <a class="font-weight-bold white-text mr-4" href="#">Industries</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleListFilter" aria-controls="navbarToggleListFilter" aria-expanded="false" aria-label="Toggle filter">
+                        <div class="animated-filter-icon"><span></span><span></span><span></span></div>
                     </button>
                 </nav>
-                <div class="collapse" id="navbarToggleExternalContent">
+                <div class="collapse" id="navbarToggleListFilter">
                     <div id="UsersFilter" class="white z-depth-1 py-4 px-4">
                         {% for industry in industries %}
                             <div class="form-check">
