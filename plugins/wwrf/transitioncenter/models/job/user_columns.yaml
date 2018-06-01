@@ -15,6 +15,10 @@ columns:
         label: Start Date
         type: date
         mode: date
+    end_date:
+        label: End Date
+        type: date
+        mode: date
     start_wage:
         label: Start Wage
     current_wage:

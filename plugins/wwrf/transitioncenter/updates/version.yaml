@@ -17,3 +17,9 @@
 1.0.7:
     - 'Add featured column to RainLab Blog posts table'
     - update_rainlab_blog_posts_featured.php
+1.0.8:
+    - 'Add end date to Users Jobs table'
+    - update_jobs_table_end_date.php
+1.0.9:
+    - 'Add unemployed field to users table'
+    - update_rainlab_users_unemployed.php

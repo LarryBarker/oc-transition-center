@@ -16,10 +16,18 @@ fields:
         label: Start Date
         type: datepicker
         mode: date
+        span: left
+    end_date:
+        label: End Date
+        type: datepicker
+        mode: date
+        span: right
     start_wage:
         label: Start Wage
+        span: left
     current_wage:
         label: Current Wage
+        span: right
         preset:
             field: start_wage
             type: exact

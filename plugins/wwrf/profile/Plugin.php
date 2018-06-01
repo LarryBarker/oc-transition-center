@@ -171,6 +171,13 @@ class Plugin extends PluginBase
                     ],
                     'span'    => 'auto'
                 ],
+                'is_unemployed' => [
+                    'label'   => 'Unemployed',
+                    'comment' => 'User is on unemployed status.',
+                    'tab'     => 'Employment',
+                    'type'    => 'checkbox',
+                    'span'    => 'right'
+                ],
                 'profile_headline' => [
                     'label' => 'wwrf.profile::lang.profile.headline',
                     'tab'   => 'wwrf.profile::lang.profile.tab',
