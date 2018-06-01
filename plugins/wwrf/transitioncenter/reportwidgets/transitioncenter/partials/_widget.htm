@@ -2,6 +2,7 @@
     <?php if (!isset($error)): ?>
         <!-- Toolbar with current user numbers -->
         <div class="scoreboard">
+            <h3>Facility Overview</h3>
             <div class="toolbar">
                 <div class="scoreboard-item title-value">
                     <h4>Available</h4>
@@ -42,38 +43,26 @@
                 <div class="scoreboard-item title-value">
                     <h4>Total Users for Year</h4>
                     <p class="oc-icon-user"><?= $totalUsersYear ?></p>
-                    <p class="description"></p>
                 </div>
                 <div class="scoreboard-item title-value">
                     <h4>Average Start Wage</h4>
                     <p class="oc-icon-dollar inline"><?= $wage ?></p>
-                    <p class="description"><?= $startingWageDiff ?></p>
+                    <!--<p class="description"><?= $startingWageDiff ?></p>-->
                 </div>
                 <div class="scoreboard-item title-value">
-                    <h4>Previous</h4>
+                    <h4>Previous <?php ($this->property('month')) ? print 'Month' : print 'Year'; ?></h4>
                     <p class="<?php ( $startingWageDiff > 0 ) ? print 'positive' : ( ( $startingWageDiff < 0 ) ? print 'negative' : 0 )?>"><?= $startingWageDiff ?></p>
-                    <p class="description"><?php if($this->property('month')) print $previousMonth . '/' ?><?= $previousYear ?></p>
+                    <!--<p class="description"><?php if($this->property('month')) print $previousMonth . '/' ?><?= $previousYear ?></p>-->
                 </div>
                 <div class="scoreboard-item title-value">
                     <h4>Average Start Time</h4>
                     <p class="oc-icon-calendar-check-o"><?= $dateAvg ?></p>
-                    <p class="description <?php ( $prevDateAvgDiff > 0 ) ? print 'negative' : ( ( $prevDateAvgDiff < 0 ) ? print 'positive' : 0 )?>"><?= $prevDateAvgDiff ?></p>
+                    <!--<p class="description <?php ( $prevDateAvgDiff > 0 ) ? print 'negative' : ( ( $prevDateAvgDiff < 0 ) ? print 'positive' : 0 )?>"><?= $prevDateAvgDiff ?></p>-->
                 </div>
                 <div class="scoreboard-item title-value">
-                    <h4>Previous</h4>
+                    <h4>Previous <?php ($this->property('month')) ? print 'Month' : print 'Year'; ?></h4>
                     <p class="<?php ( $prevDateAvgDiff > 0 ) ? print 'negative' : ( ( $prevDateAvgDiff < 0 ) ? print 'positive' : 0 )?>" style="color: <?php ( $prevDateAvgDiff > 0 ) ? print 'green' : ( ( $prevDateAvgDiff < 0 ) ? print 'red' : 0 )?>"><?= abs($prevDateAvgDiff) ?></p>
-                    <p class="description"><?php if($this->property('month')) print $previousMonth . '/' ?><?= $previousYear ?></p>
-                </div>
-                <div
-                    class="scoreboard-item control-chart"
-                    data-control="chart-bar">
-                    <ul>
-                        <li>1-5 days <span><?= $dateRange["1-5"] ?></span></li>
-                        <li>6-10 <span><?= $dateRange["6-10"] ?></span></li>
-                        <li>11-20 <span><?= $dateRange["11-20"] ?></span></li>
-                        <li>21-30 <span><?= $dateRange["21-30"] ?></span></li>
-                        <li>30+ <span><?= $dateRange["30+"] ?></span></li>
-                    </ul>
+                    <!--<p class="description"><?php if($this->property('month')) print $previousMonth . '/' ?><?= $previousYear ?></p>-->
                 </div>
             </div>
             
@@ -84,7 +73,7 @@
         <div class="scoreboard">
             
             <div data-control="toolbar">
-                <h3>User Survey</h3>
+                <h3>New Arrival Survey</h3>
                 <div class="scoreboard-item control-chart" data-control="chart-pie">
                     <ul>
                         <li data-color="#95b753">Beginner <span><?= $computer_skill_beg ?></span></li>
@@ -123,6 +112,24 @@
             
         </div>
         <!-- /End survey toolbar -->
+    <?php else: ?>
+        <p class="flash-message static warning"><?= e($error) ?></p>
+    <?php endif ?>
+</div>
+<div class="report-widget">
+    <?php if (!isset($error)): ?>
+    <h3>Job Start Time Spead (in days)</h3>
+    <div
+        class="scoreboard-item control-chart"
+        data-control="chart-bar">
+        <ul>
+            <li>1-5 days <span><?= $dateRange["1-5"] ?></span></li>
+            <li>6-10 <span><?= $dateRange["6-10"] ?></span></li>
+            <li>11-20 <span><?= $dateRange["11-20"] ?></span></li>
+            <li>21-30 <span><?= $dateRange["21-30"] ?></span></li>
+            <li>30+ <span><?= $dateRange["30+"] ?></span></li>
+        </ul>
+    </div>
     <?php else: ?>
         <p class="flash-message static warning"><?= e($error) ?></p>
     <?php endif ?>
