@@ -74,7 +74,7 @@ function onEnd()
                             <i class="fa fa-phone mr-3"></i> {{post.phone}}
                         </h4>
                         {% endif %}
-                        <p class="lead">Posted on {{post.date|date('M d, Y')}}</p>
+                        <p class="lead">Posted on {{post.published_at|date('M d, Y')}}</p>
                         <hr />
                         <p class="">{{ post.content_html|raw }}</p>
 
