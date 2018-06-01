@@ -43,7 +43,7 @@ class TransitionCenter extends ReportWidgetBase
                 'type' => 'dropdown',
                 'options' => [
                     'yearly' => 'Yearly',
-                    'quarterly' => 'Quarterly',
+                    //'quarterly' => 'Quarterly',
                     'monthly' => 'Monthly'
                 ],
                 'default' => 'yearly'
@@ -51,32 +51,23 @@ class TransitionCenter extends ReportWidgetBase
             'year' => [
                 'title' => 'Year',
                 'default' => $this->getDefaultYear(),
-                'group' => 'Date',
                 'type' => 'dropdown',
                 'options' => $this->getYearOptions(),
                 'placeholder' => '-- Select year --'
             ],
-            'quarter' => [
-                'title' => 'Quarter',
-                'type' => 'dropdown',
-                'group' => 'Date',
-                'options' => $this->getQuarterOptions(),
-                'depends' => ['month', 'year', 'period'],
-                'placeholder' => '-- Select quarter --'
-            ],
+            //'quarter' => [
+            //    'title' => 'Quarter',
+            //    'type' => 'dropdown',
+            //    'options' => $this->getQuarterOptions(),
+            //    'depends' => ['month', 'year', 'period'],
+            //    'placeholder' => '-- Select quarter --'
+            //],
             'month' => [
                 'title' => 'Month',
                 'type' => 'dropdown',
-                'group' => 'Date',
                 'options' => $this->getMonthOptions(),
                 'depends' => ['year', 'quarter', 'period'],
                 'placeholder' => '-- Select month --'
-            ],
-            'selectedMonths' => [
-                'title' => 'Selected month',
-                'type' => 'dropdown',
-                'options' => $this->getSelectedMonths(),
-                'depends' => ['year']
             ]
         ];
     }
@@ -87,8 +78,8 @@ class TransitionCenter extends ReportWidgetBase
         // we will not use $this->setProperties() as it will set
         // multiple props at single time but it will remove column size etc props as well so
         $this->setProperty('year' , $this->getDefaultYear());
-        $this->setProperty('month' , $this->getCurrentMonth());
-        $this->setProperty('quarter' , null);
+        //$this->setProperty('month' , $this->getCurrentMonth());
+        //$this->setProperty('quarter' , null);
 
     }
     
@@ -120,9 +111,9 @@ class TransitionCenter extends ReportWidgetBase
             $this->year = $this->property('year');
         }
 
-        if($this->property('quarter')) {
-            $this->quarter = $this->property('quarter');
-        }
+        //if($this->property('quarter')) {
+        //    $this->quarter = $this->property('quarter');
+        //}
 
         if($this->property('month')) {
             $this->month = $this->property('month');
@@ -229,6 +220,7 @@ class TransitionCenter extends ReportWidgetBase
 
             ksort($selectedMonths);
 
+
             return $selectedMonths;
 
         } else {
@@ -264,7 +256,7 @@ class TransitionCenter extends ReportWidgetBase
             $month = date('m', mktime(0,0,0,$m, 1, date('Y')));
             $months[$month] = date('M', mktime(0,0,0,$m, 1, date('Y')));
         }
-        
+
         return $months;
     }
 
