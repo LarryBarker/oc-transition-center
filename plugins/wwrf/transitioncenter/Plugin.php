@@ -163,7 +163,10 @@ class Plugin extends PluginBase
             });
 
             $model->addDynamicMethod('scopeIsUnemployed', function($query) {
-                return $query->where('status', '=', 'available')->orWhere('is_unemployed', 1)->orHas('jobs', '<', 1)->get();
+                return $query->where('status', '=', 'available')
+                             ->whereDate('eligible_date', '<', date('Y-m-d').' 00:00:00')
+                             ->has('jobs', '<', 1)
+                             ->orWhere('is_unemployed', 1);
             });
         });
 
@@ -377,25 +380,6 @@ class Plugin extends PluginBase
                 return $query->where('is_featured', 1)->get();
             });
         });
-
-        /*PostsController::extendFormFields(function($form, $model, $context){
-            
-            if (!$model instanceof PostModel)
-                return;
-            
-            if (!$model->exists)
-                return;
-
-            $form->addSecondaryTabFields([
-                'is_featured' => [
-                    'tab' => 'rainlab.blog::lang.post.tab_manage',
-                    'label' => 'Featured post',
-                    'span' => 'auto',
-                    'type' => 'checkbox',
-                ]
-            ]);
-        });*/
-
     }
 
     public function registerListColumnTypes()

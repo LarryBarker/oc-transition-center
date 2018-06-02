@@ -347,9 +347,9 @@ class TransitionCenter extends ReportWidgetBase
 
         $this->vars['unemployed'] = User::whereHas('groups', function($q){
                                         $q->where('id', '=', '2');
-                                    })->has('jobs', '<', 1)
-                                      ->whereDate('eligible_date', '<', date('Y-m-d').' 00:00:00')
-                                      ->orWhere('is_unemployed', 1)
+                                    })->isUnemployed()//->has('jobs', '<', 1)
+                                      //->whereDate('eligible_date', '<', date('Y-m-d').' 00:00:00')
+                                      //->orWhere('is_unemployed', 1)
                                       ->get()
                                       ->count();
     }
