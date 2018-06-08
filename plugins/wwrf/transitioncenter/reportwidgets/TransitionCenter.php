@@ -327,11 +327,17 @@ class TransitionCenter extends ReportWidgetBase
             $q->where('id', '=', '2');
         })->get();
 
-        $totalUsersYear = User::whereHas('groups', function($q){
+        $totalUsersForPeriod = User::whereHas('groups', function($q){
             $q->where('id', '=', '2');
-        })->whereYear('arrival_date','=',$this->property('year'))->withTrashed()->get();
+        })->withTrashed()->whereYear('arrival_date','=',$this->property('year'));
 
-        $this->vars['totalUsersYear'] = $totalUsersYear->count();
+        if($this->property('month')) {
+            $totalUsersForPeriod = $totalUsersForPeriod->whereMonth('arrival_date', '=', $this->property('month'));
+        }
+
+        $totalUsersForPeriod = $totalUsersForPeriod->get();
+
+        $this->vars['totalUsersForPeriod'] = $totalUsersForPeriod->count();
 
         // Users are available only if they can start work immediately.
         $this->vars['available'] = $users->where('status', 'available')->count();
