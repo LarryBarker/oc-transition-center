@@ -127,6 +127,8 @@ class TransitionCenter extends ReportWidgetBase
 
         $this->loadPostData();
 
+        $this->vars['currentWage'] = $this->getCurrentWage();
+
     }
 
     public function getYearOptions() {
@@ -613,5 +615,28 @@ class TransitionCenter extends ReportWidgetBase
     public function loadPostData() {
         $appliedJobs = AppliedJob::groupBy('job_id')->select('job_id', DB::raw('count(*) as total'))->orderBy('total', 'desc')->get()->take(10);
         $this->vars['appliedJobs'] = $appliedJobs;
+    }
+
+    public function getCurrentWage() {
+
+        $currentWage;
+
+        $currentWages = [];
+
+        $queryUsersWithJobs = User::has('jobs', '>', 0)->get();
+
+        //$queryJobs = $queryJobs->orderByDesc('start_date')->groupBy('user_id')->get();
+
+        foreach($queryUsersWithJobs as $user) {
+            $currentJob = $user->jobs->sortBy('start_date')->last();
+
+            if($currentJob->current_wage != NULL) {
+                $currentWages[$user->id] = $currentJob->current_wage;
+            }
+        }
+
+        $currentWage = round(array_sum($currentWages) / count($currentWages), 2);
+
+       return $currentWage;
     }
 }
