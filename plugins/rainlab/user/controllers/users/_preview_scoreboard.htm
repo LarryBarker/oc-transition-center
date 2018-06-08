@@ -1,7 +1,7 @@
 <div class="scoreboard-item title-value">
-    <h4><?= e(trans('rainlab.user::lang.user.label')) ?></h4>
+    <h4>#<?= e($formModel->kdoc_number) ?></h4>
     <?php if ($formModel->name): ?>
-        <p><?= e($formModel->name) ?></p>
+        <p><?= e($formModel->name) . ' ' . e($formModel->surname) ?></p>
     <?php else: ?>
         <p><em><?= e(trans('rainlab.user::lang.user.name_empty')) ?></em></p>
     <?php endif ?>
@@ -19,12 +19,12 @@
         </p>
         <p class="description">
             Status:
-            <?php if ($formModel->is_guest): ?>
-                <?= e(trans('rainlab.user::lang.user.status_guest')) ?>
-            <?php elseif ($formModel->is_activated): ?>
-                <?= e(trans('rainlab.user::lang.user.status_activated')) ?>
+            <?php if ($formModel->is_unemployed): ?>
+                Unemployed
+            <?php elseif ($formModel->status): ?>
+                <?= e(trans($formModel->status)) ?>
             <?php else: ?>
-                <?= e(trans('rainlab.user::lang.user.status_registered')) ?>
+                <?= e(trans($formModel->status)) ?>
             <?php endif ?>
         </p>
     </div>
@@ -35,6 +35,34 @@
         <p><?= $formModel->last_seen->diffForHumans() ?></p>
         <p class="description">
             <?= $formModel->isOnline() ? e(trans('rainlab.user::lang.user.is_online')) : e(trans('rainlab.user::lang.user.is_offline')) ?>
+        </p>
+    </div>
+<?php endif ?>
+<?php if ($formModel->jobs->count() > 0): ?>
+    <?php
+        $firstJob = $formModel->jobs->sortBy('start_date')->first(); 
+        $startWage = $firstJob->start_wage;
+
+        $start_date = new DateTime($formModel->jobs->sortBy('start_date')->first()['start_date']);
+
+        $eligible_date = new DateTime($formModel->eligible_date);
+
+        $lead_time = $eligible_date->diff($start_date);
+
+        
+    ?>
+    <div class="scoreboard-item title-value">
+        <h4>Start Wage</h4>
+        <p class="oc-icon-dollar inline"><?= $startWage ?></p>
+        <p class="description">
+            <?= $firstJob->title . ', ' . $firstJob->company->name; ?>
+        </p>
+    </div>
+    <div class="scoreboard-item title-value">
+        <h4>Lead Time</h4>
+        <p><?= $lead_time->format('%r%a'); ?></p>
+        <p class="description">
+           Eligible: <?= date_create($formModel->eligible_date)->format('M d, Y'); ?>
         </p>
     </div>
 <?php endif ?>
