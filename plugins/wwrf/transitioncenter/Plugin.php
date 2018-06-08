@@ -111,7 +111,12 @@ class Plugin extends PluginBase
 
             $model->belongsToMany['company'] = ['Wwrf\TransitionCenter\Models\Company', 'table' => 'wwrf_users_companies', 'key' => 'user_id'];
 
-            $model->hasMany['jobs'] = ['Wwrf\TransitionCenter\Models\Job', 'table' => 'wwrf_users_jobs', 'key' => 'user_id'];
+            $model->hasMany['jobs'] = [
+                'Wwrf\TransitionCenter\Models\Job', 
+                'table' => 'wwrf_users_jobs', 
+                'key' => 'user_id', 
+                'delete' => true
+            ];
 
             $model->hasMany['usersprograms'] = [
                 'Wwrf\TransitionCenter\Models\UserProgram',
