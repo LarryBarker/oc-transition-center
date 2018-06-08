@@ -5,6 +5,10 @@
             <h3>Facility Overview</h3>
             <div class="toolbar">
                 <div class="scoreboard-item title-value">
+                    <h4>Total Users for Period</h4>
+                    <p class="oc-icon-user"><?= $totalUsersForPeriod ?></p>
+                </div>
+                <div class="scoreboard-item title-value">
                     <h4>Available</h4>
                     <p class="positive"><?= $available ?></p>
                     <p class="description"></p>
@@ -41,12 +45,8 @@
             
             <div class="toolbar">
                 <div class="scoreboard-item title-value">
-                    <h4>Total Users for Year</h4>
-                    <p class="oc-icon-user"><?= $totalUsersYear ?></p>
-                </div>
-                <div class="scoreboard-item title-value">
                     <h4>Average Start Wage</h4>
-                    <p class="oc-icon-dollar inline"><?= $wage ?></p>
+                    <p class="oc-icon-dollar inline"><?= $startingWage ?></p>
                     <!--<p class="description"><?= $startingWageDiff ?></p>-->
                 </div>
                 <div class="scoreboard-item title-value">

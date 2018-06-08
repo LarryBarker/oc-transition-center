@@ -20,6 +20,8 @@ use DB;
 
 use DateTime;
 
+use DateTimeZone;
+
 class TransitionCenter extends ReportWidgetBase
 {
 
@@ -77,10 +79,9 @@ class TransitionCenter extends ReportWidgetBase
         // This will set default values on every refresh
         // we will not use $this->setProperties() as it will set
         // multiple props at single time but it will remove column size etc props as well so
-        $this->setProperty('year' , $this->getDefaultYear());
+        //$this->setProperty('year' , $this->getDefaultYear());
         //$this->setProperty('month' , $this->getCurrentMonth());
-        //$this->setProperty('quarter' , null);
-
+        //$this->setProperty('period' , 'monthly');
     }
     
     public function render() {
@@ -131,11 +132,11 @@ class TransitionCenter extends ReportWidgetBase
 
     public function getYearOptions() {
 
-        $query = User::all();
+        $queryAllUsers = User::all();
 
         $years = [];
 
-        foreach($query as $user) {
+        foreach($queryAllUsers as $user) {
             $year = date('Y', strtotime($user->created_at));
 
             $years[$year] = $year;
@@ -205,11 +206,11 @@ class TransitionCenter extends ReportWidgetBase
         $periodCode = Request::input('period');
 
         if ($periodCode == 'monthly') {
-            $query = Job::whereYear('start_date', '=', $yearCode)->get();
+            $queryJobMonthsForYear = Job::whereYear('start_date', '=', $yearCode)->get();
 
             $selectedMonths = [];
 
-            foreach($query as $job) {
+            foreach($queryJobMonthsForYear as $job) {
                 $month = date('m', strtotime($job->start_date));
                 $monthKey = date('M', strtotime($job->start_date));
 
@@ -232,11 +233,11 @@ class TransitionCenter extends ReportWidgetBase
         }
 
         if ($yearCode || $quarterCode) {
-            $query = Job::whereYear('start_date', '=', $yearCode)->get();
+            $queryJobMonthsForYear = Job::whereYear('start_date', '=', $yearCode)->get();
 
             $selectedMonths = [];
 
-            foreach($query as $job) {
+            foreach($queryJobMonthsForYear as $job) {
                 $month = date('m', strtotime($job->start_date));
                 $monthKey = date('M', strtotime($job->start_date));
 
@@ -264,11 +265,11 @@ class TransitionCenter extends ReportWidgetBase
 
         $yearCode = Request::input('year');
 
-        $query = Job::whereYear('start_date', '=', $yearCode)->get();
+        $querySelectedMonthsForYear = Job::whereYear('start_date', '=', $yearCode)->get();
 
         $selectedMonths = [];
 
-        foreach($query as $job) {
+        foreach($querySelectedMonthsForYear as $job) {
             $month = date('m', strtotime($job->start_date));
 
             $selectedMonths[$month] = $month;
@@ -296,7 +297,7 @@ class TransitionCenter extends ReportWidgetBase
 
     }
 
-    public function getPreviousdate() {
+    public function getPreviousDate() {
 
         $dateTimeObject = new DateTime;
 
@@ -327,11 +328,17 @@ class TransitionCenter extends ReportWidgetBase
             $q->where('id', '=', '2');
         })->get();
 
-        $totalUsersYear = User::whereHas('groups', function($q){
+        $totalUsersForPeriod = User::whereHas('groups', function($q){
             $q->where('id', '=', '2');
-        })->whereYear('arrival_date','=',$this->property('year'))->withTrashed()->get();
+        })->withTrashed()->whereYear('arrival_date','=',$this->year);
 
-        $this->vars['totalUsersYear'] = $totalUsersYear->count();
+        if($this->property('period') == 'monthly' && $this->month) {
+            $totalUsersForPeriod = $totalUsersForPeriod->whereMonth('arrival_date', '=', $this->month);
+        }
+
+        $totalUsersForPeriod = $totalUsersForPeriod->get();
+
+        $this->vars['totalUsersForPeriod'] = $totalUsersForPeriod->count();
 
         // Users are available only if they can start work immediately.
         $this->vars['available'] = $users->where('status', 'available')->count();
@@ -414,35 +421,50 @@ class TransitionCenter extends ReportWidgetBase
     }
 
     public function loadEmploymentData() {
-        
-        $year = $this->year;
+       
+        $currentYear = $this->year;
 
-        $month = $this->month;
+        $currentMonth = $this->month;
+
+        $previousYear = $this->getPreviousDate()->format('m');
+
+        $previousMonth = $this->getPreviousDate()->format('Y');
+
+        $startingWages = [];
+
+        $previousStartingWages = [];
+
+        $prevDateDiffArr = [];
+
+        $dateDiff = [];
+
+        $dates = [
+            "1-5" => 0,
+            "6-10" => 0,
+            "11-20" => 0,
+            "21-30" => 0,
+            "30+" => 0
+        ];
 
         /*
-        * We need to pull all users in the database who have a job.
-        * Next, we need to see if the job has a start date that matches
-        * the year set in the report widget properties.
+        *   We need to pull all users in the database who have a job.
+        *   Next, we need to see if the job has a start date that matches
+        *   the month/year set in the report widget properties.
         */
 
-        // Get the collection of all users using withTrashed().
-        // Narrow the collecting by asking for users that have more than 1 job.
-        // Next, look at the users who's jobs have a start date equal
-        // to the year set in the widget property.
-        $query = User::withTrashed()->has('jobs', '>', 0)->whereHas('jobs', function($q){
-            $q->whereYear('start_date','=', $this->year);
-            if($this->property('month')){
-                $month = $this->property('month');
-    
-                $q = $q->whereMonth('start_date', '=', $month);
-            }
-        });
+        $queryUsersWithJob = User::withTrashed() // all users 
+                                   ->has('jobs', '>', 0) // users with AT LEAST 1 job
+                                   ->whereHas('jobs', function($queryDate){
+                                        $queryDate->whereYear('start_date','=', $this->year); // start date in year
+                                        if($this->property('month')){  
+                                            $queryDate = $queryDate->whereMonth('start_date', '=', $this->month); // start date in month
+                                        }
+                                    });
 
-        // Let's run a query for the previous month/year
-        // That way we can do a comparision
-                
-        $previousJobsQuery = User::withTrashed()->has('jobs', '>', 0)->whereHas('jobs', function($q) {
+        $usersWithJob = $queryUsersWithJob->get();
 
+        // run a query for the previous period
+        $queryUsersWithJobsForPreviousPeriod = User::withTrashed()->has('jobs', '>', 0)->whereHas('jobs', function($q) {
 
             $prevMonth = $this->getPreviousDate()->format('m');
 
@@ -468,63 +490,132 @@ class TransitionCenter extends ReportWidgetBase
             
         });
 
-        $getPreviousQuery = $previousJobsQuery->get();
-
-        $previousStartingWages = [];
-
-        $prevDateDiffArr = [];
-
-        foreach($getPreviousQuery as $previousJob) {
-
-            $previousWage = $previousJob->jobs->first()->start_wage;
-
-            $previousStartingWages[$previousJob->id] = $previousWage;
-
-            $user_id = $previousJob->id;
-
-            $prevStartDate = date_create($previousJob->jobs->first()->start_date);
-
-            $prevEligibleDate = date_create($previousJob->eligible_date);
-
-            $prevDateDiff = date_diff($prevEligibleDate, $prevStartDate);
-
-            $prevDateDiffArr[$user_id] = $prevDateDiff->format('%a');
-
-        }    
-
-        $users = $query->get();
+        $getPreviousQuery = $queryUsersWithJobsForPreviousPeriod->get();
         
         /* 
-        * We then create an array to hold all of the starting wages and
-        * loop over the collection, pulling the start wage for the users
-        * FIRST job and adding it to the array.
-        * 
-        * Finally, we calculate the average starting wage.
+        *   Check for reporting period and loop through collection
+        *   Only count the job if it is the FIRST job and the start date matches month/year
         */
 
-        $startingWages = [];
+        if ($this->property('period') == 'yearly') { // yearly reporting period
 
-        foreach($users as $user) {
+            // users with job in current yearly period
+            foreach($usersWithJob as $userWithJob) {
 
-            $wage = $user->jobs->first()->start_wage;
+                $firstJob = $userWithJob->jobs->sortBy('start_date')->first(); // oldest job is first job
+    
+                $firstJobStartDate = strtotime($firstJob->start_date); // make date object with start date
+    
+                if(date('Y', $firstJobStartDate) == $this->year) { // does the year match property
+                    $wage = $firstJob->start_wage;
+    
+                    $startingWages[$userWithJob->id] = $wage;
 
-            $startingWages[$user->id] = $wage;
+                    $user_id = $userWithJob->id;
+
+                    $start_date = date_create($userWithJob->jobs->sortBy('start_date')->first()->start_date);
+        
+                    $eligible_date = date_create($userWithJob->eligible_date);
+        
+                    $datedifference = date_diff($eligible_date, $start_date);
+        
+                    $dateDiff[$user_id] = $datedifference->format('%a');
+                }
+            }
+
+            // users with job in previous yearly period
+            foreach($getPreviousQuery as $previousJob) {
+
+                $previousJob = $previousJob->jobs->sortBy('start_date')->first();
+
+                $previousJobStartDate = strtotime($previousJob->start_date);
+
+                if(date('Y', $previousJobStartDate) == $previousYear) {
+                    $previousJobStartWage = $previousJob->jobs->sortBy('start_date')->first()->start_wage;
+    
+                    $previousStartingWages[$previousJob->id] = $previousJobStartWage;
+        
+                    $user_id = $previousJob->id;
+        
+                    $prevStartDate = date_create($previousJob->jobs->sortBy('start_date')->first()->start_date);
+        
+                    $prevEligibleDate = date_create($previousJob->eligible_date);
+        
+                    $prevDateDiff = date_diff($prevEligibleDate, $prevStartDate);
+        
+                    $prevDateDiffArr[$user_id] = $prevDateDiff->format('%a');
+                }
+    
+            } 
+
+        } elseif ($this->property('period') == 'monthly') { // monthly reporting preiod
+
+            // users with job in current monthly period
+            foreach($usersWithJob as $userWithJob) {
+
+                $firstJob = $userWithJob->jobs->sortBy('start_date')->first();
+    
+                $firstJobStartDate = strtotime($firstJob->start_date);
+    
+                if(date('Y', $firstJobStartDate) == $this->year && 
+                   date('m', $firstJobStartDate) == $this->month) {
+                    $wage = $firstJob->start_wage;
+    
+                    $startingWages[$userWithJob->id] = $wage;
+
+                    $user_id = $userWithJob->id;
+
+                    $start_date = date_create($userWithJob->jobs->sortBy('start_date')->first()->start_date);
+        
+                    $eligible_date = date_create($userWithJob->eligible_date);
+        
+                    $datedifference = date_diff($eligible_date, $start_date);
+        
+                    $dateDiff[$user_id] = $datedifference->format('%a');
+                }
+            }
+
+            // users with job in current monthly period
+            foreach($getPreviousQuery as $previousJob) {
+
+                $previousJob = $previousJob->jobs->sortBy('start_date')->first();
+
+                $previousJobStartDate = strtotime($previousJob->start_date);
+
+                if(date('Y', $previousJobStartDate) == $previousYear && date('m', $previousJobStartDate == $previousMonth)) {
+                    $previousJobStartWage = $previousJob->jobs->sortBy('start_date')->first()->start_wage;
+    
+                    $previousStartingWages[$previousJob->id] = $previousJobStartWage;
+        
+                    $user_id = $previousJob->id;
+        
+                    $prevStartDate = date_create($previousJob->jobs->sortBy('start_date')->first()->start_date);
+        
+                    $prevEligibleDate = date_create($previousJob->eligible_date);
+        
+                    $prevDateDiff = date_diff($prevEligibleDate, $prevStartDate);
+        
+                    $prevDateDiffArr[$user_id] = $prevDateDiff->format('%a');
+                }
+    
+            } 
 
         }
 
         // Sum all starting wages and divide by total and round the average
-        if (count($users) > 0) {
-            $this->vars['wage'] = round(array_sum($startingWages) / count($users), 2);
+        if (count($usersWithJob) > 0) {
+            $this->vars['startingWage'] = round(array_sum($startingWages) / count($startingWages), 2);
         } else {
-            $this->vars['wage'] = "No Users";
+            $this->vars['startingWage'] = "No Users";
         }
+   
 
         // Sum all previous starting wages and divide by total and round the average
         if (count($getPreviousQuery) > 0) {
 
             $this->vars['previousStartWage'] = round(array_sum($previousStartingWages) / count($getPreviousQuery), 2);
 
-            $startingWageDiff = $this->vars['wage'] - $this->vars['previousStartWage'];
+            $startingWageDiff = $this->vars['startingWage'] - $this->vars['previousStartWage'];
     
             $this->vars['startingWageDiff'] = round($startingWageDiff, 2);
 
@@ -533,30 +624,12 @@ class TransitionCenter extends ReportWidgetBase
         }
 
 
-        // Here are are creating an array to hold the values for differences
+        // Here we are creating an array to hold the values for differences
         // between the eligible date and start date.
-        $dateDiff = [];
 
-        $dates = [
-            "1-5" => 0,
-            "6-10" => 0,
-            "11-20" => 0,
-            "21-30" => 0,
-            "30+" => 0
-        ];
 
         // Now we loop through our users collection
-        foreach ($users as $user) {
-
-            $user_id = $user->id;
-
-            $start_date = date_create($user->jobs->first()->start_date);
-
-            $eligible_date = date_create($user->eligible_date);
-
-            $datedifference = date_diff($eligible_date, $start_date);
-
-            $dateDiff[$user_id] = $datedifference->format('%a');
+        foreach ($usersWithJob as $userWithJob) {
 
         }
 
@@ -574,8 +647,8 @@ class TransitionCenter extends ReportWidgetBase
             }
         }
 
-        if (count($users) > 0) {
-            $this->vars['dateAvg'] = round(array_sum($dateDiff) / count($users), 0);
+        if (count($usersWithJob) > 0) {
+            $this->vars['dateAvg'] = round(array_sum($dateDiff) / count($usersWithJob), 0);
         } else {
             $this->vars['dateAvg'] = "No Users";
         }
@@ -584,28 +657,21 @@ class TransitionCenter extends ReportWidgetBase
             $this->vars['prevDateAvg'] = round(array_sum($prevDateDiffArr) / count($getPreviousQuery), 0);
 
             $this->vars['prevDateAvgDiff'] = $this->vars['prevDateAvg'] - $this->vars['dateAvg'];
-
         } else {
             $this->vars['prevDateAvgDiff'] = "NO DATA AVAILABLE";
         }
 
         $this->vars['dateRange'] = $dates;
-
-        // Pull most recent employer registration to display on dashboard
-        $newEmployer = User::whereHas('groups', function($q){
-
-                    // User group id = 3 is employers group
-                    $q->where('id', '=', '3');
-
-                // Sort newest to oldest registration date
-                // Take the first record
-                })->orderBy('created_at', 'desc')->take(1)->get();
-
-        $this->vars['newEmployer'] = $newEmployer->first();
     }
 
     public function loadPostData() {
-        $appliedJobs = AppliedJob::groupBy('job_id')->select('job_id', DB::raw('count(*) as total'))->orderBy('total', 'desc')->get()->take(10);
+        $appliedJobs = AppliedJob::groupBy('job_id')
+                                   ->select('job_id', DB::raw('count(*) as total'))
+                                   ->orderBy('total', 'desc')
+                                   ->get()
+                                   ->take(10);
+
         $this->vars['appliedJobs'] = $appliedJobs;
     }
+
 }
