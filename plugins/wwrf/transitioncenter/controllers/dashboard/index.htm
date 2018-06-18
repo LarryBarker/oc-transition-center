@@ -1,42 +1,43 @@
-<div class="control-tabs primary-tabs" data-control="tab">
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="#primaryTabOne">Dashboard</a></li>
-        <li><a href="#primaryTabTwo">Upcoming Releases</a></li>
-        <li><a href="#primaryTabThree">Top Jobs</a></li>
-    </ul>
-    <div class="tab-content">
-        <div class="tab-pane active">
-            <?= Form::open(['class'=>'layout-relative dashboard-container']) ?>
+<div class="row">
+    <div class="col-lg-6">
+        <?= Form::open(['class'=>'layout-relative dashboard-container']) ?>
 
-                <div id="dashReportContainer" class="report-container loading">
-            
-                    <!-- Loading -->
-            
-                    <div class="loading-indicator-container">
-            
-                        <div class="loading-indicator indicator-center">
-            
-                            <span></span>
-            
-                            <div><?= e(trans('backend::lang.list.loading')) ?></div>
-            
-                        </div>
-            
+            <div id="dashReportContainer" class="report-container loading">
+        
+                <!-- Loading -->
+        
+                <div class="loading-indicator-container">
+        
+                    <div class="loading-indicator indicator-center">
+        
+                        <span></span>
+        
+                        <div><?= e(trans('backend::lang.list.loading')) ?></div>
+        
                     </div>
-            
+        
                 </div>
-                
-            <?= Form::close() ?>
-        </div>
-        <div class="tab-pane">
-            <?= $this->listRender('releases'); ?>
-        </div>
-        <div class="tab-pane">
-            <?= $this->listRender('appliedJobs'); ?> 
-        </div>
+        
+            </div>
+            
+        <?= Form::close() ?>
+    </div>
+    <div class="col-lg-6">
+        <h3>Upcoming Releases for <?php echo date('F'); ?></h3>
+        <?= $this->listRender('releases'); ?>
     </div>
 </div>
 
+<div class="row">
+    <div class="col-lg-6">
+        <h3>Top 10 Viewed Jobs</h3>
+        <?= $this->listRender('topJobsList'); ?>
+    </div>
+    <div class="col-lg-6">
+        <h3>Top 10 Applied Jobs</h3>
+        <?= $this->listRender('topJobsList'); ?>
+    </div>
+</div>
 <script>
 
     $(document).ready(function() {

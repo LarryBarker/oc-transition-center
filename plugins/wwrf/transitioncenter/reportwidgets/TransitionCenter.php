@@ -10,7 +10,9 @@ use Wwrf\TransitionCenter\Models\Employer;
 
 use Wwrf\TransitionCenter\Models\Questionnaire;
 
-use Wwrf\TransitionCenter\Models\AppliedJob;
+use Wwrf\TransitionCenter\Models\Tracker;
+
+use RainLab\Blog\Models\Post;
 
 use Exception;
 
@@ -126,7 +128,7 @@ class TransitionCenter extends ReportWidgetBase
 
         $this->loadEmploymentData();
 
-        $this->loadPostData();
+        $this->getTopTenViewedJobs();
 
         $this->vars['currentWage'] = $this->getCurrentWage();
 
@@ -613,9 +615,24 @@ class TransitionCenter extends ReportWidgetBase
         $this->vars['newEmployer'] = $newEmployer->first();
     }
 
-    public function loadPostData() {
-        $appliedJobs = AppliedJob::groupBy('job_id')->select('job_id', DB::raw('count(*) as total'))->orderBy('total', 'desc')->get()->take(10);
-        $this->vars['appliedJobs'] = $appliedJobs;
+    public function getTopTenViewedJobs() {
+        $topTenTrackers = Tracker::groupBy('trackable_id')->select('trackable_id', DB::raw('count(*) as total'))->orderBy('total', 'desc')->take(10)->get();
+        foreach($topTenTrackers as $topTenJob) {
+            $post = Post::find($topTenJob->trackable_id);
+            $topTenJobs[$topTenJob->trackable_id] = [
+                "id" => $topTenJob->trackable_id,
+                "post" => $post,
+                "count" => $topTenJob->total
+            ];
+        }
+        return $this->vars['topTenJobs'] = $topTenJobs;
+    }
+
+    public function getTopTenAppliedJobs() {
+        $topTenAppliedJobs = Tracker::groupBy('trackable_id')->select('trackable_id', DB::raw('count(*) as total'))->orderBy('total', 'desc')->where('applied_on', '!=', NULL)->take(10)->get();
+        $this->vars['topTenAppliedJobs'] = $topTenAppliedJobs;
+
+        return $topTenAppliedJobs;
     }
 
     public function getCurrentWage() {
@@ -639,5 +656,16 @@ class TransitionCenter extends ReportWidgetBase
         $currentWage = round(array_sum($currentWages) / count($currentWages), 2);
 
        return $currentWage;
+    }
+
+    public function getOffenders($withTrashed = false)
+    {
+        $users = User::isOffender();
+
+        if($withTrashed = true) {
+            $users->withTrashed();
+        }
+
+        return $users->get();
     }
 }

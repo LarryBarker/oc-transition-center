@@ -18,7 +18,7 @@ recordUrl: rainlab/user/users/preview/:id
 noRecordsMessage: backend::lang.list.no_records
 
 # Records to display per page
-recordsPerPage: 20
+recordsPerPage: 10
 
 # Display checkboxes next to each record
 showCheckboxes: true

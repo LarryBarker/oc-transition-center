@@ -1,5 +1,7 @@
 <?php namespace Wwrf\TransitionCenter\Controllers;
 
+use DB;
+
 use Lang;
 
 use Flash; 
@@ -48,7 +50,7 @@ class Dashboard extends Controller
 
     public $listConfig = [
         'releases' => 'config_list.yaml',
-        'appliedJobs' => 'config_top_jobs_list.yaml'
+        'topJobsList' => 'config_top_jobs_list.yaml'
     ];
 
     public $bodyClass = 'compact-container';
@@ -71,13 +73,11 @@ class Dashboard extends Controller
 
         parent::__construct();
 
-
-
         BackendMenu::setContext('Wwrf.TransitionCenter', 'transitioncenter', 'sideboard');
 
-
-
         $this->addCss('/modules/backend/assets/css/dashboard/dashboard.css', 'core');
+
+        $this->makeLists();
 
     }
 
@@ -94,7 +94,7 @@ class Dashboard extends Controller
         }
 
         $this->addJs('/plugins/rainlab/user/assets/js/bulk-actions.js');
-
+        
         $this->asExtension('ListController')->index();
 
         $this->initReportContainer();
@@ -106,9 +106,13 @@ class Dashboard extends Controller
 
 
     public function listExtendQuery($query, $definition = null) {
-        if ($definition == 'releases') {
+        if($definition == 'releases') {
             $query->whereYear('release_date', '=', date('Y'))->whereMonth('release_date','=', date('m'))->get();
-        } 
+        }
+
+        if($definition == 'topJobsList') {
+            $query->groupBy('trackable_id')->select('trackable_id', DB::raw('count(*) as total'))->orderBy('total', 'desc')->where('applied_on', '!=', NULL)->take(10)->get();
+        }
     }
 
 
