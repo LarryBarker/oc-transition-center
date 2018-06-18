@@ -63,7 +63,7 @@ class Plugin extends PluginBase
         // Extend User model with behavior
         User::extend(function($model) {
             // Implement behavior if not already implemented
-            if (!$model->isClassExtendedWith('Alxy.Favorites.Behaviors.Favoriteable')) {
+            if (!$model->isClassExtendedWith('Alxy.Favorites.Behaviors.Favoriteability')) {
                 $model->implement[] = 'Alxy.Favorites.Behaviors.Favoriteability';
             }
         });

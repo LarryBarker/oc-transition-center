@@ -1,0 +1,10 @@
+trackers:
+    label: Activity
+    view:
+        list: $/wwrf/transitioncenter/models/tracker/columns.yaml
+        recordsPerPage: 10
+        recordUrl: rainlab/blog/posts/update/:trackable_id
+        showCheckboxes: false
+        showSearch: true
+        showSorting: true
+        toolbarButtons: false

@@ -77,8 +77,9 @@ class TransitionCenter extends ReportWidgetBase
         // This will set default values on every refresh
         // we will not use $this->setProperties() as it will set
         // multiple props at single time but it will remove column size etc props as well so
+        $this->setProperty('period', 'monthly');
         $this->setProperty('year' , $this->getDefaultYear());
-        //$this->setProperty('month' , $this->getCurrentMonth());
+        $this->setProperty('month' , $this->getCurrentMonth());
         //$this->setProperty('quarter' , null);
 
     }

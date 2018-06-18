@@ -2,6 +2,7 @@
 
 use Backend;
 use System\Classes\PluginBase;
+use System\Classes\PluginManager;
 use RainLab\User\Models\User as UserModel;
 use RainLab\User\Controllers\Users as UsersController;
 use RainLab\Blog\Models\Post as PostModel;
@@ -218,6 +219,14 @@ class Plugin extends PluginBase
                 $myConfigPath
             );
 
+            // splice in user job activity relation config
+            $activityTrackerConfig = '$/wwrf/transitioncenter/controllers/trackers/config_relation.yaml';
+
+            $controller->relationConfig = $controller->mergeConfig(
+                $controller->relationConfig,
+                $activityTrackerConfig
+            );
+
         });
 
         /*Event::listen('backend.list.extendQuery', function ($widget, $query) {
@@ -248,10 +257,10 @@ class Plugin extends PluginBase
             QuestionnaireModel::getFromUser($model);
 
             $form->addTabFields([
-                'viewedJobs' => [
+                'trackers' => [
                     'tab' => 'Activity',
                     'type'  => 'partial',
-                    'path' => '$/wwrf/transitioncenter/controllers/viewedjobs/_viewed_jobs.htm'
+                    'path' => '$/wwrf/transitioncenter/controllers/trackers/_trackers.htm'
                 ],
                 'usersprograms' => [
                     //'label' => 'Programs',
@@ -385,6 +394,25 @@ class Plugin extends PluginBase
                 return $query->where('is_featured', 1)->get();
             });
         });
+
+        // Extend User model with behavior
+        UserModel::extend(function($model) {
+            // Implement behavior if not already implemented
+            if (!$model->isClassExtendedWith('Wwrf.TransitionCenter.Behaviors.Trackability')) {
+                $model->implement[] = 'Wwrf.TransitionCenter.Behaviors.Trackability';
+            }
+        });
+        
+        // Check for RainLab Blog plugin
+        if(PluginManager::instance()->exists('RainLab.Blog')) {
+            // Extend Post model with behavior
+            PostModel::extend(function($model) {
+                // Implement behavior if not already implemented
+                if (!$model->isClassExtendedWith('Wwrf.TransitionCenter.Behaviors.Trackable')) {
+                    $model->implement[] = 'Wwrf.TransitionCenter.Behaviors.Trackable';
+                }
+            });
+        }       
     }
 
     public function registerListColumnTypes()

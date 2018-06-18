@@ -114,7 +114,7 @@ class JobTracker extends ComponentBase
         
         $job = Job::where('id', '=', $job_id)->first();
 
-        $job->addFavorite($user);
+        $job->addFavoriteTracker($user);
 
         return;
     }
@@ -131,5 +131,17 @@ class JobTracker extends ComponentBase
         $job->toggleFavorite($user);
 
         return;
+    }
+
+    public function onTrackApply($job_id = null)
+    {
+        $user = Auth::getUser();
+        
+        if(!isset($job_id))
+            $job_id = post('job_id');
+
+        $job = Job::where('id', $job_id)->first();
+
+        $job->addApply($user);
     }
 }

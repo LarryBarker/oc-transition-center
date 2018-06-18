@@ -7,12 +7,11 @@
 <div class="mb-5 px-3 py-3 z-depth-1">
     <h2 class="card-title font-weight-bold pt-2 ">
         <strong>
-            <a href="{{post.url}}" {% if user.groups.first.name=='Users' %} data-request="onViewJob" data-request-data="job_id: {{post.id}}"
-                {%endif%}>{{ post.title }}</a>
+            <a href="{{post.url}}">{{ post.title }}</a>
         </strong>
 
         <span class="h5 float-md-right">
-            {% if not post.isFavorited() %}
+            {% if not post.isTrackerFavorited() %}
                 <a data-request="onFavoriteJob" data-request-data="job_id: {{post.id}}" data-request-redirect="{{this.page.name|page}}" class="grey-text favorite"><i class="fa fa-star-o"></i> Favorite</a>
             {% else %}
                 <a data-request="onToggleFavorite" data-request-data="job_id: {{post.id}}" data-request-redirect="{{this.page.name|page}}"><i class="fa fa-star orange-text"></i> Favorite</a>
@@ -31,18 +30,13 @@
     <p class="small">Categories: {% for category in post.categories %}
         <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %} {% endfor %}
     </p>
-    <p class="small">{% if post.excerpt %} {{ str_limit(post.excerpt|raw, '140', '...') }} {% else %} {{ str_limit(html_strip(post.content|raw),
-        '140', '...') }} {% endif %}</p>
     
-    <form data-request="onApplyJob" data-request-data="job_id: {{post.id}}" data-request-flash method="post" onSubmit="window.open('{{post.link}}','_blank');">
-    {% if user.groups.first.name == 'Users' and post.link %}
-        <button type="sumbit" class="btn unique-color btn-sm">Apply Online
-            <i class="fa fa-clone"></i>
-        </button>
+    <p class="lead">{% if post.excerpt %} {{ str_limit(post.excerpt|raw, '240', '...') }} {% else %} {{ str_limit(html_strip(post.content|raw),
+        '240', '...') }} {% endif %}</p>
+    {% if user.id is divisible by(2) %}
+        <a href="{{post.url}}" class="btn unique-color btn-sm">Read more</a>
     {% endif %}
-    <a href="{{post.url}}" class="btn unique-color btn-sm" {% if user.groups.first.name=='Users' %} data-request="onViewJob" data-request-data="job_id: {{post.id}}"
-    {%endif%}>Read more</a>
-    </form>
+
 </div>
 {% endfor %}
 <!-- /Post card -->

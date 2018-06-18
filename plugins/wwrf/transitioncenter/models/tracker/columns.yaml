@@ -1,0 +1,27 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    is_favorite:
+        label: Favorite
+        type: switch
+    trackable[title]:
+        label: Title
+        searchable: true
+        sortable: true
+    trackable[company]:
+        label: Company
+        searchable: true
+        sortable: true
+    views:
+        label: Views
+        sortable: true
+    last_viewed:
+        label: Last Viewed
+        type: date
+        sortable: true
+    applied_on:
+        label: Applied On
+        type: date
+        sortable: true

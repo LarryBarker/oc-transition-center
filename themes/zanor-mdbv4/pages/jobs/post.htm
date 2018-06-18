@@ -16,25 +16,23 @@ categoryPage = "job/industry"
 jobPage = "blog/post"
 ==
 <?php
-use Wwrf\TransitionCenter\Models\AppliedJob;
-
-function hasUserAppliedToJob($user_id, $job_id)
-{
-	$userAppliedJob = AppliedJob::where('user_id', '=', $user_id)
-								->where('job_id','=', $job_id)
-								->first();
-								
-	if($userAppliedJob)
-		return [
-			$this["hasApplied"] = true, 
-			$this["appliedJob"] = $userAppliedJob
-		];
-}
 function onEnd()
 {
     $this->page->title = $this->post->title;
-    
-	$this->hasUserAppliedToJob($this->user->id, $this->post->id);
+
+    if($this->user->isOffender()) {
+        if($this->post->isTracked($this->user)){
+            $this->post->updateViewedJob($this->user);
+            $this->post->trackers()->where('user_id', $this->user->id)->increment('views');
+        }else{
+            $this->post->addTracker($this->user);
+            $this->post->trackers()->where('user_id', $this->user->id)->increment('views');
+        }
+
+        if($this->post->isApplied($this->user)){
+            $this["userHasApplied"] = true;
+        }
+    }
 }
 ?>
 ==
@@ -56,9 +54,17 @@ function onEnd()
 
                 <!-- Post column-->
                 <div class="col-lg-8 col-md-12 mb-3 pb-lg-2 mx-auto">
-
+                        
                     <div class="mb-2 px-4 py-2 z-depth-1">
-                        <h2 class="card-title font-weight-bold pt-2"><strong>{{ post.title }}</strong></h2>
+                        
+                        <h2 class="card-title font-weight-bold pt-2"><strong>{{ post.title }}</strong><span class="h5 float-md-right">
+                                {% if not post.isTrackerFavorited() %}
+                                    <a data-request="onFavoriteJob" data-request-data="job_id: {{post.id}}" data-request-redirect="{{this.page.name|page}}" class="grey-text favorite"><i class="fa fa-star-o"></i> Favorite</a>
+                                {% else %}
+                                    <a data-request="onToggleFavorite" data-request-data="job_id: {{post.id}}" data-request-redirect="{{this.page.name|page}}"><i class="fa fa-star orange-text"></i> Favorite</a>
+                                {% endif %}
+                            </span></h2>
+                        
                         {% if post.company %}
 						<h4><i class="fa fa-building-o mr-3"></i> {% if post.website %}
                             <a href="{{post.website}}" 
@@ -89,14 +95,19 @@ function onEnd()
                 <div class="col-lg-4 col-md-12 mb-4 mx-auto">
 
                     {% if user.groups.first.name == 'Users' and post.link %}
-                        <form data-request="onApplyJob" 
+                        <form data-request="onTrackApply" 
                                 data-request-data="job_id: {{post.id}}" 
                                 data-request-flash 
                                 method="post" 
                                 onSubmit="window.open('{{post.link}}','_blank');">
-                            <button type="sumbit" class="btn btn-block default-color-dark mb-4">Apply Online <i class="fa fa-clone"></i></button>
+                            <button type="sumbit" class="btn btn-block {% if not userHasApplied %} btn-default {% endif %} mb-4">
+                                {% if userHasApplied %}
+                                    Already applied <i class="fa fa-check ml-1"></i>
+                                {% else %}
+                                    Apply Online <i class="fa fa-edit ml-1"></i>
+                                {% endif %}
+                            </button>
                         </form>
-                       
                     {% endif %}
 
                     {% if post.address %}

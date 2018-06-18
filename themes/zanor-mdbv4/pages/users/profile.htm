@@ -134,30 +134,31 @@ forceSecure = 0
                             <!--Panel 2-->
                             <div class="tab-pane fade" id="jobs" role="tabpanel">
 
-                                <table class="table-sm table-responsive table-striped table-hover w-100">
+                                <table class="table-sm table-responsive table-striped table-hover w-auto">
                                     <thead class="blue-grey lighten-4">
                                         <tr>
+                                        <th></th>
                                         <th scope="col">Job</th>
-                                        <th scope="col">Viewed</th>
-                                        <th scope="col">Applied</th>
+                                        <th scope="col">Last Viewed</th>
+                                        <th scope="col">Applied On</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for viewedJob in ueuser.user.viewedJobs %}
+                                        {% set activity = ueuser.user.trackers %}
+                                        {% for tracker in activity %}
                                         <tr>
+                                            <td>
+                                                {% if tracker.trackable.isTrackerFavorited() %}
+                                                    <i class="fa fa-star orange-text"></i>
+                                                {%endif%}
+                                            </td>
                                         <td>
-                                            {% if viewedJob.job.isFavorited() %}    <i class="fa fa-star orange-text"></i>
-                                            {%endif%}
-                                            <a href="{{'jobs/post'|page({ slug: viewedJob.job.slug})}}">{{ viewedJob.job.title }}</a><br />
-                                            {{ viewedJob.job.company }}<br />
-                                            {{ viewedJob.job.address }}<br />
-                                            {{ viewedJob.job.phone }}</td>
-                                        <td>{{ viewedJob.created_at|date('m/d/y') }}</td>
-                                        <td>{% for appliedJob in appliedJobs %}
-                                                {% if appliedJob.job_id == viewedJob.job_id %}
-                                                    {{ appliedJob.created_at|date('m/d/y') }}
-                                                {% endif %}
-                                            {% endfor %}</td>
+                                            <a href="{{'jobs/post'|page({ slug: tracker.trackable.slug})}}">{{ tracker.trackable.title }}</a><br />
+                                            {{ tracker.trackable.company }}<br />
+                                            {{ tracker.trackable.address }}<br />
+                                            {{ tracker.trackable.phone }}</td>
+                                        <td>{{ tracker.last_viewed|date('m/d/y') }}</td>
+                                        <td>{% if tracker.applied_on %}{{ tracker.applied_on|date('m/d/y') }}{%endif%}</td>
                                         </tr>
                                         {% endfor %}
                     

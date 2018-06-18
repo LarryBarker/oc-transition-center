@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Tracker
+
+# Model Form Field configuration
+form: $/wwrf/transitioncenter/models/tracker/fields.yaml
+
+# Model Class name
+modelClass: Wwrf\TransitionCenter\Models\Tracker
+
+# Default redirect location
+defaultRedirect: wwrf/transitioncenter/trackers
+
+# Create page
+create:
+    title: Create Tracker
+    redirect: wwrf/transitioncenter/trackers/update/:id
+    redirectClose: wwrf/transitioncenter/trackers
+
+# Update page
+update:
+    title: Edit Tracker
+    redirect: wwrf/transitioncenter/trackers
+    redirectClose: wwrf/transitioncenter/trackers
+
+# Preview page
+preview:
+    title: Preview Tracker
