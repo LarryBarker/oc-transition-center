@@ -50,7 +50,8 @@ class Dashboard extends Controller
 
     public $listConfig = [
         'releases' => 'config_list.yaml',
-        'topJobsList' => 'config_top_jobs_list.yaml'
+        'topJobsList' => 'config_top_jobs_list.yaml',
+        'topAppliedJobsList' => 'config_top_applied_jobs_list.yaml'
     ];
 
     public $bodyClass = 'compact-container';
@@ -111,7 +112,11 @@ class Dashboard extends Controller
         }
 
         if($definition == 'topJobsList') {
-            $query->groupBy('trackable_id')->select('trackable_id', DB::raw('count(*) as total'))->orderBy('total', 'desc')->where('applied_on', '!=', NULL)->take(10)->get();
+            $query->groupBy('trackable_id')->orderBy('views', 'desc')->take(10)->get();
+        }
+
+        if($definition == 'topAppliedJobsList') {
+            $query->where('applied_on', '!=', NULL)->groupBy('trackable_id')->orderBy('views', 'desc')->take(10)->get();
         }
     }
 

@@ -6,7 +6,7 @@
 title: Top 10 Applied Jobs
 
 # Model List Column configuration
-list: $/wwrf/transitioncenter/models/tracker/top_ten_columns.yaml
+list: $/wwrf/transitioncenter/models/tracker/top_ten_applied_columns.yaml
 
 # Model Class name
 modelClass: Wwrf\TransitionCenter\Models\Tracker

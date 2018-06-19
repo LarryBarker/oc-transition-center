@@ -1,0 +1,12 @@
+columns:
+    trackable[title]:
+        label: Title
+        searchable: true
+        sortable: true
+    trackable[company]:
+        label: Company
+        searchable: true
+        sortable: true
+    views:
+        label: Views
+        sortable: true
