@@ -23,8 +23,20 @@
         <?= Form::close() ?>
     </div>
     <div class="col-lg-6">
-        <h3>Upcoming Releases for <?php echo date('F'); ?></h3>
-        <?= $this->listRender('releases'); ?>
+        <div class="control-tabs primary-tabs" data-control="tab">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#primaryTabOne">Releases</a></li>
+                <li><a href="#primaryTabTwo">Unemployed</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active">
+                    <?= $this->listRender('releases'); ?>
+                </div>
+                <div class="tab-pane">
+                        <?= $this->listRender('unemployed'); ?>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

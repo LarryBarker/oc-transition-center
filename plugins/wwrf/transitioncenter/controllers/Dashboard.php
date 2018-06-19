@@ -50,6 +50,7 @@ class Dashboard extends Controller
 
     public $listConfig = [
         'releases' => 'config_list.yaml',
+        'unemployed' => 'config_unemployed_list.yaml',
         'topJobsList' => 'config_top_jobs_list.yaml',
         'topAppliedJobsList' => 'config_top_applied_jobs_list.yaml'
     ];
@@ -117,6 +118,10 @@ class Dashboard extends Controller
 
         if($definition == 'topAppliedJobsList') {
             $query->where('applied_on', '!=', NULL)->groupBy('trackable_id')->orderBy('views', 'desc')->take(10)->get();
+        }
+
+        if($definition == 'unemployed') {
+            $query->withoutTrashed()->isOffender()->isUnemployed()->get();
         }
     }
 

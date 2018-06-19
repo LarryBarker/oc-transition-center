@@ -1,0 +1,24 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+
+    kdoc_number:
+        label: '#'
+        searchable: true
+
+    name:
+        label: rainlab.user::lang.user.name
+        searchable: true
+        select: concat(surname, ', ', name)
+
+    eligible_date:
+        label: Eligible
+        type: dateformat
+   
+    counselor:
+        label: Counselor
+        relation: counselor
+        select: surname
+        invisible: true

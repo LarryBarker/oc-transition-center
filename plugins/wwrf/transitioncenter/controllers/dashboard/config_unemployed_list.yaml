@@ -1,0 +1,32 @@
+# ===================================
+#  List Behavior Config
+# ===================================
+
+# List Title
+title: Unemployed List
+
+# Model List Column configuration
+list: $/rainlab/user/models/user/unemployed_users_columns.yaml
+
+# Model Class name
+modelClass: RainLab\user\Models\User
+
+# Link URL for each record
+recordUrl: rainlab/user/users/preview/:id
+
+# Message to display if the list is empty
+noRecordsMessage: backend::lang.list.no_records
+
+# Records to display per page
+recordsPerPage: 10
+
+# Display checkboxes next to each record
+showCheckboxes: false
+
+# Displays the list column set up button
+showSetup: false
+
+# Sort list according to release date
+defaultSort:
+    column: eligible_date
+    direction: asc
