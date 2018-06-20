@@ -42,8 +42,6 @@ class Dashboard extends Controller
 
     use \Backend\Traits\InspectableContainer;
 
-
-
     public $implement = [
         'Backend.Behaviors.ListController'
     ];
@@ -56,7 +54,6 @@ class Dashboard extends Controller
     ];
 
     public $bodyClass = 'compact-container';
-
 
 
     /**
@@ -97,7 +94,7 @@ class Dashboard extends Controller
 
         $this->addJs('/plugins/rainlab/user/assets/js/bulk-actions.js');
         
-        $this->asExtension('ListController')->index();
+        //$this->asExtension('ListController')->index();
 
         $this->initReportContainer();
 
@@ -107,21 +104,25 @@ class Dashboard extends Controller
 
 
 
-    public function listExtendQuery($query, $definition = null) {
-        if($definition == 'releases') {
-            $query->whereYear('release_date', '=', date('Y'))->whereMonth('release_date','=', date('m'))->get();
+    public function listExtendQueryBefore($query, $definition = null) {
+        if ($definition == 'releases') {
+            $query->whereYear('release_date', '=', date('Y'))->whereMonth('release_date','=', date('m'));
         }
 
-        if($definition == 'topJobsList') {
-            $query->groupBy('trackable_id')->orderBy('views', 'desc')->take(10)->get();
+        if ($definition == 'topJobsList') {
+            $query->withCount('trackers')               // Count the trackers
+                  ->orderBy('trackers_count', 'desc')   // Order by the tracker count
+                  ->limit(10);                          // Take the first 10
         }
 
-        if($definition == 'topAppliedJobsList') {
-            $query->where('applied_on', '!=', NULL)->groupBy('trackable_id')->orderBy('views', 'desc')->take(10)->get();
+        if ($definition == 'topAppliedJobsList') {
+            $query->whereHas('trackers', function($q) {
+                $q->where('applied_on', '!=', NULL);
+            })->withCount('trackers')->orderBy('trackers_count', 'desc')->limit(10);
         }
 
-        if($definition == 'unemployed') {
-            $query->withoutTrashed()->isOffender()->isUnemployed()->get();
+        if ($definition == 'unemployed') {
+            $query->withoutTrashed()->isOffender()->isUnemployed();
         }
     }
 

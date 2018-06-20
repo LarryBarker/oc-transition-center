@@ -6,10 +6,10 @@
 title: Top 10 Applied Jobs
 
 # Model List Column configuration
-list: $/wwrf/transitioncenter/models/tracker/top_ten_columns.yaml
+list: $/rainlab/blog/models/post/top_ten_columns.yaml
 
 # Model Class name
-modelClass: Wwrf\TransitionCenter\Models\Tracker
+modelClass: RainLab\Blog\Models\Post
 
 # Link URL for each record
 #recordUrl: rainlab/user/users/preview/:id
@@ -17,16 +17,10 @@ modelClass: Wwrf\TransitionCenter\Models\Tracker
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records
 
-# Records to display per page
-recordsPerPage: 10
-
 # Display checkboxes next to each record
 showCheckboxes: false
 
 # Displays the list column set up button
 showSetup: false
 
-# Sort list according to release date
-defaultSort:
-    column: created_at
-    direction: asc
+showSorting: false

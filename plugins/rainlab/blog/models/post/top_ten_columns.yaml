@@ -1,0 +1,7 @@
+columns:
+    title:
+        label: Title
+    company:
+        label: Company
+    trackers_count:
+        label: Views
