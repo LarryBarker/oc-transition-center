@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Platform
+
+# Model Form Field configuration
+form: $/wwrf/mobileplugin/models/platform/fields.yaml
+
+# Model Class name
+modelClass: Wwrf\MobilePlugin\Models\Platform
+
+# Default redirect location
+defaultRedirect: wwrf/mobileplugin/platforms
+
+# Create page
+create:
+    title: Create Platform
+    redirect: wwrf/mobileplugin/platforms/update/:id
+    redirectClose: wwrf/mobileplugin/platforms
+
+# Update page
+update:
+    title: Edit Platform
+    redirect: wwrf/mobileplugin/platforms
+    redirectClose: wwrf/mobileplugin/platforms
+
+# Preview page
+preview:
+    title: Preview Platform

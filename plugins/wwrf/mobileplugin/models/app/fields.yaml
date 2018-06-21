@@ -1,0 +1,23 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+      label: wwrf.mobileplugin::lang.app.name_label
+      span: full
+
+    description:
+      label: wwrf.mobileplugin::lang.app.description_label
+      type: textarea
+      size: large
+
+    maintenance_message:
+      label: wwrf.mobileplugin::lang.app.maintenance_message_label
+      commentAbove: wwrf.mobileplugin::lang.app.maintenance_message_comment
+      default: Sorry, our servers are under maintenance. Please try again in a couple hours.
+
+    variants:
+      label: wwrf.mobileplugin::lang.app.variants_label
+      type: partial
+      path: field_variants

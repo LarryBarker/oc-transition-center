@@ -1,0 +1,19 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    instruction:
+        type: partial
+        path: $/wwrf/mobileplugin/models/settings/_template_hint.htm
+
+    provider:
+        label: wwrf.mobileplugin::lang.settings.provider_label
+        commentAbove: wwrf.mobileplugin::lang.settings.provider_comment
+        type: dropdown
+
+    activation_page:
+      label: wwrf.mobileplugin::lang.settings.activation_page_label
+      comment: wwrf.mobileplugin::lang.settings.activation_page_comment
+      type: dropdown
+      cssClass: hide

@@ -1,0 +1,10 @@
+# ===================================
+#  Rest Behavior Config
+# ===================================
+
+# Allowed Rest Actions
+allowedActions:
+  store:
+
+# Model Class name
+modelClass: Wwrf\MobilePlugin\Models\Install

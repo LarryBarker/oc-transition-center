@@ -1,0 +1,9 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    scoreboard:
+      type: partial
+      stretch: true
+      path: $/wwrf/mobileplugin/controllers/installs/_preview_scoreboard.htm

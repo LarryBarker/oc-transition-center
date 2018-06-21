@@ -1,0 +1,24 @@
+language: php
+php:
+  - 5.4
+  - 5.5
+  - 5.6
+  - 7.0
+  - hhvm
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_install:
+  - phpenv config-rm xdebug.ini || true
+
+before_script:
+  - composer self-update
+  - composer install --prefer-source --no-interaction --dev
+
+script: vendor/bin/phpunit
+
+notifications:
+  slack:
+    secure: MT5eWBoLLafyRTdFVyig9A/kw68UuKxSiFwFfsd7RaJwJlnR31rfw3oTS6/74Fkr7UQNOclUGSxbX10iIkR9I0ktMayMSDrnDZXNLs3Zn5ciGRjo9zIQ+gw0eqmU1hHyVXvG7pSwoLjqihlkO9J6K/1bUhTaHT+OXvKXZOqJ3Os=

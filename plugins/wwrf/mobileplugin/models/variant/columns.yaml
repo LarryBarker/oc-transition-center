@@ -1,0 +1,23 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    package:
+        label: Package
+        searchable: true
+
+    description:
+        label: Description
+        searchable: true
+
+    platform:
+        label: Platform
+        searchable: true
+        relation: platform
+        select: name
+
+    is_maintenance:
+        label: wwrf.mobileplugin::lang.variant.is_maintenance
+        comment: wwrf.mobileplugin::lang.variant.is_maintenance_comment
+        type: switch
