@@ -236,7 +236,7 @@ class Plugin extends PluginBase
             }
 
             // Define property if not already defined
-            if (!isset($controller->relationConfig)) {
+            if (!isset($controller->importExportController)) {
                 $controller->addDynamicProperty('importExportConfig');
             }
             

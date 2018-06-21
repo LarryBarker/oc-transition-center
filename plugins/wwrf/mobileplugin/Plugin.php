@@ -91,8 +91,10 @@ class Plugin extends PluginBase
 
             $mobileRelationConfig = '$/wwrf/mobileplugin/models/relation.yaml';
 
-            $controller->relationConfig = $mobileRelationConfig;
-
+            $controller->relationConfig = $controller->mergeConfig(
+                $controller->relationConfig,
+                $mobileRelationConfig
+            );
         });
 
         UsersController::extendFormFields(function($form, $model, $context){
