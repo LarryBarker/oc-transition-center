@@ -1,4 +1,4 @@
-<?php namespace Mohsin\MobilePlugin\Console;
+<?php namespace Wwrf\MobilePlugin\Console;
 
 use October\Rain\Scaffold\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;

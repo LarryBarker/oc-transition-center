@@ -1,15 +1,15 @@
-<?php namespace Mohsin\Mobile\Tests;
+<?php namespace Wwrf\MobilePlugin\Tests;
 
 require_once "../../../tests/PluginTestCase.php";
 
 use App;
 use PluginTestCase;
-use Mohsin\Mobile\Plugin as MobilePlugin;
-use Mohsin\Mobile\Models\App as AppModel;
-use Mohsin\Mobile\Models\Platform;
-use Mohsin\Mobile\Models\Install;
-use Mohsin\Mobile\Http\Installs;
-use Mohsin\Mobile\Models\Variant;
+use Wwrf\MobilePlugin\Plugin as MobilePlugin;
+use Wwrf\MobilePlugin\Models\App as AppModel;
+use Wwrf\MobilePlugin\Models\Platform;
+use Wwrf\MobilePlugin\Models\Install;
+use Wwrf\MobilePlugin\Http\Installs;
+use Wwrf\MobilePlugin\Models\Variant;
 use System\Classes\PluginManager;
 use Felixkiss\UniqueWithValidator\ValidatorExtension;
 
@@ -42,13 +42,13 @@ class InstallTest extends PluginTestCase
 
     public function testSetup()
     {
-        $this->seeInDatabase('mohsin_mobile_apps', [
+        $this->seeInDatabase('wwrf_mobile_apps', [
           'name' => 'Sample App',
           'description' => 'This is a sample app.',
           'maintenance_message' => 'Sorry, our servers are under maintenance. Please try again in a couple hours.'
         ]);
 
-        $this->seeInDatabase('mohsin_mobile_variants', [
+        $this->seeInDatabase('wwrf_mobile_variants', [
           'app_id' => 1,
           'package' => 'com.acme.test',
           'platform_id' => 1,
@@ -66,7 +66,7 @@ class InstallTest extends PluginTestCase
         $install -> last_seen = $install -> freshTimestamp();
         $install -> save(); // Shouldn't be a force save
 
-        $this->seeInDatabase('mohsin_mobile_installs', [
+        $this->seeInDatabase('wwrf_mobile_installs', [
           'instance_id' => '573b61d82b4e46e7',
           'variant_id' => $variant -> id
         ]);

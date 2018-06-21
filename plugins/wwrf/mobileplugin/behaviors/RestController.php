@@ -18,7 +18,7 @@ use October\Rain\Database\ModelException;
  *
  * In the model class definition:
  *
- *   public $implement = ['Mohsin.Rest.Behaviors.RestController'];
+ *   public $implement = ['Wwrf.Rest.Behaviors.RestController'];
  *
  * @author Saifur Rahman Mohsin
  */

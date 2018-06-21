@@ -43,7 +43,7 @@ class Installs extends Controller
       $rules = [];
 
       $rules['instance_id'] = 'required|max:16|string';
-      $rules['package'] = 'required|regex:/^[a-z0-9]*(\.[a-z0-9]+)+[0-9a-z]$/|exists:mohsin_mobile_variants,package';
+      $rules['package'] = 'required|regex:/^[a-z0-9]*(\.[a-z0-9]+)+[0-9a-z]$/|exists:wwrf_mobile_variants,package';
 
       $validation = Validator::make($data, $rules);
       if ($validation->fails()) {
