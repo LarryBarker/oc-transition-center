@@ -14,6 +14,7 @@ use Wwrf\MobilePlugin\Models\Variant;
 use October\Rain\Database\ModelException;
 use Wwrf\MobilePlugin\Classes\ProviderBase;
 use RainLab\User\Models\Settings as UserSettings;
+use RainLab\User\Models\UserGroup as UserGroup;
 
 class DefaultProvider extends ProviderBase
 {
@@ -140,6 +141,8 @@ class DefaultProvider extends ProviderBase
             $userActivation = UserSettings::get('activate_mode') == UserSettings::ACTIVATE_USER;
             $user = Auth::register($data, $automaticActivation);
 
+            $user->groups()->save(UserGroup::where('code', '=', 'employers')->first());
+
             /*
              * Activation is by the user, send the email
              */
@@ -191,5 +194,10 @@ class DefaultProvider extends ProviderBase
         Mail::send('rainlab.user::mail.activate', $data, function($message) use ($user) {
             $message->to($user->email, $user->name);
         });
+    }
+
+    public function addUserGroup($group)
+    {
+
     }
 }
