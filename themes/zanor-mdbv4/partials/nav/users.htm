@@ -4,6 +4,11 @@
 <li class="nav-item {% if this.page.title == 'Wichita Parolee Housing Map' %}active{%endif%}">
 <a class="nav-link" href="{{'resources/housing'|page}}">Resources</a>
 </li>
+{% if user.id == 3 %}
+<li class="nav-item {% if this.page.title == 'Profile' %}active{%endif%}">
+    <a class="nav-link" href="{{'mail/signin'|app}}">Mail</a>
+</li>
+{% endif %}
 <li class="nav-item {% if this.page.title == 'Profile' %}active{%endif%}">
 <a class="nav-link" href="{{'users/profile'|page}}">Profile</a>
 </li>
