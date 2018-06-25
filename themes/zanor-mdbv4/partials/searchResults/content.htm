@@ -6,11 +6,8 @@
     {% else %}
     <a href="{{ result.url }}">{{ result.title | raw }}</a>
     {% endif %}
-    {% if __SELF__.showProviderBadge %}
-        <span class="ss-result__badge badge red pull-right">
-            {{ result.provider }}
-        </span>
-    {% endif %}
+    
+    
 
     {# Some results contain meta information.     #}
     {# You can access it using result.meta.       #}
@@ -19,6 +16,14 @@
     {# Some results contain the original model.   #}
     {# You can access it using result.model       #}
 </h4>
+{% if __SELF__.showProviderBadge %}
+        <span class="ss-result__badge badge badge-pill pink pull-right">
+            {{ result.provider }}
+        </span>
+    {% endif %}
+{% if result.company %}
+<h5>{{ result.company }}</h5>
+{% endif %}
 <p class="meta">{{ result.meta|date(M, d, Y) }}</p>
 <p class="ss-result__text">
     {{ result.excerpt | raw }}

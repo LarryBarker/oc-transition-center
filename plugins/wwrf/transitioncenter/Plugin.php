@@ -435,7 +435,7 @@ class Plugin extends PluginBase
                 return [
                     'title'     => $item->name,
                     'text'      => $item->comments,
-                    'url'       => "/jobs/temp",
+                    'url'       => '/jobs/temp',
                     'relevance' => $relevance, // higher relevance results in a higher
                                                // position in the results listing
                     // 'meta' => 'data',       // optional, any other information you want
