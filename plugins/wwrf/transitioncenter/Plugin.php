@@ -19,6 +19,7 @@ use Model;
 use DB;
 use Cms\Classes\Page;
 use Backend\Facades\BackendMenu;
+use Wwrf\TransitionCenter\Models\TempService;
 
 /**
  * TransitionCenter Plugin Information File
@@ -412,7 +413,42 @@ class Plugin extends PluginBase
                     $model->implement[] = 'Wwrf.TransitionCenter.Behaviors.Trackable';
                 }
             });
-        }       
+        } 
+        
+        \Event::listen('offline.sitesearch.query', function ($query) {
+
+            // Search your plugin's contents
+            $items = TempService::where('name', 'like', "%${query}%")->get();
+    
+            // Now build a results array
+            $results = $items->map(function ($item) use ($query) {
+    
+                // If the query is found in the title, set a relevance of 2
+                $relevance = mb_stripos($item->name, $query) !== false ? 2 : 1;
+                
+                // Optional: Add an age penalty to older results. This makes sure that
+                // never results are listed first.
+                // if ($relevance > 1 && $item->published_at) {
+                //     $relevance -= $this->getAgePenalty($item->published_at->diffInDays(Carbon::now()));
+                // }
+    
+                return [
+                    'title'     => $item->name,
+                    'text'      => $item->comments,
+                    'url'       => "/jobs/temp",
+                    'relevance' => $relevance, // higher relevance results in a higher
+                                               // position in the results listing
+                    // 'meta' => 'data',       // optional, any other information you want
+                                               // to associate with this result
+                    // 'model' => $item,       // optional, pass along the original model
+                ];
+            });
+    
+            return [
+                'provider' => 'Temp Service', // The badge to display for this result
+                'results'  => $results,
+            ];
+        });
     }
 
     public function registerListColumnTypes()
