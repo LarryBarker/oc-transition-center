@@ -1,5 +1,5 @@
 <h4 class="ss-result__title">
-    {% if user.groups.first.name == 'Users' %}
+    {% if user.groups.first.name == 'Users'and result.provider == 'Job Post' %}
     <a href="#" data-request="onViewJob" data-request-data="job_id: {{ result.id }}">
         {{ result.title | raw }}
     </a>
@@ -25,7 +25,7 @@
 </p>
 
 <p class="ss-result__url">
-    {% if user.groups.first.name == 'Users' %}
+    {% if user.groups.first.name == 'Users' and result.provider == 'Job Post' %}
     <a href="#" data-request="onViewJob" data-request-data="job_id: {{ result.id }}">
         {{ __SELF__.visitPageMessage }} &rarr;
     </a>

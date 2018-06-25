@@ -1,11 +1,11 @@
 <h5 class="h5-responsive ss-autocomplete-result__title">
-    <a href="{{ result.url }}" {% if session.user.groups.first.name == 'Users' %}data-request="onViewJob" data-request-data="job_id: {{ result.id }}"{% endif %}>
+    <a href="{{ result.url }}" {% if session.user.groups.first.name == 'Users' and result.provider == 'Job Post' %}data-request="onViewJob" data-request-data="job_id: {{ result.id }}"{% endif %}>
         {{ result.title | raw }}
     </a>
     <p class="small">{{result.company | raw}}</p>
 </h5>
 {% if __SELF__.showProviderBadge %}
-    <span class="ss-autocomplete-result__badge badge red">
+    <span class="ss-autocomplete-result__badge badge badge-pill pink">
         {{ result.provider }}
     </span>
 {% endif %}
