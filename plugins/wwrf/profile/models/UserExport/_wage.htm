@@ -1,7 +1,9 @@
 <?php
 
-    $current_wage = $record->jobs->sortBy('start_date')->last()['current_wage'];
+    if (!$record->jobs->sortBy('start_date')->last()['end_date']){
+        $current_wage = $record->jobs->sortBy('start_date')->last()['current_wage'];
 
-    echo $current_wage;
+        echo $current_wage;
+    }
     
 ?>

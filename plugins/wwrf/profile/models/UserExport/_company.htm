@@ -1,5 +1,9 @@
 <?php
-    $company_name = $record->jobs->sortBy('start_date')->last()['company']['name'];
 
-    echo $company_name;
+    if (!$record->jobs->sortBy('start_date')->last()['end_date']){
+        $company_name = $record->jobs->sortBy('start_date')->last()['company']['name'];
+
+        echo $company_name;
+    }
+        
 ?>
