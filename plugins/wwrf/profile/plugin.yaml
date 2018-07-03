@@ -4,17 +4,3 @@ plugin:
     author: WWRF
     icon: icon-briefcase
     homepage: ''
-#navigation:
-#    main-menu-item:
-#        label: 'wwrf.profile::lang.plugin.name'
-#        url: wwrf/profile/profiles
-#        icon: icon-briefcase
-#        sideMenu:
-#            side-menu-item:
-#                label: 'wwrf.profile::lang.plugin.name'
-#                url: wwrf/profile/profiles
-#                icon: icon-briefcase
-permissions:
-    wwrf.profle.manage_profile:
-        tab: 'wwrf.profile::lang.plugin.name'
-        label: 'wwrf.profile::lang.plugin.name'
