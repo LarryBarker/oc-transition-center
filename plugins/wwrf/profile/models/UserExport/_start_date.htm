@@ -1,11 +1,15 @@
 <?php
 
     if (!$record->jobs->sortBy('start_date')->last()['end_date']){
+        
         $start_date = $record->jobs->sortBy('start_date')->last()['start_date'];
-
-        $date = date_create($start_date);
-
-        echo date_format($date, "M d, Y");
+        
+        if($start_date != NULL){
+            $date = date_create($start_date);
+    
+            print date_format($date, "M d, Y");
+        }
+        
     }
 
 ?>
