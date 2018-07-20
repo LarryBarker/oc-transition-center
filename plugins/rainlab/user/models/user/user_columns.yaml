@@ -26,6 +26,11 @@ columns:
         label: Eligible
         type: dateformat
 
+    release_date:
+        label: Release
+        type: dateformat
+        invisible: true
+
     lead_time:
         label: Lead Time
         type: partial
