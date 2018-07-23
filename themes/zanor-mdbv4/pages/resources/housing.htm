@@ -4,20 +4,27 @@ layout = "restricted"
 is_hidden = 0
 ==
 {% if user.groups.first.name == 'Users' or user.groups.first.name == 'Staff' %}
-<div class="container">
-    <!-- Partial: Resources toolbar -->
-    <section class="pt-5 mt-5 pb-3">
-        {% partial 'users/resources_toolbar' %}
-    </section>
-    <!-- /Partial: Resources toolbar -->
-    
+<div class="container pt-5 mt-5">  
     <section class="section pt-2">
 
         <!-- Grid row -->
         <div class="row">
 
-            <!--Grid column-->
-            <div class="col-lg-12 col-md-12 mx-auto mb-3 pb-lg-2">
+            <!-- Instructions column -->
+            <div class="col-lg-3 col-md-3 mx-auto mb-3 pb-lg-2">
+                <h3 class="h3-responsive">Instructions</h3>
+                <hr />
+                <p>We have a list of housing resources in the Wichita area. Most of these options have been approved by the Wichita parole office. Options include rentals, apartments, sober living communities, and transitional hosuing.</p>
+                <ol>
+                    <li>Click the <fa class="fa fa-sign-in"></fa> icon at the top left of the map.</li>
+                    <li>Select the specific type of housing you are looking for. <br />Hint: Try looking for one type at a time.</li>
+                    <li>Click on the name or number on the map to display more information.</li>
+                    <li>Click the <i class="fa fa-mail-forward"></i> icon to get directions to the business.</li>
+                </ol>
+            </div>
+            <!-- /Instructions column-->
+            <!-- Map column-->
+            <div class="col-lg-9 col-md-9 mx-auto mb-3 pb-lg-2">
 
                 <iframe src="https://www.google.com/maps/d/embed?mid=14PcT0xPCS8nxqigpelbs5ZkIw6rZRcO0" width="100%" height="480"></iframe>
             

@@ -40,14 +40,8 @@ function onEnd()
 {% if user.groups.first.name == 'Users' or user.groups.first.name == 'Staff' or user.id == post.author_id %}
 <div class="container">
 
-    <!-- Partial: Jobs toolbar-->
-    <section class="pt-5 mt-5 pb-3">
-        {% partial 'jobs/toolbar' %}
-    </section>
-    <!-- /Partial: Jobs toolbar -->
-
     <!-- Section: Job post -->
-    <section class="section">
+    <section class="section pt-5 mt-5 pb-3">
 
             <!-- Grid row -->
             <div class="row">

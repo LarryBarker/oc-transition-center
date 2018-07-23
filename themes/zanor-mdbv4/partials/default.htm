@@ -1,23 +1,10 @@
 ==
 <div class="container">
+	{% if user.groups.first.name != 'Users' %}
+		{% partial 'employers/cards' %}
+	{% endif %}
     <!--Section: Users home page-->
     <section class="pt-5 mt-5 pb-3">
-		<!-- Toolbar and header -->
-        {% partial 'jobs/toolbar' %}
-        
-        <div class="row pt-4">
-
-            {% if user.groups.first.name == 'Users' %}
-                {% partial 'jobs/deck' %}
-            {% else %}
-                {% partial 'employers/cards' %}
-            {% endif %}
-
-        </div>
-		<!-- /Toolbar and header -->
-
-		<!-- Content -->
-        <section class="section pt-4">
 
             <!-- Main row -->
             <div class="row">
@@ -133,9 +120,6 @@
 
             </div>
             <!-- /Main row-->
-
-		</section>
-		<!-- /Content -->
     
     </section>
     <!--/Section-->

@@ -5,11 +5,8 @@ is_hidden = 0
 ==
 {% if user.groups.first.name == 'Users' or user.groups.first.name == 'Staff' %}
 <div class="container">
-    <!--Section: Users home page-->
-    <section class="pt-5 mt-5 pb-3">
-        {% partial 'jobs/toolbar' %}
-    </section>
-    <section class="section pt-2">
+
+    <section class="section mt-5 pt-5">
 
         <!-- Grid row -->
         <div class="row">
@@ -25,13 +22,14 @@ is_hidden = 0
                     <li>Click the <i class="fa fa-mail-forward"></i> icon to get directions to the business.</li>
                 </ol>
             </div>
-            <!--Grid column-->
+            <!-- /Instructions column-->
+            <!-- Map column-->
             <div class="col-lg-9 col-md-9 mx-auto mb-3 pb-lg-2">
 
                 <iframe src="https://www.google.com/maps/d/embed?mid=1GKbMIPxjW0HgAbZXyhaBfbVFTdi2t0L3" width="100%" height="480"></iframe>
             
             </div>
-            <!--Grid column-->
+            <!-- Map column -->
 
         </div>
         <!--Grid row-->
