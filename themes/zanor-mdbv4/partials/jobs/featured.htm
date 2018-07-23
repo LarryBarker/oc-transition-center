@@ -1,0 +1,18 @@
+{% set randomPosts = randomPosts.posts %}
+{% for post in randomPosts %}
+<div class="news-single">
+    <div class="row">
+        <div class="col">
+            <a href="{{ post.url }}" class="news-title smaller mb-1" href="">{{ post.title }}</a>
+            <p class="small white-text">{% if post.excerpt %} 
+                    {{ str_limit(post.excerpt|raw, '140', '...') }}
+                {% else %} 
+                    {{ str_limit(html_strip(post.content|raw), '140', '...') }} 
+                {% endif %}</p>
+            <p class="font-small text-uppercase text-muted">{{ post.updated_at|relative }}</p>
+        </div>
+    </div>
+</div>
+{% else %}
+    <p>There are no posts to display.</p>
+{% endfor %}

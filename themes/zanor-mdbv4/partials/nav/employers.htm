@@ -1,14 +1,15 @@
 <li class="nav-item {% if this.page.title == 'Program Participants' %}active{%endif%}">
-<a class="nav-link" href="{{'participants'|page}}">Participants</a>
+    <a href="{{'participants'|page}}" class="nav-link waves-effect waves-light"><i class="fa fa-users"></i> <span class="clearfix d-none d-sm-inline-block">Participants</span></a>
 </li>
 <li class="nav-item {% if this.page.title == 'Jobs' or this.page.title == 'Post New Employer Job' %}active{%endif%}">
-<a class="nav-link" href="{{'jobs/jobs'|page}}">Jobs</a>
+    <a href="{{'jobs/jobs'|page}}" class="nav-link waves-effect waves-light"><i class="fa fa-thumb-tack"></i> <span class="clearfix d-none d-sm-inline-block">Post Jobs</span></a>
+
 </li>
 {% if user.groups.first.name == 'Staff' %}
 <li class="nav-item {% if this.page.title == 'Wichita Parolee Housing Map' %}active{%endif%}">
-<a class="nav-link" href="{{'resources/housing'|page}}">Resources</a>
+    <a href="{{'resources/housing'|page}}" class="nav-link waves-effect waves-light"><i class="fa fa-home"></i> <span class="clearfix d-none d-sm-inline-block">Housing</span></a>
 </li>
 {% endif %}
 <li class="nav-item {% if this.page.title == 'Account Settings' %}active{%endif%}">
-<a class="nav-link" href="{{'account'|page}}">Account</a>
+    <a href="{{'account'|page}}" class="nav-link waves-effect waves-light"><i class="fa fa-cog"></i> <span class="clearfix d-none d-sm-inline-block">Account</span></a>
 </li>

@@ -1,36 +1,38 @@
 ==
 <!-- Navbar -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark scrolling-navbar">
-    <div class="container">
 
-        <!-- Brand -->
-        <a class="navbar-brand" href="{{'default'|page}}"><img src="{{'assets/images/leaf.png'|theme}}" height="30px" alt="Transition Center"> 
-        TRANSITION <strong>CENTER</strong>
-        </a>
-
-        <!-- Collapse -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Links -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-            <!-- Left -->
-            <ul class="navbar-nav ml-auto">
-                {% if user.groups.first.name == 'Users' %}
-                    {% partial 'nav/users' %}
-                {% else %}
-                    {% partial 'nav/employers' %}
-                {% endif %}
+    <!-- Brand -->
+    <a class="navbar-brand" href="{{'default'|page}}"><img src="{{'assets/images/leaf.png'|theme}}" height="30px" alt="Transition Center"><span class="clearfix d-none d-sm-inline-block">TRANSITION <strong>CENTER</strong></span></a>
+    {% if user.groups.first.name == 'Users' %}
+    <form action="{{ searchInput.searchPage | page }}?q={{ query | url_encode(true) }}" method="GET" class="form-inline form-sm my-2 my-lg-0 mr-auto">
+        <div class="ss-search-form">
+            <div class="ss-search-form__input">
+                <input name="q" type="text" placeholder="What are you looking for?" autocomplete="on"
+                        {% if searchInput.useAutoComplete %}
+                            data-track-input
+                            data-request="onType"
+                            data-request-before-update="document.getElementById('autocomplete-results').classList.add('ss-search-form__results--visible')"
+                            data-request-update="'{{ searchInput }}::autocomplete': '#autocomplete-results'"
+                        {% endif %} />
                 
-                <li class="nav-item">
-                    <a class="nav-link" data-request="onLogout" data-request-data="redirect: '/'" data-request-redirect="{{'default'|page}}">Logout</a>
-                </li>
-            </ul>
+            </div>
+            <div class="ss-search-form__results" id="autocomplete-results"></div>
         </div>
-
-    </div>
+        <button class="btn btn-outline-white btn-sm my-2 my-sm-0 ml-3 ss-search-form__submit" type="submit"><i class="fa fa-search"></i></button>
+    </form>
+    {% endif %}
+    <!-- Left -->
+    <ul class="nav navbar-nav nav-flex-icons ml-auto">
+        {% if user.groups.first.name == 'Users' %}
+            {% partial 'nav/users' %}
+        {% else %}
+            {% partial 'nav/employers' %}
+        {% endif %}
+        <li class="nav-item">
+            <a data-request="onLogout" data-request-data="redirect: '/'" data-request-redirect="{{'default'|page}}" class="nav-link waves-effect waves-light"><span class="clearfix d-none d-sm-inline-block">Logout</span> <i class="fa fa-sign-out"></i></a>
+        </li>
+    </ul>
+    
 </nav>
 <!-- Navbar -->
