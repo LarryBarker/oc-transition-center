@@ -1,4 +1,7 @@
-<!-- Start partial-list.htm -->
+<div id="bloginfo">
+
+
+<!-- Start job list partial -->
 {% for post in __SELF__.posts  %}
 <!-- Job card-->
 <div class="card mb-4">
@@ -22,23 +25,35 @@
             class="btn btn-default btn-sm" 
             title="{{ __SELF__.trans('general.btn_edit') }}">
         {% endif %}
-            <i class="fa fa-pencil btn-icon danger"></i>
+            <i class="fa fa-pencil"></i> Edit post
         </a>
         <a
             class="btn unique-color btn-sm" 
             title="Preview"
             href="{{ 'jobs/post'|page({ slug: post.slug }) }}">
-            <i class="fa fa-eye btn-icon danger"></i>
+            <i class="fa fa-eye"></i> Preview
         </a>
+        {% if post.published == 1 %}
         <button
             class="btn btn-danger btn-sm" 
-            title="{{ __SELF__.trans('general.btn_delete') }}"
-            data-request="{{ __SELF__ }}::onDelete" 
+            title="Unpublish Job"
+            data-request="{{ __SELF__ }}::onUnpublish" 
             data-request-data="id: {{ post.id }}"
-            data-request-confirm="{{ __SELF__.trans('general.delete_conf') }}"
-            data-request-update="'{{ __SELF__ }}::list': '#bloginfo'">
-            <i class="fa fa-trash btn-icon danger"></i>
+            data-request-confirm="Are you sure you want to unpublish this post?"
+            data-request-update="'{{ __SELF__ }}::mdb_list': '#bloginfo'">
+            <i class="fa fa-minus-circle"></i> Hide job
         </button>
+        {% else %}
+        <button
+            class="btn btn-success btn-sm" 
+            title="Publish Job"
+            data-request="{{ __SELF__ }}::onPublish" 
+            data-request-data="id: {{ post.id }}"
+            data-request-confirm="Are you sure you want to (re)publish this job?"
+            data-request-update="'{{ __SELF__ }}::mdb_list': '#bloginfo'">
+            <i class="fa fa-plus-circle"></i>  Show job
+        </button>
+        {% endif %}
     </div>
     <!--/.Card content-->
 </div>
@@ -48,4 +63,6 @@
     <p>You have no jobs posted.</p>
 </div>
 {% endfor %}
-<!-- End partial-list.htm -->
+<!-- End partial -->
+
+</div>

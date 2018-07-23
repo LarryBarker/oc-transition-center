@@ -442,6 +442,22 @@ trait Loaders {
 		$this->onRun();
 	}
 
+	protected function onUnpublish() {
+		if (!$this->post = $this->loadPost()) {
+			return null;
+		}
+		$this->post->update(['published' => 0]);
+		$this->onRun();
+	}
+
+	protected function onPublish() {
+		if (!$this->post = $this->loadPost()) {
+			return null;
+		}
+		$this->post->update(['published' => 1]);
+		$this->onRun();
+	}
+
 	protected function getSlug($title) {
 		$slug = str_slug($title, "-");
 		$slugCount = count(BlogPost::whereRaw("slug REGEXP '^{$slug}(-[0-9]*)?$'")->get());
