@@ -5,11 +5,11 @@
 fields:
 
     name:
-        label: rainlab.user::lang.user.name
+        label: First Name
         span: auto
 
     surname:
-        label: rainlab.user::lang.user.surname
+        label: Last Name
         span: auto
 
 tabs:
@@ -25,8 +25,9 @@ tabs:
             label: rainlab.user::lang.user.send_invite
             comment: rainlab.user::lang.user.send_invite_comment
             tab: rainlab.user::lang.user.account
-            default: true
+            default: false
             context: create
+            hidden: true
 
         block_mail:
             label: rainlab.user::lang.user.block_mail
@@ -35,6 +36,7 @@ tabs:
             span: full
             cssClass: field-align-above
             context: update
+            hidden: true
 
         password@create:
             label: rainlab.user::lang.user.create_password
@@ -68,7 +70,8 @@ tabs:
             label: rainlab.user::lang.user.groups
             tab: rainlab.user::lang.user.account
             type: relation
-            emptyOption: rainlab.user::lang.user.empty_groups
+            #emptyOption: rainlab.user::lang.user.empty_groups
+            default: 2
 
 secondaryTabs:
     fields:

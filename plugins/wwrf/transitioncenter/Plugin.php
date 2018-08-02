@@ -83,14 +83,7 @@ class Plugin extends PluginBase
             });
         });
 
-        UserModel::extend(function($model) {
-            $model->addDynamicMethod('scopeIsOffender', function($query) {
-                return $query->whereHas('groups', function($q){
-                    $q->where('id', '=', '2');
-                })->withTrashed();
-            });
-        });
-
+        // extend user model relations
         UserModel::extend(function($model){
 
             $model->hasMany['viewedJobs'] = [
@@ -111,7 +104,10 @@ class Plugin extends PluginBase
                 'conditions' => 'is_counselor = 1'
             ];
 
-            $model->belongsToMany['company'] = ['Wwrf\TransitionCenter\Models\Company', 'table' => 'wwrf_users_companies', 'key' => 'user_id'];
+            $model->belongsToMany['company'] = [
+                'Wwrf\TransitionCenter\Models\Company',
+                'table' => 'wwrf_users_companies',
+                'key' => 'user_id'];
 
             $model->hasMany['jobs'] = [
                 'Wwrf\TransitionCenter\Models\Job', 
@@ -129,6 +125,7 @@ class Plugin extends PluginBase
                 'Wwrf\TransitionCenter\Models\Questionnaire'
             ];
 
+            // add scopes to user model
             $model->addDynamicMethod('scopeListFrontEnd', function($query, $options = []){
                 extract(array_merge([
                     'page' => 1,
@@ -175,8 +172,15 @@ class Plugin extends PluginBase
                              ->has('jobs', '<', 1)
                              ->orWhere('is_unemployed', 1);
             });
+
+            $model->addDynamicMethod('scopeIsOffender', function($query) {
+                return $query->whereHas('groups', function($q){
+                    $q->where('id', '=', '2');
+                })->withTrashed();
+            });
         });
 
+        // methods to extend user controller with relation controllers
         UsersController::extend(function($controller){         
             // Implement behavior if not already implemented
             if (!$controller->isClassExtendedWith('Backend.Behaviors.RelationController')) {
@@ -230,23 +234,6 @@ class Plugin extends PluginBase
 
         });
 
-        /*Event::listen('backend.list.extendQuery', function ($widget, $query) {
-            // Test for employer model to extend list query
-            if ($widget->model instanceof \Wwrf\TransitionCenter\Models\Employer) {
-                $query->whereHas('groups', function($q){
-                    $q->where('id', '=', '3');
-                        //->where('status', '!=', 'unavailable');
-                });
-            }
-
-            if ($widget->model instanceof \RainLab\User\Models\User) {
-                $query->whereHas('groups', function($q){
-                    $q->where('id', '=', '2');
-                        //->where('status', '!=', 'unavailable');
-                });
-            }
-        });*/
-
         UsersController::extendFormFields(function($form, $model, $context){
             
             if (!$model instanceof UserModel)
@@ -257,6 +244,7 @@ class Plugin extends PluginBase
 
             QuestionnaireModel::getFromUser($model);
 
+            // add tab fields for activity and programs tracking
             $form->addTabFields([
                 'trackers' => [
                     'tab' => 'Activity',
@@ -264,20 +252,28 @@ class Plugin extends PluginBase
                     'path' => '$/wwrf/transitioncenter/controllers/trackers/_trackers.htm'
                 ],
                 'usersprograms' => [
-                    //'label' => 'Programs',
                     'tab' => 'Programs',
                     'type'  => 'partial',
                     'path'  => '$/wwrf/transitioncenter/controllers/usersprograms/_users_programs.htm',
                 ]
             ]);
 
-            $form->addSecondaryTabFields([
+            $form->addTabFields([
                 'questionnaire[updated_at]' => [
+                    'tab' => 'Surveys',
                     'label' => 'Questionnaire Updated:',
                     'type'  => 'datepicker',
                     'mode'  => 'date',
-                    'disabled' => 'true'
-                ]
+                    'disabled' => 'true',
+                    'span' => 'right'
+                ],
+                'user_agreement' => [
+                    'tab' => 'Surveys',
+                    'label' => 'User Agreement signed:',
+                    'type'  => 'datepicker',
+                    'mode'  => 'date',
+                    'span' => 'left'
+                ],
             ]);
             
         });
@@ -342,7 +338,7 @@ class Plugin extends PluginBase
                 return;
             }
             
-            // Add an questionnaire relation field
+            // Add tab fields for surveys and employment
             $widget->addTabFields([
                 'surveys' => [
                     'label'   => 'Questionnaire',
@@ -356,17 +352,6 @@ class Plugin extends PluginBase
                     'type'    => 'partial',
                     'path' => '$/wwrf/transitioncenter/controllers/jobs/_jobs.htm',
                     'tab' => 'Employment',
-                ]
-            ]);
-
-            // Add an counselor relation field
-            $widget->addFields([
-                'counselor' => [
-                    'label'   => 'Counselor',
-                    'type'    => 'relation',
-                    'nameFrom' => 'surname',
-                    'descriptionFrom' => 'surname',
-                    'placeholder' => '-- Select a counselor --'
                 ]
             ]);
 

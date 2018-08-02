@@ -21,5 +21,5 @@ create:
 
 # Update page
 update:
-    redirect: rainlab/user/users/update/:id
-    redirectClose: rainlab/user/users/preview/:id
+    redirect: rainlab/user/users/preview/:id
+    redirectClose: rainlab/user/users
