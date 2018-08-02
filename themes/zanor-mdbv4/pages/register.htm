@@ -33,6 +33,20 @@ public function onCheckEmail()
                     <p>Just provide us some basic information...</p>
                     <form onSubmit="this.submitButton.disabled = true;"
                         data-request="onRegister">
+                        <label for="registerGroup">Account Type</label>
+
+                            <select 
+                                name="group"
+                                type="select"
+                                class="form-control mdb-select"
+                                id="registerGroup"
+                                required="{{attributes.options.validation}}"
+                                />
+                                <option value="" disabled selected>Choose select an account type...</option>
+                                <option value="1">Employer</option>
+                                <option value="2">Staff Member</option>
+                            </select>
+
                         <div class="md-form form-sm">
                             <label for="registerName">First Name</label>
                             <input

@@ -3,6 +3,7 @@
 use System\Classes\PluginBase;
 use RainLab\User\Controllers\Users as UsersController;
 use RainLab\User\Models\User as UserModel;
+use RainLab\User\Models\UserGroup;
 use Wwrf\Surveys\Models\Questionnaire as QuestionnaireModel;
 use RainLab\Blog\Models\Category as CategoryModel;
 use Lang;
@@ -65,6 +66,7 @@ class Plugin extends PluginBase
 
             $model->bindEvent('model.beforeValidate', function() use ($model) {
                 $model->rules['industries'] = 'max:4';
+                $model->rules['kdoc_number'] = 'unique:users';
             });
 
             $model->addDynamicMethod('getYearOptions', function($value) use ($model)
@@ -102,23 +104,6 @@ class Plugin extends PluginBase
             $form->removeField('avatar');
 
             $form->addSecondaryTabFields([
-                'avatar' => [
-                    'label' => 'Resume',
-                    'type' => 'fileupload',
-                    'mode' => 'file'
-                ],
-                'documents' => [
-                    'label' => 'Portfolio Documents',
-                    'type' => 'fileupload',
-                    'mode' => 'file',
-                    'useCaption' => 'true'
-                ],
-                'user_agreement' => [
-                    'label' => 'User Agreement signed:',
-                    'type'  => 'datepicker',
-                    'mode'  => 'date',
-                    //'disabled' => 'true'
-                ],
                 'profile_comment' => [
                     'label' => 'wwrf.profile::lang.comment',
                     'type'  => 'textarea',
@@ -126,11 +111,11 @@ class Plugin extends PluginBase
                 ]
             ]);
 
-            $form->addTabFields([
+            $form->addFields([
                 'kdoc_number' => [
                     'label' => 'wwrf.profile::lang.profile.kdoc_number',
                     'tab'     => 'wwrf.profile::lang.profile.tab',
-                    'span'  => 'left'
+                    'span'  => 'left',
                 ],
                 'profile_phone' => [
                     'label' => 'wwrf.profile::lang.profile.phone',
@@ -143,7 +128,7 @@ class Plugin extends PluginBase
                     'tab' => 'wwrf.profile::lang.profile.tab',
                     'span' => 'auto',
                     'type' => 'datepicker',
-                    'mode' => 'date'
+                    'mode' => 'date',
                 ],
                 'release_date' => [
                     'label' => 'Release Date',
@@ -151,7 +136,6 @@ class Plugin extends PluginBase
                     'span' => 'auto',
                     'type' => 'datepicker',
                     'mode' => 'date',
-                    'default' => NULL,
                 ],
                 'eligible_date' => [
                     'label' => 'Eligible Date',
@@ -160,6 +144,34 @@ class Plugin extends PluginBase
                     'type' => 'datepicker',
                     'mode' => 'date',
                 ],
+                // Add an counselor relation field
+                'counselor' => [
+                    'label'   => 'Counselor',
+                    'type'    => 'relation',
+                    'nameFrom' => 'surname',
+                    'descriptionFrom' => 'surname',
+                    'placeholder' => '-- Select a counselor --',
+                    'span' => 'auto'
+                ]
+            ]);
+
+            $form->addTabFields([
+                'avatar' => [
+                    'tab' => 'wwrf.profile::lang.profile.tab',
+                    'label' => 'Resume',
+                    'type' => 'fileupload',
+                    'mode' => 'file',
+                    'span' => 'auto'
+                ],
+                'documents' => [
+                    'tab' => 'wwrf.profile::lang.profile.tab',
+                    'label' => 'Portfolio Documents',
+                    'type' => 'fileupload',
+                    'mode' => 'file',
+                    'useCaption' => 'true',
+                    'span' => 'auto'
+                ],
+                
                 'status' => [
                     'label'   => 'wwrf.profile::lang.profile.status',
                     'tab'     => 'Employment',
@@ -260,8 +272,6 @@ class Plugin extends PluginBase
                 'company_phone',
                 'company_name'
             ]);
-
-            $model->rules['avatar'] = 'nullable';
             
             $model->addDynamicMethod('getYearOptions', function($value) use ($model)
             {
@@ -325,6 +335,34 @@ class Plugin extends PluginBase
 
         });
 
+
+        // extend user model with addUserGroup method
+        UserModel::extend(function($model) {
+            $model->addDynamicMethod('addUserGroup', function($group) use ($model) {
+                if ($group instanceof Collection) {
+                    return $model->groups()->saveMany($group);
+                }
+
+                if (is_string($group)) {
+                    $group = UserGroup::whereCode($group)->first();
+
+                    return $model->groups()->save($group);
+                }
+
+                if ($group instanceof UserGroup) {
+                    return $model->groups()->save($group);
+                }
+            });
+        });
+
+        // assign desired group to newly activated user
+        Event::listen('rainlab.user.frontEndRegister', function($user, $data) {
+            if ($data['group'] == 1) {
+                $user->addUserGroup(UserGroup::whereCode('employers')->first());
+            } elseif ($data['group'] == 2) {
+                $user->addUserGroup(UserGroup::whereCode('staff')->first());
+            }
+        });
     }
 
     public function registerListColumnTypes()

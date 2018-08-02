@@ -14,6 +14,7 @@ use ApplicationException;
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
 use RainLab\User\Models\Settings as UserSettings;
+use RainLab\User\Models\UserGroup;
 use Exception;
 
 /**
@@ -234,7 +235,7 @@ class Account extends ComponentBase
 
             $rules = [
                 'email'    => 'required|email|between:6,255',
-                'password' => 'required|between:4,255|confirmed'
+                'password' => 'required|between:4,255|confirmed',
             ];
 
             if ($this->loginAttribute() == UserSettings::LOGIN_USERNAME) {
@@ -256,7 +257,9 @@ class Account extends ComponentBase
             $userActivation = UserSettings::get('activate_mode') == UserSettings::ACTIVATE_USER;
             $user = Auth::register($data, $automaticActivation);
 
-            Event::fire('rainlab.user.register', [$user, $data]);
+            Event::fire('rainlab.user.register', [$user, &$data]);
+
+            Event::fire('rainlab.user.frontEndRegister', [$user, &$data]);
 
             $data['id'] = $user->id;
 
