@@ -420,7 +420,7 @@ class Plugin extends PluginBase
                 return [
                     'title'     => $item->name,
                     'text'      => $item->website,
-                    'url'       => $item->slug,
+                    'url'       => '/jobs/temp/'.$item->slug,
                     'relevance' => $relevance, // higher relevance results in a higher
                                                // position in the results listing
                     // 'meta' => 'data',       // optional, any other information you want
