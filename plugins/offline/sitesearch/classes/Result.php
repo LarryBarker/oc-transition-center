@@ -141,6 +141,30 @@ class Result
     }
 
     /**
+     * @param string $slug
+     *
+     * @return $this
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @param string $comments
+     *
+     * @return $this
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
+
+        return $this;
+    }
+
+    /**
      * @param string $title
      *
      * @return Result

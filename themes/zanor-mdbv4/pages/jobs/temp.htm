@@ -1,7 +1,11 @@
 title = "Temp Services"
-url = "/jobs/temp"
+url = "/jobs/temp/:slug?"
 layout = "restricted"
 is_hidden = 0
+child_of = "mey_no_parent"
+hide_crumb = 0
+remove_crumb_trail = 0
+crumb_disabled = 0
 
 [builderList]
 modelClass = "Wwrf\TransitionCenter\Models\TempService"
@@ -9,28 +13,77 @@ scope = "-"
 scopeValue = "{{ :scope }}"
 displayColumn = "name"
 noRecordsMessage = "No records found"
-detailsPage = "-"
-detailsUrlParameter = "id"
+detailsPage = "jobs/temp"
+detailsKeyColumn = "slug"
+detailsUrlParameter = "slug"
 pageNumber = "{{ :page }}"
 sortColumn = "name"
 sortDirection = "asc"
+
+[builderDetails]
+modelClass = "Wwrf\TransitionCenter\Models\TempService"
+identifierValue = "{{ :slug }}"
+modelKeyColumn = "slug"
+displayColumn = "name"
+notFoundMessage = "Record not found"
 ==
 {% if user.groups.first.name == 'Users' or user.groups.first.name == 'Staff' %}
-{% set records = builderList.records %}
 
-{% set displayColumn = builderList.displayColumn %}
-
-{% set noRecordsMessage = builderList.noRecordsMessage %}
-
-{% set detailsPage = builderList.detailsPage %}
-
-{% set detailsKeyColumn = builderList.detailsKeyColumn %}
-
-{% set detailsUrlParameter = builderList.detailsUrlParameter %}
 <!-- Temp services page -->
 <div class="container pt-5 mt-5">
 
-    <!-- Section: Temp services table -->
+    {% if this.param.slug %}
+    {% set record = builderDetails.record %}
+	{% set displayColumn = builderDetails.displayColumn %}
+	{% set notFoundMessage = builderDetails.notFoundMessage %}
+    <div class="row mb-3">
+    	{% if record %}
+    	<div class="col-lg-4 mb-5">
+    		<h1 class="h1-responsive mt-5 mt-sm-0"><a href=
+			    "{{record.website}}" target="_blank">{{record.name}}</a></h1>
+		    <p>{{record.address}}</p>
+		    <p>{{record.phone}}</p>
+			<h3 class="h3-responsive">Type of Work</h3>
+			<ul class="fa-ul">
+				{% for type_of_work in record.type_of_work %}
+    				<li><i class="fa fa-check fa-fw"></i>
+    				{%if type_of_work == "DL" %}Day Labor{%elseif type_of_work == "TA"%}Temp Assignment{%elseif type_of_work == "TH"%}Temp To Hire{%elseif type_of_work == "DH"%}Direct Hire{%endif%}</li>
+				{%endfor%}
+  			</ul>
+  			<a href="{{record.website}}" target="_blank" class="btn btn-default">Visit website</a>
+    	</div>
+    	<div class="col-lg-8">
+            <h3 class="h3-responsive">Do you work with persons w/felonies?</h3>
+            <p>{{record.accept_felonies}}</p>
+            <h3 class="h3-responsive">Are there certain felonies you will not accept?</h3>
+            <p>{{record.rejected_felonies}}</p>
+            <h3 class="h3-responsive">Do you specialize in any type of employment?</h3>
+            <p>{{record.employment_type}}</p>
+            <h3 class="h3-responsive">What do your clients need to know if applying?</h3>
+            <p>{{record.comments}}</p>
+            <hr class="my-4" />
+            <iframe width="100%" height="450" frameborder="0" style="border:0"
+			src="https://www.google.com/maps/embed/v1/place?q={{record.address}}&key=AIzaSyABAqX5wdwAAmaIfVbf0f7zX3I5E0Uh9S0" allowfullscreen></iframe>
+    	</div>
+    	{% else %}
+		    {{ notFoundMessage }}
+		{% endif %}
+    </div>
+    
+    
+    {% else %}
+    {% set records = builderList.records %}
+
+	{% set displayColumn = builderList.displayColumn %}
+	
+	{% set noRecordsMessage = builderList.noRecordsMessage %}
+	
+	{% set detailsPage = builderList.detailsPage %}
+	
+	{% set detailsKeyColumn = builderList.detailsKeyColumn %}
+	
+	{% set detailsUrlParameter = builderList.detailsUrlParameter %}
+	<!-- Section: Temp services table -->
     <section class="section">
         <h2 class="h2-responsive">{{this.page.title}}</h2>
         <!--Table-->
@@ -54,7 +107,7 @@ sortDirection = "asc"
             {% for record in records %}
                 <tr>
                     <td>
-                        <h5>{{record.name}}</h5>
+                        <h5><a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}">{{record.name}}</a></h5>
                         <h6><u><a href="{{record.website}}" class="blue-text" target="_blank">{{record.website}}</a></u></h6>
                         <h6><i class="fa fa-map-marker mr-1"></i>{{record.address}}</a></h6>
                         <h6><i class="fa fa-phone mr-1"></i>{{record.phone}}</h6>
@@ -109,7 +162,8 @@ sortDirection = "asc"
 
     </section>
     <!-- /Section: Temp services table -->
-
+    
+    {% endif %}
 </div>
 {% else %}
 <div class="container mt-5">
