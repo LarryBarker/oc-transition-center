@@ -7,9 +7,9 @@
     <!--Card content-->
     <div class="card-body">
         <!--Title-->
-        <h4 class="card-title"><a href="#" data-request-data="id: {{user.id}}" data-request="ueuser::onVisitProfile">
+        <h4 class="h4-responsive card-title"><a href="#" data-request-data="id: {{user.id}}" data-request="ueuser::onVisitProfile">
             {{user.name}} {{user.surname}}
-            </a></h4>
+            </a>{% if not user.last_seen %}<span class="badge badge-success pull-right">New</span>{%endif%}</h4>
         <a class="card-meta">{{ user.profile_headline }}</a>
 
         <!--Text-->
@@ -26,7 +26,7 @@
             {% for industry in user.industries %}
                 {{ industry.name }}{% if not loop.last %}<br />{% endif %}
             {% endfor %}</p>
-        <p class="card-meta">Last seen {% if user.last_seen %}{{user.last_seen|relative}}{% else %}Never{% endif %}</p>
+        <p class="card-meta">{% if user.last_seen %}Last seen {{user.last_seen|relative}}{% else %}New arrival{% endif %}</p>
         <hr>
         <a class="card-meta"><span>
                 <a href="#" data-request-data="id: {{user.id}}" data-request="ueuser::onVisitProfile" class="btn mdb-color btn-sm btn-block mb-2" alt="Preview"><i class="fa fa-eye mr-2"></i> Preview</a>
