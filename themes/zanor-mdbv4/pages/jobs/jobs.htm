@@ -93,15 +93,13 @@ formPage = "jobs/new"
             </div>
             <!-- /Post column -->
 
-            {% if user.groups.first.name == 'Users' or user.groups.first.name == 'Staff' %}
-                <!-- Sidebar column-->
-                <div class="col-lg-4 col-md-12 mb-4 mx-auto">
+            <!-- Sidebar column-->
+            <div class="col-lg-4 col-md-12 mb-4 mx-auto">
 
-                    {% partial 'jobs/sidebar.htm' %}
+                {% partial 'jobs/sidebar.htm' %}
 
-                </div>
-                <!-- /Sidebar column-->
-            {% endif %}
+            </div>
+            <!-- /Sidebar column-->
         </div>
         <!--Grid row-->
 

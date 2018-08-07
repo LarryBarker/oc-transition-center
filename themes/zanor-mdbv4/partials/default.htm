@@ -11,7 +11,8 @@
 
                 <!-- Left column-->
                 <div class="col-lg-8 col-md-12 mb-3 pb-lg-2">
-                    
+					<h1 class="h1-responsive"><i class="fa fa-bullhorn"></i> Featured Posts</h1>
+					<hr />
                     <!-- Featured article -->
                     <div class="user-feature zoom z-depth-1">
 
@@ -45,12 +46,14 @@
                     </div>
 					<!-- /Featured article -->
 					
-                    <hr />
+                    
 					<!-- Blog posts -->
-                    {% if user.groups.first.name == 'Users' %}
+					{% if user.groups.first.name == 'Users' %}
+						<h1 class="h1-responsive pt-sm-5"><i class="fa fa-newspaper-o"></i> News & Announcements</h1>
+						<hr />
                         {% set defaultPosts = userAnnouncements.posts %}
                         {% for post in defaultPosts %}
-	                    <div class="row pt-5">
+	                    <div class="row">
 	                        <!--Second column-->
 	                        <div class="col-md-12 mb-r">
 	                            <!--Excerpt-->
@@ -59,7 +62,8 @@
 	                            <a href="{{post.url}}" class="btn unique-color waves-effect waves-light">Read more</a>
 	                        </div>
 	                        <!--/Second column-->
-	                    </div>
+						</div>
+						<hr />
 	                    {% else %}
 	                        <li class="no-data">{{ noPostsMessage }}</li>
 	                    {% endfor %}
@@ -101,7 +105,9 @@
                     <!-- Section: Quicklinks -->
                     <section class="quicklinks">
 
-                        {% if user.groups.first.name == 'Users' %}
+						{% if user.groups.first.name == 'Users' %}
+							<h1 class="h1-responsive"> Quicklinks</h1>
+							<hr />
                             {% partial 'users/quicklinks' %}
 						{% else %}
 							{% if not subscriber or subscriber.status != 1 %}

@@ -1,7 +1,7 @@
 {% for category in categories %}
     {% set postCount = category.post_count %}
-    <li class="list-group-item d-flex justify-content-between align-items-center {% if category.slug == currentCategorySlug %}special-color{% endif %}">
-        <a href="{{ category.url }}" class="{% if category.slug == currentCategorySlug %}white-text{%else%}dark-grey-text{% endif %} font-small"><i class="fa fa-laptop {% if category.slug == currentCategorySlug %}white-text{%else%}dark-grey-text{% endif %} mr-2" aria-hidden="true"></i> {{ category.name }}</a>{% if postCount %}<span class="badge unique-color badge-pill">{{ postCount }}</span>{% endif %}
+    <li class="list-group-item d-flex justify-content-between align-items-center {% if category.slug == currentCategorySlug %}border-l{% endif %} border-l-hover">
+        <a href="{{ category.url }}" class="dark-grey-text"><i class="fa fa-angle-double-right dark-grey-text mr-2" aria-hidden="true"></i> {{ category.name }}</a>{% if postCount %}<span class="badge badge-danger badge-pill">{{ postCount }}</span>{% endif %}
     </li>
 
     {% if category.children %}

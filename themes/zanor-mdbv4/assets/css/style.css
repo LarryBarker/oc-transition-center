@@ -424,3 +424,18 @@ if it's not present, don't show loader */
         margin-top: -3px; }
       .navbar .dropdown-menu.mega-menu .font-small {
         font-size: 0.85rem; }
+
+.quicklinks .list-group-item:hover{
+    border-left-width: 4px;
+    border-left-color: #4285F4;
+}
+
+.list-group-item.border-l {
+  border-left-width: 4px;
+  border-left-color: #4285F4;
+}
+
+.list-group-item.border-l-hover:hover {
+  border-left-width: 4px;
+  border-left-color: #4285F4;
+}

@@ -1,11 +1,11 @@
 {% set categories = usersQuickLinks.categories %}
 {% set currentCategorySlug = usersQuickLinks.currentCategorySlug %}
 
-<ul class="list-group z-depth-1">
-    {% for category in categories|slice(0,6) %}
+<ul class="list-group z-depth-1 quicklinks">
+    {% for category in categories|slice(0,5) %}
         {% set postCount = category.post_count %}
         <li class="list-group-item d-flex justify-content-between align-items-center">
-            <a href="{{ category.url }}" class="dark-grey-text font-small"><i class="fa fa-laptop dark-grey-text mr-2" aria-hidden="true"></i> {{ category.name }}</a>{% if postCount %}<span class="badge bg-dark badge-pill">{{ postCount }}</span>{% endif %}
+            <a href="{{ category.url }}" class="dark-grey-text font-small"></i> {{ category.name }}</a><span class="flex-right"><i class="fa fa-angle-double-right"></i></span>
         </li>
     {% endfor %}
 </ul>
