@@ -30,7 +30,17 @@ return [
         'filter_date' => 'Date',
         'new_post' => 'New post',
         'export_post' => 'Export posts',
-        'import_post' => 'Import posts'
+        'import_post' => 'Import posts',
+        'unpublish_selected_empty' => 'There are no selected posts to unpublish.',
+        'unpublish_selected_success' => 'Successfully unpublished the selected posts.',
+        'publish_selected_empty' => 'There are no selected posts to publish.',
+        'publish_selected_success' => 'Successfully published the selected posts.',
+        'feature_selected_empty' => 'There are no selected posts to feature.',
+        'feature_selected_success' => 'Successfully featured the selected posts.',
+        'unfeature_selected_empty' => 'There are no selected posts to unfeature.',
+        'unfeature_selected_success' => 'Successfully unfeatured the selected posts.',
+        'delete_selected_empty' => 'There are no selected posts to delete.',
+        'delete_selected_success' => 'Successfully deleted the selected posts.',
     ],
     'post' => [
         'title' => 'Title',

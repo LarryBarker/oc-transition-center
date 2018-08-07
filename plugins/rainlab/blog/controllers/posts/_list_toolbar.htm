@@ -5,53 +5,58 @@
         <?= e(trans('rainlab.blog::lang.posts.new_post')) ?>
     </a>
 
-    <button
-        class="btn btn-default oc-icon-trash-o"
-        disabled="disabled"
-        onclick="$(this).data('request-data', {
-            checked: $('.control-list').listWidget('getChecked')
-        })"
-        data-request="onDelete"
-        data-request-confirm="<?= e(trans('rainlab.blog::lang.blog.delete_confirm')) ?>"
-        data-trigger-action="enable"
-        data-trigger=".control-list input[type=checkbox]"
-        data-trigger-condition="checked"
-        data-request-success="$(this).prop('disabled', true)"
-        data-stripe-load-indicator>
-        <?= e(trans('backend::lang.list.delete_selected')) ?>
-    </button>
-
-    <button
-        class="btn btn-default oc-icon-check-square-o"
-        disabled="disabled"
-        onclick="$(this).data('request-data', {
-            checked: $('.control-list').listWidget('getChecked')
-        })"
-        data-request="onPublish"
-        data-request-confirm="<?= e(trans('rainlab.blog::lang.blog.delete_confirm')) ?>"
-        data-trigger-action="enable"
-        data-trigger=".control-list input[type=checkbox]"
-        data-trigger-condition="checked"
-        data-request-success="$(this).prop('disabled', true)"
-        data-stripe-load-indicator>
-        Publish selected
-    </button>
-    
-    <button
-        class="btn btn-default oc-icon-minus-square-o"
-        disabled="disabled"
-        onclick="$(this).data('request-data', {
-            checked: $('.control-list').listWidget('getChecked')
-        })"
-        data-request="onUnpublish"
-        data-request-confirm="<?= e(trans('rainlab.blog::lang.blog.delete_confirm')) ?>"
-        data-trigger-action="enable"
-        data-trigger=".control-list input[type=checkbox]"
-        data-trigger-condition="checked"
-        data-request-success="$(this).prop('disabled', true)"
-        data-stripe-load-indicator>
-        Unpublish selected
-    </button>
+    <div class="btn-group dropdown dropdown-fixed" data-control="bulk-actions">
+        <button
+            data-primary-button
+            type="button"
+            class="btn btn-default"
+            data-request="onBulkAction"
+            data-trigger-action="enable"
+            data-trigger=".control-list input[type=checkbox]"
+            data-trigger-condition="checked"
+            data-request-success="$(this).prop('disabled', true).next().prop('disabled', true)"
+            data-stripe-load-indicator>
+            <?= e(trans('rainlab.user::lang.users.bulk_actions')) ?>
+        </button>
+        <button
+            type="button"
+            class="btn btn-default dropdown-toggle"
+            data-trigger-action="enable"
+            data-trigger=".control-list input[type=checkbox]"
+            data-trigger-condition="checked"
+            data-toggle="dropdown">
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" data-dropdown-title="<?= e(trans('rainlab.user::lang.users.bulk_actions')) ?>">
+            <li>
+                <a href="javascript:;" class="oc-icon-minus" data-action="unpublish" data-confirm="Are you sure you want to unpublish these posts?">
+                    Unpublish
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;" class="oc-icon-plus" data-action="publish" data-confirm="Are you sure you want to publish these posts?">
+                    Publish
+                </a>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+                <a href="javascript:;" class="oc-icon-bell" data-action="feature" data-confirm="Are you sure you want to feature these post(s)?">
+                    Feature
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;" class="oc-icon-bell-slash" data-action="unfeature" data-confirm="Are you sure you want to make these post(s) unfeatured?">
+                    Unfeature
+                </a>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+                <a href="javascript:;" class="oc-icon-trash-o" data-action="delete" data-confirm="<?= e(trans('rainlab.blog::lang.blog.delete_confirm')) ?>">
+                    <?= e(trans('backend::lang.list.delete_selected')) ?>
+                </a>
+            </li>
+        </ul>
+    </div>
 
     <?php if ($this->user->hasAnyAccess(['rainlab.blog.access_import_export'])): ?>
         <div class="btn-group">
@@ -67,4 +72,5 @@
             </a>
         </div>
     <?php endif ?>
+
 </div>

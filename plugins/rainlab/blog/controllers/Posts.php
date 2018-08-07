@@ -6,6 +6,7 @@ use BackendMenu;
 use Backend\Classes\Controller;
 use ApplicationException;
 use RainLab\Blog\Models\Post;
+use Lang;
 
 class Posts extends Controller
 {
@@ -34,6 +35,8 @@ class Posts extends Controller
         $this->vars['postsTotal'] = Post::count();
         $this->vars['postsPublished'] = Post::isPublished()->count();
         $this->vars['postsDrafts'] = $this->vars['postsTotal'] - $this->vars['postsPublished'];
+
+        $this->addJs('/plugins/rainlab/user/assets/js/bulk-actions.js');
 
         $this->asExtension('ListController')->index();
     }
@@ -100,42 +103,6 @@ class Posts extends Controller
 
         return $this->listRefresh();
     }
-
-    public function index_onUnpublish()
-    {
-        if (($checkedIds = post('checked')) && is_array($checkedIds) && count($checkedIds)) {
-
-            foreach ($checkedIds as $postId) {
-                if ((!$post = Post::find($postId)) || !$post->canEdit($this->user)) {
-                    continue;
-                }
-
-                $post->update(['published' => 0]);
-            }
-
-            Flash::success('Successfully unpublihsed those posts.');
-        }
-
-        return $this->listRefresh();
-    }
-
-    public function index_onPublish()
-    {
-        if (($checkedIds = post('checked')) && is_array($checkedIds) && count($checkedIds)) {
-
-            foreach ($checkedIds as $postId) {
-                if ((!$post = Post::find($postId)) || !$post->canEdit($this->user)) {
-                    continue;
-                }
-
-                $post->update(['published' => 1]);
-            }
-
-            Flash::success('Successfully published those posts.');
-        }
-
-        return $this->listRefresh();
-    }
     
     /**
      * {@inheritDoc}
@@ -161,5 +128,55 @@ class Posts extends Controller
         return [
             'preview' => $previewHtml
         ];
+    }
+
+    /**
+     * Perform bulk action on selected users
+     */
+    public function index_onBulkAction()
+    {
+        if (
+            ($bulkAction = post('action')) &&
+            ($checkedIds = post('checked')) &&
+            is_array($checkedIds) &&
+            count($checkedIds)
+        ) {
+
+            foreach ($checkedIds as $postId) {
+                if (!$post = Post::find($postId)) {
+                    continue;
+                }
+
+                switch ($bulkAction) {
+
+                    case 'unpublish':
+                        $post->update(['published' => 0]);
+                        break;
+
+                    case 'publish':
+                        $post->update(['published' => 1]);
+                        break;
+
+                    case 'unfeature':
+                        $post->update(['is_featured' => 0]);
+                        break;
+
+                    case 'feature':
+                        $post->update(['is_featured' => 1]);
+                        break;
+
+                    case 'delete':
+                        $post->forceDelete();
+                        break;
+                }
+            }
+
+            Flash::success(Lang::get('rainlab.blog::lang.posts.'.$bulkAction.'_selected_success'));
+        }
+        else {
+            Flash::error(Lang::get('rainlab.blog::lang.posts.'.$bulkAction.'_selected_empty'));
+        }
+
+        return $this->listRefresh();
     }
 }
