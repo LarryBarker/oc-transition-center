@@ -8,6 +8,16 @@ description = "Footer"
                 <!--Grid row-->
                 <div class="row py-4 d-flex align-items-center">
     
+                    {% if user.groups.first.name == 'Users' %}
+                    <!--Grid column-->
+                    <div class="col-12 col-md-5 text-left mb-4 mb-md-0">
+                        <h6 class="mb-0 white-text text-center text-md-left">
+                            <strong>Don't forget to follow up in person!</strong>
+                        </h6>
+                    </div>
+                    <!--Grid column-->
+    
+                    {% else %}
                     <!--Grid column-->
                     <div class="col-12 col-md-5 text-left mb-4 mb-md-0">
                         <h6 class="mb-0 white-text text-center text-md-left">
@@ -24,12 +34,15 @@ description = "Footer"
                         </a>
                     </div>
                     <!--Grid column-->
-    
+                    {% endif %}
                 </div>
                 <!--Grid row-->
             </div>
         </div>
     
+        {% if user.groups.first.name == 'Users' %}
+            {% partial 'users/footer' %}
+        {% else %}
         <!--Footer Links-->
         <div class="container gray mt-5 mb-4 text-center text-md-left">
             <div class="row mt-3">
@@ -105,7 +118,7 @@ description = "Footer"
             </div>
         </div>
         <!--/.Footer Links-->
-    
+        {% endif %}
         <!-- Copyright-->
         <div class="footer-copyright py-3 text-center">
             <p>Website built on <a href="http://www.octobercms.com" alt="OctoberCMS" target="_blank">OctoberCMS</a>, framework by <a href="http://www.mdbootstrap.com" alt="MDBootstrap" target="_blank">Material Design Bootstrap</a>. Stockart from <a href="http://www.unsplash.com" alt="Unsplash" target="_blank">Unsplash</a>.</p>
