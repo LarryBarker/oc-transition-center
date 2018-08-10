@@ -83,12 +83,14 @@ function onEnd()
 
                     <p class="small">Posted on {{post.published_at|date('M d, Y')}}</p>
 
-                    {% if user.groups.first.name == 'Users' and post.link %}
+                    {% if user.groups.first.name == 'Users' %}
+
                     <form data-request="onTrackApply" 
                             data-request-data="job_id: {{post.id}}" 
                             data-request-flash 
                             method="post" 
                             onSubmit="window.open('{{post.link}}','_blank');">
+                        {% if post.link %}
                         <button type="sumbit" class="btn {% if not userHasApplied %} btn-default {% endif %}">
                             {% if userHasApplied %}
                                 Already applied <i class="fa fa-check ml-1"></i>
@@ -96,7 +98,15 @@ function onEnd()
                                 Apply Online <i class="fa fa-edit ml-1"></i>
                             {% endif %}
                         </button>
+                        {% endif %}
+                        {% if post.email_resume and post.email %}
+                        <a href="mailto:{{post.email}}" class="btn btn-info">
+                                Email Resume <i class="fa fa-paper-plane ml-1"></i>
+                        </a>
+                        {% endif %}
                     </form>
+
+                    
                     {% endif %}
                     
                     

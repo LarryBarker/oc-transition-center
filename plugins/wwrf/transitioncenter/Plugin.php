@@ -373,11 +373,18 @@ class Plugin extends PluginBase
 
         PostModel::extend(function($model) {
             $model->addFillable([
-                'is_featured'
+                'is_featured',
+                'apply_online',
+                'email_resume',
+                'in_person'
             ]);
 
             $model->addDynamicMethod('scopeIsFeatured', function($query) {
                 return $query->where('is_featured', 1)->get();
+            });
+
+            $model->bindEvent('model.beforeValidate', function() use ($model) {
+                $model->rules['email'] = 'email';
             });
         });
 

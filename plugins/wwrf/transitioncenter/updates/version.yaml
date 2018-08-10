@@ -32,3 +32,12 @@
 1.1.2:
     - 'Add slug to temp service model'
     - update_temp_services_table.php
+1.1.3:
+    - 'Update RainLab Blog posts table to include application options'
+    - update_rainlab_blog_posts_apply_options.php
+1.1.4:
+    - 'Update RainLab Blog posts table with email field'
+    - update_rainlab_blog_posts_email.php
+1.1.5:
+    - 'Update RainLab Blog posts table with walk route option'
+    - update_rainlab_blog_posts_walk_route.php

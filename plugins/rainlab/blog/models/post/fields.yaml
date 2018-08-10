@@ -30,38 +30,99 @@ secondaryTabs:
             cssClass: field-slim blog-post-preview
             stretch: true
             mode: split
+
+        business_info_section:
+            tab: Job Details
+            span: left
+            label: Business Information
+            type: section
+            comment: This section contains information about the business.
+
+        application_type_section:
+            tab: Job Details
+            span: right
+            label: Application Options
+            type: section
+            comment: This section contains details about how to apply to the job.
+
         company:
-            span: auto
+            span: left
             label: 'Name of Place'
             tab: Job Details
             type: \Wwrf\TransitionCenter\FormWidgets\GooglePlaces
             modelClass: \Wwrf\TransitionCenter\Models\Program
             selectFrom: company
             pattern: text
-        website:
+
+        apply_online:
             tab: Job Details
-            label: Website
-            span: auto
+            span: right
+            label: Apply online
+            comment: Place a tick in this box if there is an online application.
+            type: checkbox
+            default: true
+
+        link:
+            tab: Job Details
+            label: Application Link
+            span: right
             type: text
-            
+            placeholder: 'http://'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: apply_online
+                condition: checked
+
         address:
             tab: Job Details
             label: Address
-            span: auto
+            span: left
             type: text
+
+        email_resume:
+            tab: Job Details
+            span: right
+            label: Email resume
+            comment: Place a tick in this box if the job requires an emailed resume.
+            type: checkbox  
+
+        email:
+            tab: Job Details
+            label: Email address
+            span: right
+            type: text
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: email_resume
+                condition: checked
             
         phone:
             tab: Job Details
             label: Phone
-            span: auto
+            span: left
             type: text
-            
-        link:
+
+        in_person:
             tab: Job Details
-            label: Application Link
-            span: full
+            span: right
+            label: In person
+            comment: Place a tick in this box if you can apply in person.
+            type: checkbox
+
+        walk_route:
+            tab: Job Details
+            label: Walk route
+            comment: Place a tick in this box if the job is in the walk route.
+            span: right
+            type: checkbox
+
+        website:
+            tab: Job Details
+            label: Website
+            span: left
             type: text
-            placeholder: 'http://'
             
         categories:
             tab: rainlab.blog::lang.post.tab_categories
@@ -78,7 +139,7 @@ secondaryTabs:
         is_featured:
             tab: rainlab.blog::lang.post.tab_manage
             label: Featured post
-            comment: 'Feature up to 3 posts on user homepage'
+            comment: 'Show post on featured section of homepage'
             span: right
             type: checkbox
 
@@ -107,3 +168,4 @@ secondaryTabs:
             mode: image
             imageWidth: 200
             imageHeight: 200
+            
