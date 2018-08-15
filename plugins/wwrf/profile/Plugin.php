@@ -65,8 +65,11 @@ class Plugin extends PluginBase
             ];
 
             $model->bindEvent('model.beforeValidate', function() use ($model) {
+                if (!$model instanceof UserModel) {
+                    return;
+                }
                 $model->rules['industries'] = 'max:4';
-                $model->rules['kdoc_number'] = 'unique:users';
+                //$model->rules['kdoc_number'] = 'unique:users';
             });
 
             $model->addDynamicMethod('getYearOptions', function($value) use ($model)
