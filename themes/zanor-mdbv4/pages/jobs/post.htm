@@ -105,18 +105,15 @@ function onEnd()
                         </a>
                         {% endif %}
                     </form>
-
                     
                     {% endif %}
                     
-                    
                     <hr />
                     <p class="">{{ post.content_html|raw }}</p>
-                    
                     {% if post.address %}
                     <hr />
-                    <div id='map' style='width:100%; height: 100%;' class="mb-4 job-map-container"></div>
-                    <div id='directions' style='width:100%; display: none;'></div>
+                    <iframe class="rounded map-container" width="100%" height="450" frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed/v1/place?q={{post.address}}&key=AIzaSyDCEEQWmjat4dZoYXpY9zBg4w3zLD91Sfo" allowfullscreen></iframe>
                     {% endif %}
                 </div>
                 
@@ -128,39 +125,4 @@ function onEnd()
     </section>
 
 </div>
-
-<script>
-    var ll = new mapboxgl.LngLat(-97.3334, 37.6820);
-
-    mapboxgl.accessToken = 'pk.eyJ1Ijoid3dyZnJlc291cmNlIiwiYSI6ImNqZ3Fqd2VqZzA0emkyd25xMWE0eDI3cGsifQ.TVy1EOqrWzoPCJkC34x8Fw';
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v9',
-        center: ll,
-        zoom: 13,
-        scrollZoom: false,
-        dragPan: false
-    });
-
-    var directions = new MapboxDirections({
-        accessToken: mapboxgl.accessToken,
-        profile: 'mapbox/walking',
-        controls: {profileSwitcher: false}
-    });
-    
-    map.on('load', function() {
-        var directions = new MapboxDirections({
-            accessToken: mapboxgl.accessToken,
-            controls: {
-                inputs: false,
-                instructions: true
-            }
-        });
-    
-        document.getElementById('directions').appendChild(directions.onAdd(map));
-    
-        directions.setOrigin('401 S Emporia Avenue, Wichita, Kansas');
-        directions.setDestination('{{post.address}}');
-    });
-</script>
 {% endif %}
